@@ -144,13 +144,13 @@ export default function Dashboard() {
         </header>
         <main className="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-2 lg:grid-cols-3">
           <div
-            className="relative hidden flex-col items-start gap-8 md:flex" x-chunk="dashboard-03-chunk-0"
+            className="relative flex-col items-start gap-8 flex" x-chunk="dashboard-03-chunk-0"
           >
             <div className=" w-[100%] h-[100%] rounded-s border">
 
             </div>
           </div>
-          <div className="relative flex h-full min-h-[50vh] flex-col rounded-xl bg-muted/50 p-4 lg:col-span-2">
+          <div className="relative md:flex h-full min-h-[50vh] hidden flex-col rounded-xl p-4 lg:col-span-2">
           </div>
         </main>
       </div>
