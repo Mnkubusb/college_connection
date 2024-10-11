@@ -9,6 +9,11 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			josefin: ['var(--font-josefin-sans)'],
+			geist: ['var(--font-geist-sans)'],
+			geistMono: ['var(--font-geist-mono)']
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

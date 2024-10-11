@@ -3,6 +3,14 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ThemeProvider } from "../components/ui/theme-provider";
+import Aside from "@/components/Aside";
+
+
+const JosefinSans = localFont({
+  src:"./fonts/JosefinSansVF.ttf",
+  variable: "--font-josefin-sans",
+  weight: "100 900",
+})
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,15 +36,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
-          >
-          <TooltipProvider>{children}</TooltipProvider>
+        >
+          <TooltipProvider>
+            <div className="grid h-screen w-full pl-[53px]">
+              <Aside></Aside>
+                {children}
+            </div>
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

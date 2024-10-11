@@ -1,9 +1,9 @@
+import React from "react";
 import Header from "@/components/Header";
-
-export default function Dashboard() {
+const Notes = () => {
   return (
     <div className="flex flex-col">
-      <Header Name="College Connections"></Header>
+      <Header Name="Dashboard"></Header>
       <main className="grid flex-1 gap-4 overflow-auto p-2  md:grid-cols-2 lg:grid-cols-3">
         <div
           className="relative flex-col items-start gap-8 flex"
@@ -15,4 +15,6 @@ export default function Dashboard() {
       </main>
     </div>
   );
-}
+};
+
+export default Notes;
