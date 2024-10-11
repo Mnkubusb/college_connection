@@ -11,7 +11,7 @@ import { IoLinkOutline, IoGitNetworkOutline } from "react-icons/io5";
 import { MdContactPage } from "react-icons/md";
 import Logo from "../../public/logo_new.svg";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
 const NoteEditIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={24} height={24} color={"#000000"} fill={"none"} {...props}>
       <path d="M10.2892 21.9614H9.39111C6.14261 21.9614 4.51836 21.9614 3.50918 20.9363C2.5 19.9111 2.5 18.2612 2.5 14.9614V9.96139C2.5 6.66156 2.5 5.01165 3.50918 3.98653C4.51836 2.9614 6.14261 2.9614 9.39111 2.9614H12.3444C15.5929 2.9614 17.4907 3.01658 18.5 4.04171C19.5092 5.06683 19.5 6.66156 19.5 9.96139V11.1478" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -30,10 +30,11 @@ const InformationCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 
 const Aside = () => {
+  const router = useRouter();
   return (
     <aside className="inset-y fixed left-0 z-20 flex h-full flex-col border-r">
       <div className="border-b p-2">
-        <Button variant="ghost" size="icon" aria-label="Home ">
+        <Button variant="ghost" size="icon" aria-label="Home" onClick={() => router.push("/")}> 
           <Image src={Logo} alt="logo" className="size-5" width={32} height={32} ></Image>
         </Button>
       </div>
@@ -45,6 +46,7 @@ const Aside = () => {
               size="icon"
               className="rounded-lg bg-muted"
               aria-label="Network"
+              onClick={() => router.push("/")}
             >
               <IoGitNetworkOutline className="size-5" />
             </Button>
@@ -60,6 +62,7 @@ const Aside = () => {
               size="icon"
               className="rounded-lg"
               aria-label="Notes"
+              onClick={() => router.push("/notes")}
             >
              <NoteEditIcon className="size-5 fill-white" />
             </Button>
@@ -74,7 +77,8 @@ const Aside = () => {
               variant="ghost"
               size="icon"
               className="rounded-lg"
-              aria-label="API"
+              aria-label="Links"
+              onClick={() => router.push("/links")}
             >
               <IoLinkOutline className="size-5" />
             </Button>
@@ -89,7 +93,8 @@ const Aside = () => {
               variant="ghost"
               size="icon"
               className="rounded-lg"
-              aria-label="Documentation"
+              aria-label="Contact us"
+              onClick={() => router.push("/contact")}
             >
               <MdContactPage className="size-5" />
             </Button>
@@ -105,6 +110,7 @@ const Aside = () => {
               size="icon"
               className="rounded-lg"
               aria-label="Settings"
+              onClick={() => router.push("/settings")}
             >
               <Settings2 className="size-5" />
             </Button>
@@ -121,7 +127,8 @@ const Aside = () => {
               variant="ghost"
               size="icon"
               className="mt-auto rounded-lg"
-              aria-label="Help"
+              aria-label="About"
+              onClick={() => router.push("/about")}
             >
               <InformationCircleIcon className="size-5 fill-white" />
             </Button>
@@ -136,7 +143,8 @@ const Aside = () => {
               variant="ghost"
               size="icon"
               className="mt-auto rounded-lg"
-              aria-label="Account"
+              aria-label="Profile"
+              onClick={() => router.push("/profile")}
             >
               <User className="size-5" />
             </Button>
