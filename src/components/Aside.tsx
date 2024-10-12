@@ -34,12 +34,12 @@ const Aside = () => {
   const router = useRouter();
   return (
     <aside className="inset-y fixed left-0 z-20 flex h-full flex-col border-r ">
-      <div className="border-b p-2">
+      <div className="border-b p-2 ">
         <Button variant="ghost" size="icon" aria-label="Home" onClick={() => router.push("/")}> 
           <Image src={Logo} alt="logo" className="size-5" width={32} height={32} ></Image>
         </Button>
       </div>
-      <nav className="sm:grid sm:relative gap-1 p-2 flex absolute">
+      <nav className="grid relative gap-1 p-2 ">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
