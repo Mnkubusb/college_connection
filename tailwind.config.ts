@@ -10,6 +10,7 @@ const config: Config = {
   theme: {
   	extend: {
 		fontFamily: {
+			oleo: ['var(--font-oleo-script)'],
 			josefin: ['var(--font-josefin-sans)'],
 			geist: ['var(--font-geist-sans)'],
 			geistMono: ['var(--font-geist-mono)']

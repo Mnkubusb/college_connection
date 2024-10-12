@@ -26,29 +26,31 @@ const InformationCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
       <path d="M12.2422 17V12C12.2422 11.5286 12.2422 11.2929 12.0957 11.1464C11.9493 11 11.7136 11 11.2422 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M11.992 8H12.001" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
-  );
+);
+  
 
 
 const Aside = () => {
   const router = useRouter();
   return (
-    <aside className="inset-y fixed left-0 z-20 flex h-full flex-col border-r">
+    <aside className="inset-y fixed left-0 z-20 flex h-full flex-col border-r ">
       <div className="border-b p-2">
         <Button variant="ghost" size="icon" aria-label="Home" onClick={() => router.push("/")}> 
           <Image src={Logo} alt="logo" className="size-5" width={32} height={32} ></Image>
         </Button>
       </div>
-      <nav className="grid grid-rows-[auto_1fr] gap-1 p-2">
+      <nav className="sm:grid sm:relative gap-1 p-2 flex absolute">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
               variant="ghost"
               size="icon"
-              className="rounded-lg bg-muted"
+              className="rounded-lg"
               aria-label="Network"
               onClick={() => router.push("/")}
             >
               <IoGitNetworkOutline className="size-5" />
+              {/* <h4>Network</h4> */}
             </Button>
           </TooltipTrigger>
           <TooltipContent side="right" sideOffset={5}>

@@ -5,6 +5,11 @@ import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ThemeProvider } from "../components/ui/theme-provider";
 import Aside from "@/components/Aside";
 
+const OleoScript = localFont({
+  src: "./fonts/OleoScript.ttf",
+  variable: "--font-oleo-script",
+  weight: "400",
+})
 
 const JosefinSans = localFont({
   src:"./fonts/JosefinSansVF.ttf",
@@ -36,8 +41,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} antialiased`}
-      >
+        className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} ${OleoScript.variable} antialiased`}
+        >
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
