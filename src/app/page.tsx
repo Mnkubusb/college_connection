@@ -15,17 +15,8 @@ export default function Dashboard() {
 
 
   
-  useEffect((() => {
-    const handleResize = () => {
-      setisMobileView(window.innerWidth < 768); 
-    };
-
-    handleResize(); 
-    window.addEventListener("resize", handleResize); 
-
-    return () => window.removeEventListener("resize", handleResize);
-  }),[]);
-  const handleClick = (index:number) => {
+    const handleClick = (index:number) => {
+    setisMobileView(window.innerWidth < 768); 
     setisActive(index);
   }
 
