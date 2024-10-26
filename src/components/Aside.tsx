@@ -85,11 +85,12 @@ const InformationCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const Aside = () => {
+
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <aside className="sm:inset-y sm:fixed absolute left-0 z-20 flex h-full flex-col sm:border-r w-full sm:w-max">
-      <div className="border-b p-2 border-r w-[53px] sm:border-r-0 sticky sm:relative">
+    <aside className="sm:inset-y fixed left-0 z-20 flex h-full flex-col sm:border-r w-full sm:w-max">
+      <div className="border-b p-2 border-r w-[53px] sm:border-r-0 fixed sm:relative bg-background">
         <Button
           variant="ghost"
           size="icon"
@@ -105,23 +106,23 @@ const Aside = () => {
           ></Image>
         </Button>
       </div>
-      <div className="flex sm:flex-col sm:h-full mt-auto sm:mt-0 mb-4 mx-auto sm:mb-0 sm:mx-0">
-        <nav className="grid gap-1 sm:p-2 grid-cols-4 sm:grid-cols-1">
+      <div className="flex sm:flex-col h-[70px] sm:h-full items-center sm:px-0 mt-auto sm:mt-0 bg-background sm:w-max gap-3 sm:bg-transparent w-full px-10 justify-evenly border-t">
+        <nav className="grid sm:gap-1 gap-4 sm:p-2 grid-cols-4 sm:grid-cols-1">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
-                className={clsx("rounded-lg", {
+                className={clsx("rounded-lg w-12 sm:w-9 h-12 sm:h-9 ", {
                   "bg-accent": pathname === "/",
                 })}
                 aria-label="Network"
                 onClick={() => router.push("/")}
               >
-                <IoGitNetworkOutline className="size-5" />
+                <IoGitNetworkOutline className="sm:size-5 size-8" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="right" sideOffset={5}>
+            <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
               Network
             </TooltipContent>
           </Tooltip>
@@ -130,16 +131,16 @@ const Aside = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className={clsx("rounded-lg ", {
+                className={clsx("rounded-lg w-12 h-12 sm:w-9 sm:h-9 ", {
                   "bg-accent": pathname === "/notes",
                 })}
                 aria-label="Notes"
                 onClick={() => router.push("/notes")}
               >
-                <NoteEditIcon className="size-5 fill-white" />
+                <NoteEditIcon className="sm:size-5 size-8 fill-white" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="right" sideOffset={5}>
+            <TooltipContent  side="right" sideOffset={5} className="sm:flex hidden">
               Notes
             </TooltipContent>
           </Tooltip>
@@ -148,16 +149,16 @@ const Aside = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className={clsx("rounded-lg", {
+                className={clsx("rounded-lg w-12 h-12 sm:w-9 sm:h-9 ", {
                   "bg-accent": pathname === "/links",
                 })}
                 aria-label="Links"
                 onClick={() => router.push("/links")}
               >
-                <IoLinkOutline className="size-5" />
+                <IoLinkOutline className="sm:size-5 size-8" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="right" sideOffset={5}>
+            <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
               Links
             </TooltipContent>
           </Tooltip>
@@ -166,16 +167,16 @@ const Aside = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className={clsx("rounded-lg", {
+                className={clsx("rounded-lg w-12 h-12 sm:w-9 sm:h-9 ", {
                   "bg-accent": pathname === "/contact",
                 })}
                 aria-label="Contact us"
                 onClick={() => router.push("/contact")}
               >
-                <MdContactPage className="size-5" />
+                <MdContactPage className="sm:size-5 size-8" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="right" sideOffset={5}>
+            <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
               Contact us
             </TooltipContent>
           </Tooltip>
@@ -190,15 +191,15 @@ const Aside = () => {
                 aria-label="Settings"
                 onClick={() => router.push("/settings")}
               >
-                <Settings2 className="size-5" />
+                <Settings2 className="sm:size-5 size-8" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="right" sideOffset={5}>
+            <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
               Settings
             </TooltipContent>
           </Tooltip>
         </nav>
-        <nav className="mt-auto grid gap-1 sm:p-2">
+        <nav className="sm:mt-auto grid sm:gap-1 sm:p-2">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -222,16 +223,16 @@ const Aside = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className={clsx("mt-auto rounded-lg", {
+                className={clsx("mt-auto rounded-lg w-12 h-12 sm:w-9 sm:h-9 ", {
                   "bg-accent": pathname === "/profile",
                 })}
                 aria-label="Profile"
                 onClick={() => router.push("/profile")}
               >
-                <User className="size-5" />
+                <User className="sm:size-5 size-8" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="right" sideOffset={5}>
+            <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
               Profile
             </TooltipContent>
           </Tooltip>

@@ -6,6 +6,8 @@ import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ThemeProvider } from "../components/ui/theme-provider";
 import Aside from "@/components/Aside";
 
+
+
 const OleoScript = localFont({
   src: "./fonts/OleoScript.ttf",
   variable: "--font-oleo-script",

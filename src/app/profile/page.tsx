@@ -4,6 +4,7 @@ const Profile = () => {
   return (
     <div>
       <Header Name="Profile"></Header>
+      
     </div>
   )
 }
