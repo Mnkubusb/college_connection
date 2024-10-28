@@ -7,7 +7,7 @@ interface Props {
 
 const Note:React.FC<Props> = ({params:{note}}) => {
     
-  const noteTitle = note.charAt(0).toUpperCase() + note.slice(1);
+  const noteTitle = note.replace("%20", " ");
 
   return (
     <div className="flex flex-col">
