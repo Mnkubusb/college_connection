@@ -4,14 +4,13 @@ const Notes = () => {
   return (
     <div className="flex flex-col">
       <Header Name="Notes"></Header>
-      <main className="grid flex-1 gap-4 overflow-auto p-2  md:grid-cols-2 lg:grid-cols-3">
-        <div
-          className="relative flex-col items-start gap-8 flex"
-          x-chunk="dashboard-03-chunk-0"
-        >
-          <div className=" sm:w-[80%] w-full h-[100%] border"></div>
+      <main className="grid flex-1 gap-2 overflow-auto px-2 md:grid-cols-2 lg:grid-cols-3">
+        <div className="relative flex-col items-start flex ">
+          <div className=" w-full h-[100%] border-x flex flex-col items-center gap-2 z-20"> 
+             
+          </div>
         </div>
-        <div className="relative md:flex h-full min-h-[50vh] hidden flex-col rounded-xl p-4 lg:col-span-2"></div>
+        <div className="relative md:flex h-full min-h-[50vh] hidden flex-col px-4 lg:col-span-2 border-x"></div>
       </main>
     </div>
   );

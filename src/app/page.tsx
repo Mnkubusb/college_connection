@@ -4,7 +4,7 @@ import Profile from "@/components/Profile";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Avatar , } from "@nextui-org/avatar";
-import { useState , useRef, useEffect } from "react";
+import { useState , useRef} from "react";
 import clsx from "clsx";
 import { CloseButton, MantineProvider } from '@mantine/core';
 export default function Dashboard() {
@@ -16,7 +16,7 @@ export default function Dashboard() {
 
   
     const handleClick = (index:number) => {
-    setisMobileView(window.innerWidth < 768); 
+    setisMobileView(true); 
     setisActive(index);
   }
 
@@ -52,12 +52,13 @@ export default function Dashboard() {
       <Header Name="College Connections"></Header>
       <main className="grid flex-1 gap-2 overflow-auto p-2 md:grid-cols-2 lg:grid-cols-3">
         <div className="relative flex-col items-start flex ">
-          <div className=" w-full h-[100%] border-x flex flex-col items-center py-2 gap-2">
+          <div className=" w-full h-[100%] border-x flex flex-col items-center py-2 gap-2 z-20">
             {Users.map((User, index) => (
               <div
                 className="div w-full h-fit cursor-pointer hover:bg-slate-800"
                 key={index}
                 onClick={handleClick.bind(null, index)}
+                onTouchStart={()=>handleClick(index)}
               >
                 <Profile
                   profilePic={User.profilePic}
@@ -72,13 +73,13 @@ export default function Dashboard() {
         <div
           ref={ref}
           className={clsx(
-            " md:flex h-full min-h-[50vh] flex-col lg:col-span-2 bg-background items-center border-x",
-            isMobileView ? " absolute z-10 flex w-[97%]" : "hidden relative z-0"
+            " md:flex h-full min-h-[50vh] flex-col z-30 lg:col-span-2 bg-background items-center border-x absolute sm:relative sm:w-full w-[97%]",
+            isMobileView ? " flex" : "hidden"
           )}
         >
           <div className="w-full">
             <CloseButton 
-              className="absolute right-4 top-4 w-8 h-8 bg-black rounded-full hover:bg-slate-800 sm:hidden flex justify-center items-center"
+              className="cursor-pointer z-50 absolute right-4 top-4 w-8 h-8 bg-black rounded-full hover:bg-slate-500 sm:hidden flex justify-center items-center"
               onClick={() => {
                 setisMobileView(false);
             }}/>
