@@ -75,6 +75,15 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  .scroll{
+    @apply [&::-webkit-scrollbar]:w-1
+    [&::-webkit-scrollbar-track]:rounded-full
+    [&::-webkit-scrollbar-track]:bg-primary-100
+    [&::-webkit-scrollbar-thumb]:rounded-full
+    [&::-webkit-scrollbar-thumb]:bg-primary-300
+    dark:[&::-webkit-scrollbar-track]:bg-background
+    dark:[&::-webkit-scrollbar-thumb]:bg-primary-500
+  }
 }
 
 

@@ -5,6 +5,7 @@ import "./globals.css";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ThemeProvider } from "../components/ui/theme-provider";
 import Aside from "@/components/Aside";
+import { SessionProvider } from "next-auth/react";
 
 
 
@@ -42,6 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <SessionProvider>
     <html lang="en">
       <Analytics />
       <body
@@ -54,13 +56,14 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TooltipProvider>
-            <div className="grid sm:h-screen h-[100dvh] w-full sm:pl-[53px]">
+            <div className="grid grid-col sm:h-screen h-[100dvh] overflow-hidden pl-[53px] ">
               <Aside></Aside>
-                {children}
+              {children}
             </div>
           </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
+    </SessionProvider>
   );
 }

@@ -1,12 +1,21 @@
+"use server"
 import React from 'react'
 import Header from '@/components/Header'
-const Profile = () => {
+import ProfilePage from '@/components/auth/profile-page'
+import { currentUser } from '@/lib/auth'
+const Profile = async () => {
+
+
+
+  const user = await currentUser();
   return (
-    <div>
+    <div className='relative'>
       <Header Name="Profile"></Header>
-      
+      <div className='flex px-4 relative h-[82vh] sm:h-full sm:w-full'>
+        <ProfilePage user={user} />
+      </div>
     </div>
   )
-}
+};
 
 export default Profile

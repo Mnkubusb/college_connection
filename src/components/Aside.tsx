@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
 import clsx from "clsx";
-import { Settings2, User } from "lucide-react";
+import { LogOut, Settings2, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { signOut } from "next-auth/react";
 import {
   Tooltip,
   TooltipContent,
@@ -14,6 +15,9 @@ import Logo from "../../public/logo_new.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
+import { useCurrentUser } from "@/hooks/get-current-user";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
+
 const NoteEditIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -86,14 +90,15 @@ const InformationCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 const Aside = () => {
 
+  const user = useCurrentUser();
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <aside className="sm:inset-y fixed left-0 z-20 flex h-full flex-col sm:border-r w-full sm:w-max">
-      <div className="border-b p-2 border-r w-[53px] sm:border-r-0 fixed sm:relative bg-background">
+    <aside className="sm:inset-y fixed left-0 flex h-full flex-col sm:border-r w-full sm:w-max bg-background">
+      <div className="p-2 border-r w-[53px] sm:border-r-0 fixed sm:relative bg-background sm:border-b border-b">
         <Button
           variant="ghost"
-          size="icon"
+          size="sm"
           aria-label="Home"
           onClick={() => router.push("/")}
         >
@@ -106,8 +111,8 @@ const Aside = () => {
           ></Image>
         </Button>
       </div>
-      <div className="flex sm:flex-col h-[70px] sm:h-full items-center sm:px-0 mt-auto sm:mt-0 bg-background sm:w-max gap-3 sm:bg-transparent w-full px-10 justify-evenly border-t">
-        <nav className="grid sm:gap-1 gap-4 sm:p-2 grid-cols-4 sm:grid-cols-1">
+      <div className="flex sm:flex-col h-[70px] z-50 sm:h-full items-center relative sm:translate-y-0 sm:px-0 translate-y-[90vh] bg-background sm:bg-transparent sm:w-max gap-3 w-full px-10 justify-evenly border-t">
+        <nav className="grid sm:gap-1 gap-4 sm:p-2 grid-cols-4 sm:grid-cols-1 z-50 ">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -140,7 +145,7 @@ const Aside = () => {
                 <NoteEditIcon className="sm:size-5 size-8 fill-white" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent  side="right" sideOffset={5} className="sm:flex hidden">
+            <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
               Notes
             </TooltipContent>
           </Tooltip>
@@ -173,7 +178,7 @@ const Aside = () => {
                 aria-label="Contact us"
                 onClick={() => router.push("/contact")}
               >
-                <MdContactPage className="sm:size-5 size-8" />
+                <MdContactPage className="sm:size-4 size-8" />
               </Button>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
@@ -199,7 +204,7 @@ const Aside = () => {
             </TooltipContent>
           </Tooltip>
         </nav>
-        <nav className="sm:mt-auto grid sm:gap-1 sm:p-2">
+        <nav className="sm:mt-auto grid sm:gap-1 sm:p-2 z-50">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -220,17 +225,41 @@ const Aside = () => {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className={clsx("mt-auto rounded-lg w-12 h-12 sm:w-9 sm:h-9 ", {
-                  "bg-accent": pathname === "/profile",
-                })}
-                aria-label="Profile"
-                onClick={() => router.push("/profile")}
-              >
-                <User className="sm:size-5 size-8" />
-              </Button>
+              <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={clsx("mt-auto rounded-lg w-12 h-12 sm:w-9 sm:h-9 ", {
+                    "bg-accent": pathname === "/profile",
+                  }, { "rounded-full": user?.image !== null })}
+                  aria-label="Profile"
+                >
+                  {
+                    user?.image ?
+                      <img src={user?.image} alt="" className="rounded-full w-8 h-8" /> :
+                      <User className="sm:size-5 size-8" />
+                  }
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => router.push("/profile")} className="flex gap-2">
+                <User size={16}/>
+                <span>Profile</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/settings")} className="flex gap-2">
+                <Settings2 size={16}/>
+                <span>Settings</span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => signOut()} className="flex gap-2">
+                <LogOut size={16}/>
+                <span>Logout</span>
+              </DropdownMenuItem>
+              </DropdownMenuContent>
+              </DropdownMenu>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
               Profile

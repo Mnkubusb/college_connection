@@ -29,6 +29,83 @@ export default function Dashboard() {
       Thumbnail:"/gratisography-foliage-face-1036x780.jpg"
     },
     {
+      profilePic: "https://avatars.githubusercontent.com/u/65947443?v=4",
+      Name: "Manik Chand Sahu",
+      Skill: "Web Developer",
+      Fallback: "MS",
+      Thumbnail:"/gratisography-foliage-face-1036x780.jpg"
+    },
+    {
+      profilePic: "https://avatars.githubusercontent.com/u/65947443?v=4",
+      Name: "Manik Chand Sahu",
+      Skill: "Web Developer",
+      Fallback: "MS",
+      Thumbnail:"/gratisography-foliage-face-1036x780.jpg"
+    },
+    {
+      profilePic: "https://avatars.githubusercontent.com/u/65947443?v=4",
+      Name: "Manik Chand Sahu",
+      Skill: "Web Developer",
+      Fallback: "MS",
+      Thumbnail:"/gratisography-foliage-face-1036x780.jpg"
+    },
+    {
+      profilePic: "https://avatars.githubusercontent.com/u/65947443?v=4",
+      Name: "Manik Chand Sahu",
+      Skill: "Web Developer",
+      Fallback: "MS",
+      Thumbnail:"/gratisography-foliage-face-1036x780.jpg"
+    },
+    {
+      profilePic: "https://avatars.githubusercontent.com/u/65947443?v=4",
+      Name: "Manik Chand Sahu",
+      Skill: "Web Developer",
+      Fallback: "MS",
+      Thumbnail:"/gratisography-foliage-face-1036x780.jpg"
+    },
+    {
+      profilePic: "https://avatars.githubusercontent.com/u/65947443?v=4",
+      Name: "Manik Chand Sahu",
+      Skill: "Web Developer",
+      Fallback: "MS",
+      Thumbnail:"/gratisography-foliage-face-1036x780.jpg"
+    },
+    {
+      profilePic: "https://avatars.githubusercontent.com/u/65947443?v=4",
+      Name: "Manik Chand Sahu",
+      Skill: "Web Developer",
+      Fallback: "MS",
+      Thumbnail:"/gratisography-foliage-face-1036x780.jpg"
+    },
+    {
+      profilePic: "https://avatars.githubusercontent.com/u/65947443?v=4",
+      Name: "Manik Chand Sahu",
+      Skill: "Web Developer",
+      Fallback: "MS",
+      Thumbnail:"/gratisography-foliage-face-1036x780.jpg"
+    },
+    {
+      profilePic: "https://avatars.githubusercontent.com/u/65947443?v=4",
+      Name: "Manik Chand Sahu",
+      Skill: "Web Developer",
+      Fallback: "MS",
+      Thumbnail:"/gratisography-foliage-face-1036x780.jpg"
+    },
+    {
+      profilePic: "https://avatars.githubusercontent.com/u/65947443?v=4",
+      Name: "Manik Chand Sahu",
+      Skill: "Web Developer",
+      Fallback: "MS",
+      Thumbnail:"/gratisography-foliage-face-1036x780.jpg"
+    },
+    {
+      profilePic: "https://avatars.githubusercontent.com/u/65947443?v=4",
+      Name: "Manik Chand Sahu",
+      Skill: "Web Developer",
+      Fallback: "MS",
+      Thumbnail:"/gratisography-foliage-face-1036x780.jpg"
+    },
+    {
       profilePic:
         "https://media.licdn.com/dms/image/v2/D4D03AQH1UjifWu1yjw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1706550302752?e=1733961600&v=beta&t=_U_2DpE14wGgv7U3rNh0HK-yWMljWeZJF9R4BhXsCLk",
       Name: "Ishant Sinha",
@@ -50,9 +127,10 @@ export default function Dashboard() {
     <MantineProvider>
     <div className="flex flex-col">
       <Header Name="College Connections"></Header>
-      <main className="grid flex-1 gap-2 overflow-auto p-2 md:grid-cols-2 lg:grid-cols-3">
-        <div className="relative flex-col items-start flex ">
-          <div className=" w-full h-[100%] border-x flex flex-col items-center py-2 gap-2 z-20">
+      <main className="grid flex-1 gap-2 px-4 md:grid-cols-2 lg:grid-cols-3 overflow-hidden ">
+        <div className="relative flex-col items-start flex overflow-auto">
+          <div className=" w-full sm:h-[92vh] h-[80vh] border-x flex flex-col items-center py-2 gap-2 overflow-auto scroll-smooth
+          scroll ">
             {Users.map((User, index) => (
               <div
                 className="div w-full h-fit cursor-pointer hover:bg-slate-800"
