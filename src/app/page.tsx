@@ -3,7 +3,6 @@ import Dashboard from '@/components/dashboard'
 import { db } from '@/lib/db';
 
 
-
 const Home = async () => {
   const users = await db.user.findMany({
     where: {
