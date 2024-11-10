@@ -30,17 +30,18 @@ import { newpassword } from "@/actions/newpassword";
 
 
 export function ForgotPassword() {
+
+
+  function Search() {
+    const searchParams = useSearchParams()
+    const token = searchParams.get("token")
+    return token
+  }
   
-  const searchParams = useSearchParams();
-  const [token , setToken] = useState<string | null>(null);
   const router = useRouter()
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isPending, startTransition] = useTransition();
-
-  useEffect(() => {
-    setToken(searchParams.get("token"));
-  }, [searchParams]);
 
   const form = useForm<z.infer<typeof ForgotPasswordSchema>>({
     resolver: zodResolver(ForgotPasswordSchema),
@@ -52,7 +53,7 @@ export function ForgotPassword() {
 
   const onSubmit = (values: z.infer<typeof ForgotPasswordSchema>) => {
     startTransition(() => {
-      newpassword(values, token)
+      newpassword(values, Search())
         .then((data) => {
           if (data?.error) {
             setError(data?.error)
