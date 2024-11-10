@@ -190,7 +190,7 @@ const Aside = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className={clsx("rounded-lg hidden sm:flex", {
+                className={clsx("rounded-lg hidden sm:flex w-12 h-12 sm:w-9 sm:h-9", {
                   "bg-accent": pathname === "/settings",
                 })}
                 aria-label="Settings"
@@ -204,18 +204,17 @@ const Aside = () => {
             </TooltipContent>
           </Tooltip>
         </nav>
-        <nav className="sm:mt-auto grid sm:gap-1 sm:p-2 z-50">
+        <nav className="sm:mt-auto grid sm:gap-1 sm:p-2 z-50 ">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
                 variant="ghost"
                 size="icon"
-                className={clsx("mt-auto rounded-lg sm:flex hidden", {
+                className={clsx("mt-auto rounded-lg sm:flex hidden w-12 h-12 sm:w-9 sm:h-9", {
                   "bg-accent": pathname === "/about",
                 })}
                 aria-label="About"
-                onClick={() => router.push("/about")}
-              >
+                onClick={() => router.push("/about")} >
                 <InformationCircleIcon className="size-5 fill-white" />
               </Button>
             </TooltipTrigger>
@@ -223,18 +222,17 @@ const Aside = () => {
               About
             </TooltipContent>
           </Tooltip>
-          <Tooltip>
+          <Tooltip >
             <TooltipTrigger asChild>
               <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className={clsx("mt-auto rounded-lg w-12 h-12 sm:w-9 sm:h-9 ", {
+                  className={clsx("mt-auto rounded-full w-12 h-12 sm:w-9 sm:h-9", {
                     "bg-accent": pathname === "/profile",
-                  }, { "rounded-full": user?.image !== null })}
-                  aria-label="Profile"
-                >
+                  })}
+                  aria-label="Profile" >
                   {
                     user?.image ?
                       <img src={user?.image} alt="" className="rounded-full w-8 h-8" /> :

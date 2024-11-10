@@ -20,7 +20,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
 import { ForgotPasswordSchema, LoginSchema } from "../../schemas";
-import { useState, useTransition } from "react";
+import { Suspense, useState, useTransition } from "react";
 import { FormSuccess } from "../form-success";
 import { FormError } from "../form-error";
 import { useSearchParams } from "next/navigation";
@@ -46,7 +46,7 @@ export function ForgotPassword() {
 
   const onSubmit = (values: z.infer<typeof ForgotPasswordSchema>) => {
     startTransition(() => {
-      newpassword(values , token)
+      newpassword(values, token)
         .then((data) => {
           if (data?.error) {
             setError(data?.error)
@@ -61,7 +61,7 @@ export function ForgotPassword() {
 
   }
 
-  if(success){
+  if (success) {
     router.push("/auth/login")
   }
 
@@ -75,40 +75,42 @@ export function ForgotPassword() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="grid gap-6">
-              <FormField control={form.control} name="password" render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Enter New Password</FormLabel>
-                  <Input
-                    {...field}
-                    placeholder=""
-                    type="password"
-                  />
-                </FormItem>
-              )} />
-              <FormField control={form.control} name="newPassword" render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Confirm New Password</FormLabel>
-                  <FormControl>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <div className="grid gap-6">
+                <FormField control={form.control} name="password" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Enter New Password</FormLabel>
                     <Input
                       {...field}
-                      disabled={isPending}
-                      placeholder="********"
+                      placeholder=""
                       type="password"
                     />
-                  </FormControl>
-                </FormItem>
-              )} />
+                  </FormItem>
+                )} />
+                <FormField control={form.control} name="newPassword" render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Confirm New Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        disabled={isPending}
+                        placeholder="********"
+                        type="password"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )} />
                 {error && <FormError message={error} />}
-                {success && <FormSuccess  message={success} />}
-              <Button type="submit" className="w-full h-10" variant="gooeyLeft">
-                Login
-              </Button>
-            </div>
-          </form>
-        </Form>
+                {success && <FormSuccess message={success} />}
+                <Button type="submit" className="w-full h-10" variant="gooeyLeft">
+                  Login
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </Suspense>
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
         <div className="mt-4 text-center text-sm flex justify-center items-center">
           Don&apos;t have an account?{" "}
