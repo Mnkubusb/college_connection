@@ -5,13 +5,14 @@ export const publicRoutes = [
     "/contact",
     "/auth/verify",
     "/auth/new-password",
+    "/notes/[note]"
 ];
 
 export const authRoutes = [
     "/auth/login",
     "/auth/signup",
     "/auth/reset",
-]
+];
 
 export const apiAuthPrefix = "/api/auth";
 export const DEFAULT_LOGIN_REDIRECT = "/profile";
