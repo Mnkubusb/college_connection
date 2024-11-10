@@ -8,9 +8,9 @@ import { getAccountByUserId } from "@/lib/account"
 
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-
+     
+    trustHost: true,
     secret: process.env.AUTH_SECRET,
-    
     pages: {
         signIn: "/profile/login"
     },
