@@ -1,4 +1,5 @@
 "use client"
+export const dynamic = "force-dynamic"
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,21 +21,26 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
 import { ForgotPasswordSchema, LoginSchema } from "../../schemas";
-import { Suspense, useState, useTransition } from "react";
+import { Suspense, useEffect, useState, useTransition } from "react";
 import { FormSuccess } from "../form-success";
 import { FormError } from "../form-error";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { newpassword } from "@/actions/newpassword";
 
-export function ForgotPassword() {
 
-  const searchParams = useSearchParams()
-  const token = searchParams.get("token")
+export function ForgotPassword() {
+  
+  const searchParams = useSearchParams();
+  const [token , setToken] = useState<string | null>(null);
   const router = useRouter()
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isPending, startTransition] = useTransition();
+
+  useEffect(() => {
+    setToken(searchParams.get("token"));
+  }, [searchParams]);
 
   const form = useForm<z.infer<typeof ForgotPasswordSchema>>({
     resolver: zodResolver(ForgotPasswordSchema),
@@ -71,11 +77,10 @@ export function ForgotPassword() {
       <CardHeader>
         <CardTitle className="text-xl">Forgot Password</CardTitle>
         <CardDescription>
-          Enter your email below
+          Enter your Email below
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Suspense fallback={<p>Loading...</p>}>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="grid gap-6">
@@ -110,7 +115,6 @@ export function ForgotPassword() {
               </div>
             </form>
           </Form>
-        </Suspense>
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
         <div className="mt-4 text-center text-sm flex justify-center items-center">
           Don&apos;t have an account?{" "}
