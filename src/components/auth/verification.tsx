@@ -50,7 +50,7 @@ const VerifyForm = () => {
   };
 
   if(success) {
-    router.push("/profile/login")
+    router.push("/auth/login")
   }
 
   return (
