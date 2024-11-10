@@ -98,7 +98,7 @@ export function LoginForm() {
                     <Input
                       {...field}
                       disabled={isPending}
-                      placeholder="********"
+                      placeholder="••••••••"
                       type="password"
                     />
                   </FormControl>
@@ -123,7 +123,7 @@ export function LoginForm() {
             </div>
           </form>
         </Form>
-        <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
+        <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" ></div>
         <div className="mt-4 text-center text-sm flex justify-center items-center">
           Don&apos;t have an account?{" "}
           <Button variant={"linkHover2"} className="w-14">

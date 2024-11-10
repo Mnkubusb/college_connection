@@ -26,23 +26,23 @@ const ShowSocial = ({className}:showSocialProps) => {
            onClick={() => onClick("github")}
            variant={"shine"}
            type="submit"
-           className=" h-10 sm:w-44 w-32 gap-2 justify-start"
+           className=" h-10 sm:w-40 w-32 gap-2 justify-center"
           >
             <FaGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300 " />
-            <span className="text-neutral-700 dark:text-neutral-300 text-sm mt-[2px] ">
+            {/* <span className="text-neutral-700 dark:text-neutral-300 text-sm mt-[2px] ">
               GitHub
-            </span>
+            </span> */}
           </Button>
           <Button
             onClick={() => onClick("google")} 
             variant={"shine"}
-            className="sm:w-44 w-32 h-10 gap-2 justify-start"
+            className="sm:w-40 w-32 h-10 gap-2 justify-center"
             type="submit"
           >
             <FcGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            <span className="text-neutral-700 dark:text-neutral-300 text-sm mt-[2px]">
+            {/* <span className="text-neutral-700 dark:text-neutral-300 text-sm mt-[2px]">
               Google
-            </span>
+            </span> */}
           </Button>
         </div>
      );

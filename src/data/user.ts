@@ -24,3 +24,12 @@ export const getUserById = async (id: string | undefined) => {
         return null
     }
 }
+
+export const getAllUsers = async () => {
+    try {
+        const users = await db.user.findMany({});
+        return users;
+    } catch (error) {
+        return null
+    }
+};

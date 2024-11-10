@@ -8,10 +8,13 @@ import { getAccountByUserId } from "@/lib/account"
 
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+
     secret: process.env.AUTH_SECRET,
+    
     pages: {
         signIn: "/profile/login"
     },
+
     events: {
       async linkAccount({user}){
         await db.user.update({
@@ -24,6 +27,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         })
       }
     },
+
     callbacks: {
         async signIn({ user, account }) {
 
@@ -33,7 +37,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             if (!existingUser?.emailVerified) return false
 
             return true
-            
         },
         async session({ token, session })  {
             console.log("Session:", {token ,session})
@@ -71,6 +74,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
              return token
         }
     },
+
     adapter: PrismaAdapter(db),
     session: { strategy: "jwt" },
     ...authConfig,
