@@ -15,10 +15,15 @@ const config: Config = {
   theme: {
   	extend: {
 		animation: {
+			"caret-blink": "caret-blink 1.25s ease-out infinite",
 			"shine": "shine 8s ease-in-out infinite",
             shim: "shim 3s linear infinite"
           },
 		keyframes: {
+			"caret-blink": {
+				"0%,70%,100%": { opacity: "1" },
+				"20%,50%": { opacity: "0" },
+			  },
 			shim: {
 				from: {
 					backgroundPosition: "0 0"

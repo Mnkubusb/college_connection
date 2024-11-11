@@ -19,6 +19,7 @@ import { useState, useTransition } from "react";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { useRouter } from "next/navigation";
+import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "../ui/input-otp";
 
 
 const VerifyForm = () => {
@@ -35,21 +36,21 @@ const VerifyForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof VerificationSchema>) => {
-     startTransition(() => {
-       verify(values)
-         .then((data) => {
-           if (data?.error) {
-             setError(data?.error);
-           }
-           if (data?.success) {
-             form.reset();
-             setSuccess(data?.success);
-           }
-         })
-     })
+    startTransition(() => {
+      verify(values)
+        .then((data) => {
+          if (data?.error) {
+            setError(data?.error);
+          }
+          if (data?.success) {
+            form.reset();
+            setSuccess(data?.success);
+          }
+        })
+    })
   };
 
-  if(success) {
+  if (success) {
     router.push("/auth/login")
   }
 
@@ -71,12 +72,23 @@ const VerifyForm = () => {
                 <FormControl>
                   <>
                     <FormItem>
-                      <OtpStyledInput
-                        numInputs={6}
-                        inputType="text"
-                        disabled={isPending}
-                        {...field}
-                      />
+                      <InputOTP 
+                         maxLength={6} 
+                         disabled={isPending} 
+                         {...field} 
+                        >
+                        <InputOTPGroup>
+                          <InputOTPSlot index={0} />
+                          <InputOTPSlot index={1} />
+                          <InputOTPSlot index={2} />
+                        </InputOTPGroup>
+                        <InputOTPSeparator />
+                        <InputOTPGroup>
+                          <InputOTPSlot index={3} />
+                          <InputOTPSlot index={4} />
+                          <InputOTPSlot index={5} />
+                        </InputOTPGroup>
+                      </InputOTP>
                     </FormItem>
                     <FormMessage />
                   </>

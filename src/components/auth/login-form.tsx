@@ -30,7 +30,8 @@ import { useRouter } from "next/navigation";
 
 export function LoginForm() {
 
-  const router = useRouter()
+
+  const router = useRouter();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isPending, startTransition] = useTransition();
@@ -84,7 +85,7 @@ export function LoginForm() {
               <div className="grid gap-6">
                 <FormField control={form.control} name="email" render={({ field }) => (
                   <FormItem>
-                    <FormLabel htmlFor="email">Email</FormLabel>
+                    <FormLabel htmlFor="email">Email address</FormLabel>
                     <Input
                       {...field}
                       placeholder="m@example.com"

@@ -95,7 +95,7 @@ const Aside = () => {
   const router = useRouter();
   return (
     <aside className="sm:inset-y fixed left-0 flex h-full flex-col sm:border-r w-full sm:w-max bg-background">
-      <div className="p-2 border-r w-[53px] sm:border-r-0 fixed sm:relative bg-background">
+      <div className="p-2 border-r w-[53px] sm:border-r-0 fixed sm:relative bg-background sm:border-b-0 border-b">
         <Button
           variant="ghost"
           size="sm"

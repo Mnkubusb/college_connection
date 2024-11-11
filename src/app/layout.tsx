@@ -56,7 +56,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TooltipProvider>
-            <div className="grid grid-col sm:h-screen h-[100dvh] overflow-hidden pl-[53px] ">
+            <div className="grid grid-col sm:h-screen h-[100dvh] overflow-hidden ">
               <Aside></Aside>
               {children}
             </div>
