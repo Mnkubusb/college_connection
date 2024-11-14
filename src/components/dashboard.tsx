@@ -99,7 +99,7 @@ const Dashboard = (({users}:UserProps) => {
         <MantineProvider>
             <div className="flex flex-col">
                 <Header Name="College Connections"></Header>
-                <main className="grid flex-1 gap-2 px-4 md:grid-cols-2 lg:grid-cols-3 overflow-hidden z-50 relative">
+                <main className="grid flex-1 gap-2 px-3 md:grid-cols-2 lg:grid-cols-3 overflow-hidden z-50 sm:z-0 relative">
                     <div className="relative flex-col items-start flex overflow-auto">
                         <div className=" w-full sm:h-[92vh] h-[82vh] border-x flex flex-col items-center py-2 gap-2 overflow-auto scroll-smooth
           scroll ">
@@ -125,7 +125,7 @@ const Dashboard = (({users}:UserProps) => {
                     <div
                         ref={ref}
                         className={clsx(
-                            " md:flex h-full min-h-[50vh] flex-col p-4 lg:col-span-2 z-30 bg-background items-center border-x absolute sm:relative sm:w-full w-[97%]",
+                            " md:flex h-full min-h-[50vh] flex-col sm:p-4 p-2 lg:col-span-2 z-30 sm:z-0 bg-background items-center border-x absolute sm:relative w-full",
                             isMobileView ? " flex" : "hidden"
                         )}
                     >

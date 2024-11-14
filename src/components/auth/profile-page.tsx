@@ -13,7 +13,7 @@ const ProfilePage = ({ user }: UserProps) => {
     return (
         <div
             className={clsx(
-                " md:flex h-full min-h-[50vh] p-4 flex-col lg:col-span-2 bg-background items-center border-x absolute sm:relative sm:w-full w-[97%]",
+                " md:flex h-full min-h-[50vh] p-4 flex-col lg:col-span-2 bg-background items-center border-x absolute sm:relative sm:w-full w-[100%]",
             )}
         >
             <div className="w-full">
@@ -51,7 +51,7 @@ const ProfilePage = ({ user }: UserProps) => {
                 </div>
                 <div className="line w-full h-[1px] bg-slate-700 relative"></div>
                 <div className="content">
-                    <p className="sm:text-lg text-md font-josefin font-light px-4 relative pt-2">
+                    <p className="sm:text-lg text-md font-josefin font-light relative pt-2 text-wrap">
                         {JSON.stringify(user)}
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                         eiusmod tempor incididunt ut labore et dolore magna aliqua.

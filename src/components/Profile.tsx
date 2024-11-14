@@ -1,6 +1,5 @@
 import React from 'react'
 import { Avatar , AvatarFallback , AvatarImage } from './ui/avatar'
-import { Badge } from './ui/badge'
 
 const Profile = (
     {profilePic,Name,Skills,Fallback}:{
@@ -11,7 +10,7 @@ const Profile = (
     }
 ) => {
   return (
-    <div className="w-[100%] h-[70px] flex items-center pl-4">
+    <div className="w-[100%] h-[70px] flex items-center px-4">
       <Avatar>
         <AvatarImage src={profilePic} alt={Name} />
         <AvatarFallback>{Fallback}</AvatarFallback>

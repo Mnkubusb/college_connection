@@ -1,19 +1,24 @@
 import React from 'react'
 import Header from '@/components/Header'
+import Link from 'next/link'
+
 
 const Links = () => {
   return (
     <div className="flex flex-col">
     <Header Name="Links"></Header>
-    <main className="grid flex-1 gap-4 overflow-auto p-2 md:grid-cols-2 lg:grid-cols-3">
-      <div
-        className="relative flex-col items-start gap-8 flex"
-        x-chunk="dashboard-03-chunk-0"
-      >
-        <div className=" sm:w-[80%] w-full h-[100%] border"></div>
-      </div>
-      <div className="relative md:flex h-full min-h-[50vh] hidden flex-col rounded-xl p-4 lg:col-span-2"></div>
-    </main>
+    <main className="grid flex-1 gap-2 z-50 sm:z-0 overflow-auto px-2 sm:px-3 md:grid-cols-2 lg:grid-cols-3 h-[82vh] sm:h-full relative">
+        <div className="flex-col items-start flex ">
+          <div className=" w-full h-[82vh] sm:h-full border-x flex flex-col items-center gap-2  p-2 pt-5"> 
+              <div  className="note w-full h-[70px] flex items-center justify-center border-y shadow-md hover:bg-blue-600/20 cursor-pointer" >
+                <Link href="/notes">
+                <h3>
+                </h3>
+                </Link>
+              </div>
+          </div>
+        </div>
+      </main>
   </div>
   )
 }

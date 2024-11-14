@@ -11,7 +11,7 @@ const Profile = async () => {
   return (
     <div className='relative'>
       <Header Name="Profile"></Header>
-      <div className='flex px-4 relative h-[82vh] sm:h-full sm:w-full'>
+      <div className='flex relative h-[82vh] sm:h-full sm:w-full'>
         <ProfilePage user={user} />
       </div>
     </div>

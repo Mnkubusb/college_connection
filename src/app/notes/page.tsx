@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Header from "@/components/Header";
+
 const Notes = () => {
 
    const Notes = [
@@ -30,11 +31,11 @@ const Notes = () => {
   return (
     <div>
       <Header Name="StudyMaterials"></Header>
-      <main className="grid flex-1 gap-2 overflow-auto px-4 md:grid-cols-2 lg:grid-cols-3 h-full z-50 relative">
+      <main className="grid flex-1 gap-2 z-50 sm:z-0 overflow-auto px-2 sm:px-3 md:grid-cols-2 lg:grid-cols-3 h-[82vh] sm:h-full relative">
         <div className="flex-col items-start flex ">
           <div className=" w-full h-[82vh] sm:h-full border-x flex flex-col items-center gap-2  p-2 pt-5"> 
             {Notes.map((note) => (
-              <div key={note.Name} className="note w-full h-[70px] flex items-center justify-center border-y">
+              <div key={note.Name} className="note w-full h-[70px] flex items-center justify-center border-y shadow-md hover:bg-gray-600 cursor-pointer" >
                 <Link href={"/notes/[note]"} as={`/notes/${note.Name}`}>
                 <h3>
                   {note.Name}

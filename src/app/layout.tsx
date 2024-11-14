@@ -6,6 +6,7 @@ import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ThemeProvider } from "../components/ui/theme-provider";
 import Aside from "@/components/Aside";
 import { SessionProvider } from "next-auth/react";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 
 
@@ -16,7 +17,7 @@ const OleoScript = localFont({
 })
 
 const JosefinSans = localFont({
-  src:"./fonts/JosefinSansVF.ttf",
+  src: "./fonts/JosefinSansVF.ttf",
   variable: "--font-josefin-sans",
   weight: "100 900",
 })
@@ -44,26 +45,28 @@ export default function RootLayout({
 }>) {
   return (
     <SessionProvider>
-    <html lang="en">
-      <Analytics />
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} ${OleoScript.variable} antialiased`}
-        >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <TooltipProvider>
-            <div className="grid grid-col sm:h-screen h-[100dvh] overflow-hidden ">
-              <Aside></Aside>
-              {children}
-            </div>
-          </TooltipProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+      <html lang="en">
+        <Analytics />
+        <EdgeStoreProvider>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} ${OleoScript.variable} antialiased`}
+          >
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <TooltipProvider>
+                <div className="grid grid-col sm:h-screen h-[100dvh] overflow-hidden sm:pl-[53px]">
+                  <Aside></Aside>
+                  {children}
+                </div>
+              </TooltipProvider>
+            </ThemeProvider>
+          </body>
+        </EdgeStoreProvider>
+      </html>
     </SessionProvider>
   );
 }

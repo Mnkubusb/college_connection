@@ -95,7 +95,7 @@ const Aside = () => {
   const router = useRouter();
   return (
     <aside className="sm:inset-y fixed left-0 flex h-full flex-col sm:border-r w-full sm:w-max bg-background">
-      <div className="p-2 border-r w-[53px] sm:border-r-0 fixed sm:relative bg-background sm:border-b-0 border-b">
+      <div className="p-2 sm:w-[53px] sm:h-[53px] w-[60px] h-[60px] fixed sm:relative bg-background sm:border-b-0 border-b flex justify-center items-center">
         <Button
           variant="ghost"
           size="sm"
@@ -105,7 +105,7 @@ const Aside = () => {
           <Image
             src={Logo}
             alt="logo"
-            className="size-5"
+            className="size-7 sm:size-5"
             width={32}
             height={32}
           ></Image>
@@ -118,13 +118,13 @@ const Aside = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className={clsx("rounded-lg w-12 sm:w-9 h-12 sm:h-9 ", {
+                className={clsx("rounded-full sm:rounded-lg w-12 sm:w-9 h-12 sm:h-9 ", {
                   "bg-accent": pathname === "/",
                 })}
                 aria-label="Network"
                 onClick={() => router.push("/")}
               >
-                <IoGitNetworkOutline className="sm:size-5 size-8" />
+                <IoGitNetworkOutline className="sm:size-5 size-7" />
               </Button>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
@@ -136,13 +136,13 @@ const Aside = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className={clsx("rounded-lg w-12 h-12 sm:w-9 sm:h-9 ", {
+                className={clsx("rounded-full sm:rounded-lg w-12 h-12 sm:w-9 sm:h-9 flex justify-center items-center", {
                   "bg-accent": pathname === "/notes",
                 })}
                 aria-label="Notes"
                 onClick={() => router.push("/notes")}
               >
-                <NoteEditIcon className="sm:size-5 size-8 fill-white" />
+                <NoteEditIcon className="sm:size-5 size-7 fill-white flex justify-center items-center" />
               </Button>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
@@ -154,13 +154,13 @@ const Aside = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className={clsx("rounded-lg w-12 h-12 sm:w-9 sm:h-9 ", {
+                className={clsx("rounded-full w-12 h-12 sm:w-9 sm:h-9 sm:rounded-lg", {
                   "bg-accent": pathname === "/links",
                 })}
                 aria-label="Links"
                 onClick={() => router.push("/links")}
               >
-                <IoLinkOutline className="sm:size-5 size-8" />
+                <IoLinkOutline className="sm:size-5 size-7" />
               </Button>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
@@ -172,13 +172,13 @@ const Aside = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className={clsx("rounded-lg w-12 h-12 sm:w-9 sm:h-9 ", {
+                className={clsx("sm:rounded-lg rounded-full w-12 h-12 sm:w-9 sm:h-9 ", {
                   "bg-accent": pathname === "/contact",
                 })}
                 aria-label="Contact us"
                 onClick={() => router.push("/contact")}
               >
-                <MdContactPage className="sm:size-4 size-8" />
+                <MdContactPage className="sm:size-4 size-7" />
               </Button>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
@@ -210,7 +210,7 @@ const Aside = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className={clsx("mt-auto rounded-lg sm:flex hidden w-12 h-12 sm:w-9 sm:h-9", {
+                className={clsx("mt-auto sm:rounded-lg rounded-full sm:flex hidden w-12 h-12 sm:w-9 sm:h-9", {
                   "bg-accent": pathname === "/about",
                 })}
                 aria-label="About"
@@ -236,7 +236,7 @@ const Aside = () => {
                   {
                     user?.image ?
                       <img src={user?.image} alt="" className="rounded-full w-8 h-8" /> :
-                      <User className="sm:size-5 size-8" />
+                      <User className="sm:size-5 size-7" />
                   }
                 </Button>
               </DropdownMenuTrigger>
