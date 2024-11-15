@@ -98,7 +98,7 @@ const Aside = () => {
       <div className="p-2 sm:w-[53px] sm:h-[53px] w-[60px] h-[60px] fixed sm:relative bg-background sm:border-b-0 border-b flex justify-center items-center">
         <Button
           variant="ghost"
-          size="sm"
+          size="icon"
           aria-label="Home"
           onClick={() => router.push("/")}
         >
@@ -111,8 +111,8 @@ const Aside = () => {
           ></Image>
         </Button>
       </div>
-      <div className="flex sm:flex-col h-[70px] z-50 sm:h-full items-center relative sm:translate-y-0 sm:px-0 translate-y-[90vh] bg-background sm:bg-transparent sm:w-max gap-3 w-full px-10 justify-evenly border-t">
-        <nav className="grid sm:gap-1 gap-4 sm:p-2 grid-cols-4 sm:grid-cols-1 z-50 ">
+      <div className="flex sm:flex-col h-[70px] z-50 sm:h-full items-center relative sm:translate-y-0 translate-y-[90vh] sm:px-0  bg-background sm:bg-transparent sm:w-max gap-3 w-full px-10 justify-evenly border-t">
+        <nav className="grid sm:gap-1 gap-4 sm:p-2 grid-cols-4 sm:grid-cols-1 ">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button

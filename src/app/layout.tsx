@@ -49,7 +49,7 @@ export default function RootLayout({
         <Analytics />
         <EdgeStoreProvider>
           <body
-            className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} ${OleoScript.variable} antialiased`}
+            className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} ${OleoScript.variable} antialiased` }
           >
             <ThemeProvider
               attribute="class"
