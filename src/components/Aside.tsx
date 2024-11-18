@@ -111,7 +111,7 @@ const Aside = () => {
           ></Image>
         </Button>
       </div>
-      <div className="flex sm:flex-col h-[70px] z-50 sm:h-full items-center relative sm:translate-y-0 translate-y-[90vh] sm:px-0  bg-background sm:bg-transparent sm:w-max gap-3 w-full px-10 justify-evenly border-t">
+      <div className="flex sm:flex-col h-[70px] z-50 sm:h-full items-center relative mt-auto sm:mt-0 sm:px-0 bg-background sm:bg-transparent sm:w-max gap-3 w-full px-10 justify-evenly border-t">
         <nav className="grid sm:gap-1 gap-4 sm:p-2 grid-cols-4 sm:grid-cols-1 ">
           <Tooltip>
             <TooltipTrigger asChild>

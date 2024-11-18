@@ -6,7 +6,6 @@ import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ThemeProvider } from "../components/ui/theme-provider";
 import Aside from "@/components/Aside";
 import { SessionProvider } from "next-auth/react";
-import { EdgeStoreProvider } from "@/lib/edgestore";
 
 
 
@@ -46,8 +45,7 @@ export default function RootLayout({
   return (
     <SessionProvider>
       <html lang="en">
-        <Analytics />
-        <EdgeStoreProvider>
+        <Analytics/>
           <body
             className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} ${OleoScript.variable} antialiased` }
           >
@@ -65,7 +63,6 @@ export default function RootLayout({
               </TooltipProvider>
             </ThemeProvider>
           </body>
-        </EdgeStoreProvider>
       </html>
     </SessionProvider>
   );
