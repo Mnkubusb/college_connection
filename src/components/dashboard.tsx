@@ -125,7 +125,7 @@ const Dashboard = (({users}:UserProps) => {
                     <div
                         ref={ref}
                         className={clsx(
-                            " md:flex h-full min-h-[50vh] flex-col sm:p-4 p-2 lg:col-span-2 z-30 sm:z-0 bg-background items-center border-x absolute sm:relative w-full",
+                            " md:flex h-full min-h-[50vh] flex-col sm:p-3 p-2 lg:col-span-2 z-30 sm:z-0 bg-background items-center border-x absolute sm:relative w-full",
                             isMobileView ? " flex" : "hidden"
                         )}
                     >
@@ -145,7 +145,7 @@ const Dashboard = (({users}:UserProps) => {
                                         className=" w-full sm:h-[250px] h-[150px] rounded-t-md object-cover object-center border-1"
                                     ></Image>
                                 </div>
-                                <div className="flex flex-col relative sm:p-4 px-4 sm:bottom-40 bottom-24">
+                                <div className="flex flex-col relative sm:p-4 px-4 sm:bottom-40 bottom-20">
                                     <Image
                                         color="default"
                                         aria-setsize={170}

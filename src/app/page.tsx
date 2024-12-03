@@ -18,6 +18,6 @@ const Home = async () => {
       <Dashboard users={users} />
     </div>
   )
-}
+};
 
 export default Home

@@ -50,7 +50,7 @@ const Notes = () => {
         </div>
       </main>
     </div>
-  );
+  )
 };
 
 export default Notes;

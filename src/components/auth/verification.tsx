@@ -56,15 +56,15 @@ const VerifyForm = () => {
 
   return (
     <div className="max-w-md h-full flex items-center justify-center outline outline-1 outline-muted p-6 bg-background">
-      <div className="w-full space-y-2 flex flex-col gap-3">
-        <div className="space-y-3">
+      <div className="w-full flex flex-col gap-3">
+        <div className="space-y-2">
           <h2 className="font-semibold text-xl">Verify Your Email</h2>
           <p className="text-xs text-muted-foreground">
             Enter the 5-digit code sent to your email address
           </p>
         </div>
         <Form {...form}>
-          <form className="grid gap-4 justify-items-start" onSubmit={form.handleSubmit(onSubmit)}>
+          <form className="grid gap-6 justify-items-start" onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
               name="code"
@@ -75,7 +75,7 @@ const VerifyForm = () => {
                       <InputOTP 
                          maxLength={6} 
                          disabled={isPending} 
-                         {...field} 
+                         {...field}
                         >
                         <InputOTPGroup>
                           <InputOTPSlot index={0} />

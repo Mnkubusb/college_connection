@@ -1,8 +1,6 @@
 "use server";
 import * as z from "zod";
-import bcrypt from "bcryptjs";
 import { getUserByEmail } from "../data/user";
-import { db } from "@/lib/db";
 import { LoginSchema } from "../schemas";
 import { DEFAULT_LOGIN_REDIRECT } from "../routes";
 import { signIn } from "../auth";
@@ -19,9 +17,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     }
 
     const { email, password } = validatedFields.data;
-    const hashedPassword = await bcrypt.hash(password, 10);
 
-    
     const existingUser = await getUserByEmail(email);
     if (!existingUser || !existingUser.password) {
         return { error: "User not found or login method is different" }

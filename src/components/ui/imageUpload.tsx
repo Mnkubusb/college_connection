@@ -7,9 +7,9 @@ import { useDropzone, type DropzoneOptions } from 'react-dropzone';
 import { twMerge } from 'tailwind-merge';
 
 const variants = {
-  base: 'relative rounded-md flex justify-center items-center flex-col cursor-pointer min-h-[150px] min-w-[200px] border border-dashed border-gray-400 dark:border-gray-300 transition-colors duration-200 ease-in-out',
+  base: 'relative rounded-md flex justify-center items-center flex-col cursor-pointer min-h-[100px] min-w-[100px]sm:min-h-[250px] sm:min-w-[250px]  border border-dashed border-gray-400 dark:border-gray-300 transition-colors duration-200 ease-in-out',
   image:
-    'border-0 p-0 min-h-0 min-w-0 relative shadow-md bg-slate-200 dark:bg-slate-900 rounded-md',
+    'border-0 p-2 min-h-0 min-w-0 relative shadow-md bg-transparent dark:bg-background rounded-full flex justify-center items-center',
   active: 'border-2',
   disabled:
     'bg-gray-200 border-gray-300 cursor-default pointer-events-none bg-opacity-30 dark:bg-gray-700',
@@ -84,7 +84,7 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
     const dropZoneClassName = React.useMemo(
       () =>
         twMerge(
-          variants.base,
+          variants.image,
           isFocused && variants.active,
           disabled && variants.disabled,
           imageUrl && variants.image,

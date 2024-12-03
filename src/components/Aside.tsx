@@ -98,7 +98,7 @@ const Aside = () => {
       <div className="p-2 sm:w-[53px] sm:h-[53px] w-[60px] h-[60px] fixed sm:relative bg-background sm:border-b-0 border-b flex justify-center items-center">
         <Button
           variant="ghost"
-          size="icon"
+          size="sm"
           aria-label="Home"
           onClick={() => router.push("/")}
         >
