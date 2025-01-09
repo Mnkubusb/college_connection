@@ -7,7 +7,7 @@ import { useDropzone, type DropzoneOptions } from 'react-dropzone';
 import { twMerge } from 'tailwind-merge';
 
 const variants = {
-  base: 'relative rounded-md flex justify-center items-center flex-col cursor-pointer min-h-[100px] min-w-[100px]sm:min-h-[250px] sm:min-w-[250px]  border border-dashed border-gray-400 dark:border-gray-300 transition-colors duration-200 ease-in-out',
+  base: 'relative rounded-full flex justify-center items-center flex-col cursor-pointer min-h-[100px] min-w-[100px]sm:min-h-[250px] sm:min-w-[250px]  border border-dashed border-gray-400 dark:border-gray-300 transition-colors duration-200 ease-in-out',
   image:
     'border-0 p-2 min-h-0 min-w-0 relative shadow-md bg-transparent dark:bg-background rounded-full flex justify-center items-center',
   active: 'border-2',
@@ -137,7 +137,7 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
           {imageUrl ? (
             // Image Preview
             <img
-              className="h-full w-full rounded-md object-cover"
+              className="h-full w-full rounded-full object-cover"
               src={imageUrl}
               alt={acceptedFiles[0]?.name}
             />

@@ -6,14 +6,25 @@ import { ExtendedUser } from "../../../next-auth";
 import ProfilePic from "../ui/profilePic";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
+import { useEdgeStore } from "@/lib/edgestore";
 import { SingleImageDropzone } from "../ui/imageUpload";
+import { Button } from "../ui/button";
 
 interface UserProps {
     user?: ExtendedUser
 }
 
 const ProfilePage = ({ user }: UserProps) => {
+    
     const [isEditing, setIsEditing] = useState(false);
+    const [file, setFile] = useState<File | undefined>(undefined);
+    const [progress, setProgress] = useState<
+    'PENDING' | 'COMPLETE' | 'ERROR' | number
+  >('PENDING');
+    const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
+    const { edgestore } = useEdgeStore();
+    
+
 
     const handleClick = () => {
         setIsEditing(!isEditing);
@@ -24,7 +35,7 @@ const ProfilePage = ({ user }: UserProps) => {
             className={clsx(
                 " md:flex h-full min-h-[50vh] p-3 flex-col lg:col-span-2 bg-background items-center border-x absolute sm:relative sm:w-full w-[100%]",
             )}
-        >   
+            >   
             <div className="w-full">
                 <div className="div">
                     <div className="rounded-full bg-black w-8 h-8 absolute top-6 right-6 flex justify-center items-center">
@@ -39,7 +50,17 @@ const ProfilePage = ({ user }: UserProps) => {
                     ></Image>
                 </div>
                 <div className="flex flex-col relative sm:p-4 p-3 sm:bottom-40 bottom-20">
-                    {isEditing?<SingleImageDropzone width={200} height={200}/>:<ProfilePic user={user}/>}
+                    {isEditing?< SingleImageDropzone 
+                    width={200} 
+                    height={200} 
+                    value={file}
+                    disabled={progress !== 'PENDING'}
+                    dropzoneOptions={{
+                        maxSize: 1024 * 1024 * 1, // 1 MB
+                      }}
+                    onChange={(file) => { setFile(file);}
+
+                    }  />:<ProfilePic user={user} />}
                     <div className="flex justify-between">
                         <div className="flex flex-col justify-center mb-4 mt-4">
                             <h3 className="sm:text-2xl text-xl font-sans font-bold ">
@@ -59,7 +80,16 @@ const ProfilePage = ({ user }: UserProps) => {
             </div>
             <div className="wrap relative sm:bottom-36 bottom-24">
                 <div className="text-2xl font-josefin font-bold px-4 relative">
-                    History
+                    <div>
+                        History
+                    </div>
+                    {isEditing && <Button className="absolute right-4 -top-1 transform -translate-y-1/2" onClick={ async() => {
+                        if(file){
+                            const res = await edgestore.profilePics.upload({file: file});
+                            setImageUrl(res.url);
+                            console.log(res);
+                        }
+                    }}>Save Changes</Button>}
                 </div>
                 <div className="line w-full h-[1px] bg-slate-700 relative"></div>
                 <div className="content">
@@ -70,7 +100,6 @@ const ProfilePage = ({ user }: UserProps) => {
                 </div>
             </div>
         </div>
-
     );
 }
 
