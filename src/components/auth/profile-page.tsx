@@ -15,7 +15,7 @@ interface UserProps {
 
 const ProfilePage = ({ user , className}: UserProps) => {
     return (
-        <div className="md:flex h-full min-h-[84vh] sm:mx-3 flex-col border lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]">
+        <div className="md:flex h-full min-h-[84vh] sm:mx-3 flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]">
             <div className="w-full sm:overflow-hidden overflow-auto h-full overflow-x-hidden">
                 <div className="div">
                     <div className="flex justify-center items-center sm:h-[200px] h-[150px] sm:w-full relative ">

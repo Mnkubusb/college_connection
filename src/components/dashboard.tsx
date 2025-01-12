@@ -35,9 +35,9 @@ const Dashboard = (({ users }: UserProps) => {
         <MantineProvider>
             <div className="flex flex-col">
                 <Header Name="College Connections"></Header>
-                <main className="grid flex-1 md:grid-cols-2 lg:grid-cols-3 overflow-hidden z-50 sm:z-0 relative">
+                <main className="grid flex-1 md:grid-cols-2 lg:grid-cols-3 overflow-hidden z-50 sm:z-0 relative sm:mx-3">
                     <div className="relative flex-col items-start flex overflow-auto">
-                        <div className=" w-full sm:h-[92vh] h-[84vh] border-x flex flex-col items-center py-2 gap-2 overflow-auto scroll-smooth scroll border-b">
+                        <div className=" w-full sm:h-full h-[84vh] border-x flex flex-col items-center py-2 gap-2 overflow-auto scroll-smooth scroll">
                             {users.map((user, index) => (
                                 <div
                                     key={index}
@@ -60,7 +60,7 @@ const Dashboard = (({ users }: UserProps) => {
                     <div
                         ref={ref}
                         className={clsx(
-                            " md:flex h-full min-h-[84vh] flex-col border lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]",
+                            " md:flex h-full min-h-[84vh] flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]",
                             isMobileView ? " flex" : "hidden"
                         )}>
                         <div className="w-full sm:overflow-hidden overflow-auto h-full overflow-x-hidden">
