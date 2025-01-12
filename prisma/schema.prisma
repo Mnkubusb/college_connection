@@ -25,10 +25,15 @@ model User {
   name          String?
   email         String          @unique
   emailVerified DateTime?
-  thumbnail     String?
   batch         String?
-  skills        String[]
+  wannabe       String?
+  insta         String?
+  linkedin      String?
+  github        String?
+  twitter       String?
   branch        String?
+  bio           String?
+  skills        String[]
   image         String?
   password      String?
   role          UserRole       @default(USER)
