@@ -8,7 +8,7 @@ const Profile = async () => {
   const user = await currentUser();
 
   return (
-    <div className='relative h-[82vh]'>
+    <div className='relative h-[90vh] sm:overflow-hidden sm:h-full sm:w-full'>
       <Header Name="Profile"></Header>
       <div className='flex relative h-[82vh] sm:h-full sm:w-full'>
         <ProfilePage user={user}/>

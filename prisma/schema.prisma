@@ -25,6 +25,10 @@ model User {
   name          String?
   email         String          @unique
   emailVerified DateTime?
+  thumbnail     String?
+  batch         String?
+  skills        String[]
+  branch        String?
   image         String?
   password      String?
   role          UserRole       @default(USER)

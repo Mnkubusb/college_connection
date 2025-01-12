@@ -7,7 +7,7 @@ interface Props {
 
 const Note:React.FC<Props> = ({params:{note}}) => {
     
-  const noteTitle = note.replace("%20", " ");
+  const noteTitle = note.replaceAll("%20", " ");
 
   return ( 
     <div className="flex flex-col">
