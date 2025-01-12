@@ -2,7 +2,7 @@
 import Header from "@/components/Header";
 import Profile from "@/components/Profile";
 import { Badge } from "@/components/ui/badge";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef} from "react";
 import clsx from "clsx";
 import { CloseButton, MantineProvider } from '@mantine/core';
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,6 @@ import { BackgroundGradientAnimation } from "./ui/background-gradient-animation"
 import { FaGithub, FaInstagram, FaLinkedin, FaRegStar } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
 import ProfilePic from "./ui/profilePic";
-import { user } from "@nextui-org/theme";
 
 interface UserProps {
     users: User[],
