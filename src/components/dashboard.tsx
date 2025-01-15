@@ -86,7 +86,7 @@ const Dashboard = (({ users }: UserProps) => {
                                                 </h3>
                                                 <div className="div">
                                                     <h4 className="sm:text-md texts-sm font-sans font-medium sm:flex text-wrap w-72 ">
-                                                        Information Technology
+                                                        {users[isActive].branch}
                                                     </h4>
                                                     <h4 className="sm:text-md texts-sm font-sans font-light sm:flex text-wrap w-72">
                                                         Government Engineering College , Bilaspur
@@ -123,7 +123,7 @@ const Dashboard = (({ users }: UserProps) => {
                                                         I am / Wanna be
                                                     </div>
                                                     <div className="text-xl">
-                                                        Web Developer
+                                                        {users[isActive].wannabe}
                                                     </div>
                                                 </div>
                                                 <div className="flex-col flex" >
@@ -141,10 +141,9 @@ const Dashboard = (({ users }: UserProps) => {
                                                 Skills
                                             </div>
                                             <div className="text-xl flex flex-wrap gap-2">
-                                                <Badge variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center "><FaRegStar /> React</Badge>
-                                                <Badge variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center "><FaRegStar /> Node</Badge>
-                                                <Badge variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center "><FaRegStar /> MongoDB</Badge>
-                                                <Badge variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center "><FaRegStar /> Express</Badge>
+                                                {users[isActive].skills.map((skill , index) => (
+                                                    <Badge key={index} variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center "><FaRegStar />{skill}</Badge>
+                                                ))}
                                             </div>
                                         </div>
                                     </div>

@@ -1,3 +1,4 @@
+"use client"
 import OnboardForm from '@/components/auth/onboard-form'
 import Header from '@/components/Header'
 import React from 'react'

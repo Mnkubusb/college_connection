@@ -1,6 +1,5 @@
 "use client";
-import React, { Suspense, useState } from "react";
-import Link from "next/link";
+import React, { Suspense, useEffect, useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import * as z from "zod"
 import { useForm } from "react-hook-form";
@@ -27,10 +26,77 @@ const pronouns = [
   {label:"Sportsman", value: "Sportsman"},
   {label:"Artist", value: "Artist"},
   {label:"Designer", value: "Designer"},
-  {label:"Full Stack Web Developer", value: "WEBD"},
-  {label:"Full Stack App Developer", value: "APPD"},
-  {label:"FrontEnd Developer", value: "FD"},
-  {label:"BackEnd Developer", value: "BD"},
+  { value: "software_engineer", label: "Software Engineer" },
+  { value: "full_stack_developer", label: "Full-Stack Developer" },
+  { value: "front_end_developer", label: "Front-End Developer" },
+  { value: "back_end_developer", label: "Back-End Developer" },
+  { value: "data_scientist", label: "Data Scientist" },
+  { value: "data_analyst", label: "Data Analyst" },
+  { value: "cloud_engineer", label: "Cloud Engineer" },
+  { value: "devops_engineer", label: "DevOps Engineer" },
+  { value: "ai_ml_engineer", label: "AI/ML Engineer" },
+  { value: "cybersecurity_engineer", label: "Cybersecurity Engineer" },
+  { value: "blockchain_developer", label: "Blockchain Developer" },
+  { value: "game_developer", label: "Game Developer" },
+  { value: "mobile_app_developer", label: "Mobile App Developer" },
+  { value: "systems_engineer", label: "Systems Engineer" },
+  { value: "network_engineer", label: "Network Engineer" },
+  { value: "database_administrator", label: "Database Administrator" },
+  { value: "it_project_manager", label: "IT Project Manager" },
+  { value: "product_manager", label: "Product Manager" },
+  { value: "site_reliability_engineer", label: "Site Reliability Engineer (SRE)" },
+  { value: "ui_ux_designer", label: "UI/UX Designer" },
+  { value: "technical_support_engineer", label: "Technical Support Engineer" },
+  { value: "qa_engineer", label: "QA Engineer (Quality Assurance)" },
+  { value: "it_consultant", label: "IT Consultant" },
+  { value: "iot_engineer", label: "IoT Engineer" },
+  { value: "vlsi_design_engineer", label: "VLSI Design Engineer" },
+  { value: "robotics_software_engineer", label: "Robotics Software Engineer" },
+  { value: "big_data_engineer", label: "Big Data Engineer" },
+  { value: "virtual_reality_engineer", label: "Virtual Reality Engineer" },
+  { value: "augmented_reality_developer", label: "Augmented Reality Developer" },
+  { value: "e_commerce_specialist", label: "E-commerce Specialist" },
+  { value: "security_analyst", label: "Security Analyst" },
+  { value: "web_developer", label: "Web Developer" },
+  // Civil Engineering
+  { value: "structural_engineer", label: "Structural Engineer" },
+  { value: "construction_manager", label: "Construction Manager" },
+  { value: "geotechnical_engineer", label: "Geotechnical Engineer" },
+  { value: "transportation_engineer", label: "Transportation Engineer" },
+  { value: "environmental_engineer", label: "Environmental Engineer" },
+  { value: "urban_planner", label: "Urban Planner" },
+  { value: "quantity_surveyor", label: "Quantity Surveyor" },
+  { value: "site_engineer", label: "Site Engineer" },
+  { value: "water_resources_engineer", label: "Water Resources Engineer" },
+  { value: "highway_engineer", label: "Highway Engineer" },
+  { value: "bim_specialist", label: "BIM Specialist" },
+  { value: "coastal_engineer", label: "Coastal Engineer" },
+
+  // Mechanical Engineering
+  { value: "design_engineer", label: "Design Engineer" },
+  { value: "hvac_engineer", label: "HVAC Engineer" },
+  { value: "automotive_engineer", label: "Automotive Engineer" },
+  { value: "maintenance_engineer", label: "Maintenance Engineer" },
+  { value: "manufacturing_engineer", label: "Manufacturing Engineer" },
+  { value: "thermal_engineer", label: "Thermal Engineer" },
+  { value: "mechatronics_engineer", label: "Mechatronics Engineer" },
+  { value: "robotics_engineer", label: "Robotics Engineer" },
+  { value: "aerospace_engineer", label: "Aerospace Engineer" },
+  { value: "tooling_engineer", label: "Tooling Engineer" },
+  { value: "energy_systems_engineer", label: "Energy Systems Engineer" },
+  { value: "materials_engineer", label: "Materials Engineer" },
+
+  // Electrical Engineering
+  { value: "electrical_design_engineer", label: "Electrical Design Engineer" },
+  { value: "power_systems_engineer", label: "Power Systems Engineer" },
+  { value: "control_systems_engineer", label: "Control Systems Engineer" },
+  { value: "circuit_design_engineer", label: "Circuit Design Engineer" },
+  { value: "embedded_systems_engineer", label: "Embedded Systems Engineer" },
+  { value: "instrumentation_engineer", label: "Instrumentation Engineer" },
+  { value: "renewable_energy_engineer", label: "Renewable Energy Engineer" },
+  { value: "transmission_engineer", label: "Transmission Engineer" },
+  { value: "substation_engineer", label: "Substation Engineer" },
+  { value: "motor_control_engineer", label: "Motor Control Engineer" },
 ]
 const branches = [
   {label: "Information Technology", value:"IT"},
@@ -139,48 +205,41 @@ const skills = [
 
 export default function OnboardForm() {
 
+ 
   const [selectedPronoun, setSelectedPronoun] = useState<ComboboxOptions>();
 
-  function handleSelect(option: ComboboxOptions) {
-    console.log('handleSelect');
-    console.log(option);
-    setSelectedPronoun(option);
-  }
 
   function handleAppendGroup(label: ComboboxOptions['label']) {
-    const newFlameWork = {
+    const newPronouns = {
       value: label,
       label,
     };
-    pronouns.push(newFlameWork);
-    console.log('handleAppendGroup');
-    console.log(newFlameWork);
-    handleSelect(newFlameWork);
+    pronouns.push(newPronouns);
   }
-  
 
   const user = useCurrentUser();
-
+  
   const form = useForm<z.infer<typeof ProfileSchema>>({
     resolver: zodResolver(ProfileSchema),
     defaultValues: {
-      email: user?.email || "",
+      email: user?.email || undefined ,
       batch: "",
       department: "",
       wannabe: "",
       skills: [],
       story: "",
     }
-  })
+  });
+
   const router = useRouter()
   const [success, setSuccess] = React.useState<string | null>(null)
   const [error, setError] = React.useState<string | null>(null)
   const [isPending, startTransition] = React.useTransition()
 
   const onSubmit = (values: z.infer<typeof ProfileSchema>) => {
-
-    values.wannabe = selectedPronoun?.value ?? '';
-
+    console.log(values)
+    setError("");
+    setSuccess("");
     startTransition(() => {
       onboard(values)
         .then((data) => {
@@ -200,7 +259,7 @@ export default function OnboardForm() {
   }
 
   return (
-    <Card className="max-w-md rounded-none h-full flex flex-col py-14 border-r-1" >
+    <Card className="max-w-md rounded-none h-full flex flex-col justify-center border-r-1" >
       <CardHeader>
         <CardTitle className="text-xl">
           Welcome to College Connection
@@ -210,7 +269,6 @@ export default function OnboardForm() {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <Suspense fallback={<p>Loading...</p>}>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="grid gap-4 mb-4">
@@ -229,7 +287,7 @@ export default function OnboardForm() {
                                 role="combobox"
                                 disabled={isPending}
                                 className={cn(
-                                  "w-full justify-between h-9",
+                                  "w-full justify-between h-10",
                                   !field.value && "text-muted-foreground"
                                 )}>
                                   {field.value
@@ -274,15 +332,15 @@ export default function OnboardForm() {
                           <PopoverTrigger asChild>
                             <FormControl>
                               <Button
-                              disabled={isPending}
+                                disabled={isPending}
                                 variant={"outline"}
                                 role="combobox"
                                 className={cn(
-                                  "w-200px justify-between h-9",
+                                  "w-200px justify-between h-10",
                                   !field.value && "text-muted-foreground"
                                 )}> 
                                   {field.value
-                                   ? batches.find((batch) => batch.value === field.value)?.label
+                                   ?batches.find((batch) => batch.value === field.value)?.label
                                  :"Select Batch"}
                                  <ChevronDown size={24} className="opacity-50" />
                                 </Button>
@@ -314,54 +372,6 @@ export default function OnboardForm() {
                     )}
                   />
                 </div>
-                {/* <FormField
-                  name="wannabe"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>  
-                      <FormLabel> How do you Identify Yourself / Your Pronouns</FormLabel>
-                      <Popover>
-                          <PopoverTrigger asChild>
-                            <FormControl>
-                              <Button
-                                variant={"outline"}
-                                role="combobox"
-                                className={cn(
-                                  "w-full justify-between h-9",
-                                  !field.value && "text-muted-foreground"
-                                )}>
-                                  {field.value
-                                   ? pronouns.find((pronoun) => pronoun.value === field.value)?.label
-                                 :"Select Batch"}
-                                 <ChevronDownIcon size={24} className="opacity-50" />
-                                </Button>
-                            </FormControl>
-                          </PopoverTrigger>
-                          <PopoverContent className="w-200px p-0" >
-                            <Command>
-                              <CommandInput placeholder="Select Your Batch" className="h-8"/>
-                              <CommandList>
-                                <CommandEmpty >Select from list below</CommandEmpty>
-                                <CommandGroup>
-                                  {pronouns.map((pronoun)=>(
-                                    <CommandItem
-                                      value={pronoun.value}
-                                      key={pronoun.value}
-                                      onSelect={() => {
-                                        form.setValue("wannabe", pronoun.value)
-                                      }}>
-                                      {pronoun.label}
-                                      <Check className={cn("ml-auto", pronoun.value === field.value ?"opacity-100":"opacity-0" )} />
-                                    </CommandItem>
-                                  ))}
-                                </CommandGroup>
-                              </CommandList>
-                            </Command>
-                          </PopoverContent>
-                        </Popover>
-                    </FormItem>
-                  )}
-                /> */}
                 <FormField
                   name="wannabe"
                   control={form.control}
@@ -371,14 +381,14 @@ export default function OnboardForm() {
                       <Combobox
                         options={pronouns}
                         placeholder="Select your pronoun"
-                        selected={selectedPronoun?.value ?? ''}
-                        onChange={handleSelect}
+                        selected={field.value}
+                        onChange={(option) => field.onChange(option.value)}
                         onCreate={handleAppendGroup}
                         />
                     </FormItem>
                   )}
                 />
-                <FormField
+                <FormField  
                   name="skills"
                   control={form.control}
                   render={({ field }) => (
@@ -400,24 +410,15 @@ export default function OnboardForm() {
               <FormError className="my-4" message={error} />
               <Button
                 type="submit"
-                variant={"gooeyLeft"}
                 disabled={isPending}
+                variant={"gooeyLeft"}
                 className="w-full"
               >
-                Sign up &rarr;
+                Next &rarr;
               </Button>
             </form>
           </Form>
-        </Suspense>
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
-        <div className=" mt-4 text-center text-sm flex justify-center items-center">
-          Already have an account?{"  "}
-          <Button variant={"linkHover2"} className="w-12">
-            <Link href="/auth/login">
-              Log In
-            </Link>
-          </Button>
-        </div>
       </CardContent>
     </Card>
   );
@@ -427,15 +428,6 @@ export default function OnboardForm() {
 
 
 
-
-
-
-
-
-
-// className=" text-xl text-neutral-800 dark:text-white font-bold"
-
-// className="max-w-md w-full rounded-none p-6 md:py-10 bg-white dark:bg-background h-full border-r-1 overflow-auto scroll dark:border-neutral-700"
 
 
 

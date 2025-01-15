@@ -7,6 +7,7 @@ import { signIn } from "../auth";
 import { AuthError } from "next-auth";
 import { generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/lib/mail";
+import { db } from "@/lib/db";
 
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
@@ -57,6 +58,21 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
             }
         }
     }
+
+    if(existingUser.isFirstLogin === true) {
+        return {
+            success: "First Login Successful",
+        }
+        await db.user.update({
+            data: {
+                isFirstLogin: false
+            },
+            where: {
+                email: existingUser?.email
+            }
+        })
+    }
+
     return {
         success: "Login Successful"
     }

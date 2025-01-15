@@ -35,6 +35,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             const existingUser = await getUserById(user.id);
             if (!existingUser?.emailVerified) return false
 
+            if(existingUser.isFirstLogin === true){
+              await db.user.update({
+                where :{
+                  id: existingUser.id
+                },
+                data : {
+                  isFirstLogin : false
+                }
+              })
+            }
+            
             return true
         },
         async session({ token, session })  {

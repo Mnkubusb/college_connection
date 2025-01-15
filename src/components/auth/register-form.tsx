@@ -32,6 +32,7 @@ export default function SignUpForm() {
   const [isPending, startTransition] = React.useTransition()
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
+    console.log(values)
     startTransition(() => {
       register(values)
         .then((data) => {
