@@ -13,7 +13,7 @@ interface UserProps {
     className?: string,
 }
 
-const ProfilePage = ({ user , className}: UserProps) => {
+const ProfilePage = ({ user, className }: UserProps) => {
     return (
         <div className="md:flex h-full min-h-[84vh] sm:mx-3 flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]">
             <div className="w-full sm:overflow-hidden overflow-auto h-full overflow-x-hidden">
@@ -24,7 +24,7 @@ const ProfilePage = ({ user , className}: UserProps) => {
                     </div>
                 </div>
                 <div className="flex sm:flex-row flex-col sm:px-10 sm:pt-10 px-7 sm:bottom-[7rem] bottom-14 relative gap-6">
-                    <ProfilePic image={user?.image as string} className="w-1/4"/>
+                    <ProfilePic image={user?.image as string} className="w-1/4" />
                     <div className="flex flex-col sm:mt-4 gap-3 w-3/4">
                         <div className="flex flex-col sm:justify-center sm:mb-4 sm:mt-24 gap-1 sm:gap-0 w-full">
                             <div className="flex flex-col sm:flex-row justify-between w-full">
@@ -32,9 +32,14 @@ const ProfilePage = ({ user , className}: UserProps) => {
                                     <h3 className="text-3xl font-sans font-bold">
                                         {user?.name}
                                     </h3>
-                                    <h4 className="sm:text-md texts-sm font-sans font-light sm:flex text-wrap w-72">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, suscipit.
-                                    </h4>
+                                    <div className="div">
+                                        <h4 className="sm:text-md texts-sm font-sans font-medium sm:flex text-wrap w-72 ">
+                                            Information Technology
+                                        </h4>
+                                        <h4 className="sm:text-md texts-sm font-sans font-light sm:flex text-wrap w-72">
+                                            Government Engineering College , Bilaspur
+                                        </h4>
+                                    </div>
                                 </div>
                                 <div className="sm:flex gap-1 hidden">
                                     <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 items-center justify-center">

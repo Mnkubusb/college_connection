@@ -32,6 +32,7 @@ model User {
   github        String?
   twitter       String?
   branch        String?
+  isFirstLogin  Boolean         @default(true)
   bio           String?
   skills        String[]
   image         String?

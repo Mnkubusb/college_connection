@@ -1,8 +1,8 @@
-import React from 'react'
+"use server"
 
 const loading = () => {
   return (
-    <div>
+    <div className='flex justify-center items-center h-screen'>
       Loading...
     </div>
   )
