@@ -5,18 +5,20 @@ import {
     DEFAULT_LOGIN_REDIRECT,
     authRoutes,
     apiAuthPrefix,
-    publicRoutes
+    publicRoutes,
+    Onboard
 } from "./routes";
+import { currentUser } from "./lib/auth";
     
 const { auth } = NextAuth(authConfig)
 
-export default auth(( req )=>{
+export default auth( async ( req )=>{
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
     const isAuthRoutes = authRoutes.includes(nextUrl.pathname);
-
+    const isOnboardingRoute = nextUrl.pathname === Onboard;
     if(isApiAuthRoute){
         return undefined;
     }
@@ -26,6 +28,23 @@ export default auth(( req )=>{
         }
         return undefined;
     }
+    
+    if (isLoggedIn) {
+        const user = await currentUser();
+        
+        if (user?.isFirstLogin) {
+            // Redirect to onboarding if not completed
+            if (!isOnboardingRoute) {
+                return Response.redirect(new URL(Onboard, nextUrl));
+            }
+        } else {
+            // Redirect away from onboarding if already completed
+            if (isOnboardingRoute) {
+                return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+            }
+        }
+    }
+
     if(!isLoggedIn && !isPublicRoute){
         let callbackUrl = nextUrl.pathname;
         if(nextUrl.search){

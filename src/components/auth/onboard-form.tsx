@@ -420,6 +420,7 @@ export default function OnboardForm( {user} : UserProps) {
                     <FormItem>
                       <FormLabel>Your Story</FormLabel>
                       <Textarea
+                        className="scroll"
                         disabled={isPending}
                         placeholder="Tell us a bit about yourself"
                         {...field}

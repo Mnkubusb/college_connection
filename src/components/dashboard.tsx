@@ -22,15 +22,17 @@ interface UserProps {
 
 const Dashboard = (({ users, profiles }: UserProps) => {
 
+    
     const ref = useRef(null);
     const [isActive, setisActive] = useState(0);
     const [isMobileView, setisMobileView] = useState(false);
+    const userProfiles = profiles?.filter(profile => users.some(user => user.id === profile.userId)) || []
 
 
     const handleClick = (index: number) => {
         setisMobileView(true);
         setisActive(index);
-    }
+    };
 
     return (
         <MantineProvider>
@@ -39,7 +41,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                 <main className="grid flex-1 md:grid-cols-2 lg:grid-cols-3 overflow-hidden z-50 sm:z-0 relative sm:mx-3">
                     <div className="relative flex-col items-start flex overflow-auto">
                         <div className=" w-full sm:h-full h-[84vh] border-x flex flex-col items-center py-2 gap-2 overflow-auto scroll-smooth scroll">
-                            {users.map((user, index) => (
+                            {userProfiles.map((profile, index) => (
                                 <div
                                     key={index}
                                     className="flex flex-col gap-2 cursor-pointer justify-center w-full px-2 hover:bg-gray-600"
@@ -47,10 +49,10 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                         handleClick(index);
                                     }}>
                                     <ProfileView
-                                        profilePic={user.image as string || "/picjumbo-premium-fall-pictures.jpg"}
-                                        Name={user.name as string}
-                                        Fallback={user.name?.slice(0, 2) as string}
-                                        Skills={user.email as string}
+                                        profilePic={users[index].image as string || "/picjumbo-premium-fall-pictures.jpg"}
+                                        Name={profile?.name as string}
+                                        Fallback={profile.name?.slice(0, 2) as string}
+                                        Skills={profile.wannabe as string}
                                     />
                                 </div>
                             ))}
@@ -62,10 +64,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                             " md:flex h-full min-h-[84vh] flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]",
                             isMobileView ? " flex" : "hidden"
                         )}>
-                        {profiles?.map((profile, index) => (
-                            <div className="w-full sm:overflow-hidden overflow-auto h-full overflow-x-hidden" key={index}>
-                                {profile?.userId === users[isActive].id &&
-                                <>
+                                <div className="w-full sm:overflow-hidden overflow-auto h-full overflow-x-hidden">
                                 <div className="w-full">
                                     <CloseButton
                                         className="cursor-pointer z-50 absolute right-4 top-4 w-8 h-8 bg-black rounded-full hover:bg-slate-500 sm:hidden flex justify-center items-center"
@@ -88,7 +87,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                                     </h3>
                                                     <div className="div">
                                                         <h4 className="sm:text-md texts-sm font-sans font-medium sm:flex text-wrap w-72 ">
-                                                            {profile.branch}
+                                                            {userProfiles[isActive].branch}
                                                         </h4>
                                                         <h4 className="sm:text-md texts-sm font-sans font-light sm:flex text-wrap w-72">
                                                             Government Engineering College , Bilaspur
@@ -125,7 +124,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                                             I am / Wanna be
                                                         </div>
                                                         <div className="text-xl">
-                                                        {profile.wannabe}
+                                                        {userProfiles[isActive].wannabe}
                                                         </div>
                                                     </div>
                                                     <div className="flex-col flex" >
@@ -133,7 +132,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                                             Batch
                                                         </div>
                                                         <div className="text-xl">
-                                                            {profile.batch}
+                                                            {userProfiles[isActive].batch}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -143,7 +142,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                                     Skills
                                                 </div>
                                                 <div className="text-xl flex flex-wrap gap-2">
-                                                    {profile.skills.map((skill, index) => (
+                                                    {userProfiles[isActive].skills.map((skill, index) => (
                                                         <Badge key={index} variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center "><FaRegStar />{skill.charAt(0).toUpperCase() + skill.slice(1)}</Badge>
                                                     ))}
                                                 </div>
@@ -160,14 +159,11 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                     <div className="h-[1px] sm:w-[95%] w-full bg-slate-600"></div>
                                     <div className="content flex sm:px-10">
                                         <p className="sm:text-lg text-md font-josefin font-light relative pt-2 text-wrap">
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae, mollitia animi unde accusamus minus voluptate, tempore repellendus praesentium labore eius voluptatem quo! Modi architecto autem est dicta adipisci eaque placeat voluptatibus, laborum velit fuga rerum culpa laudantium inventore veniam. Nemo eaque temporibus animi. Et, necessitatibus.
+                                            {userProfiles[isActive].bio || "Nothing to show"}
                                         </p>
                                     </div>
                                 </div>
-                                </>
-                                }
                             </div>
-                        ))}
                     </div>
                 </main>
             </div>

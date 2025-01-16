@@ -6,14 +6,18 @@ import { Button } from "../ui/button";
 import { FaGithub, FaInstagram, FaLinkedin, FaRegStar, FaTwitter } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
 import { BackgroundGradientAnimation } from "../ui/background-gradient-animation";
+import { Profile } from "@prisma/client";
 
 
 interface UserProps {
     user?: ExtendedUser,
-    className?: string,
+    profile?: Profile[]
 }
 
-const ProfilePage = ({ user, className }: UserProps) => {
+const ProfilePage = ({ user, profile }: UserProps) => {
+
+    const userProfile = profile?.find((profile) => profile.userId === user?.id);
+
     return (
         <div className="md:flex h-full min-h-[84vh] sm:mx-3 flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]">
             <div className="w-full sm:overflow-hidden overflow-auto h-full overflow-x-hidden">
@@ -30,11 +34,11 @@ const ProfilePage = ({ user, className }: UserProps) => {
                             <div className="flex flex-col sm:flex-row justify-between w-full">
                                 <div className="flex flex-col gap-2">
                                     <h3 className="text-3xl font-sans font-bold">
-                                        {user?.name}
+                                        {userProfile?.name}
                                     </h3>
                                     <div className="div">
                                         <h4 className="sm:text-md texts-sm font-sans font-medium sm:flex text-wrap w-72 ">
-                                            Information Technology
+                                            {userProfile?.branch}
                                         </h4>
                                         <h4 className="sm:text-md texts-sm font-sans font-light sm:flex text-wrap w-72">
                                             Government Engineering College , Bilaspur
@@ -71,7 +75,7 @@ const ProfilePage = ({ user, className }: UserProps) => {
                                             I am / Wanna be
                                         </div>
                                         <div className="text-xl">
-                                            Web Developer
+                                            {userProfile?.wannabe}
                                         </div>
                                     </div>
                                     <div className="flex-col flex" >
@@ -79,7 +83,7 @@ const ProfilePage = ({ user, className }: UserProps) => {
                                             Batch
                                         </div>
                                         <div className="text-xl">
-                                            2023
+                                            {userProfile?.batch}
                                         </div>
                                     </div>
                                 </div>
@@ -89,10 +93,10 @@ const ProfilePage = ({ user, className }: UserProps) => {
                                     Skills
                                 </div>
                                 <div className="text-xl flex flex-wrap gap-2">
-                                    <Badge variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center "><FaRegStar /> React</Badge>
-                                    <Badge variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center "><FaRegStar /> Node</Badge>
-                                    <Badge variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center "><FaRegStar /> MongoDB</Badge>
-                                    <Badge variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center "><FaRegStar /> Express</Badge>
+                                    {userProfile?.skills.map((skill , index) => (
+                                        <Badge variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center "><FaRegStar key={index} />{skill}</Badge>
+                                    ))
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -107,7 +111,7 @@ const ProfilePage = ({ user, className }: UserProps) => {
                     <div className="h-[1px] sm:w-[95%] w-full bg-slate-600"></div>
                     <div className="content flex sm:px-10">
                         <p className="sm:text-lg text-md font-josefin font-light relative pt-2 text-wrap">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae, mollitia animi unde accusamus minus voluptate, tempore repellendus praesentium labore eius voluptatem quo! Modi architecto autem est dicta adipisci eaque placeat voluptatibus, laborum velit fuga rerum culpa laudantium inventore veniam. Nemo eaque temporibus animi. Et, necessitatibus.
+                           {userProfile?.bio}
                         </p>
                     </div>
                 </div>

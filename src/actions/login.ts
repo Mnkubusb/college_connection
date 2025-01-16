@@ -60,9 +60,6 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     }
 
     if(existingUser.isFirstLogin === true) {
-        return {
-            success: "First Login Successful",
-        }
         await db.user.update({
             data: {
                 isFirstLogin: false

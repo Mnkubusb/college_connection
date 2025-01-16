@@ -44,6 +44,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         isFirstLogin: false
                     }
                 })
+                return true
             }
             return true
         },
