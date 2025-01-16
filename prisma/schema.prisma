@@ -79,7 +79,8 @@ model PasswordResetToken {
 model Profile {
   id            String         @id @default(cuid())
   userId        String         @unique
-  name          String         
+  name          String    
+  image         String?     
   batch         String?
   wannabe       String?
   insta         String?

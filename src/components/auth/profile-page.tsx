@@ -5,8 +5,10 @@ import ProfilePic from "../ui/profilePic";
 import { Button } from "../ui/button";
 import { FaGithub, FaInstagram, FaLinkedin, FaRegStar, FaTwitter } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
-import { BackgroundGradientAnimation } from "../ui/background-gradient-animation";
 import { Profile } from "@prisma/client";
+import { Pencil } from "lucide-react";
+import { useRouter } from "next/navigation";
+import AnimatedGridPattern from "../ui/animated-grid-pattern";
 
 
 interface UserProps {
@@ -16,15 +18,23 @@ interface UserProps {
 
 const ProfilePage = ({ user, profile }: UserProps) => {
 
+    const  router = useRouter();
     const userProfile = profile?.find((profile) => profile.userId === user?.id);
 
     return (
-        <div className="md:flex h-full min-h-[84vh] sm:mx-3 flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]">
+        <div className="md:flex h-full min-h-[84vh] sm:mx-3 border flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]">
             <div className="w-full sm:overflow-hidden overflow-auto h-full overflow-x-hidden">
                 <div className="div">
-                    <div className="flex justify-center items-center sm:h-[200px] h-[150px] sm:w-full relative ">
-                        <BackgroundGradientAnimation interactive>
-                        </BackgroundGradientAnimation>
+                    <Button onClick={() => {
+                        router.push("/settings")
+                    }} variant={"outline"} className="absolute gap-1 top-3 right-3 z-50 cursor-pointer bg-black rounded-full flex justify-center items-center">
+                        <Pencil size={14}  />
+                        Edit
+                    </Button>
+                    <div className="flex justify-center items-center sm:h-[200px] h-[150px] sm:w-full relative">
+                        <div className="bg-gradient-to-r from-slate-900 to-slate-700 w-full h-full" >
+                            <AnimatedGridPattern />
+                        </div>
                     </div>
                 </div>
                 <div className="flex sm:flex-row flex-col sm:px-10 sm:pt-10 px-7 sm:bottom-[7rem] bottom-14 relative gap-6">
@@ -93,7 +103,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                     Skills
                                 </div>
                                 <div className="text-xl flex flex-wrap gap-2">
-                                    {userProfile?.skills.map((skill , index) => (
+                                    {userProfile?.skills.map((skill, index) => (
                                         <Badge key={index} variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center " ><FaRegStar />{skill}</Badge>
                                     ))
                                     }
@@ -111,7 +121,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                     <div className="h-[1px] sm:w-[95%] w-full bg-slate-600"></div>
                     <div className="content flex sm:px-10">
                         <p className="sm:text-lg text-md font-josefin font-light relative pt-2 text-wrap">
-                           {userProfile?.bio}
+                            {userProfile?.bio}
                         </p>
                     </div>
                 </div>

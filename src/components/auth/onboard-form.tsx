@@ -230,13 +230,13 @@ export default function OnboardForm( {user} : UserProps) {
   });
 
   const router = useRouter()
-  const [success, setSuccess] = React.useState<string | null>(null)
-  const [error, setError] = React.useState<string | null>(null)
+  const [success, setSuccess] = React.useState("")
+  const [error, setError] = React.useState("")
   const [isPending, startTransition] = React.useTransition()
 
   const onSubmit = (values: z.infer<typeof ProfileSchema>) => {
-    setError(null);
-    setSuccess(null);
+    setError("");
+    setSuccess("");
     startTransition(() => {
       onboard(values)
         .then((data) => {

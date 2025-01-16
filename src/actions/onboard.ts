@@ -34,6 +34,7 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
         data: {
             name: existingUser.name as string,
             userId: existingUser.id,
+            image: existingUser.image as string,
             batch: batch,
             branch: department,
             wannabe: wannabe,
