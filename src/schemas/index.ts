@@ -57,5 +57,5 @@ export const ProfileSchema = z.object({
     department: z.string().min(1, { message: "Select your department"}),
     wannabe: z.string().min(1, { message: "Select your Desired Career"}),
     skills: z.string().array().min(1, { message: "Enter your skills"}).max(5, { message: "You can only add 5 skills"}),
-    story: z.string().min(1, { message: "Tell us your story"}),
+    story: z.string().min(10, { message: "Tell us your story in at least 10 words"}),
 })

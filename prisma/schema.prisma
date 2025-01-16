@@ -25,20 +25,12 @@ model User {
   name          String?
   email         String          @unique
   emailVerified DateTime?
-  batch         String?
-  wannabe       String?
-  insta         String?
-  linkedin      String?
-  github        String?
-  twitter       String?
-  branch        String?
   isFirstLogin  Boolean         @default(true)
-  bio           String?
-  skills        String[]
   image         String?
   password      String?
   role          UserRole       @default(USER)
   accounts      Account[]
+  profile       Profile[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -82,6 +74,22 @@ model PasswordResetToken {
   expires DateTime
 
   @@unique([email,token])
+}
+
+model Profile {
+  id            String         @id @default(cuid())
+  userId        String         @unique
+  name          String         
+  batch         String?
+  wannabe       String?
+  insta         String?
+  linkedin      String?
+  github        String?
+  twitter       String?
+  branch        String?
+  bio           String?
+  skills        String[]
+  user          User          @relation(fields: [userId], references: [id])
 }
 
 

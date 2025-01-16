@@ -5,7 +5,8 @@ export const publicRoutes = [
     "/contact",
     "/auth/verify",
     "/auth/new-password",
-    "/notes/[note]"
+    "/notes/[note]",
+    "/auth/onboarding"
 ];
 
 export const authRoutes = [

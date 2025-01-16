@@ -1,6 +1,8 @@
 "use server"
 import Dashboard from '@/components/dashboard';
 import { db } from '@/lib/db';
+import { getProfiles } from '@/lib/profile';
+
 
 
 const Home = async () => {
@@ -12,10 +14,12 @@ const Home = async () => {
       }
     }
   });
+  
+  const profiles = await db.profile.findMany({});
 
   return (
     <div>
-      <Dashboard users={users} />
+      <Dashboard users={users} profiles={profiles} />
     </div>
   )
 };

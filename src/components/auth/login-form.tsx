@@ -27,10 +27,11 @@ import { FormSuccess } from "../form-success";
 import { FormError } from "../form-error";
 import { login } from "../../actions/login";
 import { useRouter } from "next/navigation";
+import { useCurrentUser } from "@/hooks/get-current-user";
 
 export function LoginForm() {
 
-
+  const user = useCurrentUser()
   const router = useRouter();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -45,6 +46,8 @@ export function LoginForm() {
   })
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+    setError("") 
+    setSuccess("")
     startTransition(() => {
       login(values)
         .then((data) => {
@@ -61,14 +64,19 @@ export function LoginForm() {
 
   }
 
-  if (error === "Email not verified Please verify your email") {
-    router.push("/auth/verify")
-  }
-
-  if (success) {
+  if(!user?.isFirstLogin){
     router.push("/profile")
   }
 
+  if (error === "Email not verified Please verify your email") {
+    router.push("/auth/verify")
+  }
+  
+
+  if (success) {
+    router.push("/auth/onboarding")
+  }
+  
   
   return (
     <Card className="max-w-md rounded-none h-full flex flex-col justify-center border-r-1">

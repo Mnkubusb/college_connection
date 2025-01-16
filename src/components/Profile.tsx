@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar , AvatarFallback , AvatarImage } from './ui/avatar'
 
-const Profile = (
+const ProfileView = (
     {profilePic,Name,Skills,Fallback}:{
         profilePic:string,
         Name:string,
@@ -27,4 +27,4 @@ const Profile = (
   );
 }
 
-export default Profile
+export default ProfileView

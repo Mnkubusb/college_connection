@@ -18,6 +18,9 @@ import { Check,ChevronDown } from "lucide-react";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command";
 import { Combobox, ComboboxOptions } from "../ui/Combobox";
 import { MultiSelect } from "../ui/multi-select";
+import { Textarea } from "../ui/textarea";
+import { Input } from "../ui/input";
+import { ExtendedUser } from "../../../next-auth";
 
 const pronouns = [
   {label:"Still Figuring out", value: "SFT"},
@@ -99,12 +102,12 @@ const pronouns = [
   { value: "motor_control_engineer", label: "Motor Control Engineer" },
 ]
 const branches = [
-  {label: "Information Technology", value:"IT"},
-  {label: "Computer Science Engineering", value:"CSE"},
-  {label: "Electrical Engineering", value:"EEE"},
-  {label: "Mechanical Engineering", value:"MECH"},
-  {label: "Civil Engineering", value:"CIVIL"},
-  {label: "Mining Engineering", value:"MINING"},
+  {label: "Information Technology", value:"Information Technology"},
+  {label: "Computer Science Engineering", value:"Computer Science Engineering"},
+  {label: "Electrical Engineering", value:"Electrical Engineering"},
+  {label: "Mechanical Engineering", value:"Mechanical Engineering"},
+  {label: "Civil Engineering", value:"Civil Engineering"},
+  {label: "Mining Engineering", value:"Mining Engineering"},
 ] as const 
 
 const batches = [
@@ -201,13 +204,13 @@ const skills = [
 ];
 
 
+interface UserProps {
+    user?: ExtendedUser,
+}
 
-
-export default function OnboardForm() {
-
+export default function OnboardForm( {user} : UserProps) {
  
   const [selectedPronoun, setSelectedPronoun] = useState<ComboboxOptions>();
-
 
   function handleAppendGroup(label: ComboboxOptions['label']) {
     const newPronouns = {
@@ -216,13 +219,11 @@ export default function OnboardForm() {
     };
     pronouns.push(newPronouns);
   }
-
-  const user = useCurrentUser();
   
   const form = useForm<z.infer<typeof ProfileSchema>>({
     resolver: zodResolver(ProfileSchema),
     defaultValues: {
-      email: user?.email || undefined ,
+      email: user?.email ?? "",
       batch: "",
       department: "",
       wannabe: "",
@@ -237,9 +238,8 @@ export default function OnboardForm() {
   const [isPending, startTransition] = React.useTransition()
 
   const onSubmit = (values: z.infer<typeof ProfileSchema>) => {
-    console.log(values)
-    setError("");
-    setSuccess("");
+    setError(null);
+    setSuccess(null);
     startTransition(() => {
       onboard(values)
         .then((data) => {
@@ -254,12 +254,16 @@ export default function OnboardForm() {
     })
   }
 
+  if(error === "Profile already exists"){
+    router.push("/profile")
+  }
+
   if (success) {
     router.push("/profile")
   }
 
   return (
-    <Card className="max-w-md rounded-none h-full flex flex-col justify-center border-r-1" >
+    <Card className="max-w-md rounded-none h-full flex flex-col py-2 border-r-1" >
       <CardHeader>
         <CardTitle className="text-xl">
           Welcome to College Connection
@@ -270,7 +274,7 @@ export default function OnboardForm() {
       </CardHeader>
       <CardContent className="space-y-4">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+            <form onSubmit={form.handleSubmit(onSubmit,(error)=>{ console.log(error)})}>
               <div className="grid gap-4 mb-4">
                 <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 gap-2">
                   <FormField
@@ -283,9 +287,9 @@ export default function OnboardForm() {
                           <PopoverTrigger asChild>
                             <FormControl>
                               <Button
+                                disabled={isPending}
                                 variant={"outline"}
                                 role="combobox"
-                                disabled={isPending}
                                 className={cn(
                                   "w-full justify-between h-10",
                                   !field.value && "text-muted-foreground"
@@ -305,6 +309,7 @@ export default function OnboardForm() {
                                 <CommandGroup>
                                   {branches.map((branch)=>(
                                     <CommandItem
+                                      disabled={isPending}
                                       value={branch.value}
                                       key={branch.value}
                                       onSelect={() => {
@@ -354,6 +359,7 @@ export default function OnboardForm() {
                                 <CommandGroup>
                                   {batches.map((batch)=>(
                                     <CommandItem
+                                      disabled={isPending}
                                       value={batch.value}
                                       key={batch.value}
                                       onSelect={() => {
@@ -379,6 +385,7 @@ export default function OnboardForm() {
                     <FormItem>
                       <FormLabel>How do you Identify Yourself / Your Pronouns</FormLabel>
                       <Combobox
+                        disalbed={isPending}
                         options={pronouns}
                         placeholder="Select your pronoun"
                         selected={field.value}
@@ -395,7 +402,8 @@ export default function OnboardForm() {
                     <FormItem>
                       <FormLabel>Skills</FormLabel>
                       <MultiSelect
-                        placeholder="Select your skills"
+                        disabled={isPending}
+                        placeholder="Select your skills(Max 5)"
                         options={skills}
                         onValueChange={field.onChange}
                         defaultValue={field.value}
@@ -405,7 +413,31 @@ export default function OnboardForm() {
                     </FormItem>
                   )}
                 />
-              </div>
+                <FormField  
+                  name="story"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Your Story</FormLabel>
+                      <Textarea
+                        disabled={isPending}
+                        placeholder="Tell us a bit about yourself"
+                        {...field}
+                      />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="email"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input type="hidden" value={user?.email ?? ""} disabled={isPending}/>
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
               <FormSuccess className="my-4" message={success} />
               <FormError className="my-4" message={error} />
               <Button
@@ -416,6 +448,7 @@ export default function OnboardForm() {
               >
                 Next &rarr;
               </Button>
+              </div>
             </form>
           </Form>
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />

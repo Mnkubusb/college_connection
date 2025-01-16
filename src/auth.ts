@@ -35,17 +35,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             const existingUser = await getUserById(user.id);
             if (!existingUser?.emailVerified) return false
 
-            if(existingUser.isFirstLogin === true){
-              await db.user.update({
-                where :{
-                  id: existingUser.id
-                },
-                data : {
-                  isFirstLogin : false
-                }
-              })
+            if (existingUser.isFirstLogin) {
+                await db.user.update({
+                    where: {
+                        id: user.id
+                    },
+                    data: {
+                        isFirstLogin: false
+                    }
+                })
             }
-            
             return true
         },
         async session({ token, session })  {
@@ -61,6 +60,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               session.user.name = token.name;
               session.user.email = token.email as string;
               session.user.isOAuth = token.isOAuth as boolean;
+              session.user.isFirstLogin = token.isFirstLogin as boolean;
             }
             return session;
           },
@@ -80,6 +80,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             token.name = existingUser.name;
             token.role = existingUser.role;
             token.email = existingUser.email;
+            token.isFirstLogin = existingUser.isFirstLogin;
       
              return token
         }

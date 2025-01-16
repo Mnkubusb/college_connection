@@ -19,7 +19,7 @@ const ProfilePage = ({ user, className }: UserProps) => {
             <div className="w-full sm:overflow-hidden overflow-auto h-full overflow-x-hidden">
                 <div className="div">
                     <div className="flex justify-center items-center sm:h-[200px] h-[150px] sm:w-full relative ">
-                        <BackgroundGradientAnimation >
+                        <BackgroundGradientAnimation interactive>
                         </BackgroundGradientAnimation>
                     </div>
                 </div>

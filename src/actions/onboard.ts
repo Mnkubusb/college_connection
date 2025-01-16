@@ -3,9 +3,7 @@ import { ProfileSchema } from '../schemas';
 import * as z from 'zod';
 import { db } from '@/lib/db';
 import { getUserByEmail } from '@/data/user';
-import { useCurrentUser } from '@/hooks/get-current-user';
-
-
+import { getProfile } from '@/lib/profile';
 
 
 export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
@@ -18,8 +16,6 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
 
     const { batch, department , wannabe, skills, story ,email } = values;
 
-    console.log(email);
-
     if(skills.length > 5 ){
         return { error : "Only 5 skills are allowed"}
     }
@@ -27,14 +23,17 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
     const existingUser = await getUserByEmail(email);
 
     if (!existingUser) {
-        return { error: "User not created successfully" }
+        return { error: "User not found" }
     }
-    
-    await db.user.update({
-        where: {
-            id: existingUser.id
-        },
+
+    if (await getProfile(existingUser.id)) {
+        return { error: "Profile already exists" }
+    }
+
+    await db.profile.create({
         data: {
+            name: existingUser.name as string,
+            userId: existingUser.id,
             batch: batch,
             branch: department,
             wannabe: wannabe,
