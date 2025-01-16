@@ -112,15 +112,15 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                         </div>
                     </div>
                 </div>
-                <div className="wrap relative sm:bottom-36 bottom-14 p-5 flex flex-col gap-2 items-center justify-center">
+                <div className="wrap relative sm:bottom-36 bottom-14 p-5 flex flex-col gap-2">
                     <div className="text-2xl font-josefin font-bold sm:px-10 relative w-full">
                         <div>
                             My Story
                         </div>
                     </div>
                     <div className="h-[1px] sm:w-[95%] w-full bg-slate-600"></div>
-                    <div className="content flex sm:px-10">
-                        <p className="sm:text-lg text-md font-josefin font-light relative pt-2 text-wrap">
+                    <div className=" sm:px-10 ">
+                        <p className=" w-full sm:text-lg text-md font-josefin font-light relative pt-2 text-wrap flex justify-start items-start">
                             {userProfile?.bio}
                         </p>
                     </div>

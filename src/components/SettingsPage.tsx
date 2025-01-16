@@ -1,13 +1,6 @@
 "use client"
-import { Badge } from "@/components/ui/badge";
-
-import { FaGithub, FaInstagram, FaLinkedin, FaRegStar, FaTwitter } from "react-icons/fa";
-import { RiTwitterXFill } from "react-icons/ri";
 import { Profile } from "@prisma/client";
-import { Pencil } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { ExtendedUser } from "../../next-auth";
-import { Button } from "./ui/button";
 import AnimatedGridPattern from "./ui/animated-grid-pattern";
 import ProfilePic from "./ui/profilePic";
 
@@ -20,7 +13,6 @@ interface UserProps {
 
 const SettingsPage = ({ user, profile }: UserProps) => {
 
-    const  router = useRouter();
     const userProfile = profile?.find((profile) => profile.userId === user?.id);
 
     return (
