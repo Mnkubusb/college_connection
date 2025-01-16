@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import * as z from "zod"
 import { useForm } from "react-hook-form";
@@ -11,7 +11,6 @@ import { FormError } from "../form-error";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { onboard } from "@/actions/onboard";
-import { useCurrentUser } from "@/hooks/get-current-user";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { cn } from "@/lib/utils";
 import { Check,ChevronDown } from "lucide-react";
@@ -209,8 +208,6 @@ interface UserProps {
 }
 
 export default function OnboardForm( {user} : UserProps) {
- 
-  const [selectedPronoun, setSelectedPronoun] = useState<ComboboxOptions>();
 
   function handleAppendGroup(label: ComboboxOptions['label']) {
     const newPronouns = {

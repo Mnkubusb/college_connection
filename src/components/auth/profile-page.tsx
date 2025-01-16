@@ -94,7 +94,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                 </div>
                                 <div className="text-xl flex flex-wrap gap-2">
                                     {userProfile?.skills.map((skill , index) => (
-                                        <Badge variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center "><FaRegStar key={index} />{skill}</Badge>
+                                        <Badge key={index} variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center " ><FaRegStar />{skill}</Badge>
                                     ))
                                     }
                                 </div>
