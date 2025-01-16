@@ -28,13 +28,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
 
     callbacks: {
-        async signIn({ user, account }) {
+        async signIn({ user, account , profile }) {
 
             if (account?.provider !== "credentials") return true;
 
             const existingUser = await getUserById(user.id);
+            console.log(user.id)
             if (!existingUser?.emailVerified) return false
-
+            
             if (existingUser.isFirstLogin) {
                 await db.user.update({
                     where: {
@@ -44,8 +45,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         isFirstLogin: false
                     }
                 })
-                return true
+                console.log("First Login")
             }
+            
             return true
         },
         async session({ token, session })  {
