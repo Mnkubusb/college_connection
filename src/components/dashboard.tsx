@@ -73,7 +73,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                             setisMobileView(false);
                                         }} />
                                     <div className="flex justify-center items-center sm:h-[200px] h-[150px] sm:w-full relative ">
-                                        <BackgroundGradientAnimation >
+                                        <BackgroundGradientAnimation>
                                         </BackgroundGradientAnimation>
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                                             I am / Wanna be
                                                         </div>
                                                         <div className="text-xl">
-                                                        {profile.wannabe?.charAt(0).toUpperCase() + profile.wannabe?.slice(1) ?? ""}
+                                                        {profile.wannabe}
                                                         </div>
                                                     </div>
                                                     <div className="flex-col flex" >
