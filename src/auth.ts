@@ -15,23 +15,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
 
     events: {
-      async signIn({user}){
-        try{
-          const existingUser = await getUserById(user.id);
-          if(existingUser?.isFirstLogin){
-            await db.user.update({
-              where: {
-                id: user.id
-              },
-              data: {
-                isFirstLogin: false
-              }
-            })
-          }
-        }catch(error){
-          console.log(error)
-        }
-      },
       async linkAccount({user}){
         await db.user.update({
           where: {
@@ -53,6 +36,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             console.log(user.id)
 
             if (!existingUser?.emailVerified) return false
+            
             return true
         },
         async session({ token, session })  {

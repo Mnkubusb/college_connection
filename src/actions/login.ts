@@ -59,17 +59,6 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         }
     }
 
-    if(existingUser.isFirstLogin === true) {
-        await db.user.update({
-            data: {
-                isFirstLogin: false
-            },
-            where: {
-                email: existingUser?.email
-            }
-        })
-    }
-
     return {
         success: "Login Successful"
     }

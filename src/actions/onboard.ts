@@ -42,6 +42,15 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
         }
     })
 
+    await db.user.update({
+        where: {
+            id: existingUser.id
+        },
+        data: {
+            isFirstLogin: false
+        }
+    });
+
     return { success: "Profile created" }
 
 }
