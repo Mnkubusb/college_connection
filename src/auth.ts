@@ -11,10 +11,27 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     
     secret: process.env.AUTH_SECRET,
     pages: {
-        signIn: "/profile/login"
+        signIn: "/auth/login"
     },
 
     events: {
+      async signIn({user}){
+        try{
+          const existingUser = await getUserById(user.id);
+          if(existingUser?.isFirstLogin){
+            await db.user.update({
+              where: {
+                id: user.id
+              },
+              data: {
+                isFirstLogin: false
+              }
+            })
+          }
+        }catch(error){
+          console.log(error)
+        }
+      },
       async linkAccount({user}){
         await db.user.update({
           where: {
@@ -24,30 +41,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             emailVerified: new Date()
           }
         })
-      }
+      },
     },
 
     callbacks: {
-        async signIn({ user, account , profile }) {
+        async signIn({ user, account }) {
 
             if (account?.provider !== "credentials") return true;
 
             const existingUser = await getUserById(user.id);
             console.log(user.id)
+
             if (!existingUser?.emailVerified) return false
-            
-            if (existingUser.isFirstLogin) {
-                await db.user.update({
-                    where: {
-                        id: user.id
-                    },
-                    data: {
-                        isFirstLogin: false
-                    }
-                })
-                console.log("First Login")
-            }
-            
             return true
         },
         async session({ token, session })  {
