@@ -10,7 +10,7 @@ interface AnimatedGridPatternProps {
   height?: number;
   x?: number;
   y?: number;
-  strokeDasharray?: any;
+  strokeDasharray?: string;
   numSquares?: number;
   className?: string;
   maxOpacity?: number;
@@ -23,7 +23,7 @@ export default function AnimatedGridPattern({
   height = 40,
   x = -1,
   y = -1,
-  strokeDasharray = 0,
+  strokeDasharray = "connect",
   numSquares = 50,
   className,
   maxOpacity = 0.5,
