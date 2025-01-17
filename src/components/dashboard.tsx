@@ -61,7 +61,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                     <div
                         ref={ref}
                         className={clsx(
-                            " md:flex h-full border-r min-h-[84vh] flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]",
+                            " md:flex h-full border-r min-h-[80vh] flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]",
                             isMobileView ? " flex" : "hidden"
                         )}>
                         <div className="w-full sm:overflow-hidden overflow-auto h-full overflow-x-hidden">
@@ -151,7 +151,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="wrap relative sm:bottom-36 bottom-14 p-5 flex flex-col gap-2 items-center justify-center">
+                            <div className="wrap relative sm:bottom-36 bottom-14 p-5 flex flex-col gap-2">
                                 <div className="text-2xl font-josefin font-bold sm:px-10 relative w-full">
                                     <div>
                                         My Story

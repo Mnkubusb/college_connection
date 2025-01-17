@@ -59,3 +59,14 @@ export const ProfileSchema = z.object({
     skills: z.string().array().min(1, { message: "Enter your skills"}).max(5, { message: "You can only add 5 skills"}),
     story: z.string().min(10, { message: "Tell us your story in at least 10 words"}),
 })
+
+export const UpdateProfileSchema = z.object({
+    firstName: z.string().min(1, { message: "First Name is required"}),
+    lastName: z.optional(z.string()),
+    email: z.string().email({message: "Invalid email Address"}),
+    batch: z.string().min(1, { message: "Select your batch"}),
+    branch: z.string().min(1, { message: "Select your Branch"}),
+    wannabe: z.string().min(1, { message: "Select your Desired Career"}),   
+    skills: z.string().array().min(1, { message: "Enter your skills"}).max(5, { message: "You can only add 5 skills"}),
+    story: z.string().min(10, { message: "Tell us your story in at least 10 words"}),
+})

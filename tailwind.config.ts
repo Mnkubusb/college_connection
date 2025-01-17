@@ -94,6 +94,7 @@ const config: Config = {
     			}
     		},
     		boxShadow: {
+				threed:'`-19px -19px 38px #b1b1b1,19px 19px 38px #ffffff `',
     			input: '`0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`'
     		},
     		fontFamily: {
