@@ -13,7 +13,7 @@ const Settings = async () => {
   return (
     <div className='relative h-[90vh] sm:overflow-hidden sm:h-full sm:w-full'>
       <Header Name="Settings"></Header>
-      <div className='flex relative h-[82vh] sm:h-full sm:w-full'>
+      <div className='flex relative h-[80vh] sm:h-full sm:w-full'>
         <SettingsPage user={user} profile={profile}  />
       </div>
     </div>

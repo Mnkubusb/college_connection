@@ -1,3 +1,4 @@
+import { image } from "@nextui-org/theme";
 import * as z from "zod";
 
 export const LoginSchema =z.object({
@@ -63,7 +64,7 @@ export const ProfileSchema = z.object({
 export const UpdateProfileSchema = z.object({
     firstName: z.string().min(1, { message: "First Name is required"}),
     lastName: z.optional(z.string()),
-    email: z.string().email({message: "Invalid email Address"}),
+    image: z.optional(z.string()),
     batch: z.string().min(1, { message: "Select your batch"}),
     branch: z.string().min(1, { message: "Select your Branch"}),
     wannabe: z.string().min(1, { message: "Select your Desired Career"}),   

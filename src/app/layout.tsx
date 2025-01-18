@@ -6,8 +6,6 @@ import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ThemeProvider } from "../components/ui/theme-provider";
 import Aside from "@/components/Aside";
 import { SessionProvider } from "next-auth/react";
-import { EdgeStoreProvider } from "@/lib/edgestore";
-
 
 
 const OleoScript = localFont({
@@ -44,7 +42,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <EdgeStoreProvider>
       <SessionProvider>
         <html lang="en">
           <Analytics />
@@ -66,6 +63,5 @@ export default function RootLayout({
           </body>
         </html>
       </SessionProvider>
-    </EdgeStoreProvider>
   );
 }

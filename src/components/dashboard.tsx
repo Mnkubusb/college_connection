@@ -40,7 +40,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                 <Header Name="College Connections"></Header>
                 <main className="grid flex-1 md:grid-cols-2 lg:grid-cols-3 overflow-hidden z-50 sm:z-0 relative sm:mx-3">
                     <div className="relative flex-col items-start flex overflow-auto">
-                        <div className=" w-full sm:h-full h-[84vh] border-x flex flex-col items-center py-2 gap-2 overflow-auto scroll-smooth scroll">
+                        <div className=" w-full sm:h-full h-[80vh] border-x flex flex-col items-center py-2 gap-2 overflow-auto scroll-smooth scroll">
                             {userProfiles.map((profile, index) => (
                                 <div
                                     key={index}
@@ -61,7 +61,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                     <div
                         ref={ref}
                         className={clsx(
-                            " md:flex h-full border-r min-h-[80vh] flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]",
+                            " md:flex border-r min-h-[80vh] flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]",
                             isMobileView ? " flex" : "hidden"
                         )}>
                         <div className="w-full sm:overflow-hidden overflow-auto h-full overflow-x-hidden">
