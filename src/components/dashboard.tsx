@@ -65,7 +65,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                             " md:flex border-r min-h-[80vh] overflow-auto flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]",
                             isMobileView ? " flex" : "hidden"
                         )}>
-                        <div className="w-full overflow-auto scroll sm:max-h-[100vh] h-full scroll-smooth">
+                        <div className="w-full overflow-auto scroll sm:max-h-[100vh] h-[80vh] scroll-smooth">
                             <div className="w-full">
                                 <CloseButton
                                     className="cursor-pointer z-50 absolute right-4 top-4 w-8 h-8 bg-slate-500 dark:bg-black rounded-full hover:bg-slate-500 sm:hidden flex justify-center items-center"

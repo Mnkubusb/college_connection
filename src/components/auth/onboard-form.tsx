@@ -234,7 +234,7 @@ export default function OnboardForm( {user} : UserProps) {
   }
 
   return (
-    <Card className="max-w-md rounded-none h-full flex flex-col py-2 border-r-1" >
+    <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1" >
       <CardHeader>
         <CardTitle className="text-xl">
           Welcome to College Connection

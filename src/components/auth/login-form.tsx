@@ -74,7 +74,7 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="max-w-md rounded-none h-full flex flex-col justify-center border-r-1">
+    <Card className="max-w-md rounded-none h-full flex flex-col justify-center sm:border-r-1">
       <CardHeader>
         <CardTitle className="text-xl">Welcome to College Connections</CardTitle>
         <CardDescription>

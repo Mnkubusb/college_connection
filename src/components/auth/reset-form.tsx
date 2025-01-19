@@ -55,7 +55,7 @@ export const ResetForm = () => {
   }
 
   return (
-    <Card className="max-w-md rounded-none h-full flex flex-col justify-center border-r-1">
+    <Card className="max-w-md rounded-none h-full flex flex-col justify-center sm:border-r-1">
       <CardHeader>
         <CardTitle className="text-xl">Forgot Password</CardTitle>
         <CardDescription>
