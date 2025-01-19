@@ -39,7 +39,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
         <MantineProvider>
             <div className="flex flex-col">
                 <Header Name="College Connections"></Header>
-                <main className="grid flex-1 md:grid-cols-2 lg:grid-cols-3 overflow-hidden z-50 sm:z-0 relative sm:mx-3">
+                <main className="grid flex-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 relative sm:mx-3">
                     <div className="relative flex-col items-start flex overflow-auto">
                         <div className=" w-full sm:h-full h-[80vh] border-x flex flex-col items-center py-2 gap-2 overflow-auto scroll-smooth scroll">
                             {userProfiles.map((profile, index) => (
@@ -65,7 +65,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                             " md:flex border-r min-h-[80vh] overflow-auto flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]",
                             isMobileView ? " flex" : "hidden"
                         )}>
-                        <div className="w-full overflow-y-auto h-full overflow-x-hidden">
+                        <div className="w-full overflow-auto scroll h-full">
                             <div className="w-full">
                                 <CloseButton
                                     className="cursor-pointer z-50 absolute right-4 top-4 w-8 h-8 bg-slate-500 dark:bg-black rounded-full hover:bg-slate-500 sm:hidden flex justify-center items-center"
@@ -97,35 +97,35 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                                 </div>
                                             </div>
                                             <div className="sm:flex gap-1 hidden">
-                                                <Link href= {userProfiles[isActive].insta as string || "#"}>
                                                 <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 items-center justify-center">
+                                                <Link href= {userProfiles[isActive].insta as string || "#"}>
                                                     <FaInstagram className="text-medium " />
-                                                </Button>
                                                 </Link>
+                                                </Button>
+                                                <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 ">
                                                 <Link href= {userProfiles[isActive].linkedin as string || "#"}>
-                                                <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 ">
                                                     <FaLinkedin className="text-medium " />
-                                                </Button>
                                                 </Link>
+                                                </Button>
+                                                <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 ">
                                                 <Link href= {userProfiles[isActive].github as string || "#"}>
-                                                <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 ">
                                                     <FaGithub className="text-medium " />
-                                                </Button>
                                                 </Link>
-                                                <Link href= {userProfiles[isActive].twitter as string || "#"}>
+                                                </Button>
                                                 <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 ">
+                                                <Link href= {userProfiles[isActive].twitter as string || "#"}>
                                                     <RiTwitterXFill className="text-medium " />
-                                                </Button>
                                                 </Link>
+                                                </Button>
                                             </div>
                                         </div>
                                         <div className="flex gap-1 items-end justify-between sm:relative sm:-top-2 mt-2 sm:mt-0">
                                             <div className="flex gap-1 items-end">
-                                                <Link href= {userProfiles[isActive].linkedin ? userProfiles[isActive].linkedin as string : userProfiles[isActive].insta as string || "#"}>
                                                 <Button variant="outline" className=" rounded-[10px] bg-white border-2 text-black h-8 border-white">
+                                                <Link href= {userProfiles[isActive].linkedin ? userProfiles[isActive].linkedin as string : userProfiles[isActive].insta as string || "#"}>
                                                     <span>Message</span>
-                                                </Button>
                                                 </Link>
+                                                </Button>
                                                 <Button variant="outline" className=" rounded-[10px] bg-black border-2 border-white h-8">
                                                     <span>Share</span>
                                                 </Button>
