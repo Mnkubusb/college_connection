@@ -1,9 +1,9 @@
 const SetupPage = () => {
     return ( 
-        <div>
-            SetupPage
+        <div className="">
+            
         </div>
-     );
+    );
 }
  
 export default SetupPage;
