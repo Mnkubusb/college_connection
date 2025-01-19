@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import * as z from "zod"
 import { useForm } from "react-hook-form";
@@ -228,10 +228,12 @@ export default function OnboardForm( {user} : UserProps) {
   if(error === "Profile already exists"){
     router.push("/profile")
   }
-
+useEffect(() => {
   if (success) {
     router.push("/profile")
   }
+}, [success , router])
+
 
   return (
     <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1" >
