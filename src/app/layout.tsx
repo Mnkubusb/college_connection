@@ -6,6 +6,9 @@ import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { ThemeProvider } from "../components/ui/theme-provider";
 import Aside from "@/components/Aside";
 import { SessionProvider } from "next-auth/react";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
+import { ourFileRouter } from "@/app/api/uploadthing/core";
 
 
 const OleoScript = localFont({
@@ -42,26 +45,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <SessionProvider>
-        <html lang="en">
-          <Analytics />
-          <body
-            className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} ${OleoScript.variable} antialiased`}
+    <SessionProvider>
+      <html lang="en">
+        <Analytics />
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} ${OleoScript.variable} antialiased`}
+        >
+          <NextSSRPlugin
+            routerConfig={extractRouterConfig(ourFileRouter)}
+          />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            disableTransitionOnChange
           >
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="dark"
-              disableTransitionOnChange
-            >
-              <TooltipProvider>
-                <div className="grid grid-col sm:h-screen h-[100dvh] overflow-hidden sm:pl-[53px]">
-                  <Aside></Aside>
-                  {children}
-                </div>
-              </TooltipProvider>
-            </ThemeProvider>
-          </body>
-        </html>
-      </SessionProvider>
+            <TooltipProvider>
+              <div className="grid grid-col sm:h-screen h-[100dvh] overflow-hidden sm:pl-[53px]">
+                <Aside></Aside>
+                {children}
+              </div>
+            </TooltipProvider>
+          </ThemeProvider>
+        </body>
+      </html>
+    </SessionProvider>
   );
 }

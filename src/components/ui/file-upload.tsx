@@ -1,8 +1,7 @@
 "use client"
-
 import { UploadDropzone } from "@/utils/uploadthing";
-import { X } from "lucide-react";
-import Image from "next/image";
+import { Upload } from "lucide-react";
+import { Button } from "./button";
 
 interface FileUploadProps {
   onChange: (url?: string) => void;
@@ -11,33 +10,35 @@ interface FileUploadProps {
 
 const FileUpload = ( { onChange, value }: FileUploadProps ) => {
 
-  // const fileType = value?.split('.').pop();
+  const fileType = value?.split(".").pop();
 
-  // if(value && fileType !== "pdf") {
-  //   return (
-  //     <div className="relative h-full w-full flex items-center justify-center">
-  //       <Image className="object-cover" fill src={value} alt="Upload" />
-  //       <button onClick={() => onChange("")} className="bg-rose-500 text-white p-2 rounded-full absolute top-2 right-2" type="button">
-  //         <X className="h-4 w-4" />
-  //       </button>
-  //     </div>
-  //   )
-  // }
-
+  if (value && fileType !== "pdf") {
+    return (
+      <div className="flex items-center justify-center">
+        <p className="text">
+          {fileType === "pdf" ? "PDF" : "Image"} uploaded successfully.
+        </p>
+        <Button
+          variant="link"
+          onClick={() => onChange("")}
+          className="text-xs text-primary-500 flex items-center gap-1"
+        >
+          <Upload size={16} /> Change Profile Picture
+        </Button>
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full h-full">
-      <UploadDropzone 
-          className="p-3 border border-dashed border-gray-400 rounded-lg hover:border-gray-600"
-          endpoint={"profileImage"}
-          onClientUploadComplete={(res) => {
-            onChange(res?.[0].url);  
-            console.log("Upload complete:", res);
-          }}
-          onUploadError={(error: Error) => {
-            console.log("Upload failed:", error);
-          }}
-          />
+    <div className="w-full h-34 rounded-lg border-2 border-dashed border-primary-500">
+      <UploadDropzone
+        endpoint="profileImage"
+        onClientUploadComplete={(res) => {
+          console.log("Upload Success", res);
+          onChange(res?.[0].url);
+        }}
+        onUploadError={(error: Error) => console.log("Upload failed:", error)}
+      />
     </div>
   )
 }

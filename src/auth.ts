@@ -40,7 +40,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return true
         },
         async session({ token, session })  {
-            console.log("Session:", {token ,session})
             if(token.sub && session.user) {
               session.user.id = token.sub;
             }
@@ -53,6 +52,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               session.user.email = token.email as string;
               session.user.isOAuth = token.isOAuth as boolean;
               session.user.isFirstLogin = token.isFirstLogin as boolean;
+              session.user.image = token.image as string;
             }
             return session;
           },
@@ -73,6 +73,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             token.role = existingUser.role;
             token.email = existingUser.email;
             token.isFirstLogin = existingUser.isFirstLogin;
+            token.image = existingUser.image;
       
              return token
         }

@@ -25,9 +25,22 @@ export const update = async (values: z.infer<typeof UpdateProfileSchema>) => {
 
     } 
 
-    const { firstName, lastName, batch, branch, wannabe, skills, story , image} = validatedValues.data;
+    const { firstName, lastName, batch, branch, wannabe, skills, story , image , insta, linkedin, github, twitter} = validatedValues.data;
 
     const name = `${firstName.trim()} ${lastName?.trim()}`;
+
+    const normalizeUrl = (url: string | undefined, prefix: string) => {
+        if (!url) return undefined;
+        if(url.startsWith("@")) return `${prefix}${url.slice(1)}`
+        return url.startsWith(prefix) ? url : `${prefix}${url}`;
+    };
+
+    const normalizedUrls = {
+        insta: normalizeUrl(insta, "https://instagram.com/"),
+        linkedin: normalizeUrl(linkedin, "https://linkedin.com/in/"),
+        github: normalizeUrl(github, "https://github.com/"),
+        twitter: normalizeUrl(twitter, "https://x.com/"),
+    };
 
     try {
         await db.$transaction([
@@ -45,6 +58,7 @@ export const update = async (values: z.infer<typeof UpdateProfileSchema>) => {
                     wannabe,
                     skills,
                     bio: story,
+                    ...normalizedUrls,
                 },
             }),
         ]);

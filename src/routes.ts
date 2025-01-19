@@ -4,7 +4,7 @@ export const publicRoutes = [
     "/about",
     "/contact",
     "/auth/verify",
-    "/auth/uploadthing",
+    "/api/uploadthing",
     "/auth/new-password",
     "/notes/[note]",
 ];

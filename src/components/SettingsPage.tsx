@@ -23,6 +23,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import FileUpload from "./ui/file-upload";
 import { Combobox, ComboboxOptions } from "./ui/Combobox";
 import toast, { Toaster } from "react-hot-toast"
+import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 
 const branches = [
     { label: "Information Technology", value: "Information Technology" },
@@ -211,6 +212,10 @@ const SettingsPage = ({ user, profile }: UserProps) => {
             wannabe: userProfile?.wannabe as string,
             skills: userProfile?.skills as string[],
             story: userProfile?.bio as string,
+            insta: userProfile?.insta as string,
+            linkedin: userProfile?.linkedin as string,
+            github: userProfile?.github as string,
+            twitter: userProfile?.twitter as string,
         }
     })
 
@@ -246,7 +251,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                     </div>
                 </div>
                 <div className="flex sm:flex-row flex-col sm:pt-10 px-7 sm:bottom-[7rem] bottom-14 relative gap-6">
-                    <ProfilePic image={user?.image as string} className="w-[120px] h-[120px]" />
+                    <ProfilePic image={userProfile?.image as string} className="w-[120px] h-[120px]" />
                     <div className="flex flex-col sm:mt-4 gap-3 w-3/4">
                         <div className="flex flex-col sm:justify-center sm:mb-4 sm:mt-20 gap-1 sm:gap-0 w-full">
                             <div className="flex flex-col sm:flex-row justify-between w-full">
@@ -318,7 +323,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                             <AvatarFallback>{userProfile?.name.slice(0, 2)}</AvatarFallback>
                                                         </Avatar>
                                                         <FormControl>
-                                                            <FileUpload onChange={field.onChange} value={field.value} />
+                                                            <FileUpload onChange={field.onChange} value={field.value}/>
                                                         </FormControl>
                                                         <FormMessage />
                                                     </div>
@@ -490,6 +495,89 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                             />
                                                         </FormItem>
                                                     )} />
+                                            </div>
+                                            <div className="flex gap-4 flex-row-reverse border-t p-4">
+                                                <Button type="submit" className="w-34 h-9" variant="secondary" >
+                                                    Save Changes
+                                                </Button>
+                                                <Button className="w-34 h-9" variant="outline" onClick={() => form.reset()}>
+                                                    Cancel
+                                                </Button>
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                            <div className="h-[1px] w-full bg-gray-400 my-4 " />
+                            <div className="flex sm:flex-row flex-col gap-2">
+                                <div className="font-josefin sm:w-[25%] px-2">
+                                    <div className="font-bold ">
+                                        Socail Media
+                                    </div>
+                                    <div className="font-light ">
+                                        Update your social media links
+                                    </div>
+                                </div>
+                                <Card className="sm:w-[75%] border rounded-lg shadow-[0px_43px_100px_20px_rgba(0,_0,_0,_0.7)]">
+                                    <CardContent className="w-full p-0">
+                                        <div className="grid gap-6 ">
+                                            <div className="grid pt-7 px-6 gap-6">
+                                                <FormField control={form.control} name="insta" render={({ field }) => (
+                                                    <FormItem>
+                                                        <FormLabel className="flex items-center gap-1"><InstagramLogoIcon /> Instagram</FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                disabled={isPending}
+                                                                placeholder="Enter your instagram username or link"
+                                                                {...field}
+                                                                defaultValue={userProfile?.insta as string}
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}/>
+                                                <FormField control={form.control} name="linkedin" render={({ field }) => (
+                                                                <FormItem>
+                                                                    <FormLabel className="flex items-center gap-1"><LinkedInLogoIcon />Linkedin</FormLabel>
+                                                                    <FormControl>
+                                                                        <Input
+                                                                            disabled={isPending}
+                                                                            placeholder="Enter your linkedin username or link"
+                                                                            {...field}
+                                                                            defaultValue={userProfile?.linkedin as string}
+                                                                        />
+                                                                    </FormControl>
+                                                                    <FormMessage />
+                                                                </FormItem>
+                                                )}/>
+                                                <FormField control={form.control} name="twitter" render={({ field }) => (
+                                                    <FormItem>
+                                                <FormLabel className="flex items-center gap-1" ><TwitterLogoIcon />X(Twitter)</FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                disabled={isPending}
+                                                                placeholder="Enter your twitter handle or link"
+                                                                {...field}
+                                                                defaultValue={userProfile?.twitter as string}
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}/>
+                                                <FormField control={form.control} name="github" render={({ field }) => (
+                                                    <FormItem>
+                                                        <FormLabel className="flex items-center gap-1"><GitHubLogoIcon />Github</FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                disabled={isPending}
+                                                                placeholder="Enter your github username or link"
+                                                                {...field}
+                                                                defaultValue={userProfile?.github as string}
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}/>
                                             </div>
                                             <div className="flex gap-4 flex-row-reverse border-t p-4">
                                                 <Button type="submit" className="w-34 h-9" variant="secondary" >

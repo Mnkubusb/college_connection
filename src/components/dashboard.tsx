@@ -67,12 +67,12 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                         <div className="w-full sm:overflow-hidden overflow-auto h-full overflow-x-hidden">
                             <div className="w-full">
                                 <CloseButton
-                                    className="cursor-pointer z-50 absolute right-4 top-4 w-8 h-8 bg-black rounded-full hover:bg-slate-500 sm:hidden flex justify-center items-center"
+                                    className="cursor-pointer z-50 absolute right-4 top-4 w-8 h-8 bg-slate-500 dark:bg-black rounded-full hover:bg-slate-500 sm:hidden flex justify-center items-center"
                                     onClick={() => {
                                         setisMobileView(false);
                                     }} />
                                 <div className="flex justify-center items-center sm:h-[200px] h-[150px] sm:w-full relative ">
-                                    <div className="bg-gradient-to-r from-slate-900 to-slate-700 w-full h-full" >
+                                    <div className="dark:bg-gradient-to-r from-slate-900 to-slate-700 w-full h-full " >
                                         <AnimatedGridPattern />
                                     </div>
                                 </div>

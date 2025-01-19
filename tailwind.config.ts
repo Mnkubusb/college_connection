@@ -3,10 +3,16 @@ import type { Config } from "tailwindcss";
 const {
 	default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
+import { withUt } from "uploadthing/tw";
 
-const config: Config = {
+
+
+
+export default withUt ( {
+
 	darkMode: ["class"],
 	content: [
+		"./src/**/*.{ts,tsx,mdx}",
 		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -161,7 +167,7 @@ const config: Config = {
     	}
     },
 	plugins: [nextui(), addVariablesForColors],
-};
+})
 
 function addVariablesForColors({ addBase, theme }: any) {
 	let allColors = flattenColorPalette(theme("colors"));
@@ -177,7 +183,7 @@ function addVariablesForColors({ addBase, theme }: any) {
 
 
 
-export default config;
+
 
 
 

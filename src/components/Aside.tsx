@@ -94,7 +94,7 @@ const Aside = () => {
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <aside className="sm:inset-y fixed left-0 flex h-full flex-col sm:border-r w-full sm:w-max bg-background">
+    <aside className="sm:inset-y fixed left-0 flex h-full flex-col sm:border-r w-full sm:w-max bg-background sm:z-50 ">
       <div className="p-2 sm:w-[53px] sm:h-[53px] w-[60px] h-[60px] fixed sm:relative bg-background sm:border-b-0 border-b flex justify-center items-center">
         <Button
           variant="ghost"
