@@ -229,6 +229,7 @@ export default function OnboardForm( {user} : UserProps) {
   if(error === "Profile already exists"){
     router.push("/profile")
   }
+
 useEffect(() => {
   if (success) {
     router.push("/profile")
@@ -237,7 +238,7 @@ useEffect(() => {
 
 
   return (
-    <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1" >
+    <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1 overflow-auto scroll" >
       <Toaster />
       <CardHeader>
         <CardTitle className="text-xl">

@@ -1,6 +1,8 @@
 const SetupPage = () => {
     return ( 
-        <div>SetupPage</div>
+        <div>
+            SetupPage
+        </div>
      );
 }
  
