@@ -306,7 +306,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                                 {...field}
                                                                 placeholder="Doe"
                                                                 type="text"
-                                                                defaultValue={userProfile?.name.split(" ")[1]}
+                                                                defaultValue={userProfile?.name.split(" ")[2]? userProfile?.name.split(" ")[1] + " " + userProfile?.name.split(" ")[2] : userProfile?.name.split(" ")[1]} 
                                                                 disabled={isPending}
                                                                 className="h-10"
                                                             />

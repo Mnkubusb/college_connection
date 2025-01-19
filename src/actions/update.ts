@@ -27,7 +27,7 @@ export const update = async (values: z.infer<typeof UpdateProfileSchema>) => {
 
     const { firstName, lastName, batch, branch, wannabe, skills, story , image , insta, linkedin, github, twitter} = validatedValues.data;
 
-    const name = `${firstName.trim()} ${lastName?.trim()}`;
+    const name = `${firstName.trim()} ${lastName}`;
 
     const normalizeUrl = (url: string | undefined, prefix: string) => {
         if (!url) return undefined;
