@@ -11,6 +11,7 @@ import { FaGithub, FaInstagram, FaLinkedin, FaRegStar } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
 import ProfilePic from "./ui/profilePic";
 import AnimatedGridPattern from "./ui/animated-grid-pattern";
+import Link from "next/link";
 
 
 interface UserProps {
@@ -61,10 +62,10 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                     <div
                         ref={ref}
                         className={clsx(
-                            " md:flex border-r min-h-[80vh] flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]",
+                            " md:flex border-r min-h-[80vh] overflow-auto flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]",
                             isMobileView ? " flex" : "hidden"
                         )}>
-                        <div className="w-full sm:overflow-hidden overflow-auto h-full overflow-x-hidden">
+                        <div className="w-full overflow-y-auto h-full overflow-x-hidden">
                             <div className="w-full">
                                 <CloseButton
                                     className="cursor-pointer z-50 absolute right-4 top-4 w-8 h-8 bg-slate-500 dark:bg-black rounded-full hover:bg-slate-500 sm:hidden flex justify-center items-center"
@@ -96,25 +97,35 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                                 </div>
                                             </div>
                                             <div className="sm:flex gap-1 hidden">
+                                                <Link href= {userProfiles[isActive].insta as string || "#"}>
                                                 <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 items-center justify-center">
                                                     <FaInstagram className="text-medium " />
                                                 </Button>
+                                                </Link>
+                                                <Link href= {userProfiles[isActive].linkedin as string || "#"}>
                                                 <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 ">
                                                     <FaLinkedin className="text-medium " />
                                                 </Button>
+                                                </Link>
+                                                <Link href= {userProfiles[isActive].github as string || "#"}>
                                                 <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 ">
                                                     <FaGithub className="text-medium " />
                                                 </Button>
+                                                </Link>
+                                                <Link href= {userProfiles[isActive].twitter as string || "#"}>
                                                 <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 ">
                                                     <RiTwitterXFill className="text-medium " />
                                                 </Button>
+                                                </Link>
                                             </div>
                                         </div>
                                         <div className="flex gap-1 items-end justify-between sm:relative sm:-top-2 mt-2 sm:mt-0">
                                             <div className="flex gap-1 items-end">
+                                                <Link href= {userProfiles[isActive].linkedin ? userProfiles[isActive].linkedin as string : userProfiles[isActive].insta as string || "#"}>
                                                 <Button variant="outline" className=" rounded-[10px] bg-white border-2 text-black h-8 border-white">
                                                     <span>Message</span>
                                                 </Button>
+                                                </Link>
                                                 <Button variant="outline" className=" rounded-[10px] bg-black border-2 border-white h-8">
                                                     <span>Share</span>
                                                 </Button>
