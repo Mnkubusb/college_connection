@@ -319,7 +319,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                 <FormItem className="px-6">
                                                     <div className="flex sm:flex-row flex-col gap-6">
                                                         <Avatar className="w-32 h-32 border ">
-                                                            <AvatarImage src={userProfile?.image as string} />
+                                                            <AvatarImage src={field.value? field.value : userProfile?.image as string} />
                                                             <AvatarFallback>{userProfile?.name.slice(0, 2)}</AvatarFallback>
                                                         </Avatar>
                                                         <FormControl>

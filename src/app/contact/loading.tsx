@@ -1,17 +1,14 @@
-import React from 'react';
+"use server"
+import NumberTicker from '@/components/ui/number-ticker';
 
 const Loading: React.FC = () => {
-    return (
-        <div className="flex h-screen items-center justify-center">
-      <div className="relative h-[100px] w-[100px]">
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 blur-sm">
-          <div className="relative h-full w-full rounded-full border-8 bg-black border-primary-500">
-          </div>
-        </div>
-        <div className="relative h-full w-full rounded-full border-2 border-primary-500"></div>
-      </div>
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <p className="whitespace-pre-wrap text-8xl font-medium tracking-tighter text-black dark:text-white">
+        <NumberTicker value={100} direction="up" />
+      </p>
     </div>
-    );
+  );
 };
 
 export default Loading;

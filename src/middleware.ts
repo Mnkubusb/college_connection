@@ -30,15 +30,12 @@ export default auth( async ( req )=>{
     }
     
     if (isLoggedIn) {
-
         const user = await currentUser();
         if (user?.isFirstLogin) {
-            // Redirect to onboarding if not completed
             if (!isOnboardingRoute) {
                 return Response.redirect(new URL(Onboard, nextUrl));
             }
         } else {
-            // Redirect away from onboarding if already completed
             if (isOnboardingRoute) {
                 return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
             }

@@ -90,7 +90,11 @@ model Profile {
   branch        String?
   bio           String?
   skills        String[]
-  user          User          @relation(fields: [userId], references: [id])
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
+
+
 
 

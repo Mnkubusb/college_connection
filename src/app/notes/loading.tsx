@@ -1,10 +1,14 @@
 "use server";
-import Loading from '@/components/ui/loading'
+import NumberTicker from '@/components/ui/number-ticker';
 
 
 const loading = () => {
   return (
-    <Loading></Loading>
+    <div className="flex items-center justify-center h-screen">
+      <p className="whitespace-pre-wrap text-8xl font-medium tracking-tighter text-black dark:text-white">
+        <NumberTicker value={100} direction="up" />
+      </p>
+    </div>
   )
 }
 

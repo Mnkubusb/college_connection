@@ -235,7 +235,7 @@ const Aside = () => {
                   aria-label="Profile" >
                   {
                     user?.image ?
-                      <img src={user?.image} alt="" className="rounded-full w-8 h-8" /> :
+                      <Image width={32} height={32} src={user?.image} alt="" className="rounded-full w-8 h-8" /> :
                       <User className="sm:size-5 size-7" />
                   }
                 </Button>

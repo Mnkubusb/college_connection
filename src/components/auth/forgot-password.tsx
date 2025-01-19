@@ -71,8 +71,6 @@ export function ForgotPassword() {
   if (success) {
     router.push("/auth/login")
   }
-
-
   return (
     <Card className="max-w-md rounded-none h-full flex flex-col justify-center sm:border-r-1">
       <CardHeader>
