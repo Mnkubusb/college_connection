@@ -58,22 +58,22 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                 </div>
                                 <div className="sm:flex gap-1 hidden">
                                     <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 items-center justify-center">
-                                        <Link href={userProfile?.insta as string} target="_blank">
+                                        <Link href={userProfile?.insta as string || "#"} target="_blank">
                                         <FaInstagram className="text-medium " />
                                         </Link>
                                     </Button>
                                     <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 ">
-                                        <Link href={userProfile?.linkedin as string} target="_blank">
+                                        <Link href={userProfile?.linkedin as string || "#"} target="_blank">
                                         <FaLinkedin className="text-medium " />
                                         </Link>
                                     </Button>
                                     <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 ">
-                                        <Link href={userProfile?.github as string} target="_blank">
+                                        <Link href={userProfile?.github as string || "#"} target="_blank">
                                         <FaGithub className="text-medium " />
                                         </Link>
                                     </Button>
                                     <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 ">
-                                        <Link href={userProfile?.twitter as string} target="_blank">
+                                        <Link href={userProfile?.twitter as string || "#"} target="_blank">
                                         <RiTwitterXFill className="text-medium " />
                                         </Link>
                                     </Button>
@@ -82,7 +82,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                             <div className="flex gap-1 items-end justify-between sm:relative sm:-top-2 mt-2 sm:mt-0">
                                 <div className="flex gap-1 items-end">
                                     <Button variant="outline" className=" rounded-[10px] bg-white border-2 text-black h-8 border-white">
-                                        <Link href={userProfile?.linkedin? userProfile?.linkedin as string : userProfile?.insta as string}>
+                                        <Link href={userProfile?.linkedin? userProfile?.linkedin as string : userProfile?.insta as string || "#" } target="_blank">
                                         <span>Message</span>
                                         </Link>
                                     </Button>
