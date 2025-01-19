@@ -20,6 +20,7 @@ import { MultiSelect } from "../ui/multi-select";
 import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
 import { ExtendedUser } from "../../../next-auth";
+import toast, { Toaster } from "react-hot-toast";
 
 const pronouns = [
   {label:"Still Figuring out", value: "Still Figuring out"},
@@ -215,10 +216,10 @@ export default function OnboardForm( {user} : UserProps) {
       onboard(values)
         .then((data) => {
           if (data?.error) {
-            setError(data.error)
+            toast.error(data?.error as string)
           }
           if (data?.success) {
-            setSuccess(data.success)
+            toast.success(data?.success as string)
             form.reset()
           }
         })
@@ -237,6 +238,7 @@ useEffect(() => {
 
   return (
     <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1" >
+      <Toaster />
       <CardHeader>
         <CardTitle className="text-xl">
           Welcome to College Connection
