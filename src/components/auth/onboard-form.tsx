@@ -217,9 +217,11 @@ export default function OnboardForm( {user} : UserProps) {
         .then((data) => {
           if (data?.error) {
             toast.error(data?.error as string)
+            setError(data?.error as string)
           }
           if (data?.success) {
             toast.success(data?.success as string)
+            setSuccess(data?.success as string)
             form.reset()
           }
         })

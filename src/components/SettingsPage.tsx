@@ -240,7 +240,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
     }
 
     return (
-        <div className="md:flex h-full min-h-[84vh] sm:mx-3 border flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]">
+        <div className="md:flex h-full min-h-[80vh] sm:mx-3 border flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]">
             <Toaster position="top-center" reverseOrder={false} />
             <div className="w-full overflow-auto h-full overflow-x-hidden scroll">
                 <div className="div">
@@ -355,7 +355,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                     <CardContent className="w-full p-0">
                                         <div className="grid gap-6 ">
                                             <div className="grid pt-7 px-6 gap-6">
-                                                <div className="grid grid-cols-2 gap-4">
+                                                <div className="grid sm:grid-cols-2 gap-4">
                                                     <FormField control={form.control} name="branch" render={({ field }) => (
                                                         <FormItem>
                                                             <FormLabel>Branch</FormLabel>
@@ -476,7 +476,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                             onValueChange={field.onChange}
                                                             animation={2}
                                                             defaultValue={userProfile?.skills ?? []}
-                                                            maxCount={5}
+                                                            maxCount={3}
                                                             className="h-10"
                                                         />
                                                     </FormItem>
@@ -512,7 +512,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                             <div className="flex sm:flex-row flex-col gap-2">
                                 <div className="font-josefin sm:w-[25%] px-2">
                                     <div className="font-bold ">
-                                        Socail Media
+                                        Social Media
                                     </div>
                                     <div className="font-light ">
                                         Update your social media links
