@@ -56,7 +56,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                         </h4>
                                     </div>
                                 </div>
-                                <div className="sm:flex gap-1 hidden">
+                                <div className="flex gap-1 sm:mt-0 mt-2">
                                     <Button variant={"outline"} className="rounded-full bg-black p-[6px] border-2 border-white h-8 items-center justify-center">
                                         <Link href={userProfile?.insta as string || "#"} target="_blank">
                                         <FaInstagram className="text-medium " />
