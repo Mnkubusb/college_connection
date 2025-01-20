@@ -231,6 +231,7 @@ export default function OnboardForm( {user} : UserProps) {
   if(error === "Profile already exists"){
     router.push("/profile")
   }
+
 useEffect(() => {
   if (success) {
     router.push("/profile")
