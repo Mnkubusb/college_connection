@@ -59,6 +59,10 @@ export const ProfileSchema = z.object({
     wannabe: z.string().min(1, { message: "Select your Desired Career"}),
     skills: z.string().array().min(1, { message: "Enter your skills"}).max(5, { message: "You can only add 5 skills"}),
     story: z.string().min(10, { message: "Tell us your story in at least 10 words"}),
+    insta: z.optional(z.string()),
+    linkedin: z.optional(z.string()),
+    github: z.optional(z.string()),
+    twitter: z.optional(z.string()),
 })
 
 export const UpdateProfileSchema = z.object({

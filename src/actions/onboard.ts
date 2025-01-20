@@ -14,7 +14,7 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
         return { error: "Invalid values" }
     }
 
-    const { batch, department , wannabe, skills, story ,email } = values;
+    const { batch, department , wannabe, skills, story ,email, insta , linkedin, github, twitter } = validatedValues.data;
 
     if(skills.length > 5 ){
         return { error : "Only 5 skills are allowed"}
@@ -40,6 +40,10 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
             wannabe: wannabe,
             skills: skills,
             bio: story,
+            insta: insta,
+            linkedin: linkedin,
+            github: github,
+            twitter: twitter
         }
     })
 

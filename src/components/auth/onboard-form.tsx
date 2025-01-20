@@ -21,6 +21,7 @@ import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
 import { ExtendedUser } from "../../../next-auth";
 import toast, { Toaster } from "react-hot-toast";
+import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 const pronouns = [
   {label:"Still Figuring out", value: "Still Figuring out"},
@@ -176,6 +177,12 @@ const skills = [
   { value: "Sustainability Practices", label: "Sustainability Practices" },
   { value: "Risk Assessment", label: "Risk Assessment" },
 ];
+const socials = [
+  { value: "insta", icon: FaInstagram, label: "Instagram" },
+  { value: "linkedin", icon: FaLinkedin, label: "LinkedIn" },
+  { value: "github", icon: FaGithub, label: "GitHub" },
+  { value: "twitter", icon: FaTwitter, label: "Twitter" },
+] as const
 
 
 interface UserProps {
@@ -183,6 +190,9 @@ interface UserProps {
 }
 
 export default function OnboardForm( {user} : UserProps) {
+
+
+
 
   function handleAppendGroup(label: ComboboxOptions['label']) {
     const newPronouns = {
@@ -201,6 +211,10 @@ export default function OnboardForm( {user} : UserProps) {
       wannabe: "",
       skills: [],
       story: "",
+      insta: "",
+      linkedin: "",
+      github: "",
+      twitter: "",
     }
   });
 
@@ -417,6 +431,20 @@ useEffect(() => {
                     </FormItem>
                   )}
                 />
+               { socials.map((social) => (
+                <FormField
+                  key={social.value}
+                  name={social.value}
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input {...field} placeholder={"Enter your "+ social.label + " handle"} disabled={isPending}/>
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                ))}
               <FormSuccess className="my-4" message={success} />
               <FormError className="my-4" message={error} />
               <Button

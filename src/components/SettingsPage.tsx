@@ -12,7 +12,7 @@ import { Check, ChevronDown, Link, User } from "lucide-react";
 import { UpdateProfileSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useState, useTransition } from "react";
+import {  useTransition } from "react";
 import { update } from "@/actions/update";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { cn } from "@/lib/utils";

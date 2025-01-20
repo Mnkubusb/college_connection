@@ -62,13 +62,13 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                     <div
                         ref={ref}
                         className={clsx(
-                            " md:flex border-r min-h-[80vh] overflow-auto flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]",
+                            " lg:flex border-r min-h-[calc(90vh-70px)] overflow-auto flex-col lg:col-span-2 bg-background absolute lg:relative lg:w-full w-[100%]",
                             isMobileView ? " flex" : "hidden"
                         )}>
                         <div className="w-full overflow-auto scroll sm:max-h-[100vh] max-h-[80vh] scroll-smooth">
                             <div className="w-full">
                                 <CloseButton
-                                    className="cursor-pointer z-50 absolute right-4 top-4 w-8 h-8 bg-slate-500 dark:bg-black rounded-full hover:bg-slate-500 sm:hidden flex justify-center items-center"
+                                    className="cursor-pointer z-50 absolute right-4 top-4 w-8 h-8 bg-slate-500 dark:bg-black rounded-full hover:bg-slate-500 lg:hidden flex justify-center items-center"
                                     onClick={() => {
                                         setisMobileView(false);
                                     }} />
@@ -82,7 +82,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                 <ProfilePic image={userProfiles[isActive].image as string} />
                                 <div className="flex flex-col sm:mt-4 gap-3 sm:w-3/4 w-full" >
                                     <div className="flex flex-col sm:justify-center sm:mb-4 sm:mt-28 gap-1 sm:gap-0">
-                                        <div className="flex flex-col sm:flex-row justify-between">
+                                        <div className="flex flex-col lg:flex-row justify-between">
                                             <div className="flex flex-col gap-2">
                                                 <h3 className="text-3xl font-sans font-bold">
                                                     {userProfiles[isActive].name}
