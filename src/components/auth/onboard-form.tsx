@@ -251,7 +251,7 @@ export default function OnboardForm( {user} : UserProps) {
 
 
   return (
-    <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1 overflow-auto scroll" >
+    <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1 overflow-y-auto scroll" >
       <Toaster />
       <CardHeader>
         <CardTitle className="text-xl">
