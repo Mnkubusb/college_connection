@@ -24,6 +24,7 @@ import FileUpload from "./ui/file-upload";
 import { Combobox, ComboboxOptions } from "./ui/Combobox";
 import toast, { Toaster } from "react-hot-toast"
 import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
+import { useRouter } from "next/navigation";
 
 const branches = [
     { label: "Information Technology", value: "Information Technology" },
@@ -190,6 +191,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
 
     // const [error, setError] = useState("");
     // const [success, setSuccess] = useState("");
+    const router = useRouter();
     const [isPending, startTransition] = useTransition();
     const userProfile = profile?.find((profile) => profile.userId === user?.id);
 
@@ -235,7 +237,8 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                         form.reset()
                         toast.success(data?.success as string)
                     }
-                })
+            })
+            router.refresh();
         })
     }
 
@@ -323,7 +326,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                             <AvatarFallback>{userProfile?.name.slice(0, 2)}</AvatarFallback>
                                                         </Avatar>
                                                         <FormControl>
-                                                            <FileUpload onChange={field.onChange} value={field.value}/>
+                                                            <FileUpload endpoint="profileImage" onChange={field.onChange} value={field.value}/>
                                                         </FormControl>
                                                         <FormMessage />
                                                     </div>

@@ -23,8 +23,6 @@ interface UserProps {
 
 const Dashboard = (({ users, profiles }: UserProps) => {
 
-
-    const ref = useRef(null);
     const [isActive, setisActive] = useState(0);
     const [isMobileView, setisMobileView] = useState(false);
     const userProfiles = profiles?.filter(profile => users.some(user => user.id === profile.userId)) || []
@@ -60,7 +58,6 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                         </div>
                     </div>
                     <div
-                        ref={ref}
                         className={clsx(
                             " lg:flex border-r min-h-[80vh] flex-grow overflow-auto flex-col lg:col-span-2 bg-background absolute lg:relative lg:w-full w-[100%]",
                             isMobileView ? " flex" : "hidden"

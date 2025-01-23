@@ -15,6 +15,9 @@ export const ourFileRouter = {
                 console.log("Upload error", error);
             }
         }),
+    noteImage: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })
+        .onUploadComplete(() => {
+        })
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;

@@ -2,16 +2,18 @@
 import { UploadDropzone } from "@/utils/uploadthing";
 import { Upload } from "lucide-react";
 import { Button } from "./button";
+import toast from "react-hot-toast";
 
 interface FileUploadProps {
+  endpoint: "profileImage" | "noteImage";
   onChange: (url?: string) => void;
-  value: string | undefined;
+  value?: string | undefined;
 }
 
-const FileUpload = ( { onChange, value }: FileUploadProps ) => {
+const FileUpload = ( { endpoint, onChange, value }: FileUploadProps ) => {
 
   const fileType = value?.split(".").pop();
-
+if(endpoint === "profileImage"){
   if (value && fileType !== "pdf") {
     return (
       <div className="flex items-center justify-center">
@@ -28,16 +30,20 @@ const FileUpload = ( { onChange, value }: FileUploadProps ) => {
       </div>
     );
   }
+}
 
   return (
     <div className="w-full h-34 rounded-lg border-2 border-dashed border-primary-500">
       <UploadDropzone
-        endpoint="profileImage"
-        onClientUploadComplete={(res) => {
+        endpoint={endpoint}
+        onClientUploadComplete={(res ) => {
           console.log("Upload Success", res);
           onChange(res?.[0].url);
         }}
-        onUploadError={(error: Error) => console.log("Upload failed:", error)}
+        onUploadError={(error: Error) => 
+          console.log("Upload failed:", error,
+            toast.error(error.message)
+          )}
       />
     </div>
   )

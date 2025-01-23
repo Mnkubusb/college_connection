@@ -77,6 +77,7 @@ body {
   }
   .scroll{
     @apply [&::-webkit-scrollbar]:w-1
+    [&::-webkit-scrollbar]:h-1
     [&::-webkit-scrollbar-track]:rounded-full
     [&::-webkit-scrollbar-track]:bg-primary-100
     [&::-webkit-scrollbar-thumb]:rounded-full

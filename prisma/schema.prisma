@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearchPostgres"]
 }
 
 datasource db {
@@ -97,4 +98,61 @@ model Profile {
 
 
 
+model Note {
+  id String @id @default(cuid())
+  userId String
+  title String @db.Text
+  description String? @db.Text
+  imageUrl String?  @db.Text
+  isPublished Boolean @default(false)
+
+  categoryId String?
+  category Category? @relation(fields: [categoryId], references: [id])
+
+  notesList NotesList[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+}
+
+model Category{
+  id String @id @default(cuid())
+  name String @unique
+  notes Note[]
+  createdAt DateTime @default(now())
+}
+
+model NotesList{
+  id String @id @default(cuid())
+  userId String
+  title String @db.Text
+  imageUrl String?  @db.Text
+  position Int
+  isPublished Boolean @default(false)
+
+  chapters Chapters[]
+
+  noteId String
+  note Note @relation(fields: [noteId], references: [id] , onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([noteId])
+}
+
+model Chapters {
+  id String @id @default(cuid())
+  userId String
+  title String @db.Text
+  fileUrl String?  @db.Text
+  position Int
+
+  notesListId String
+  notesList NotesList @relation(fields: [notesListId], references: [id] , onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
 

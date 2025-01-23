@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { FormSuccess } from "../form-success";
 import { FormError } from "../form-error";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { onboard } from "@/actions/onboard";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
@@ -218,7 +218,6 @@ export default function OnboardForm( {user} : UserProps) {
     }
   });
 
-  const router = useRouter()
   const [success, setSuccess] = React.useState("")
   const [error, setError] = React.useState("")
   const [isPending, startTransition] = React.useTransition()
@@ -243,14 +242,12 @@ export default function OnboardForm( {user} : UserProps) {
   }
 
   if(error === "Profile already exists"){
-    router.push("/profile")
+    return redirect("/profile")
   }
-
-useEffect(() => {
-  if (success) {
-    router.push("/profile")
+  
+  if(success){
+    return redirect("/profile")
   }
-}, [success, router])
 
 
   return (

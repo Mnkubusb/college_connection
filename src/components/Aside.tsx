@@ -98,7 +98,7 @@ const Aside = () => {
       <div className="p-2 sm:w-[53px] sm:h-[53px] w-[60px] h-[60px] fixed sm:relative bg-background sm:border-b-0 border-b flex justify-center items-center">
         <Button
           variant="ghost"
-          size="sm"
+          size="logo"
           aria-label="Home"
           onClick={() => router.push("/")}
         >
@@ -140,7 +140,7 @@ const Aside = () => {
                   "bg-accent": pathname === "/notes",
                 })}
                 aria-label="Notes"
-                onClick={() => router.push("/notes")}
+                onClick={() => router.push("/noteaccess")}
               >
                 <NoteEditIcon className="sm:size-5 size-7 fill-white flex justify-center items-center" />
               </Button>

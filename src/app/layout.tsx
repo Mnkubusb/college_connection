@@ -9,6 +9,8 @@ import { SessionProvider } from "next-auth/react";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
+import { Toaster } from "react-hot-toast";
+import { ConfettiProvider } from "@/components/providers/confetti-provider";
 
 
 const OleoScript = localFont({
@@ -51,6 +53,8 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} ${OleoScript.variable} antialiased`}
         >
+          <ConfettiProvider />
+          <Toaster />
           <NextSSRPlugin
             routerConfig={extractRouterConfig(ourFileRouter)}
           />
