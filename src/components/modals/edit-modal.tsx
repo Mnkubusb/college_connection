@@ -2,15 +2,43 @@ import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { DropdownMenu , DropdownMenuContent,  } from "../ui/dropdown-menu";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogDescription, DialogTitle } from "../ui/dialog";
+import { Chapters } from "@prisma/client";
+import { FileUploadClearTrigger, FileUploadList, FileUploadRoot, FileUploadTrigger } from "../ui/file-upload";
+import { Button } from "../ui/button";
+import { HardDriveUploadIcon } from "lucide-react";
+import { useFileUpload } from "@chakra-ui/react";
 
 
 interface EditModalProps {
     children: React.ReactNode;
-    onEdit: () => void
+    items: Chapters
 }
 
 
-export const EditModal = () => {
+export const EditModal = ({ children, items }: EditModalProps & {}) => {
 
+    return (
+        <Dialog>
+            <DialogTrigger asChild>
+                {children}
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                    <DialogTitle>Edit Chapters</DialogTitle>
+                    <DialogDescription>
+                        Make changes to your chapters here. Click save when you&pos;re done.
+                    </DialogDescription>
+                </DialogHeader>
+                <FileUploadRoot  onFileChange={(file) => console.log(file)} onFileAccept={(file) => console.log(file)}>
+                    <FileUploadTrigger>
+                        <Button>
+                            <HardDriveUploadIcon /> Upload file
+                        </Button>
+                    </FileUploadTrigger>
+                    <FileUploadList />
+                </FileUploadRoot>
+            </DialogContent>
+        </Dialog>
+    )
 }

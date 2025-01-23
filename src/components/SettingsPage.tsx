@@ -20,11 +20,12 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { MultiSelect } from "./ui/multi-select";
 import { Textarea } from "./ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import FileUpload from "./ui/file-upload";
+import FIleUpload from "./image-upload";
 import { Combobox, ComboboxOptions } from "./ui/Combobox";
 import toast, { Toaster } from "react-hot-toast"
 import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
+import FileUpload from "./image-upload";
 
 const branches = [
     { label: "Information Technology", value: "Information Technology" },

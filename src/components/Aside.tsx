@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useCurrentUser } from "@/hooks/get-current-user";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import Link from "next/link";
 
 const NoteEditIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -96,36 +97,38 @@ const Aside = () => {
   return (
     <aside className="sm:inset-y fixed left-0 flex h-full flex-col sm:border-r w-full sm:w-max bg-background sm:z-50 ">
       <div className="p-2 sm:w-[53px] sm:h-[53px] w-[60px] h-[60px] fixed sm:relative bg-background sm:border-b-0 border-b flex justify-center items-center">
-        <Button
-          variant="ghost"
-          size="logo"
-          aria-label="Home"
-          onClick={() => router.push("/")}
-        >
-          <Image
-            src={Logo}
-            alt="logo"
-            className="size-7 sm:size-5"
-            width={32}
-            height={32}
-          ></Image>
-        </Button>
+        <Link href={"/"}>
+          <Button
+            variant="ghost"
+            size="logo"
+            aria-label="Home"
+          >
+            <Image
+              src={Logo}
+              alt="logo"
+              className="size-7 sm:size-5"
+              width={32}
+              height={32}
+            ></Image>
+          </Button>
+        </Link>
       </div>
       <div className="flex sm:flex-col h-[70px] z-50 sm:h-full items-center relative mt-auto sm:mt-0 sm:px-0 bg-background sm:bg-transparent sm:w-max gap-3 w-full px-10 justify-evenly border-t">
         <nav className="grid sm:gap-1 gap-4 sm:p-2 grid-cols-4 sm:grid-cols-1 ">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className={clsx("rounded-full sm:rounded-lg w-12 sm:w-9 h-12 sm:h-9 ", {
-                  "bg-accent": pathname === "/",
-                })}
-                aria-label="Network"
-                onClick={() => router.push("/")}
-              >
-                <IoGitNetworkOutline className="sm:size-5 size-7" />
-              </Button>
+              <Link href="/">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={clsx("rounded-full sm:rounded-lg w-12 sm:w-9 h-12 sm:h-9 ", {
+                    "bg-accent": pathname === "/",
+                  })}
+                  aria-label="Network"
+                >
+                  <IoGitNetworkOutline className="sm:size-5 size-7" />
+                </Button>
+              </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
               Network
@@ -225,38 +228,38 @@ const Aside = () => {
           <Tooltip >
             <TooltipTrigger asChild>
               <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={clsx("mt-auto rounded-full w-12 h-12 sm:w-9 sm:h-9", {
-                    "bg-accent": pathname === "/profile",
-                  })}
-                  aria-label="Profile" >
-                  {
-                    user?.image ?
-                      <Image width={32} height={32} src={user?.image} alt="" className="rounded-full w-8 h-8" /> :
-                      <User className="sm:size-5 size-7" />
-                  }
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => router.push("/profile")} className="flex gap-2">
-                <User size={16}/>
-                <span>Profile</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => router.push("/settings")} className="flex gap-2">
-                <Settings2 size={16}/>
-                <span>Settings</span>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => signOut()} className="flex gap-2">
-                <LogOut size={16}/>
-                <span>Logout</span>
-              </DropdownMenuItem>
-              </DropdownMenuContent>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className={clsx("mt-auto rounded-full w-12 h-12 sm:w-9 sm:h-9", {
+                      "bg-accent": pathname === "/profile",
+                    })}
+                    aria-label="Profile" >
+                    {
+                      user?.image ?
+                        <Image width={32} height={32} src={user?.image} alt="" className="rounded-full w-8 h-8" /> :
+                        <User className="sm:size-5 size-7" />
+                    }
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => router.push("/profile")} className="flex gap-2">
+                    <User size={16} />
+                    <span>Profile</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => router.push("/settings")} className="flex gap-2">
+                    <Settings2 size={16} />
+                    <span>Settings</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => signOut()} className="flex gap-2">
+                    <LogOut size={16} />
+                    <span>Logout</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
               </DropdownMenu>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
