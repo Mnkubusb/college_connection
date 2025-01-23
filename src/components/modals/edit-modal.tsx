@@ -27,7 +27,7 @@ export const EditModal = ({ children, items }: EditModalProps & {}) => {
                 <DialogHeader>
                     <DialogTitle>Edit Chapters</DialogTitle>
                     <DialogDescription>
-                        Make changes to your chapters here. Click save when you&pos;re done.
+                        Make changes to your chapters here. Click save when you&pos;re done
                     </DialogDescription>
                 </DialogHeader>
                 <FileUploadRoot  onFileChange={(file) => console.log(file)} onFileAccept={(file) => console.log(file)}>
