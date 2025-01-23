@@ -136,17 +136,18 @@ const Aside = () => {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className={clsx("rounded-full sm:rounded-lg w-12 h-12 sm:w-9 sm:h-9 flex justify-center items-center", {
-                  "bg-accent": pathname === "/notes",
-                })}
-                aria-label="Notes"
-                onClick={() => router.push("/noteaccess")}
-              >
-                <NoteEditIcon className="sm:size-5 size-7 fill-white flex justify-center items-center" />
-              </Button>
+              <Link href="/noteaccess">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={clsx("rounded-full sm:rounded-lg w-12 h-12 sm:w-9 sm:h-9 flex justify-center items-center", {
+                    "bg-accent": pathname === "/notes",
+                  })}
+                  aria-label="Notes"
+                >
+                  <NoteEditIcon className="sm:size-5 size-7 fill-white flex justify-center items-center" />
+                </Button>
+              </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
               Notes
@@ -154,17 +155,18 @@ const Aside = () => {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className={clsx("rounded-full w-12 h-12 sm:w-9 sm:h-9 sm:rounded-lg", {
-                  "bg-accent": pathname === "/links",
-                })}
-                aria-label="Links"
-                onClick={() => router.push("/links")}
-              >
-                <IoLinkOutline className="sm:size-5 size-7" />
-              </Button>
+              <Link href="/links">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={clsx("rounded-full w-12 h-12 sm:w-9 sm:h-9 sm:rounded-lg", {
+                    "bg-accent": pathname === "/links",
+                  })}
+                  aria-label="Links"
+                >
+                  <IoLinkOutline className="sm:size-5 size-7" />
+                </Button>
+              </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
               Links
@@ -172,17 +174,18 @@ const Aside = () => {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className={clsx("sm:rounded-lg rounded-full w-12 h-12 sm:w-9 sm:h-9 ", {
-                  "bg-accent": pathname === "/contact",
-                })}
-                aria-label="Contact us"
-                onClick={() => router.push("/contact")}
-              >
-                <MdContactPage className="sm:size-4 size-7" />
-              </Button>
+              <Link href="/contact">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={clsx("sm:rounded-lg rounded-full w-12 h-12 sm:w-9 sm:h-9 ", {
+                    "bg-accent": pathname === "/contact",
+                  })}
+                  aria-label="Contact us"
+                >
+                  <MdContactPage className="sm:size-4 size-7" />
+                </Button>
+              </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
               Contact us
@@ -190,17 +193,18 @@ const Aside = () => {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className={clsx("rounded-lg hidden sm:flex w-12 h-12 sm:w-9 sm:h-9", {
-                  "bg-accent": pathname === "/settings",
-                })}
-                aria-label="Settings"
-                onClick={() => router.push("/settings")}
-              >
-                <Settings2 className="sm:size-5 size-8" />
-              </Button>
+              <Link href="/settings">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={clsx("rounded-lg hidden sm:flex w-12 h-12 sm:w-9 sm:h-9", {
+                    "bg-accent": pathname === "/settings",
+                  })}
+                  aria-label="Settings"
+                >
+                  <Settings2 className="sm:size-5 size-8" />
+                </Button>
+              </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
               Settings
@@ -210,16 +214,18 @@ const Aside = () => {
         <nav className="sm:mt-auto grid sm:gap-1 sm:p-2 z-50 ">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className={clsx("mt-auto sm:rounded-lg rounded-full sm:flex hidden w-12 h-12 sm:w-9 sm:h-9", {
-                  "bg-accent": pathname === "/about",
-                })}
-                aria-label="About"
-                onClick={() => router.push("/about")} >
-                <InformationCircleIcon className="size-5 fill-white" />
-              </Button>
+              <Link href="/about">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={clsx("mt-auto sm:rounded-lg rounded-full sm:flex hidden w-12 h-12 sm:w-9 sm:h-9", {
+                    "bg-accent": pathname === "/about",
+                  })}
+                  aria-label="About"
+                  onClick={() => router.push("/about")} >
+                  <InformationCircleIcon className="size-5 fill-white" />
+                </Button>
+              </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5}>
               About
