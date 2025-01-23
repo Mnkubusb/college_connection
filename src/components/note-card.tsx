@@ -4,6 +4,7 @@ import { IconBadge } from "./ui/icon-badge"
 import { BookOpen } from "lucide-react"
 
 interface NoteCardProps{
+    hasChapter:boolean
     id:string
     title:string
     imageUrl: string
@@ -11,7 +12,7 @@ interface NoteCardProps{
     category?: string | undefined 
 }
 
-export const NoteCard =( { id, title , imageUrl , notesLength , category }:NoteCardProps )=>{
+export const NoteCard =( { id, title , imageUrl , notesLength , category ,hasChapter }:NoteCardProps )=>{
     return(
         <Link href={`/noteaccess/${id}`}>
             <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg h-full">
@@ -28,9 +29,12 @@ export const NoteCard =( { id, title , imageUrl , notesLength , category }:NoteC
                     <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
                         <div className="flex items-center gap-x-1 text-sky-400 bg-sky-700/55 rounded-full px-2">
                             <IconBadge icon={BookOpen} size="sm" variant={"default"} />
+                            { hasChapter?
                             <span>
+                                {notesLength} {notesLength === 1? "Chapter":"Chapters"}
+                            </span>:<span>
                                 {notesLength} {notesLength === 1? "Note":"Notes"}
-                            </span>
+                            </span>}
                         </div>
                     </div>
                 </div>
