@@ -8,7 +8,7 @@ interface NoteCardProps{
     title:string
     imageUrl: string
     notesLength: number 
-    category: string | undefined 
+    category?: string | undefined 
 }
 
 export const NoteCard =( { id, title , imageUrl , notesLength , category }:NoteCardProps )=>{

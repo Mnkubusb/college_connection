@@ -13,9 +13,6 @@ const Notes = async () => {
   if (!user) return redirect('/')
 
   const notes = await db.note.findMany({
-    where: {
-      userId: user.id
-    },
     orderBy: {
       createdAt: 'desc'
     }
