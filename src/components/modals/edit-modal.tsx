@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogDescription, DialogTitle } from "../ui/dialog";
 import { Chapters } from "@prisma/client";
-import { FileUploadClearTrigger, FileUploadList, FileUploadRoot, FileUploadTrigger } from "../ui/file-upload";
 import { Button } from "../ui/button";
 import { HardDriveUploadIcon } from "lucide-react";
 import { useFileUpload } from "@chakra-ui/react";
@@ -18,6 +17,7 @@ interface EditModalProps {
 
 export const EditModal = ({ children, items }: EditModalProps & {}) => {
 
+
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -30,14 +30,6 @@ export const EditModal = ({ children, items }: EditModalProps & {}) => {
                         Make changes to your chapters here. Click save when you&pos;re done
                     </DialogDescription>
                 </DialogHeader>
-                <FileUploadRoot  onFileChange={(file) => console.log(file)} onFileAccept={(file) => console.log(file)}>
-                    <FileUploadTrigger>
-                        <Button>
-                            <HardDriveUploadIcon /> Upload file
-                        </Button>
-                    </FileUploadTrigger>
-                    <FileUploadList />
-                </FileUploadRoot>
             </DialogContent>
         </Dialog>
     )
