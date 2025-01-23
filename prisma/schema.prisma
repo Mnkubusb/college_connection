@@ -102,7 +102,6 @@ model Note {
   id String @id @default(cuid())
   userId String
   title String @db.Text
-  description String? @db.Text
   imageUrl String?  @db.Text
   isPublished Boolean @default(false)
 

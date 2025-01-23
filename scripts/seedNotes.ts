@@ -3,27 +3,80 @@ const { PrismaClient } = require("@prisma/client");
 
 const database = new PrismaClient();
 async function seeding(){
-
     const userId = "cm63p2gtb0000js03yyb9w157"
+    const categoryName = "Sem 2";
+    const notesData = [
+        {
+            note: "Subject Notes",
+            notes: [
+                { title:"Physics Notes" },
+                { title:"FMC Notes" },
+                { title:"Maths(M2) Notes" },
+                { title:"BEEE Notes" },
+                { title:"ENGD Notes" },
+            ]
+        },
+        {
+            note: "End Sem PyQs",
+            notes: [
+                { title:"Year 2024" },
+                { title:"Year 2023" },
+                { title:"Year 2022" },
+                { title:"Year 2021" },
+                { title:"Year 2020" },
+            ]
+        },
+        {
+            note: "Class Test(CT) PyQs",
+            notes: [
+                { title:"Year 2024" },
+                { title:"Year 2023" },
+                { title:"Year 2022" },
+            ]
+        },
+        {
+            note: "Lab Manuals",
+            notes: [
+                { title:"Physics lab" },
+                { title:"BEEE lab" },
+                { title:"ENGD Lab" },
+                { title:"FMC Lab" },
+            ]
+        },
+        // {
+        //     note: "Cheet Codes",
+        //     notes: [
+        //         { title:"Maths(M2)" },
+        //         { title:"Physics Ass" },
+        //         { title:"Mechanics" },
+        //     ]
+        // },
+    ]
     try {
-        const notes = [
-            { title: "Subject Notes" , imageUrl: "https://9y2d0vlzyn.ufs.sh/f/5BUL5Wu0UExfFVftIOkbazAf4NvD8xRupUoQnm9GyVBq6wMj", category: "Sem 1"},
-            { title: "End Sem PyQs" , imageUrl: "https://9y2d0vlzyn.ufs.sh/f/5BUL5Wu0UExfSr78dWRZ7LpkdtBNijxlQhu2qFMYwKTzI0b9" , category: "Sem 1"},
-            { title: "Class Test(CT) PyQs",imageUrl: "https://9y2d0vlzyn.ufs.sh/f/5BUL5Wu0UExfdmbV31NeuYJBOPLdbUyZ9tRVaC2FW1rsizk4" , category: "Sem 1"},
-            { title: "Lab Manuals", imageUrl: "https://9y2d0vlzyn.ufs.sh/f/5BUL5Wu0UExfAVVQGxheL6zOJN3T2dBXhmP8lf5vDYyoksVj" , category: "Sem 1"}, ,
-            { title: "Cheet Codes",imageUrl: "https://9y2d0vlzyn.ufs.sh/f/5BUL5Wu0UExfAVVQGxheL6zOJN3T2dBXhmP8lf5vDYyoksVj" ,category: "Sem 1"},
-        ]
-        for (const note of notes) {
-            const category = await database.category.findFirst({where:{name: note?.category}})
-            if (category) {
-                await database.note.create({
-                    data: {
-                        userId,
-                        title: note?.title,
-                        categoryId: category?.id,
-                        imageUrl: note?.imageUrl
-                    }
-                });
+        const category = await database.category.findFirst({
+            where: {
+                name: categoryName,
+            }
+        });
+        for(const note of notesData){
+            const list = await database.note.findFirst({
+                where: {
+                    title: note.note,
+                    categoryId: category?.id,
+                    userId
+                }
+            })
+            if(list){
+                for(const noteList of note.notes){
+                     await database.notesList.createMany({
+                        data: {
+                            title: noteList.title,
+                            noteId: list?.id,
+                            userId,
+                            position: note.notes.indexOf(noteList)
+                        }
+                    })
+                }
             }
         }
         console.log("Success")

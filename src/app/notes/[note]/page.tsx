@@ -6,7 +6,6 @@ import { redirect } from 'next/navigation';
 import { IconBadge } from '@/components/ui/icon-badge';
 import { LayoutDashboard, ListCheck } from 'lucide-react';
 import { TitleForm } from './_components/title-form';
-import { DescriptionForm } from './_components/description-form';
 import { ImageForm } from './_components/image-form';
 import { NotesListForm } from './_components/noteslist-form';
 import { SemesterForm } from './_components/semester-form';
@@ -44,7 +43,6 @@ const Note = async ({ params }: { params: { note: string } }) => {
 
   const requiredFields = [
     note.title,
-    note.description,
     note.imageUrl,
     note.categoryId,
     note.notesList.some(note => note.isPublished),
@@ -92,10 +90,6 @@ const Note = async ({ params }: { params: { note: string } }) => {
                 </h2>
               </div>
               <TitleForm
-                initialData={note}
-                noteId={note.id}
-              />
-              <DescriptionForm
                 initialData={note}
                 noteId={note.id}
               />
