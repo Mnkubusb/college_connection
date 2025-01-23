@@ -23,7 +23,7 @@ export async function PATCH(
 
         const hasPublishedNote = note.notesList.some(noteList => noteList.isPublished)
 
-        if(!note.title || !note.description || !note.imageUrl || !note.categoryId || !hasPublishedNote) {
+        if(!note.title || !note.imageUrl || !note.categoryId || !hasPublishedNote) {
             return new NextResponse("Mising Required Fields", { status: 400 });
         }
 
