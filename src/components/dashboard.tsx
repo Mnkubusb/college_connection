@@ -38,8 +38,8 @@ const Dashboard = (({ users, profiles }: UserProps) => {
             <div className="flex flex-col">
                 <Header Name="College Connections"></Header>
                 <main className="grid flex-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 sm:mx-3">
-                    <div className="relative flex-col items-start flex overflow-auto">
-                        <div className=" w-full h-full border-x flex flex-col items-center py-2 gap-2 overflow-auto scroll-smooth scroll">
+                    <div className="relative flex-col items-start flex">
+                        <div className=" w-full h-full border-x flex flex-col items-center py-2 gap-2 overflow-y-auto scroll-smooth scroll">
                             {userProfiles.map((profile, index) => (
                                 <div
                                     key={index}
@@ -59,10 +59,10 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                     </div>
                     <div
                         className={clsx(
-                            " lg:flex border-r flex-grow overflow-auto flex-col lg:col-span-2 bg-background absolute lg:relative w-full h-[calc(100vh-70px)] sm:h-full",
+                            " lg:flex border-r flex-grow lg:overflow-y-hidden overflow-y-auto flex-col lg:col-span-2 bg-background absolute lg:relative w-full h-[calc(100vh-70px)] sm:h-full",
                             isMobileView ? " flex" : "hidden"
                         )}>
-                        <div className="w-full overflow-auto scroll sm:max-h-[100vh] max-h-[80vh] scroll-smooth">
+                        <div className="w-full overflow-auto lg:overflow-hidden scroll sm:max-h-[100vh] max-h-[80vh] scroll-smooth">
                             <div className="w-full">
                                 <CloseButton
                                     className="cursor-pointer z-50 absolute right-4 top-4 w-8 h-8 bg-slate-500 dark:bg-black rounded-full hover:bg-slate-500 lg:hidden flex justify-center items-center"

@@ -52,7 +52,7 @@ const Note = async ({ params }: { params: { note: string } }) => {
   const isCompleted = requiredFields.every(Boolean);
 
   return (
-    <div className='h-full w-full'>
+    <div className='h-full w-full overflow-y-auto overflow-x-hidden scroll scroll-smooth mb-2' >
       <Header Name={note.title}></Header>
       {!note.isPublished && (
         <Banner
@@ -60,8 +60,8 @@ const Note = async ({ params }: { params: { note: string } }) => {
           variant='warning'
         />
       )}
-      <div className='flex relative h-[80vh] sm:h-full md:h-[86vh] sm:w-full '>
-        <div className="md:flex sm:max-h-full max-h-[calc(92vh-70px)] sm:mx-3 border-x flex-col lg:col-span-2 bg-background overflow-auto scroll scroll-smooth absolute sm:relative sm:w-full w-[100%] p-6">
+      <div className='h-full w-full'>
+        <div className="flex h-full sm:mx-3 border-x flex-col bg-background w-full p-6">
           <div className='flex items-center justify-between'>
             <div>
               <h1 className='text-2xl font-medium'>

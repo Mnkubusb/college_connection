@@ -19,10 +19,10 @@ const Notes = async () => {
 
 
   return (
-    <div className='relative h-[90vh] sm:overflow-hidden sm:h-full sm:w-full'>
+    <div className='h-full w-full overflow-auto sm:overflow-hidden overflow-x-hidden'>
       <Header Name="Notes"></Header>
-      <div className='flex relative h-[80vh] sm:h-full sm:w-full'>
-        <div className="md:flex h-full min-h-[80vh] sm:mx-3 border-x flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]">
+      <div className='h-full  w-full'>
+        <div className="md:flex h-full sm:mx-3 border-x flex-col w-full ">
           <div className="flex flex-col h-full">
             <div className="w-[90%] mx-auto"> 
               <DataTable columns={columns} data={notes} />

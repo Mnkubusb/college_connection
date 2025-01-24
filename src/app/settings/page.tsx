@@ -11,9 +11,9 @@ const Settings = async () => {
   const profile = await db.profile.findMany({})
    
   return (
-    <div className='relative h-[90vh] sm:overflow-hidden sm:h-full sm:w-full'>
+    <div className='h-full w-full'>
       <Header Name="Settings"></Header>
-      <div className='flex relative h-[80vh] sm:h-full sm:w-full'>
+      <div className='h-full w-full'>
         <SettingsPage user={user} profile={profile}  />
       </div>
     </div>
