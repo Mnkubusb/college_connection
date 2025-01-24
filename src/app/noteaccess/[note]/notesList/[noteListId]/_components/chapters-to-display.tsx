@@ -46,7 +46,9 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
                 <Button onClick={() => setisMobileView(false)} className="absolute top-3 right-3 z-[100] rounded-full bg-black lg:hidden flex justify-center items-center" variant={"outline"} size={"icon"}>
                     <IoClose size={20} />
                 </Button>
-                <object data={chapters[isActive].fileUrl as string + "#toolbar=0" } className="w-full h-full" type="text/html"></object>
+                <object data={chapters[isActive].fileUrl as string + "#toolbar=0" } className="w-full h-full" type="application/pdf">
+                <iframe src={chapters[isActive].fileUrl as string} className="w-full h-full"></iframe>
+                </object>
                 {/* <DocViewer
                     documents={docs}
                     pluginRenderers={DocViewerRenderers}
