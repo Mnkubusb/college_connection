@@ -9,6 +9,7 @@ export async function POST(
     try {
         
         const user = await currentUser();
+
         if (!user) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
@@ -39,7 +40,6 @@ export async function POST(
         const newChapter = await db.chapters.create({
             data: {
                 title,
-                userId: user.id as string,
                 notesListId: params.noteListId,
                 position: newPosition
             }
