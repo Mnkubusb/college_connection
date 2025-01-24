@@ -64,15 +64,16 @@ export async function upload( noteListId:string ,  formData: FormData) {
 
         if(!noteList) return{ error : "Note not found"}
 
-        let position = noteList.chapters.length + 1
+        const positionStart = noteList.chapters.length + 1;
+        let position = positionStart;
 
         uploadedArray.map( async (file)=>(
             await db.chapters.create({
                 data:{
                     notesListId : noteListId,
                     title: file.split(".pdf")[0],
-                    position,
-                    fileUrl: `https://college-connections.s3.ap-south-1.amazonaws.com/${encodeURI(file)}`
+                    position: position++ ,
+                    fileUrl: `https://college-connections.s3.ap-south-1.amazonaws.com/${encodeURIComponent(file)}`
                 }
             })
         ));
