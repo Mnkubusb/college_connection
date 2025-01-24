@@ -65,7 +65,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <TooltipProvider>
-              <div className="flex flex-col-reverse sm:flex-row h-screen overflow-hidden w-screen">
+              <div className="flex flex-col-reverse sm:flex-row h-[100svh] overflow-hidden w-screen">
                 <Aside/>
                 {children}
               </div>
