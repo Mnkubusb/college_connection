@@ -2,6 +2,7 @@
 import { db } from "@/lib/db";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3"
 import { error } from "console";
+import { Content } from "vaul";
 
 const s3Client = new S3Client({
     region: process.env.AWS_S3_REGION as string,
@@ -19,7 +20,8 @@ export async function UploadtoS3Bucket( file:Buffer , fileName: string) {
         Bucket: process.env.AWS_S3_BUCKET_NAME,
         Key: `${fileName}`,
         Body: fileBuffer,
-        ContentType: "application/pdf"
+        ContentType: "application/pdf",
+        ContentDisposition: "inline",
     }
 
     const command = new PutObjectCommand(params);
