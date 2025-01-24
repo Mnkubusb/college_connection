@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast";
 import { ImageIcon, Pencil, PlusCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import FileUpload from "@/components/ui/file-upload";
+import FileUpload from "@/components/image-upload";
 
 
 
@@ -25,7 +25,6 @@ const formSchema = z.object({
     imageUrl: z.string().min(1, {
         message: "Image is required"
     }),
-
 });
 
 

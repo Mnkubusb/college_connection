@@ -26,8 +26,7 @@ import { Suspense, useState, useTransition } from "react";
 import { FormSuccess } from "../form-success";
 import { FormError } from "../form-error";
 import { login } from "../../actions/login";
-import { useRouter } from "next/navigation";
-import { useCurrentUser } from "@/hooks/get-current-user";
+import { redirect, useRouter } from "next/navigation";
 
 export function LoginForm() {
   
@@ -53,10 +52,10 @@ export function LoginForm() {
           if (data?.error) {
             setError(data?.error)
           }
-
           if (data.success) {
             form.reset()
             setSuccess(data?.success)
+            redirect("/auth/onboarding")
           }
         })
     })
@@ -65,12 +64,7 @@ export function LoginForm() {
 
 
   if (error === "Email not verified Please verify your email") {
-    router.push("/auth/verify")
-  }
-  
-
-  if (success) {
-    router.push("/auth/onboarding")
+    redirect("/auth/verify")
   }
 
   return (
@@ -92,6 +86,7 @@ export function LoginForm() {
                     <Input
                       {...field}
                       placeholder="m@example.com"
+                      disabled={isPending}
                       required
                     />
                   </FormItem>

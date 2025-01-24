@@ -15,14 +15,10 @@ import Actions from './_components/actions';
 
 const Note = async ({ params }: { params: { note: string } }) => {
 
-  const user = await currentUser();
-  if (!user) return redirect('/notes');
-
 
   const note = await db.note.findUnique({
     where: {
       id: params.note,
-      userId: user.id
     },
     include: {
       notesList: {

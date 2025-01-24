@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { NotesListDisplay } from "./_components/note-to-display";
 
 const NotesListPage = async ( {params}:{params: {note:string}} ) => {
-
+  
     const note = await db.note.findUnique({
       where:{
         id:params.note

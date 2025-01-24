@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import { IconBadge } from "@/components/ui/icon-badge";
-import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { ArrowLeft, LayoutDashboard, ListCheck } from "lucide-react";
 import Link from "next/link";
@@ -19,10 +18,6 @@ const NotesListEditPage = async ({
         noteListId: string;
     }
 }) => {
-
-    const user = currentUser();
-
-    if (!user) return redirect("/notes");
 
     const notesList = await db.notesList.findUnique({
         where: {

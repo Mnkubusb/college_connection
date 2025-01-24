@@ -21,7 +21,6 @@ export const NotestoDisplay = ( { items}:NotesListProps) =>{
                    notesLength={item.notesList.length}
                    imageUrl={item.imageUrl!}
                    category={item?.category?.name}
-                   hasChapter={false}
                 />
             ))}
             </div>

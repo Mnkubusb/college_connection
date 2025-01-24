@@ -1,4 +1,3 @@
-import { image } from "@nextui-org/theme";
 import * as z from "zod";
 
 export const LoginSchema =z.object({
@@ -79,3 +78,30 @@ export const UpdateProfileSchema = z.object({
     github: z.optional(z.string()),
     twitter: z.optional(z.string()),
 })
+
+
+
+export const fileUploadSchema = z.object({
+  files: z
+    .any()
+    .refine((list) => list instanceof FileList, {
+        message: "Must be a FileList",
+      })
+    .refine((list) => list.length > 0, "No files selected")
+    .refine((list) => list.length <= 15, "Maximum 15 files allowed")
+    .transform((list) => Array.from(list))
+    .refine(
+      (files) => {
+        const allowedTypes: { [key: string]: boolean } = {
+          "image/jpeg": true,
+          "image/png": true,
+          "application/pdf": true,
+          "application/msword": true,
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            true,
+        };
+        return files.every((file) => allowedTypes[file.type]);
+      },
+      { message: "Invalid file type. Allowed types: JPG, PNG, PDF, DOC, DOCX" }
+    )
+});

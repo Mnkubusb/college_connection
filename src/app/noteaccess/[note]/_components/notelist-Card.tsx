@@ -1,19 +1,20 @@
 import Image from "next/image"
 import Link from "next/link"
-import { IconBadge } from "./ui/icon-badge"
 import { BookOpen } from "lucide-react"
+import { IconBadge } from "@/components/ui/icon-badge"
 
 interface NoteCardProps{
     id:string
     title:string
     imageUrl: string
+    noteId: string
     notesLength: number 
     category?: string | undefined 
 }
 
-export const NoteCard =( { id, title , imageUrl , notesLength , category  }:NoteCardProps )=>{
+export const NoteListCard =( { id, title , imageUrl , notesLength , category ,noteId }:NoteCardProps )=>{
     return(
-        <Link href={`/noteaccess/${id}`}>
+        <Link href={`/noteaccess/${noteId}/notesList/${id}`}>
             <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg h-full">
                 <div className="relative aspect-video w-full rounded-t-md overflow-hidden border-b">
                     <Image alt={title} src={imageUrl} fill className="object-cover"/>
@@ -29,7 +30,7 @@ export const NoteCard =( { id, title , imageUrl , notesLength , category  }:Note
                         <div className="flex items-center gap-x-1 text-sky-400 bg-sky-700/55 rounded-full px-2">
                             <IconBadge icon={BookOpen} size="sm" variant={"default"} />
                             <span>
-                                {notesLength} {notesLength === 1? "Note":"Notes"}
+                                {notesLength} {notesLength === 1? "Chapter":"Chapters"}
                             </span>
                         </div>
                     </div>

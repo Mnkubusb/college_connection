@@ -13,6 +13,7 @@ import { Toaster } from "react-hot-toast";
 import { ConfettiProvider } from "@/components/providers/confetti-provider";
 
 
+
 const OleoScript = localFont({
   src: "./fonts/OleoScript.ttf",
   variable: "--font-oleo-script",

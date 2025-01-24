@@ -1,21 +1,20 @@
 import { Chapters, NotesList } from "@prisma/client"
-import { NoteCard } from "@/components/note-card";
+import { NoteListCard } from "./notelist-Card"
 
 type NotesWithProgressWithCategory = NotesList & {
     chapters: Chapters[]
 }
-
 interface NotesListProps{
     items: NotesWithProgressWithCategory[]
 }
-export const NotesListDisplay = ( { items}:NotesListProps) =>{
+export const NotesListDisplay = ( { items }:NotesListProps) =>{
     return(
         <div className="mt-4">
             <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
             {items.map((item)=>(
-                <NoteCard 
-                   hasChapter
+                <NoteListCard 
                    key={item.id}
+                   noteId={item.noteId}
                    id={item.id}
                    title={item.title}
                    notesLength={item.chapters.length}

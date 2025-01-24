@@ -9,8 +9,7 @@ import Link from "next/link";
 
 const Notes = async () => {
 
-  const user = await currentUser()
-  if (!user) return redirect('/')
+  const user = await currentUser();
 
   const notes = await db.note.findMany({
     orderBy: {
@@ -28,7 +27,7 @@ const Notes = async () => {
             <div className="w-[90%] mx-auto"> 
               <DataTable columns={columns} data={notes} />
             </div>
-            {user.role === 'ADMIN' && <div className="w-[90%] mx-auto">
+            {user?.role === 'ADMIN' && <div className="w-[90%] mx-auto">
               <div className="w-max px-6 h-10 flex items-center justify-center border rounded-lg shadow-md hover:bg-gray-600 cursor-pointer">
                 <Link href="/create">
                   <div className="w-full h-full flex items-center justify-center">

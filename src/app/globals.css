@@ -87,6 +87,20 @@ body {
   }
 }
 
+iframe::-webkit-scrollbar{
+  height: 4px;
+  width: 4px;
+}
+
+iframe::-webkit-scrollbar-track{
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+iframe::-webkit-scrollbar-thumb{
+  border-radius: 50%;
+  background: var(--primary-300);
+}
 
 
 @layer base {
