@@ -5,9 +5,9 @@ import SignUpForm from '@/components/auth/register-form'
 
 const signUp = () => {
   return (
-    <div className='overflow-hidden'>
+    <div className='overflow-y-auto h-full w-full'>
       <Header Name="Sign Up"></Header>
-      <div className="flex h-[82vh] sm:h-full w-full px-1 relative z-50">  
+      <div className="h-full w-full">  
       <SignUpForm />
       </div>
     </div>

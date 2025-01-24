@@ -95,9 +95,9 @@ const Aside = () => {
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <aside className="sm:inset-y fixed left-0 flex h-full flex-col sm:border-r w-full sm:w-max bg-background sm:z-50 ">
-      <div className="p-2 sm:w-[53px] sm:h-[53px] w-[60px] h-[60px] fixed sm:relative bg-background sm:border-b-0 border-b flex justify-center items-center">
-        <Link href={"/"}>
+    <aside className="relative z-[9999] flex sm:h-full h-[70px] flex-col sm:border-r w-full sm:w-max bg-background">
+      <div className="p-2 sm:w-[53px] sm:h-[53px] w-[60px] h-[60px] hidden bg-background sm:border-b-0 border-b sm:flex justify-center items-center">
+        <Link href={"/"} className="flex items-center justify-center">
           <Button
             variant="ghost"
             size="logo"
@@ -113,8 +113,8 @@ const Aside = () => {
           </Button>
         </Link>
       </div>
-      <div className="flex sm:flex-col h-[70px] z-50 sm:h-full items-center relative mt-auto sm:mt-0 sm:px-0 bg-background sm:bg-transparent sm:w-max gap-3 w-full px-10 justify-evenly border-t">
-        <nav className="grid sm:gap-1 gap-4 sm:p-2 grid-cols-4 sm:grid-cols-1 ">
+      <div className="flex sm:flex-col h-[70px] items-center z-50 sm:h-full sm:px-0 bg-background sm:bg-transparent sm:w-max gap-3 w-full px-10 pt-4 sm:pt-0 justify-evenly border-t">
+        <nav className="grid sm:gap-1 gap-4 sm:p-2 grid-cols-4 sm:grid-cols-1">
           <Tooltip>
             <TooltipTrigger asChild>
               <Link href="/">
@@ -141,7 +141,7 @@ const Aside = () => {
                   variant="ghost"
                   size="icon"
                   className={clsx("rounded-full sm:rounded-lg w-12 h-12 sm:w-9 sm:h-9 flex justify-center items-center", {
-                    "bg-accent": pathname === "/notes",
+                    "bg-accent": pathname === "/noteaccess",
                   })}
                   aria-label="Notes"
                 >
@@ -211,7 +211,7 @@ const Aside = () => {
             </TooltipContent>
           </Tooltip>
         </nav>
-        <nav className="sm:mt-auto grid sm:gap-1 sm:p-2 z-50 ">
+        <nav className="sm:mt-auto grid sm:gap-1 sm:p-2">
           <Tooltip>
             <TooltipTrigger asChild>
               <Link href="/about">
@@ -238,7 +238,7 @@ const Aside = () => {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className={clsx("mt-auto rounded-full w-12 h-12 sm:w-9 sm:h-9", {
+                    className={clsx("mt-auto rounded-full w-12 h-12 sm:w-9 sm:h-9 mb-4", {
                       "bg-accent": pathname === "/profile",
                     })}
                     aria-label="Profile" >
@@ -273,7 +273,7 @@ const Aside = () => {
             </TooltipContent>
           </Tooltip>
         </nav>
-      </div>
+        </div>
     </aside>
   );
 };

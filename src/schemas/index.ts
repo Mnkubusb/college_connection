@@ -57,7 +57,7 @@ export const ProfileSchema = z.object({
     department: z.string().min(1, { message: "Select your department"}),
     wannabe: z.string().min(1, { message: "Select your Desired Career"}),
     skills: z.string().array().min(1, { message: "Enter your skills"}).max(5, { message: "You can only add 5 skills"}),
-    story: z.string().min(10, { message: "Tell us your story in at least 10 words"}),
+    story: z.optional(z.string()),
     insta: z.optional(z.string()),
     linkedin: z.optional(z.string()),
     github: z.optional(z.string()),
@@ -78,30 +78,3 @@ export const UpdateProfileSchema = z.object({
     github: z.optional(z.string()),
     twitter: z.optional(z.string()),
 })
-
-
-
-export const fileUploadSchema = z.object({
-  files: z
-    .any()
-    .refine((list) => list instanceof FileList, {
-        message: "Must be a FileList",
-      })
-    .refine((list) => list.length > 0, "No files selected")
-    .refine((list) => list.length <= 15, "Maximum 15 files allowed")
-    .transform((list) => Array.from(list))
-    .refine(
-      (files) => {
-        const allowedTypes: { [key: string]: boolean } = {
-          "image/jpeg": true,
-          "image/png": true,
-          "application/pdf": true,
-          "application/msword": true,
-          "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-            true,
-        };
-        return files.every((file) => allowedTypes[file.type]);
-      },
-      { message: "Invalid file type. Allowed types: JPG, PNG, PDF, DOC, DOCX" }
-    )
-});

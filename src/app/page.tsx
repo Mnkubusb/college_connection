@@ -13,9 +13,9 @@ const Home = async () => {
   });
   
   const profiles = await db.profile.findMany({});
-
+  
   return (
-    <div>
+    <div className='w-full h-full'>
       <Dashboard users={users} profiles={profiles} />
     </div>
   )

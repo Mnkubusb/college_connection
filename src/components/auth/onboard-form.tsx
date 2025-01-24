@@ -258,7 +258,7 @@ export default function OnboardForm( {user} : UserProps) {
           Welcome to College Connection
         </CardTitle>
         <CardDescription>
-          Login to college connections if you can because we don&apos;t have a login flow yet
+          Fill out the fields to continue creating your profile
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">

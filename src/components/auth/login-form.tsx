@@ -76,7 +76,6 @@ export function LoginForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Suspense fallback={<div>Loading...</div>}>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="grid gap-6">
@@ -123,7 +122,6 @@ export function LoginForm() {
               </div>
             </form>
           </Form>
-        </Suspense>
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" ></div>
         <div className="mt-4 text-center text-sm flex justify-center items-center">
           Don&apos;t have an account?{" "}

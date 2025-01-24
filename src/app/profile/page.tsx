@@ -12,9 +12,9 @@ const Profile = async () => {
   const profile = await db.profile.findMany({})
 
   return (
-    <div className='relative h-[90vh] sm:overflow-hidden sm:h-full sm:w-full'>
+    <div className='sm:overflow-hidden h-full w-full'>
       <Header Name="Profile"></Header>
-      <div className='flex relative h-[80vh] sm:h-full sm:w-full'>
+      <div className='h-full w-full mt-[53px]'>
         <ProfilePage profile={profile} user={user}/>
       </div>
     </div>

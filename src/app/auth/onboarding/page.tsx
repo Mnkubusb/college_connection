@@ -9,9 +9,9 @@ const Onboard = async () => {
     const user = await currentUser();
 
     return (
-        <div>
+        <div className='h-full w-full'>
             <Header Name='College Connections'></Header>
-            <div className="flex flex-col px-1 relative h-[80vh] sm:h-full w-full">
+            <div className="h-full w-full">
                 <OnboardForm user={user} />
             </div>
         </div>
