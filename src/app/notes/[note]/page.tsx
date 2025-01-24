@@ -52,7 +52,7 @@ const Note = async ({ params }: { params: { note: string } }) => {
   const isCompleted = requiredFields.every(Boolean);
 
   return (
-    <div className='relative h-[90vh] sm:overflow-hidden sm:h-full sm:w-full'>
+    <div className='h-full w-full'>
       <Header Name={note.title}></Header>
       {!note.isPublished && (
         <Banner

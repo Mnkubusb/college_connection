@@ -44,13 +44,13 @@ const NotesListEditPage = async ({
 
     return (
         <>
-            <div className='relative h-[90vh] sm:overflow-hidden sm:h-full sm:w-full'>
+            <div className='h-full w-full'>
                 <Header Name="Notes"></Header>
                 {!notesList.isPublished && (
                     <Banner label="This note is not published yet" variant="warning" />
                 )}
-                <div className='flex relative h-[80vh] sm:h-full sm:w-full'>
-                    <div className="md:flex sm:max-h-[92%] max-h-[calc(92vh-70px)] sm:mx-3 border-x flex-col lg:col-span-2 bg-background overflow-auto scroll scroll-smooth absolute sm:relative sm:w-full w-[100%] p-6">
+                <div className='h-full first:w-full'>
+                    <div className="flex h-full sm:mx-3 border-x flex-col lg:col-span-2 bg-background overflow-auto scroll scroll-smooth absolute sm:relative w-full p-6">
                         <div className="flex justify-between items-center">
                             <div className="w-full">
                                 <Link href={`/notes/${params.note}`}
