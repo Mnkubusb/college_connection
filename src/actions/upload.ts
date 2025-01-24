@@ -64,7 +64,7 @@ export async function upload( noteListId:string ,  formData: FormData) {
 
         if(!noteList) return{ error : "Note not found"}
 
-        const positionStart = noteList.chapters.length + 1;
+        const positionStart = noteList.chapters.length;
         let position = positionStart;
 
         uploadedArray.map( async (file)=>(
