@@ -1,3 +1,4 @@
+
 module.exports = {
     images: {
       domains: ["uploadthing.com", "utfs.io", "lh3.googleusercontent.com", "avatars.githubusercontent.com"],
@@ -16,5 +17,5 @@ module.exports = {
         use: "raw-loader",
       });
       return config;
-    },
+    }, 
   }
