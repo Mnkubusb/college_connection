@@ -34,7 +34,7 @@ export const getNotes = async ({
                 }
             },
             orderBy:{
-                createdAt: "desc"
+                createdAt: "asc"
             }
         });
 

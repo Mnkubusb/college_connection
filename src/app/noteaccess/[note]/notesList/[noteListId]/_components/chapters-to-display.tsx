@@ -5,6 +5,8 @@ import { Chapters, NotesList } from "@prisma/client"
 import { File } from "lucide-react"
 import { useState } from "react"
 import { IoClose } from "react-icons/io5"
+import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import "@cyntler/react-doc-viewer/dist/index.css";
 
 type NotesWithProgressWithCategory = NotesList & {
     chapters: Chapters[]
@@ -21,6 +23,9 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
         setisActive(index);
     }
     const chapters = items.chapters
+    const docs = [
+        { uri: items.chapters[isActive].fileUrl as string  }
+    ]
     
     return (
         <div className="w-full h-full flex">
@@ -42,6 +47,10 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
                     <IoClose size={20} />
                 </Button>
                 <object data={chapters[isActive].fileUrl as string + "#toolbar=0" } className="w-full h-full" type="text/html"></object>
+                {/* <DocViewer
+                    documents={docs}
+                    pluginRenderers={DocViewerRenderers}
+                    /> */}
             </div>
         </div>
     )
