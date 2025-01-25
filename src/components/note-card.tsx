@@ -16,7 +16,7 @@ export const NoteCard =( { id, title , imageUrl , notesLength , category  }:Note
         <Link href={`/noteaccess/${id}`}>
             <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg h-full">
                 <div className="relative aspect-video w-full rounded-t-md overflow-hidden border-b">
-                    <Image alt={title} src={imageUrl} fill className="object-cover"/>
+                    <Image alt={title} src={imageUrl} quality={50} fill className="object-cover"/>
                 </div>
                 <div className="flex flex-col pt-2 px-3">
                     <div className="text-lg md:text-base font-medium group-hover:text-primary-700 transition line-clamp-2">

@@ -24,12 +24,12 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
     return (
         <div className="w-full h-full flex">
             <div className="md:basis-[30%] md:ml-3 border-x w-full">
-                <div className="flex flex-col gap-y-2">
+                <div className="flex flex-col gap-y-2 mt-4">
                     {chapters.map((chapter, index) => (
-                        <div key={chapter.id} className="w-full h-16 border-y flex justify-start items-center px-4 hover:bg-slate-800 cursor-pointer gap-x-2 hover:text-white"
+                        <div key={chapter.id} className="flex gap-2 cursor-pointer justify-start w-full px-4 dark:hover:bg-gray-800 hover:bg-gray-400 shadow-large h-16 items-center "
                             onClick={() => handleResize(index)}>
                             <File size={20} />
-                            <span className="text-lg mt-1">
+                            <span className="text-md mt-1">
                                 {chapter.title}
                             </span>
                         </div>
@@ -40,7 +40,7 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
                 <Button onClick={() => setisMobileView(false)} className="absolute top-3 right-3 z-[100] rounded-full bg-black lg:hidden flex justify-center items-center" variant={"outline"} size={"icon"}>
                     <IoClose size={20} />
                 </Button>
-                <iframe src={`https://docs.google.com/gview?url=${items.chapters[isActive].fileUrl}&embedded=true`+ "#toolbar=0" } className="w-full h-full"></iframe>
+                <iframe src={`https://docs.google.com/gview?url=${items.chapters[isActive].fileUrl}&embedded=true`} className="w-full h-full"></iframe>
             </div>
         </div>
     )

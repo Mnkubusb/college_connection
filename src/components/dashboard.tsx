@@ -2,7 +2,7 @@
 import Header from "@/components/Header";
 import ProfileView from "@/components/Profile";
 import { Badge } from "@/components/ui/badge";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import clsx from "clsx";
 import { CloseButton, MantineProvider } from '@mantine/core';
 import { Button } from "@/components/ui/button";
