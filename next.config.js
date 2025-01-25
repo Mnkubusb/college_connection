@@ -17,5 +17,9 @@ module.exports = {
         use: "raw-loader",
       });
       return config;
-    }, 
+    },
+    webpack: (config) => {
+       config.resolve.alias.canvas = false;
+       return config;
+      },
   }
