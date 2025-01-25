@@ -23,12 +23,12 @@ const ProfilePage = ({ user, profile }: UserProps) => {
     const userProfile = profile?.find((profile) => profile.userId === user?.id);
 
     return (
-        <div className="flex h-full sm:mx-3 border flex-col bg-background w-full">
-            <div className="w-full sm:overflow-hidden relative overflow-auto">
+        <div className="flex h-full sm:mx-3 border flex-col w-full">
+            <div className="w-full h-full relative">
                 <div className="div">
                     <Button onClick={() => {
                         router.push("/settings")
-                    }} variant={"outline"} className="absolute gap-1 top-5 right-3 z-50 cursor-pointer bg-black rounded-full flex justify-center items-center">
+                    }} variant={"outline"} className="absolute gap-1 top-5 right-3 z-50 cursor-pointer bg-black rounded-full flex justify-center items-center" >
                         <Pencil size={14}  />
                         Edit
                     </Button>

@@ -244,10 +244,10 @@ const SettingsPage = ({ user, profile }: UserProps) => {
     }
 
     return (
-        <div className="md:flex h-full min-h-[80vh] sm:mx-3 border flex-col lg:col-span-2 bg-background absolute sm:relative sm:w-full w-[100%]">
+        <div className="sm:mx-3 border w-full h-full">
             <Toaster position="top-center" reverseOrder={false} />
-            <div className="w-full overflow-auto h-full overflow-x-hidden scroll">
-                <div className="div">
+            <div  className="w-full overflow-auto h-full overflow-x-hidden scroll">
+                <div>
                     <div className="flex justify-center items-center sm:h-[150px] h-[120px] sm:w-full relative">
                         <div className="bg-gradient-to-r from-slate-900 to-slate-700 w-full h-full" >
                             <AnimatedGridPattern />
@@ -522,7 +522,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                         Update your social media links
                                     </div>
                                 </div>
-                                <Card className="sm:w-[75%] border rounded-lg shadow-[0px_43px_100px_20px_rgba(0,_0,_0,_0.7)]">
+                                <Card className="sm:w-[75%] border rounded-lg shadow-[0px_43px_100px_20px_rgba(0,_0,_0,_0.7)] mb-10">
                                     <CardContent className="w-full p-0">
                                         <div className="grid gap-6 ">
                                             <div className="grid pt-7 px-6 gap-6">
@@ -598,7 +598,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                         </form>
                     </Form>
                 </div>
-            </div>
+            </div >
         </div>
     );
 }

@@ -7,6 +7,9 @@ export const publicRoutes = [
     "/api/uploadthing",
     "/auth/new-password",
     "/notes/[note]",
+    "/noteaccess",
+    "/noteaccess/[note]",
+    "/noteaccess/[note]/notesList/[noteListId]",  
 ];
 
 export const Onboard = "/auth/onboarding";
