@@ -40,7 +40,7 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
                 <Button onClick={() => setisMobileView(false)} className="absolute top-3 right-3 z-[100] rounded-full bg-black lg:hidden flex justify-center items-center" variant={"outline"} size={"icon"}>
                     <IoClose size={20} />
                 </Button>
-                <iframe src={`https://docs.google.com/gview?url=${items.chapters[isActive].fileUrl}&embedded=true`} className="w-full h-full"></iframe>
+                <iframe src={`https://docs.google.com/gview?url=${items.chapters[isActive].fileUrl}&embedded=true`+ "#toolbar=0" } className="w-full h-full"></iframe>
             </div>
         </div>
     )
