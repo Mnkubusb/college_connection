@@ -2,7 +2,6 @@
 import Header from "@/components/Header";
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { redirect } from "next/navigation";
 import { DataTable } from "./_components/data-table";
 import { columns } from "./_components/columns";
 import Link from "next/link";

@@ -12,13 +12,15 @@ import { currentUser } from "./lib/auth";
     
 const { auth } = NextAuth(authConfig)
 
-export default auth( async ( req )=>{
+export default auth( async ( req ) => {
+
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
     const isAuthRoutes = authRoutes.includes(nextUrl.pathname);
     const isOnboardingRoute = nextUrl.pathname === Onboard;
+
     if(isApiAuthRoute){
         return undefined;
     }

@@ -1,8 +1,6 @@
 "use server"
 import { db } from "@/lib/db";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3"
-import { error } from "console";
-import { Content } from "vaul";
 
 const s3Client = new S3Client({
     region: process.env.AWS_S3_REGION as string,
