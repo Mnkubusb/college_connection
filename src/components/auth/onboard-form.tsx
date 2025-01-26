@@ -231,6 +231,7 @@ export default function OnboardForm( {user} : UserProps) {
           if (data?.error) {
             toast.error(data?.error as string)
             setError(data?.error as string)
+            redirect("/profile")
           }
           if (data?.success) {
             toast.success(data?.success as string)
@@ -245,11 +246,6 @@ export default function OnboardForm( {user} : UserProps) {
     return redirect("/profile")
   }
   
-  if(success){
-    return redirect("/profile")
-  }
-
-
   return (
     <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1 overflow-y-auto scroll" >
       <Toaster />
