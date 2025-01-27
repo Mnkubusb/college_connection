@@ -30,9 +30,9 @@ const NoteListIdPage = async ({ params }: {
     }
 
     return (
-        <div className='relative h-[90vh] sm:overflow-hidden sm:h-full sm:w-full'>
+        <div className='h-full w-full'>
             <Header Name={noteList?.title as string}></Header>
-            <div className='flex relative h-[80vh] sm:h-full sm:w-full'>
+            <div className='h-full w-full'>
                 <ChapterListDisplay items={noteList} />
             </div>
         </div>
