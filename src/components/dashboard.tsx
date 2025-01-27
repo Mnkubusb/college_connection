@@ -43,7 +43,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                             {userProfiles.map((profile, index) => (
                                 <div
                                     key={index}
-                                    className="flex flex-col gap-2 cursor-pointer justify-center w-full px-2 dark:hover:bg-gray-800 hover:bg-gray-200 shadow-2xl"
+                                    className="flex flex-col gap-2 cursor-pointer justify-center w-full px-2 dark:hover:bg-gray-800 hover:bg-gray-200 shadow-large"
                                     onClick={() => {
                                         handleClick(index);
                                     }}>

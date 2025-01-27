@@ -15,7 +15,7 @@ interface NoteCardProps{
 export const NoteListCard =( { id, title , imageUrl , notesLength , category ,noteId }:NoteCardProps )=>{
     return(
         <Link href={`/noteaccess/${noteId}/notesList/${id}`}>
-            <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg h-full">
+            <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg h-full shadow-large">
                 <div className="relative aspect-video w-full rounded-t-md overflow-hidden border-b">
                     <Image alt={title} src={imageUrl} quality={50} fill className="object-cover"/>
                 </div>
@@ -27,7 +27,7 @@ export const NoteListCard =( { id, title , imageUrl , notesLength , category ,no
                         {category}
                     </p>
                     <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
-                        <div className="flex items-center gap-x-1 text-sky-400 bg-sky-700/55 rounded-full px-2">
+                        <div className="flex items-center gap-x-1 dark:text-sky-400 text-white bg-sky-700/55 rounded-full px-2">
                             <IconBadge icon={BookOpen} size="sm" variant={"default"} />
                             <span>
                                 {notesLength} {notesLength === 1? "Chapter":"Chapters"}

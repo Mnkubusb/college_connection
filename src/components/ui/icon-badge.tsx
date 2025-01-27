@@ -29,7 +29,7 @@ const backgroundVariants = cva(
 const iconVariants = cva("", {
     variants: {
         variant: {
-            default: "text-sky-400",
+            default: "dark:text-sky-400 text-white",
             secondary: "text-secondary-foreground",
             success: "text-emerald-700",
             destructive: "text-destructive-foreground",

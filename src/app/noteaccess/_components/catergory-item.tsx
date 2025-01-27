@@ -2,14 +2,14 @@
 
 import qs from "query-string";
 import { cn } from "@/lib/utils"
-import { Grid2X2 } from "lucide-react"
+import { Codesandbox, Grid2X2, LucideIcon } from "lucide-react"
 import { usePathname, useSearchParams } from "next/navigation"
 import { useRouter } from "next/navigation"
 
 
 interface CategoryItemProps{
     label:string,
-    value?: string
+    value?: string,
 }
 export const CategoryItem = ( { label, value }:CategoryItemProps) =>{
 
@@ -37,12 +37,12 @@ export const CategoryItem = ( { label, value }:CategoryItemProps) =>{
         <button 
             onClick={onClick}
             className={cn(
-                "py-1 px-3 text-sm border border-slate-200 rounded-full flex items gap-x-1 hover:border-sky-700",
+                "py-1 px-3 text-sm border border-slate-200 rounded-full flex items-center gap-x-1 hover:border-sky-700",
                 isSelected && " border-sky-700 bg-primary-200/20 text-primary-700"
             )}
             type="button"
         >
-            <Grid2X2 size={20}/>
+            <Codesandbox className="h-4 w-4" />
             <div className="truncate">
                 {label}
             </div>

@@ -19,13 +19,13 @@ export async function PATCH(
             }
         })
 
-        if(!note) return new NextResponse("Forbidden", { status: 403 });
+        // if(!note) return new NextResponse("Forbidden", { status: 403 });
 
-        const hasPublishedNote = note.notesList.some(noteList => noteList.isPublished)
+        // const hasPublishedNote = note?.notesList.some(noteList => noteList.isPublished)
 
-        if(!note.title || !note.imageUrl || !note.categoryId || !hasPublishedNote) {
-            return new NextResponse("Mising Required Fields", { status: 400 });
-        }
+        // if(!note?.title || !note.imageUrl || !note.categoryId || !hasPublishedNote) {
+        //     return new NextResponse("Mising Required Fields", { status: 400 });
+        // }
 
         const publishedNotes = await db.note.update({
             where: {
