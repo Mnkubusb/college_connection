@@ -29,7 +29,7 @@ const NotesListPage = async ( {params}:{params: {note:string}} ) => {
 
 
     return ( 
-      <div className='h-full w-full overflow-auto overflow-x-hidden scroll scroll-smooth'>
+      <div className='min-h-full w-full overflow-auto overflow-x-hidden scroll scroll-smooth'>
       <Header Name={note.title}></Header>
       <div>
         <div className="flex h-full sm:mx-3 px-3 sm:p-6 sm:border-x flex-col w-full ">

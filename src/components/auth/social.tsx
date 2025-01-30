@@ -21,28 +21,28 @@ const ShowSocial = ({className}:showSocialProps) => {
     }
 
     return ( 
-        <div className={`flex justify-between items-center  gap-4 `+ className} >
+        <div className={`flex justify-between items-center  gap-10 `+ className} >
           <Button 
            onClick={() => onClick("github")}
            variant={"shine"}
            type="submit"
-           className=" h-10 sm:w-40 w-32 gap-2 justify-center"
+           className=" h-10 sm:w-40 w-full gap-2 justify-center"
           >
             <FaGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300 " />
-            {/* <span className="text-neutral-700 dark:text-neutral-300 text-sm mt-[2px] ">
+            <span className="text-neutral-700 dark:text-neutral-300 text-sm mt-[1px] ">
               GitHub
-            </span> */}
+            </span>
           </Button>
           <Button
             onClick={() => onClick("google")} 
             variant={"shine"}
-            className="sm:w-40 w-32 h-10 gap-2 justify-center"
+            className="sm:w-40 w-full h-10 gap-2 justify-center"
             type="submit"
           >
             <FcGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-            {/* <span className="text-neutral-700 dark:text-neutral-300 text-sm mt-[2px]">
+            <span className="text-neutral-700 dark:text-neutral-300 text-sm mt-[1px]" >
               Google
-            </span> */}
+            </span>
           </Button>
         </div>
      );

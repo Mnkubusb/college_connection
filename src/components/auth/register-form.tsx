@@ -12,8 +12,11 @@ import { Button } from "@/components/ui/button";
 import { FormSuccess } from "../form-success";
 import { FormError } from "../form-error";
 import ShowSocial from "./social";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { FaSpinner } from "react-icons/fa";
+import { ArrowRight } from "lucide-react";
+import toast from "react-hot-toast";
 export default function SignUpForm() {
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -26,9 +29,8 @@ export default function SignUpForm() {
       confirmPassword: "",
     }
   })
-  const router = useRouter()
-  const [success, setSuccess] = React.useState<string | null>(null)
-  const [error, setError] = React.useState<string | null>(null)
+
+
   const [isPending, startTransition] = React.useTransition()
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
@@ -37,22 +39,18 @@ export default function SignUpForm() {
       register(values)
         .then((data) => {
           if (data?.error) {
-            setError(data.error)
+            toast.error(data.error)
           }
           if (data?.success) {
-            setSuccess(data.success)
-            form.reset()
+            toast.success(data.success)
+            redirect("/auth/verify")
           }
         })
     })
   }
 
-  if (success) {
-    router.push("/auth/verify")
-  }
-
   return (
-    <Card className="max-w-md rounded-none h-full flex flex-col py-4 sm:border-r-1" >
+    <Card className="max-w-md rounded-none flex flex-col justify-center mt-6 sm:border-r-1" >
       <CardHeader>
         <CardTitle className="text-xl">
           Welcome to College Connection
@@ -66,7 +64,7 @@ export default function SignUpForm() {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="grid gap-4 mb-4">
-                <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
+                <div className="flex flex-row space-y-0 space-x-5">
                   <FormField
                     name="firstName"
                     control={form.control}
@@ -150,15 +148,21 @@ export default function SignUpForm() {
                 />
               </div>
               <ShowSocial className=" mb-5" />
-              <FormSuccess className="my-4" message={success} />
-              <FormError className="my-4" message={error} />
               <Button
                 type="submit"
                 variant={"gooeyLeft"}
                 disabled={isPending}
                 className="w-full"
               >
-                Sign up &rarr;
+                {isPending? (
+                  <FaSpinner  className="w-4 h-4 ml-2 animate-spin"/>
+                ):(
+                  <>
+                    <span>Sign Up</span>
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </>
+                )
+                }
               </Button>
             </form>
           </Form>

@@ -25,7 +25,7 @@ const NoteAccess = async ({
   const notes = await getNotes({...searchParams})
 
   return (
-    <div className='h-full w-full overflow-y-auto scroll scroll-smooth'>
+    <div className='min-h-full w-full overflow-y-auto scroll scroll-smooth'>
       <Header Name="Notes"></Header>
       <div>
         <div className="flex sm:mx-3 px-3 sm:p-6 sm:border-x h-full flex-col">

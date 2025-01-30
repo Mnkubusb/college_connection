@@ -95,8 +95,8 @@ const Aside = () => {
   const pathname = usePathname();
   const router = useRouter();
   return (
-    <aside className="relative z-[999] lg:z-0 flex sm:h-full h-[70px] flex-col sm:border-r w-full sm:w-max bg-background">
-      <div className="p-2 sm:w-[53px] sm:h-[53px] w-[60px] h-[60px] hidden bg-background sm:border-b-0 border-b sm:flex justify-center items-center">
+    <aside className="relative z-[999] lg:z-[100] flex sm:h-full h-[70px] flex-col sm:border-r w-full sm:w-max bg-background">
+      <div className="p-2 sm:w-[52px] sm:h-[52px] w-[60px] h-[60px] hidden bg-background sm:border-b-0 border-b sm:flex justify-center items-center">
         <Link href={"/"} className="flex items-center justify-center">
           <Button
             variant="ghost"
@@ -107,8 +107,8 @@ const Aside = () => {
               src={Logo}
               alt="logo"
               className="size-7 sm:size-5"
-              width={32}
-              height={32}
+              width={20}
+              height={20}
             ></Image>
           </Button>
         </Link>
