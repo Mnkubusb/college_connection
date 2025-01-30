@@ -120,7 +120,6 @@ export function LoginForm() {
                     <LogIn className="w-4 h-4" />
                   </>
                 )}
-                Login
               </Button>
             </div>
           </form>
