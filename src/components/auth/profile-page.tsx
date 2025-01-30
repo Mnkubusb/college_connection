@@ -93,7 +93,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                 <div className="sm:flex gap-7 hidden ">
                                     <div className="flex-col flex" >
                                         <div className="h-6 sm:text-md text-xs rounded-xl font-sans text-gray-400 font-medium w-max">
-                                            I am / Wanna be
+                                            I am / Persuing
                                         </div>
                                         <div className="text-xl">
                                             {userProfile?.wannabe}

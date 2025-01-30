@@ -35,10 +35,8 @@ const Dashboard = (({ users, profiles }: UserProps) => {
 
     return (
         <MantineProvider>
-            <div className="flex flex-col">
-                <Header Name="College Connections"></Header>
-                <main className="grid flex-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 sm:mx-3">
-                    <div className="relative flex-col items-start flex">
+                <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 sm:mx-3">
+                    <div className="relative max-h-dvh flex-col items-start flex">
                         <div className=" w-full h-full border-x flex flex-col items-center py-2 gap-2 overflow-y-auto scroll-smooth scroll">
                             {userProfiles.map((profile, index) => (
                                 <div
@@ -175,7 +173,6 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                         </div>
                     </div>
                 </main>
-            </div>
         </MantineProvider>
     );
 });

@@ -1,11 +1,12 @@
 import React from 'react'
 import Header from '@/components/Header'
+import ContactPage from '@/components/contact-page'
 const Contact = () => {
   return (
-    <div className="flex flex-col w-full min-h-full overflow-y-auto">
+    <div className="w-full h-full">
       <Header Name="Contact Us"></Header>
-      <main className=" w-full h-full overflow-auto p-2 sm:mx-3 sm:border-x border-none mx-0">
-        
+      <main className="overflow-auto p-2 sm:mx-3 sm:border-x border-none mx-0">
+        <ContactPage  />
       </main>
     </div>
   )

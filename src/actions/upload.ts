@@ -33,7 +33,7 @@ export async function UploadtoS3Bucket( file:Buffer , fileName: string) {
     }
 }
 
-export async function upload( noteListId:string ,  formData: FormData) {
+export async function upload( noteListId:string ,  formData: FormData ) {
     try{
         console.log("Inside upload function");
         const Files = formData.getAll("files") as File[];

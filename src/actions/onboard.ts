@@ -30,6 +30,21 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
         return { error: "Profile already exists" }
     }
 
+    
+    const normalizeUrl = (url: string | undefined, prefix: string) => {
+        if (!url) return undefined;
+        if(url.startsWith("@")) return `${prefix}${url.slice(1)}`
+        return url.startsWith(prefix) ? url : `${prefix}${url}`;
+    };
+
+    const normalizedUrls = {
+        insta: normalizeUrl(insta, "https://instagram.com/"),
+        linkedin: normalizeUrl(linkedin, "https://linkedin.com/in/"),
+        github: normalizeUrl(github, "https://github.com/"),
+        twitter: normalizeUrl(twitter, "https://x.com/"),
+    };
+
+
     await db.profile.create({
         data: {
             name: existingUser.name as string,
@@ -40,10 +55,7 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
             wannabe: wannabe,
             skills: skills,
             bio: story,
-            insta: insta,
-            linkedin: linkedin,
-            github: github,
-            twitter: twitter
+            ...normalizeUrl,
         }
     })
 

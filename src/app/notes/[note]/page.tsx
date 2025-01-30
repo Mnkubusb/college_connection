@@ -1,7 +1,6 @@
 "use server"
 import { db } from '@/lib/db';
 import Header from '@/components/Header'
-import { currentUser } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { IconBadge } from '@/components/ui/icon-badge';
 import { LayoutDashboard, ListCheck } from 'lucide-react';

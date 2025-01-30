@@ -9,8 +9,6 @@ import { RegisterSchema } from "../../schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { register } from "../../actions/register";
 import { Button } from "@/components/ui/button";
-import { FormSuccess } from "../form-success";
-import { FormError } from "../form-error";
 import ShowSocial from "./social";
 import { redirect, useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
