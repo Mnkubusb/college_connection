@@ -191,8 +191,7 @@ interface UserProps {
 
 export default function OnboardForm( {user} : UserProps) {
 
-
-
+  const router = useRouter()
 
   function handleAppendGroup(label: ComboboxOptions['label']) {
     const newPronouns = {
@@ -218,33 +217,28 @@ export default function OnboardForm( {user} : UserProps) {
     }
   });
 
-  const [success, setSuccess] = React.useState("")
-  const [error, setError] = React.useState("")
   const [isPending, startTransition] = React.useTransition()
 
   const onSubmit = (values: z.infer<typeof ProfileSchema>) => {
-    setError("");
-    setSuccess("");
     startTransition(() => {
       onboard(values)
         .then((data) => {
           if (data?.error) {
             toast.error(data?.error as string)
-            setError(data?.error as string)
-            redirect("/profile")
+            router.push("/profile")
           }
           if (data?.success) {
             toast.success(data?.success as string)
-            setSuccess(data?.success as string)
             form.reset()
+          }
+          if(data.error === "Profile already exists"){
+            return redirect("/profile")
           }
         })
     })
   }
 
-  if(error === "Profile already exists"){
-    return redirect("/profile")
-  }
+ 
   
   return (
     <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1 overflow-y-auto scroll" >
@@ -438,8 +432,6 @@ export default function OnboardForm( {user} : UserProps) {
                   )}
                 />
                 ))}
-              <FormSuccess className="my-4" message={success} />
-              <FormError className="my-4" message={error} />
               <Button
                 type="submit"
                 disabled={isPending}
