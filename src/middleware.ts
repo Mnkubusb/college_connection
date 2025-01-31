@@ -37,8 +37,13 @@ export default auth(async (req) => {
             if (isOnboardingRoute) {
                 return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
             }
+        }else{
+            if (!isOnboardingRoute) {
+                return Response.redirect(new URL(Onboard, nextUrl));
+            }
         }
     }
+    
     if (!isLoggedIn && !isPublicRoute) {
         let callbackUrl = nextUrl.pathname;
         if (nextUrl.search) {
