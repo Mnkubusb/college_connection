@@ -26,12 +26,6 @@ export default auth(async (req) => {
     }
     if (isAuthRoutes) {
         if (isLoggedIn) {
-            const user = await currentUser();
-            if (user?.isFirstLogin){
-                if (isOnboardingRoute) {
-                    return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-                }
-            }
             return Response.redirect(new URL( DEFAULT_LOGIN_REDIRECT, nextUrl));
         }
         return undefined;
@@ -40,7 +34,7 @@ export default auth(async (req) => {
     if(isOnboardingRoute){
         if(isLoggedIn){
             const user = await currentUser();
-            if(user?.isFirstLogin){
+            if(!user?.isFirstLogin){
                 return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
             }
             return undefined;
