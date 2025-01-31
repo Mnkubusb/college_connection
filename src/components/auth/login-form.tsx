@@ -69,7 +69,7 @@ export function LoginForm() {
       <CardHeader>
         <CardTitle className="text-xl">Welcome to College Connections</CardTitle>
         <CardDescription>
-          Enter your email below to login to your account
+          Enter your email below to login to your account, Please use Google or Github for login
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -83,7 +83,6 @@ export function LoginForm() {
                     {...field}
                     placeholder="m@example.com"
                     disabled={isPending}
-                    required
                   />
                 </FormItem>
               )} />

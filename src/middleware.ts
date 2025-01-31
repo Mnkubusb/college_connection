@@ -26,23 +26,21 @@ export default auth(async (req) => {
     }
     if (isAuthRoutes) {
         if (isLoggedIn) {
-            return Response.redirect(new URL( DEFAULT_LOGIN_REDIRECT, nextUrl));
+            return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
         }
         return undefined;
     }
 
-    if(isOnboardingRoute){
-        if(isLoggedIn){
+    if (isLoggedIn) {
+        if (isOnboardingRoute) {
             const user = await currentUser();
-            if(!user?.isFirstLogin){
+            if (!user?.isFirstLogin) {
                 return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-            }else{
-                return Response.redirect(new URL( "/auth/onboarding", nextUrl));
             }
         }
         return undefined;
     }
-    
+
     if (!isLoggedIn && !isPublicRoute) {
         let callbackUrl = nextUrl.pathname;
         if (nextUrl.search) {
