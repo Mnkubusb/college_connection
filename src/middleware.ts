@@ -9,10 +9,10 @@ import {
     Onboard
 } from "./routes";
 import { currentUser } from "./lib/auth";
-    
+
 const { auth } = NextAuth(authConfig)
 
-export default auth( async ( req ) => {
+export default auth(async (req) => {
 
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
@@ -21,37 +21,34 @@ export default auth( async ( req ) => {
     const isAuthRoutes = authRoutes.includes(nextUrl.pathname);
     const isOnboardingRoute = nextUrl.pathname === Onboard;
 
-    if(isApiAuthRoute){
+    if (isApiAuthRoute) {
         return undefined;
     }
-    if(isAuthRoutes){
-        if(isLoggedIn){
+    if (isAuthRoutes) {
+        if (isLoggedIn) {
             return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
         }
         return undefined;
     }
-    
+
     if (isLoggedIn) {
         const user = await currentUser();
         if (user?.isFirstLogin) {
-            if (!isOnboardingRoute) {
-                return Response.redirect(new URL(Onboard, nextUrl));
-            }
-        } else {
             if (isOnboardingRoute) {
                 return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+            } else {
+                return Response.redirect(new URL(Onboard, nextUrl));
             }
         }
     }
-
-    if(!isLoggedIn && !isPublicRoute){
+    if (!isLoggedIn && !isPublicRoute) {
         let callbackUrl = nextUrl.pathname;
-        if(nextUrl.search){
+        if (nextUrl.search) {
             callbackUrl += nextUrl.search;
         }
         const encodedCallBackUrl = encodeURIComponent(callbackUrl)
-        
-        return Response.redirect(new URL(`/auth/login?callbackUrl=${encodedCallBackUrl}`, nextUrl));    
+
+        return Response.redirect(new URL(`/auth/login?callbackUrl=${encodedCallBackUrl}`, nextUrl));
     }
     return undefined;
 })
