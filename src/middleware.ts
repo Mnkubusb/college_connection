@@ -36,8 +36,6 @@ export default auth(async (req) => {
         if (user?.isFirstLogin){
             if (isOnboardingRoute) {
                 return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-            }else{
-                return Response.redirect(new URL("/", nextUrl));
             }
         }
     }
