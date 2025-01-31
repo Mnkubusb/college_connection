@@ -43,7 +43,9 @@ export default auth(async (req) => {
             if(user?.isFirstLogin){
                 return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
             }
+            return undefined;
         }
+        return undefined;
     }
     
     if (!isLoggedIn && !isPublicRoute) {
