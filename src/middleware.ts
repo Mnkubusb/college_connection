@@ -37,6 +37,14 @@ export default auth(async (req) => {
         return undefined;
     }
 
+    if(isOnboardingRoute){
+        if(isLoggedIn){
+            const user = await currentUser();
+            if(user?.isFirstLogin){
+                return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+            }
+        }
+    }
     
     if (!isLoggedIn && !isPublicRoute) {
         let callbackUrl = nextUrl.pathname;
