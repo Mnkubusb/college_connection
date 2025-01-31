@@ -2,7 +2,8 @@
 import Dashboard from '@/components/dashboard';
 import Header from '@/components/Header';
 import { db } from '@/lib/db';
-
+import { revalidatePath } from 'next/cache';
+import { useEffect } from 'react';
 const dynamic = "force-dynamic"
 
 const Home = async () => {
@@ -17,6 +18,7 @@ const Home = async () => {
   
   const profiles = await db.profile.findMany({});
   
+  revalidatePath('/');
   return (
     <div className='w-full h-full overflow-auto sm:overflow-hidden scroll scroll-smooth'>
       <Header Name="College Connections"></Header>
