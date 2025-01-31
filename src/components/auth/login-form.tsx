@@ -117,7 +117,7 @@ export function LoginForm() {
                 ) : (
                   <>
                     <span>Login</span>
-                    <LogIn className="w-4 h-4" />
+                    <LogIn className="w-4 h-4 ml-2" />
                   </>
                 )}
               </Button>

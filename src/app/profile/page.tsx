@@ -4,11 +4,14 @@ import Header from '@/components/Header'
 import ProfilePage from '@/components/auth/profile-page'
 import { currentUser } from '@/lib/auth'
 import { db } from '@/lib/db'
+import { revalidatePath } from 'next/cache'
 const Profile = async () => {
 
   const user = await currentUser()
 
   const profile = await db.profile.findMany({})
+
+  revalidatePath("/profile");
 
   return (
     <div className='sm:overflow-hidden h-full w-full'>
