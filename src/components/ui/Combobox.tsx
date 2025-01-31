@@ -118,7 +118,7 @@ export function Combobox({
           role="combobox"
           disabled={disalbed ?? false}
           aria-expanded={open}
-          className={cn('w-full font-normal', className)}
+          className={cn('w-max font-normal', className)}
         >
           {selected && selected.length > 0 ? (
             <div className="truncate mr-auto">

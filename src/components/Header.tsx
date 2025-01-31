@@ -32,7 +32,7 @@ const Header = ({ Name }: { Name: string }) => {
           </Button>
         </Link>
       </div>
-      <h1 className="sm:text-2xl text-xl font-kanit font-semibold mt-1">{Name}</h1>
+      <h1 className="sm:text-2xl text-xl font-josefin font-bold mt-1">{Name}</h1>
       {isNotesPage && (
         <div className="hidden md:flex justify-center items-center ml-10">
           <SearchInput />
