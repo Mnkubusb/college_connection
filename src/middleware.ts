@@ -32,10 +32,14 @@ export default auth(async (req) => {
     }
 
     if (isLoggedIn) {
+        const user = await currentUser();
         if (isOnboardingRoute) {
-            const user = await currentUser();
             if (!user?.isFirstLogin) {
                 return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+            }
+        }else{
+            if(user?.isFirstLogin){
+                return Response.redirect(new URL("/auth/onboarding", nextUrl));
             }
         }
         return undefined;
