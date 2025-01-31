@@ -116,19 +116,19 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                         </div>
                                         <div className="flex gap-1 items-end justify-between sm:relative sm:-top-2 mt-2 sm:mt-0">
                                             <div className="flex gap-1 items-end">
-                                                <Button variant="outline" className=" rounded-[10px] dark:bg-white border-2 text-black h-8 dark:border-white">
+                                                <Button variant="outline" className=" rounded-[10px] dark:bg-white border-2 text-black h-8 hover:text-black dark:hover:bg-transparent dark:border-white dark:hover:text-white">
                                                 <Link href= {userProfiles[isActive].linkedin ? userProfiles[isActive].linkedin as string : userProfiles[isActive].insta as string || "#"}>
                                                     <span>Message</span>
                                                 </Link>
                                                 </Button>
-                                                <Button variant="outline" className=" rounded-[10px] dark:bg-black border-2 dark:border-white h-8">
+                                                <Button variant="outline" className=" rounded-[10px] dark:bg-black border-2 dark:border-white h-8 bg-black text-white">
                                                     <span>Share</span>
                                                 </Button>
                                             </div>
                                             <div className="sm:flex gap-7 hidden ">
                                                 <div className="flex-col flex" >
                                                     <div className="h-6 sm:text-md text-xs rounded-xl font-sans text-gray-400 font-medium w-max">
-                                                        I am / Wanna be
+                                                        I am / Persuing
                                                     </div>
                                                     <div className="text-xl">
                                                         {userProfiles[isActive].wannabe}

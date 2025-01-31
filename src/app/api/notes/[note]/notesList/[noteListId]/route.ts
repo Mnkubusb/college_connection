@@ -21,7 +21,6 @@
                     userId: user.id,
                 }
             })
-            if (!ownNote) return new NextResponse("Forbidden",{status: 403});
 
             const notesList = await db.notesList.findUnique({
                 where: {

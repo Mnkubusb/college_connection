@@ -115,7 +115,10 @@ export default withUt ( {
     			],
     			geistMono: [
     				'var(--font-geist-mono)'
-    			]
+    			],
+				kanit: [
+					'var(--font-kanit)'
+				]
     		},
     		colors: {
     			background: 'hsl(var(--background))',

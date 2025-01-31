@@ -3,6 +3,8 @@ import Dashboard from '@/components/dashboard';
 import Header from '@/components/Header';
 import { db } from '@/lib/db';
 
+const dynamic = "force-dynamic"
+
 const Home = async () => {
 
   const users = await db.user.findMany({
@@ -16,7 +18,7 @@ const Home = async () => {
   const profiles = await db.profile.findMany({});
   
   return (
-    <div className='w-full h-full overflow-auto scroll scroll-smooth'>
+    <div className='w-full h-full overflow-auto sm:overflow-hidden scroll scroll-smooth'>
       <Header Name="College Connections"></Header>
       <div className='w-full h-full'>
       <Dashboard users={users} profiles={profiles} />
