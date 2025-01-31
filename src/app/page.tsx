@@ -17,8 +17,9 @@ const Home = async () => {
   });
   
   const profiles = await db.profile.findMany({});
-  
+
   revalidatePath('/');
+  
   return (
     <div className='w-full h-full overflow-auto sm:overflow-hidden scroll scroll-smooth'>
       <Header Name="College Connections"></Header>
