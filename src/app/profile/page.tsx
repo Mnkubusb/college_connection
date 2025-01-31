@@ -14,7 +14,7 @@ const Profile = async () => {
   revalidatePath("/profile");
 
   return (
-    <div className='sm:overflow-hidden h-full w-full'>
+    <div className='sm:overflow-hidden overflow-auto h-full w-full'>
       <Header Name="Profile"></Header>
       <div className='h-full w-full overflow-auto mt-[53px] sm:mt-0'>
         <ProfilePage profile={profile} user={user}/>
