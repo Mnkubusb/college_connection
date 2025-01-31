@@ -6,8 +6,6 @@ import { useForm } from "react-hook-form";
 import { ProfileSchema } from "../../schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { FormSuccess } from "../form-success";
-import { FormError } from "../form-error";
 import { redirect, useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { onboard } from "@/actions/onboard";
@@ -218,6 +216,8 @@ export default function OnboardForm( {user} : UserProps) {
   });
 
   const [isPending, startTransition] = React.useTransition()
+  const [open , setOpen] = React.useState(false)
+  const [opened , setOpened] = React.useState(false)
 
   const onSubmit = (values: z.infer<typeof ProfileSchema>) => {
     startTransition(() => {
@@ -262,7 +262,7 @@ export default function OnboardForm( {user} : UserProps) {
                     render={({ field }) => (
                       <FormItem className="flex flex-col sm:gap-2">
                         <FormLabel>Branch</FormLabel>
-                        <Popover>
+                        <Popover open={open} onOpenChange={setOpen}>
                           <PopoverTrigger asChild>
                             <FormControl>
                               <Button
@@ -293,6 +293,7 @@ export default function OnboardForm( {user} : UserProps) {
                                       key={branch.value}
                                       onSelect={() => {
                                         form.setValue("department", branch.value)
+                                        setOpen(false)
                                       }}>
                                       {branch.label}
                                       <Check className={cn("ml-auto", branch.value === field.value ?"opacity-100":"opacity-0" )} />
@@ -312,7 +313,7 @@ export default function OnboardForm( {user} : UserProps) {
                     render={({ field }) => (
                       <FormItem className="flex flex-col gap-2">
                         <FormLabel>Batch</FormLabel>
-                        <Popover>
+                        <Popover open={opened} onOpenChange={setOpened}>
                           <PopoverTrigger asChild>
                             <FormControl>
                               <Button
@@ -343,6 +344,7 @@ export default function OnboardForm( {user} : UserProps) {
                                       key={batch.value}
                                       onSelect={() => {
                                         form.setValue("batch", batch.value)
+                                        setOpened(false)
                                       }}>
                                       {batch.label}
                                       <Check className={cn("ml-auto", batch.value === field.value ?"opacity-100":"opacity-0" )} />

@@ -3,6 +3,7 @@ import { getUserById } from "@/data/user";
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { UpdateProfileSchema } from "@/schemas";
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 export const update = async (values: z.infer<typeof UpdateProfileSchema>) => {
@@ -62,7 +63,7 @@ export const update = async (values: z.infer<typeof UpdateProfileSchema>) => {
                 },
             }),
         ]);
-
+        revalidatePath("/profile");
         return { success: "Profile updated successfully" };
     } catch (error) {
         return { error: "Failed to update profile. Please try again." };
