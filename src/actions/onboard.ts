@@ -4,6 +4,7 @@ import * as z from 'zod';
 import { db } from '@/lib/db';
 import { getUserByEmail } from '@/data/user';
 import { getProfile } from '@/lib/profile';
+import { revalidatePath } from 'next/cache';
 
 
 export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
@@ -68,6 +69,7 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
         }
     });
 
+    revalidatePath("/profile")
+    
     return { success: "Profile created" }
-
 }

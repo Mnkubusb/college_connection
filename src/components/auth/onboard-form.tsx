@@ -225,11 +225,11 @@ export default function OnboardForm( {user} : UserProps) {
         .then((data) => {
           if (data?.error) {
             toast.error(data?.error as string)
-            router.push("/profile")
           }
           if (data?.success) {
-            toast.success(data?.success as string)
             form.reset()
+            toast.success(data?.success as string)
+            router.push("/profile")
           }
           if(data.error === "Profile already exists"){
             return redirect("/profile")
@@ -241,7 +241,7 @@ export default function OnboardForm( {user} : UserProps) {
  
   
   return (
-    <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1 overflow-y-auto scroll" >
+    <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1 overflow-y-auto scroll mb-10 sm:mb-0" >
       <Toaster />
       <CardHeader>
         <CardTitle className="text-xl">
