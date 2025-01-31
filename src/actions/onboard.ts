@@ -46,29 +46,27 @@
         };
 
 
-        await db.profile.create({
-            data: {
-                name: existingUser.name as string,
-                userId: existingUser.id,
-                image: existingUser.image as string,
-                batch: batch,
-                branch: department,
-                wannabe: wannabe,
-                skills: skills,
-                bio: story,
-                ...normalizedUrls,
-            }
-        })
+        await db.$transaction([
+            db.profile.create({
+                data: {
+                    name: existingUser.name as string,
+                    userId: existingUser.id,
+                    image: existingUser.image as string,
+                    batch,
+                    branch: department,
+                    wannabe,
+                    skills,
+                    bio: story,
+                    ...normalizedUrls,
+                }
+            }),
+            db.user.update({
+                where: { id: existingUser.id },
+                data: { isFirstLogin: false }
+            })
+        ]);
 
-        await db.user.update({
-            where: {
-                id: existingUser.id
-            },
-            data: {
-                isFirstLogin: false
-            }
-        });
-
+        
         revalidatePath("/auth/onboarding");
         
         return { success: "Profile created" }
