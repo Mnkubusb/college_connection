@@ -232,7 +232,7 @@ export default function OnboardForm( {user} : UserProps) {
             router.push("/profile")
           }
           if(data.error === "Profile already exists"){
-            return redirect("/profile")
+            router.push("/profile")
           }
         })
     })
@@ -241,7 +241,7 @@ export default function OnboardForm( {user} : UserProps) {
  
   
   return (
-    <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1 overflow-y-auto scroll mb-10 sm:mb-0" >
+    <Card className="w-full rounded-none h-full flex flex-col py-2 sm:border-r-1" >
       <Toaster />
       <CardHeader>
         <CardTitle className="text-xl">
