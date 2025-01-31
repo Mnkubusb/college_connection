@@ -13,7 +13,7 @@ const Settings = async () => {
   return (
     <div className='h-full w-full'>
       <Header Name="Profile Settings"></Header>
-      <div className='h-full w-full mt-[53px] sm:mt-0'>
+      <div className='h-full mt-[53px] sm:mt-0 sm:mx-3 sm:border-x overflow-auto overflow-x-hidden scroll scroll-smooth'>
         <SettingsPage user={user} profile={profile} />
       </div>
     </div>

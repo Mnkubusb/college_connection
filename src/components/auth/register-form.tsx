@@ -48,7 +48,7 @@ export default function SignUpForm() {
   }
 
   return (
-    <Card className="max-w-md rounded-none flex flex-col justify-center mt-6 sm:border-r-1" >
+    <Card className="max-w-md rounded-none flex flex-col justify-center h-full my-10 sm:my-0 sm:border-r-1 shadow-none" >
       <CardHeader>
         <CardTitle className="text-xl">
           Welcome to College Connection

@@ -11,7 +11,7 @@ import { Button } from "./ui/button";
 import { Check, ChevronDown, Link, User } from "lucide-react";
 import { UpdateProfileSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { set, z } from "zod";
+import * as z  from "zod";
 import { useState, useTransition } from "react";
 import { update } from "@/actions/update";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
@@ -20,7 +20,6 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { MultiSelect } from "./ui/multi-select";
 import { Textarea } from "./ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import FIleUpload from "./image-upload";
 import { Combobox, ComboboxOptions } from "./ui/Combobox";
 import toast, { Toaster } from "react-hot-toast"
 import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
@@ -244,12 +243,12 @@ const SettingsPage = ({ user, profile }: UserProps) => {
     }
 
     return (
-        <div className="sm:mx-3 border w-full h-full">
+        <div>
             <Toaster position="top-center" reverseOrder={false} />
             <div className="w-full overflow-auto h-full overflow-x-hidden scroll">
                 <div>
                     <div className="flex justify-center items-center sm:h-[150px] h-[120px] sm:w-full relative">
-                        <div className="bg-gradient-to-r from-slate-900 to-slate-700 w-full h-full" >
+                        <div className="dark:bg-gradient-to-r from-slate-900 to-slate-700 w-full h-full" >
                             <AnimatedGridPattern />
                         </div>
                     </div>
@@ -483,7 +482,6 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                             animation={2}
                                                             defaultValue={userProfile?.skills ?? []}
                                                             maxCount={3}
-                                                            className="h-10"
                                                         />
                                                     </FormItem>
                                                 )} />
