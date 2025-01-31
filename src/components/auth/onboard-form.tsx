@@ -364,11 +364,11 @@ export default function OnboardForm( {user} : UserProps) {
                   control={form.control}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>How do you Identify Yourself / Your Pronouns</FormLabel>
+                      <FormLabel>How do you Identify Yourself / Your Pronouns(Or you can create one)</FormLabel>
                       <Combobox
                         disalbed={isPending}
                         options={pronouns}
-                        placeholder="Select your pronoun"
+                        placeholder="Select your pronoun or create one (Created pronouns is at last of the list)"
                         selected={field.value}
                         onChange={(option) => field.onChange(option.value)}
                         onCreate={handleAppendGroup}

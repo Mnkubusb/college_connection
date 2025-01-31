@@ -11,8 +11,8 @@ import { Button } from "./ui/button";
 import { Check, ChevronDown, Link, User } from "lucide-react";
 import { UpdateProfileSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import {  useTransition } from "react";
+import { set, z } from "zod";
+import { useState, useTransition } from "react";
 import { update } from "@/actions/update";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { cn } from "@/lib/utils";
@@ -194,7 +194,10 @@ const SettingsPage = ({ user, profile }: UserProps) => {
     // const [success, setSuccess] = useState("");
     const router = useRouter();
     const [isPending, startTransition] = useTransition();
+    const [open, setOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const userProfile = profile?.find((profile) => profile.userId === user?.id);
+
 
     function handleAppendGroup(label: ComboboxOptions['label']) {
         const newPronouns = {
@@ -222,9 +225,6 @@ const SettingsPage = ({ user, profile }: UserProps) => {
         }
     })
 
-    const handleFileChange = () => {
-        console.log("File change");
-    }
 
     const onSubmit = (values: z.infer<typeof UpdateProfileSchema>) => {
         startTransition(() => {
@@ -238,7 +238,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                         form.reset()
                         toast.success(data?.success as string)
                     }
-            })
+                })
             router.refresh();
         })
     }
@@ -246,7 +246,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
     return (
         <div className="sm:mx-3 border w-full h-full">
             <Toaster position="top-center" reverseOrder={false} />
-            <div  className="w-full overflow-auto h-full overflow-x-hidden scroll">
+            <div className="w-full overflow-auto h-full overflow-x-hidden scroll">
                 <div>
                     <div className="flex justify-center items-center sm:h-[150px] h-[120px] sm:w-full relative">
                         <div className="bg-gradient-to-r from-slate-900 to-slate-700 w-full h-full" >
@@ -285,7 +285,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                         Update your photo and personal details
                                     </div>
                                 </div>
-                                <Card className="sm:w-[75%] border rounded-lg dark:shadow-[0px_43px_100px_20px_rgba(0,_0,_0,_0.7)] shadow-[0px_23px_100px_0px_rgba(255,255,255,_0.5)]">
+                                <Card className="sm:w-[75%] border rounded-lg shadow-[0px_43px_100px_20px_rgba(0,_0,_0,_0.7)]">
                                     <CardContent className="w-full p-0">
                                         <div className="grid gap-6">
                                             <div className="grid sm:gap-6 gap-4 sm:grid-cols-2 w-full px-6 pt-7" >
@@ -310,7 +310,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                                 {...field}
                                                                 placeholder="Doe"
                                                                 type="text"
-                                                                defaultValue={userProfile?.name.split(" ")[2]? userProfile?.name.split(" ")[1] + " " + userProfile?.name.split(" ")[2] : userProfile?.name.split(" ")[1]} 
+                                                                defaultValue={userProfile?.name.split(" ")[2] ? userProfile?.name.split(" ")[1] + " " + userProfile?.name.split(" ")[2] : userProfile?.name.split(" ")[1]}
                                                                 disabled={isPending}
                                                                 className="h-10"
                                                             />
@@ -323,11 +323,11 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                 <FormItem className="px-6">
                                                     <div className="flex sm:flex-row flex-col gap-6">
                                                         <Avatar className="w-32 h-32 border ">
-                                                            <AvatarImage src={field.value? field.value : userProfile?.image as string} />
+                                                            <AvatarImage src={field.value ? field.value : userProfile?.image as string} />
                                                             <AvatarFallback>{userProfile?.name.slice(0, 2)}</AvatarFallback>
                                                         </Avatar>
                                                         <FormControl>
-                                                            <FileUpload endpoint="profileImage" onChange={field.onChange} value={field.value}/>
+                                                            <FileUpload endpoint="profileImage" onChange={field.onChange} value={field.value} />
                                                         </FormControl>
                                                         <FormMessage />
                                                     </div>
@@ -363,7 +363,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                     <FormField control={form.control} name="branch" render={({ field }) => (
                                                         <FormItem>
                                                             <FormLabel>Branch</FormLabel>
-                                                            <Popover>
+                                                            <Popover open={isOpen} onOpenChange={setIsOpen}>
                                                                 <PopoverTrigger asChild>
                                                                     <FormControl>
                                                                         <Button
@@ -394,6 +394,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                                                         key={branch.value}
                                                                                         onSelect={() => {
                                                                                             form.setValue("branch", branch.value)
+                                                                                            setIsOpen(false);
                                                                                         }}>
                                                                                         {branch.label}
                                                                                         <Check className={cn("ml-auto", branch.value === field.value ? "opacity-100" : "opacity-0")} />
@@ -409,7 +410,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                     <FormField control={form.control} name="batch" render={({ field }) => (
                                                         <FormItem>
                                                             <FormLabel>Batch</FormLabel>
-                                                            <Popover>
+                                                            <Popover open={open} onOpenChange={setOpen}>
                                                                 <PopoverTrigger asChild>
                                                                     <FormControl>
                                                                         <Button
@@ -440,6 +441,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                                                         key={batch.value}
                                                                                         onSelect={() => {
                                                                                             form.setValue("batch", batch.value)
+                                                                                            setOpen(false);
                                                                                         }}>
                                                                                         {batch.label}
                                                                                         <Check className={cn("ml-auto", batch.value === field.value ? "opacity-100" : "opacity-0")} />
@@ -461,7 +463,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                             <Combobox
                                                                 disalbed={isPending}
                                                                 options={pronouns}
-                                                                placeholder="Select your pronoun"
+                                                                placeholder="Select your Pronoun"
                                                                 selected={field.value}
                                                                 onChange={(option) => field.onChange(option.value)}
                                                                 onCreate={handleAppendGroup}
@@ -539,24 +541,24 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                         </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
-                                                )}/>
+                                                )} />
                                                 <FormField control={form.control} name="linkedin" render={({ field }) => (
-                                                                <FormItem>
-                                                                    <FormLabel className="flex items-center gap-1"><LinkedInLogoIcon />Linkedin</FormLabel>
-                                                                    <FormControl>
-                                                                        <Input
-                                                                            disabled={isPending}
-                                                                            placeholder="Enter your linkedin username or link"
-                                                                            {...field}
-                                                                            defaultValue={userProfile?.linkedin as string}
-                                                                        />
-                                                                    </FormControl>
-                                                                    <FormMessage />
-                                                                </FormItem>
-                                                )}/>
+                                                    <FormItem>
+                                                        <FormLabel className="flex items-center gap-1"><LinkedInLogoIcon />Linkedin</FormLabel>
+                                                        <FormControl>
+                                                            <Input
+                                                                disabled={isPending}
+                                                                placeholder="Enter your linkedin username or link"
+                                                                {...field}
+                                                                defaultValue={userProfile?.linkedin as string}
+                                                            />
+                                                        </FormControl>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )} />
                                                 <FormField control={form.control} name="twitter" render={({ field }) => (
                                                     <FormItem>
-                                                <FormLabel className="flex items-center gap-1" ><TwitterLogoIcon />X(Twitter)</FormLabel>
+                                                        <FormLabel className="flex items-center gap-1" ><TwitterLogoIcon />X(Twitter)</FormLabel>
                                                         <FormControl>
                                                             <Input
                                                                 disabled={isPending}
@@ -567,7 +569,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                         </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
-                                                )}/>
+                                                )} />
                                                 <FormField control={form.control} name="github" render={({ field }) => (
                                                     <FormItem>
                                                         <FormLabel className="flex items-center gap-1"><GitHubLogoIcon />Github</FormLabel>
@@ -581,7 +583,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                         </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
-                                                )}/>
+                                                )} />
                                             </div>
                                             <div className="flex gap-4 flex-row-reverse border-t p-4">
                                                 <Button type="submit" className="w-34 h-9" variant="secondary" >

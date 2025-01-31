@@ -15,7 +15,6 @@ interface SearchPageProps{
 const NoteAccess = async ({
   searchParams
 }:SearchPageProps) => {
-
   const categories = await db.category.findMany({
     orderBy: {
       name: "asc"
@@ -33,7 +32,7 @@ const NoteAccess = async ({
             <SearchInput />
           </div>
           <Catergories items={categories} />
-          <NotestoDisplay items={notes} />
+          <NotestoDisplay items={notes} />  
         </div>
       </div>
     </div>

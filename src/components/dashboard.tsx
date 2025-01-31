@@ -12,6 +12,9 @@ import { RiTwitterXFill } from "react-icons/ri";
 import ProfilePic from "./ui/profilePic";
 import AnimatedGridPattern from "./ui/animated-grid-pattern";
 import Link from "next/link";
+import { FollowerPointerCard } from "./ui/pointer";
+import Image from "next/image";
+import { user } from "@nextui-org/theme";
 
 
 interface UserProps {
@@ -35,35 +38,43 @@ const Dashboard = (({ users, profiles }: UserProps) => {
 
     return (
         <MantineProvider>
-                <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 sm:mx-3">
-                    <div className="relative max-h-dvh flex-col items-start flex">
-                        <div className=" w-full h-full border-x flex flex-col items-center py-2 gap-2 overflow-y-auto scroll-smooth scroll">
-                            {userProfiles.map((profile, index) => (
-                                <div
-                                    key={index}
-                                    className="flex flex-col gap-2 cursor-pointer justify-center w-full px-2 dark:hover:bg-gray-800 hover:bg-gray-200 shadow-large dark:shadow-slate-100"
-                                    onClick={() => {
-                                        handleClick(index);
-                                    }}>
-                                    <ProfileView
-                                        profilePic={profile.image as string}
-                                        Name={profile?.name as string}
-                                        Fallback={profile.name?.slice(0, 2) as string}
-                                        Skills={profile.wannabe as string}
-                                    />
-                                </div>
-                            ))}
-                        </div>
+            <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 sm:mx-3">
+                <div className="relative max-h-dvh flex-col items-start flex">
+                    <div className=" w-full h-full border-x flex flex-col items-center py-2 gap-2 overflow-y-auto scroll-smooth scroll">
+                        {userProfiles.map((profile, index) => (
+                            <div
+                                key={index}
+                                className="flex flex-col gap-2 cursor-pointer justify-center w-full px-2 dark:hover:bg-gray-800 hover:bg-gray-200 shadow-large dark:shadow-slate-100"
+                                onClick={() => {
+                                    handleClick(index);
+                                }}>
+                                <ProfileView
+                                    profilePic={profile.image as string}
+                                    Name={profile?.name as string}
+                                    Fallback={profile.name?.slice(0, 2) as string}
+                                    Skills={profile.wannabe as string}
+                                />
+                            </div>
+                        ))}
                     </div>
-                    <div
-                        className={clsx(
-                            " lg:flex border-r flex-grow lg:overflow-y-hidden overflow-y-auto flex-col lg:col-span-2 bg-background absolute lg:relative w-full h-[calc(100vh-70px)] sm:h-full",
-                            isMobileView ? " flex" : "hidden"
-                        )}>
+                </div>
+                <div className={clsx(
+                        " lg:flex border-r flex-grow lg:overflow-y-hidden overflow-y-auto flex-col lg:col-span-2 bg-background absolute lg:relative w-full h-[calc(100vh-70px)] sm:h-full",
+                        isMobileView ? " flex" : "hidden"
+                    )}>
+                    <FollowerPointerCard
+                        title={
+                            <TitleComponent
+                                title={userProfiles[isActive].name as string}
+                                avatar={userProfiles[isActive].image as string}
+                            />
+                        }
+                    >
+
                         <div className="w-full overflow-auto lg:overflow-hidden scroll sm:max-h-[100vh] max-h-[80vh] scroll-smooth">
                             <div className="w-full">
                                 <CloseButton
-                                    className="cursor-pointer z-50 absolute right-4 top-4 w-8 h-8 bg-slate-500 dark:bg-black rounded-full hover:bg-slate-500 lg:hidden flex justify-center items-center"
+                                    className="z-50 absolute right-4 top-4 w-8 h-8 bg-slate-500 dark:bg-black rounded-full hover:bg-slate-500 lg:hidden flex justify-center items-center"
                                     onClick={() => {
                                         setisMobileView(false);
                                     }} />
@@ -93,35 +104,35 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                             </div>
                                             <div className="sm:flex gap-1 hidden">
                                                 <Button variant={"outline"} className="rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
-                                                <Link href= {userProfiles[isActive].insta as string || "#"}>
-                                                    <FaInstagram className="text-medium " />
-                                                </Link>
+                                                    <Link href={userProfiles[isActive].insta as string || "#"}>
+                                                        <FaInstagram className="text-medium " />
+                                                    </Link>
                                                 </Button>
                                                 <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white  h-8 ">
-                                                <Link href= {userProfiles[isActive].linkedin as string || "#"}>
-                                                    <FaLinkedin className="text-medium " />
-                                                </Link>
+                                                    <Link href={userProfiles[isActive].linkedin as string || "#"}>
+                                                        <FaLinkedin className="text-medium " />
+                                                    </Link>
                                                 </Button>
                                                 <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
-                                                <Link href= {userProfiles[isActive].github as string || "#"}>
-                                                    <FaGithub className="text-medium " />
-                                                </Link>
+                                                    <Link href={userProfiles[isActive].github as string || "#"}>
+                                                        <FaGithub className="text-medium " />
+                                                    </Link>
                                                 </Button>
                                                 <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
-                                                <Link href= {userProfiles[isActive].twitter as string || "#"}>
-                                                    <RiTwitterXFill className="text-medium " />
-                                                </Link>
+                                                    <Link href={userProfiles[isActive].twitter as string || "#"}>
+                                                        <RiTwitterXFill className="text-medium " />
+                                                    </Link>
                                                 </Button>
                                             </div>
                                         </div>
                                         <div className="flex gap-1 items-end justify-between sm:relative sm:-top-2 mt-2 sm:mt-0">
                                             <div className="flex gap-1 items-end">
-                                                <Button variant="outline" className=" rounded-[10px] dark:bg-white border-2 text-black h-8 hover:text-black dark:hover:bg-transparent dark:border-white dark:hover:text-white">
-                                                <Link href= {userProfiles[isActive].linkedin ? userProfiles[isActive].linkedin as string : userProfiles[isActive].insta as string || "#"}>
-                                                    <span>Message</span>
-                                                </Link>
+                                                <Button variant="outline" className=" cursor-none rounded-[10px] dark:bg-white border-2 text-black h-8 hover:text-black dark:hover:bg-transparent dark:border-white dark:hover:text-white">
+                                                    <Link href={userProfiles[isActive].linkedin ? userProfiles[isActive].linkedin as string : userProfiles[isActive].insta as string || "#"}>
+                                                        <span>Message</span>
+                                                    </Link>
                                                 </Button>
-                                                <Button variant="outline" className=" rounded-[10px] dark:bg-black border-2 dark:border-white h-8 bg-black text-white">
+                                                <Button variant="outline" className="cursor-none rounded-[10px] dark:bg-black border-2 dark:border-white h-8 bg-black text-white">
                                                     <span>Share</span>
                                                 </Button>
                                             </div>
@@ -171,10 +182,30 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </main>
+                    </FollowerPointerCard>
+                </div>
+            </main>
         </MantineProvider>
     );
 });
 
 export default Dashboard;
+
+const TitleComponent = ({
+    title,
+    avatar,
+}: {
+    title: string;
+    avatar: string;
+}) => (
+    <div className="flex space-x-2 items-center">
+        <Image
+            src={avatar}
+            height="20"
+            width="20"
+            alt="thumbnail"
+            className="rounded-full border-2 border-white"
+        />
+        <p>{title}</p>
+    </div>
+);
