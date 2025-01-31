@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { ProfileSchema } from "../../schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { onboard } from "@/actions/onboard";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
@@ -330,7 +330,7 @@ export default function OnboardForm( {user} : UserProps) {
                                 </Button>
                             </FormControl>
                           </PopoverTrigger>
-                          <PopoverContent className="w-200px p-0" >
+                          <PopoverContent className="w-200px p-0 z-[100]" >
                             <Command>
                               <CommandInput placeholder="Select Your Batch" className="h-8"/>
                               <CommandList>

@@ -66,7 +66,7 @@ function CommandAddItem({
         }
       }}
       className={cn(
-        'flex w-full text-blue-500 cursor-pointer text-sm px-2 py-1.5 rounded-sm items-center focus:outline-none'
+        'flex w-max text-blue-500 cursor-pointer text-sm px-2 py-1.5 rounded-sm items-center focus:outline-none'
       )}
     >
       <CirclePlus className="mr-2 h-4 w-4" />
