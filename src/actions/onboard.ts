@@ -67,7 +67,7 @@
         ]);
 
         
-        revalidatePath("/auth/onboarding");
+        revalidatePath("/profile");
         
         return { success: "Profile created" }
     }

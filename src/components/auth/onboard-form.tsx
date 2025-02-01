@@ -229,6 +229,10 @@ export default function OnboardForm( {user} : UserProps) {
           if (data?.success) {
             toast.success(data?.success as string)
             router.push("/profile")
+            router.refresh();
+            setTimeout(() => {
+              window.location.reload();
+            }, 500);
           }
           if(data.error === "Profile already exists"){
             router.push("/profile")
