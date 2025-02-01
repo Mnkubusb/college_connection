@@ -16,7 +16,7 @@ const Profile = async () => {
   return (
     <div className='sm:overflow-hidden overflow-auto h-full w-full'>
       <Header Name="Profile"></Header>
-      <div className='h-full w-full overflow-auto mt-[53px] sm:mt-0'>
+      <div className='h-full w-full overflow-auto '>
         <ProfilePage profile={profile} user={user}/>
       </div>
     </div>
