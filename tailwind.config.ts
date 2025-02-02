@@ -169,7 +169,9 @@ export default withUt ( {
     		}
     	}
     },
-	plugins: [nextui(), addVariablesForColors],
+	plugins: [nextui(), addVariablesForColors ,
+		require('tailwindcss-displaymodes')
+	],
 })
 
 function addVariablesForColors({ addBase, theme }: any) {
