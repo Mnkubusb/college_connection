@@ -46,9 +46,9 @@ const CreateNote = () => {
 
 
     return (
-        <div className='relative h-[90vh] sm:overflow-hidden sm:h-full sm:w-full'>
+        <div className='h-dvh sm:overflow-hidden w-full'>
             <Header Name="College Connections"></Header>
-            <div className='flex relative h-[80vh] sm:h-full sm:w-full'>
+            <div className='h-full w-full'>
                 <div className="md:flex h-full min-h-[80vh] sm:mx-3 border flex-col lg:col-span-2 bg-background absolute justify-center items-center sm:relative sm:w-full w-[100%] p-6">
                     <div >
                         <div>

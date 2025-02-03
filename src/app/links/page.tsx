@@ -4,7 +4,7 @@ import Header from '@/components/Header'
 
 const Links = () => {
   return (
-    <div className="h-full w-full">
+    <div className="h-dvh w-full">
       <Header Name="Links"></Header>
       <div className='h-full w-full'>
       </div>

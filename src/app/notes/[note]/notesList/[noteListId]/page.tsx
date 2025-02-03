@@ -44,7 +44,7 @@ const NotesListEditPage = async ({
 
     return (
         <>
-            <div className='h-full w-full overflow-auto scroll scroll-smooth overflow-x-hidden'>
+            <div className='h-dvh w-full overflow-auto scroll scroll-smooth overflow-x-hidden'>
                 <Header Name="Notes"></Header>
                 {!notesList.isPublished && (
                     <Banner label="This note is not published yet" variant="warning" />

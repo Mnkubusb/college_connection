@@ -23,7 +23,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
     const userProfile = profile?.find((profile) => profile.userId === user?.id);
 
     return (
-        <div className="flex h-full sm:mx-3 sm:border-x flex-col w-full overflow-auto">
+        <div className="flex h-full sm:mx-3 sm:border-x flex-col w-full">
             <div className="w-full h-full relative">
                 <div className="div">
                     <Button onClick={() => {

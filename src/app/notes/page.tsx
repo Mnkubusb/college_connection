@@ -18,7 +18,7 @@ const Notes = async () => {
 
 
   return (
-    <div className='h-full w-full overflow-auto sm:overflow-hidden overflow-x-hidden'>
+    <div className='h-dvh w-full overflow-auto sm:overflow-hidden overflow-x-hidden'>
       <Header Name="Notes"></Header>
       <div className='h-full  w-full'>
         <div className="md:flex h-full sm:mx-3 border-x flex-col w-full ">

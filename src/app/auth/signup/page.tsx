@@ -5,7 +5,7 @@ import SignUpForm from '@/components/auth/register-form'
 
 const signUp = () => {
   return (
-    <div className='md:overflow-hidden overflow-auto h-full w-full'>
+    <div className='md:overflow-hidden overflow-auto h-dvh w-full'>
       <Header Name="Sign Up"></Header>
       <div className="h-full w-full">  
       <SignUpForm />

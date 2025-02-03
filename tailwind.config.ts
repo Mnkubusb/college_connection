@@ -27,9 +27,11 @@ export default withUt ( {
     			fourth: 'moveHorizontal 40s ease infinite',
     			fifth: 'moveInCircle 20s ease infinite',
     			'caret-blink': 'caret-blink 1.25s ease-out infinite',
-    			'shine': 'shine 8s ease-in-out infinite',
+    			shine: 'shine 8s ease-in-out infinite',
     			shim: 'shim 3s linear infinite',
-    			rippling: 'rippling var(--duration) ease-out'
+    			rippling: 'rippling var(--duration) ease-out',
+    			'accordion-down': 'accordion-down 0.2s ease-out',
+    			'accordion-up': 'accordion-up 0.2s ease-out'
     		},
     		keyframes: {
     			'caret-blink': {
@@ -81,7 +83,7 @@ export default withUt ( {
     					backgroundPosition: '-200% 0'
     				}
     			},
-    			'shine': {
+    			shine: {
     				from: {
     					backgroundPosition: '200% 0'
     				},
@@ -97,10 +99,26 @@ export default withUt ( {
     					transform: 'scale(2)',
     					opacity: '0'
     				}
+    			},
+    			'accordion-down': {
+    				from: {
+    					height: '0'
+    				},
+    				to: {
+    					height: 'var(--radix-accordion-content-height)'
+    				}
+    			},
+    			'accordion-up': {
+    				from: {
+    					height: 'var(--radix-accordion-content-height)'
+    				},
+    				to: {
+    					height: '0'
+    				}
     			}
     		},
     		boxShadow: {
-				threed:'`-19px -19px 38px #b1b1b1,19px 19px 38px #ffffff `',
+    			threed: '`-19px -19px 38px #b1b1b1,19px 19px 38px #ffffff `',
     			input: '`0px 2px 3px -1px rgba(0,0,0,0.1), 0px 1px 0px 0px rgba(25,28,33,0.02), 0px 0px 0px 1px rgba(25,28,33,0.08)`'
     		},
     		fontFamily: {
@@ -116,9 +134,9 @@ export default withUt ( {
     			geistMono: [
     				'var(--font-geist-mono)'
     			],
-				kanit: [
-					'var(--font-kanit)'
-				]
+    			kanit: [
+    				'var(--font-kanit)'
+    			]
     		},
     		colors: {
     			background: 'hsl(var(--background))',
