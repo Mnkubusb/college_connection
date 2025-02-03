@@ -7,10 +7,7 @@ import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download, Loader2 } from 'l
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url,
-).toString();
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdfjs/pdf.worker.min.mjs";
 
 interface PDFViewerProps {
   url: string;

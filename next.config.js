@@ -28,4 +28,12 @@ module.exports = {
        config.resolve.alias.canvas = false;
        return config;
       },
+      webpack: (config) => {
+        config.module.rules.push({
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: "javascript/auto",
+        });
+        return config;
+      },
   }
