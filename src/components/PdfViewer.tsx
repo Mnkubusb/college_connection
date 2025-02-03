@@ -16,7 +16,7 @@ interface PDFViewerProps {
   onZoomOut?: () => void;
 }
 
-export const PDFViewer = ({ url, scale: initialScale = 1, onZoomIn, onZoomOut }: PDFViewerProps) => {
+export const PDFViewer = ({ url, scale: initialScale = 0.6, onZoomIn, onZoomOut }: PDFViewerProps) => {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [visiblePages, setVisiblePages] = useState<number[]>([1]);
@@ -58,7 +58,7 @@ export const PDFViewer = ({ url, scale: initialScale = 1, onZoomIn, onZoomOut }:
         const containerWidth = containerRef.current.clientWidth;
         const pageWidth = 595;
         const targetScale = (containerWidth - 48) / pageWidth;
-        setInternalScale(Math.min(Math.max(targetScale, 1), 2));
+        setInternalScale(Math.min(Math.max(targetScale, 0.6), 2));
       }
     };
 
@@ -251,7 +251,7 @@ export const PDFViewer = ({ url, scale: initialScale = 1, onZoomIn, onZoomOut }:
       {/* PDF Document container */}
       <div
         ref={containerRef}
-        className="relative w-full overflow-auto bg-transparent flex-1"
+        className="relative w-full overflow-auto scroll scroll-smooth bg-transparent flex-1"
         onScroll={handleScroll}
       >
         <div className="flex flex-col items-center">

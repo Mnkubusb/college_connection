@@ -4,10 +4,10 @@ import { useChat } from "@ai-sdk/react"
 
 
 const Chat = async () => {
-    
+
     return ( 
         <div>
-
+            Chat
         </div>
      );
 }

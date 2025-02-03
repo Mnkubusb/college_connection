@@ -42,7 +42,7 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
                 </div>
             </div>
             <div className={cn("md:basis-[70%] md:mr-3 border-x block w-full lg:relative absolute h-full", isMobileView ? "block" : "hidden")}>
-                <Button onClick={() => setisMobileView(false)} className="absolute top-3 right-3 z-[100] rounded-full bg-black lg:hidden flex justify-center items-center" variant={"outline"} size={"icon"}>
+                <Button onClick={() => setisMobileView(false)} className="absolute top-[10px] right-3 z-[100] rounded-full bg-black lg:hidden flex justify-center items-center" variant={"outline"} size={"icon"}>
                     <IoClose size={20} />
                 </Button>
                 <div className="w-full h-full overflow-hidden">

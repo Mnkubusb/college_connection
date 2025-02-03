@@ -30,7 +30,7 @@ const NoteListIdPage = async ({ params }: {
     }
 
     return (
-        <div className='h-full w-full'>
+        <div className='h-dvh w-full'>
             <Header Name={noteList?.title as string}></Header>
             <div className='h-full w-full'>
                 <ChapterListDisplay items={noteList} />
