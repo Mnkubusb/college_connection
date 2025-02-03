@@ -102,7 +102,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                                     </h4>
                                                 </div>
                                             </div>
-                                            <div className="sm:flex gap-1 hidden">
+                                            <div className="flex gap-1 sm:mt-0 mt-3">
                                                 <Button variant={"outline"} className="cursor-none rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
                                                     <Link href={userProfiles[isActive].insta as string || "#"}>
                                                         <FaInstagram className="text-medium " />

@@ -5,6 +5,14 @@ import { Chapters, NotesList } from "@prisma/client"
 import { File } from "lucide-react"
 import { useState } from "react"
 import { IoClose } from "react-icons/io5";
+import { pdfjs } from 'react-pdf';
+import { Document, Page } from 'react-pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+    'pdfjs-dist/build/pdf.worker.min.mjs',
+    import.meta.url,
+).toString();
+
 type NotesWithProgressWithCategory = NotesList & {
     chapters: Chapters[]
 }
@@ -12,8 +20,14 @@ interface NotesListProps {
     items: NotesWithProgressWithCategory
 }
 export const ChapterListDisplay = ({ items }: NotesListProps) => {
+    const [numPages, setNumPages] = useState<number>();
+    const [pageNumber, setPageNumber] = useState<number>(1);
     const [isMobileView, setisMobileView] = useState(false);
     const [isActive, setisActive] = useState(0);
+
+    function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
+        setNumPages(numPages);
+    }
 
     const handleResize = (index: number) => {
         setisMobileView(true);
@@ -38,11 +52,17 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
             </div>
             <div className={cn("md:basis-[70%] md:mr-3 border-x block w-full lg:relative absolute h-full", isMobileView ? "block" : "hidden")}>
                 <Button onClick={() => setisMobileView(false)} className="absolute top-3 right-3 z-[100] rounded-full bg-black lg:hidden flex justify-center items-center" variant={"outline"} size={"icon"}>
-                    <IoClose size={20} />
+                    <IoClose size={20} />x
                 </Button>
-                <object data={items.chapters[isActive].fileUrl as string} type="application/pdf" className="w-full h-full">
+                <Document file={items.chapters[isActive].fileUrl as string} onLoadSuccess={onDocumentLoadSuccess}>
+                    <Page pageNumber={pageNumber} />
+                </Document>
+                <p>
+                    Page {pageNumber} of {numPages}
+                </p>
+                {/* <object data={items.chapters[isActive].fileUrl as string} type="application/pdf" className="w-full h-full">
                     <iframe src={`https://docs.google.com/gview?url=${items.chapters[isActive].fileUrl}&embedded=true`} className="w-full h-full"></iframe>
-                </object>
+                </object> */}
             </div>
         </div>
     )

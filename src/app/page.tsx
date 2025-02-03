@@ -3,7 +3,6 @@ import Dashboard from '@/components/dashboard';
 import Header from '@/components/Header';
 import { db } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
-import { useEffect } from 'react';
 const dynamic = "force-dynamic"
 
 const Home = async () => {
@@ -22,7 +21,7 @@ const Home = async () => {
   
   return (
     <div className='w-full h-full overflow-auto sm:overflow-hidden scroll scroll-smooth'>
-      <Header Name="College Connections"></Header>
+      <Header Name="College Connections"  ></Header>
       <div className='w-full h-full'>
       <Dashboard users={users} profiles={profiles} />
       </div>

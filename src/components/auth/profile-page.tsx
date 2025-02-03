@@ -23,12 +23,12 @@ const ProfilePage = ({ user, profile }: UserProps) => {
     const userProfile = profile?.find((profile) => profile.userId === user?.id);
 
     return (
-        <div className="flex h-full sm:mx-3 border flex-col w-full">
+        <div className="flex h-full sm:mx-3 sm:border-x flex-col w-full overflow-auto">
             <div className="w-full h-full relative">
                 <div className="div">
                     <Button onClick={() => {
                         router.push("/settings")
-                    }} variant={"outline"} className="absolute gap-1 top-5 right-3 z-50 cursor-pointer dark:bg-black rounded-full flex justify-center items-center" >
+                    }} variant={"outline"} className="absolute gap-1 top-5 right-3 z-40 cursor-pointer dark:bg-black rounded-full flex justify-center items-center" >
                         <Pencil size={14} />
                         Edit
                     </Button>
@@ -56,7 +56,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                         </h4>
                                     </div>
                                 </div>
-                                <div className="sm:flex gap-1 hidden">
+                                <div className="flex gap-1 sm:mt-0 mt-3">
                                     <Button variant={"outline"} className="rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
                                         <Link href={userProfile?.insta as string || "#"}>
                                             <FaInstagram className="text-medium " />
@@ -123,7 +123,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                         </div>
                     </div>
                 </div>
-                <div className="wrap relative sm:bottom-36 bottom-14 p-5 flex flex-col gap-2">
+                <div className="wrap relative sm:bottom-36 bottom-14 p-5 flex flex-col gap-2 mb-10">
                     <div className="text-2xl font-josefin font-bold sm:px-10 relative w-full">
                         <div>
                             My Story

@@ -12,7 +12,7 @@ import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { Toaster } from "react-hot-toast";
 import { ConfettiProvider } from "@/components/providers/confetti-provider";
-import { View } from "lucide-react";
+import 'core-js/full/promise/with-resolvers'
 
 const kanit = Kanit({
   subsets: ["latin"],

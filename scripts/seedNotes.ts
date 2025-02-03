@@ -1,7 +1,6 @@
-
 const { PrismaClient } = require("@prisma/client");
-
 const database = new PrismaClient();
+
 async function seeding(){
     const userId = "cm63p2gtb0000js03yyb9w157"
     const categoryName = "Sem 2";
@@ -84,18 +83,16 @@ async function seeding(){
         //             })
         //         }
         //     }
-        // }
+        // }g
 
-        // for(const note of notes){
-        //     await database.notesList.updateMany({
-        //         where: {
-        //             title: note.title,
-        //         },
-        //         data: {
-        //             imageUrl: note.imageUrl
-        //         }
-        //     })
-        // };
+        for(const note of notes){
+            await database.noteList.deleteMany({
+                where: {
+                    title: note.title,
+                    userId
+                }
+            })
+        };
         console.log("Success")
     } catch (error) {
         console.log("Error connecting Database", error);

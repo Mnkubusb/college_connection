@@ -8,6 +8,7 @@ import { useSearchParams , useRouter , usePathname } from "next/navigation";
 
 
 export const SearchInput = () => {
+    
     const [ value, setValue ] = useState("");
     const debouncedValue = useDebounce(value);
 
