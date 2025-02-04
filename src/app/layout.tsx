@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/react"
-import { Kanit } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
@@ -14,11 +13,6 @@ import { Toaster } from "react-hot-toast";
 import { ConfettiProvider } from "@/components/providers/confetti-provider";
 import 'core-js/full/promise/with-resolvers'
 
-const kanit = Kanit({
-  subsets: ["latin"],
-  variable: "--font-kanit",
-  weight: "400"
-});
 
 const OleoScript = localFont({
   src: "./fonts/OleoScript.ttf",
@@ -246,7 +240,7 @@ export default function RootLayout({
       <html lang="en">
         <Analytics />
         <body
-          className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} ${OleoScript.variable} ${kanit.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} ${OleoScript.variable} antialiased`}
         >
           <ConfettiProvider />
           <Toaster />
