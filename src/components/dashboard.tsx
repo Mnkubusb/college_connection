@@ -1,8 +1,7 @@
 "use client";
-import Header from "@/components/Header";
 import ProfileView from "@/components/Profile";
 import { Badge } from "@/components/ui/badge";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { CloseButton, MantineProvider } from '@mantine/core';
 import { Button } from "@/components/ui/button";
@@ -14,22 +13,30 @@ import AnimatedGridPattern from "./ui/animated-grid-pattern";
 import Link from "next/link";
 import { FollowerPointerCard } from "./ui/pointer";
 import Image from "next/image";
-import { user } from "@nextui-org/theme";
+import { ExtendedUser } from "../../next-auth";
+import { login } from "@/actions/login";
 
 
 interface UserProps {
     users: User[],
-    profiles?: Profile[]
+    profiles?: Profile[],
+    loginedUser? : ExtendedUser
 }
 
 
 
-const Dashboard = (({ users, profiles }: UserProps) => {
+const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
 
+    const [isAdmin , setIsAdmin] = useState(false);
     const [isActive, setisActive] = useState(0);
     const [isMobileView, setisMobileView] = useState(false);
     const userProfiles = profiles?.filter(profile => users.some(user => user.id === profile.userId)) || []
 
+    useEffect(() => {
+        if(loginedUser?.role === "ADMIN"){
+            setIsAdmin(true)
+        }
+    },[loginedUser])
 
     const handleClick = (index: number) => {
         setisMobileView(true);
@@ -52,6 +59,7 @@ const Dashboard = (({ users, profiles }: UserProps) => {
                                 Name={profile?.name as string}
                                 Fallback={profile.name?.slice(0, 2) as string}
                                 Skills={profile.wannabe as string}
+                                isAdmin={isAdmin}
                             />
                         </div>
                     ))}
