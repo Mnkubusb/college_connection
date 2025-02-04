@@ -26,11 +26,11 @@ const NoteAccess = async ({
   return (
     <div className='h-dvh w-full '>
       <Header Name="Notes"></Header>
-      <div className="flex sm:mx-3 px-1 sm:p-6 sm:border-x h-[calc(100dvh-8rem)] sm:h-full flex-col">
-        <div className="py-3 px-2 md:hidden block h-max">
+      <div className="flex sm:mx-3 px-1 sm:p-6 sm:border-x h-[calc(100dvh-8rem)] sm:h-full flex-col md:overflow-auto overflow-hidden">
+        <div className="py-3 px-2 sm:px-0 md:hidden block h-max">
           <SearchInput />
         </div>
-        <div className="relative h-full overflow-auto scroll scroll-smooth px-2">
+        <div className="relative h-full overflow-auto scroll scroll-smooth sm:overflow-hidden px-2 sm:px-0">
         <Catergories items={categories} />
         <NotestoDisplay items={notes} />
         </div>

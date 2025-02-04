@@ -20,9 +20,9 @@ const Home = async () => {
   revalidatePath('/');
   
   return (
-    <div className='w-full h-dvh overflow-hidden sm:overflow-hidden scroll scroll-smooth'>
+    <div className='w-full h-dvh overflow-hidden'>
       <Header Name="College Connections"  ></Header>
-      <div className='w-full h-full overflow-auto'>
+      <div className='w-full h-full'>
       <Dashboard users={users} profiles={profiles} />
       </div>
     </div>

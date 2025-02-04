@@ -38,30 +38,28 @@ const Dashboard = (({ users, profiles }: UserProps) => {
 
     return (
         <MantineProvider>
-            <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 sm:mx-3">
-                <div className="relative max-h-dvh flex-col items-start flex">
-                    <div className=" w-full h-full border-x flex flex-col items-center py-2 gap-2 overflow-y-auto scroll-smooth scroll">
-                        {userProfiles.map((profile, index) => (
-                            <div
-                                key={index}
-                                className="flex flex-col gap-2 cursor-pointer justify-center w-full px-2 dark:hover:bg-gray-800 hover:bg-gray-200 shadow-large dark:shadow-slate-100"
-                                onClick={() => {
-                                    handleClick(index);
-                                }}>
-                                <ProfileView
-                                    profilePic={profile.image as string}
-                                    Name={profile?.name as string}
-                                    Fallback={profile.name?.slice(0, 2) as string}
-                                    Skills={profile.wannabe as string}
-                                />
-                            </div>
-                        ))}
-                    </div>
+            <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 sm:mx-3 w-full h-full">
+                <div className="w-full h-full border-x flex flex-col overflow-auto scroll scroll-smooth items-center py-2 gap-2 pb-16 sm:pb-0">
+                    {userProfiles.map((profile, index) => (
+                        <div
+                            key={index}
+                            className="flex flex-col gap-2 cursor-pointer justify-center w-full px-2 dark:hover:bg-gray-800 hover:bg-gray-200 shadow-large dark:shadow-slate-100"
+                            onClick={() => {
+                                handleClick(index);
+                            }}>
+                            <ProfileView
+                                profilePic={profile.image as string}
+                                Name={profile?.name as string}
+                                Fallback={profile.name?.slice(0, 2) as string}
+                                Skills={profile.wannabe as string}
+                            />
+                        </div>
+                    ))}
                 </div>
                 <div className={clsx(
-                        " lg:flex border-r flex-grow lg:overflow-y-hidden overflow-y-auto flex-col lg:col-span-2 bg-background absolute lg:relative w-full h-[calc(100vh-70px)] sm:h-full",
-                        isMobileView ? " flex" : "hidden"
-                    )}>
+                    " lg:flex border-r flex-grow lg:overflow-y-hidden overflow-y-auto flex-col lg:col-span-2 bg-background absolute lg:relative w-full h-[calc(100vh-70px)] sm:h-full",
+                    isMobileView ? " flex" : "hidden"
+                )}>
                     <FollowerPointerCard
                         title={
                             <TitleComponent
