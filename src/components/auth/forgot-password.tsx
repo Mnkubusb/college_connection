@@ -20,13 +20,12 @@ import {
 } from "@/components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
-import { ForgotPasswordSchema, LoginSchema } from "../../schemas";
-import { Suspense, useEffect, useState, useTransition } from "react";
-import { FormSuccess } from "../form-success";
-import { FormError } from "../form-error";
+import { ForgotPasswordSchema} from "../../schemas";
+import { useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { newpassword } from "@/actions/newpassword";
+import toast from "react-hot-toast";
 
 
 export function ForgotPassword() {
@@ -39,8 +38,6 @@ export function ForgotPassword() {
   }
   
   const router = useRouter()
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof ForgotPasswordSchema>>({
@@ -56,21 +53,19 @@ export function ForgotPassword() {
       newpassword(values, Search())
         .then((data) => {
           if (data?.error) {
-            setError(data?.error)
+            toast.error(data?.error)
           }
 
           if (data.success) {
             form.reset()
-            setSuccess(data?.success)
+            toast.success(data?.success)
+            router.push("/auth/login")
           }
         })
     })
 
   }
 
-  if (success) {
-    router.push("/auth/login")
-  }
   return (
     <Card className="max-w-md rounded-none h-full flex flex-col justify-center sm:border-r-1">
       <CardHeader>
@@ -106,8 +101,6 @@ export function ForgotPassword() {
                     </FormControl>
                   </FormItem>
                 )} />
-                {error && <FormError message={error} />}
-                {success && <FormSuccess message={success} />}
                 <Button type="submit" className="w-full h-10" variant="gooeyLeft">
                   Login
                 </Button>

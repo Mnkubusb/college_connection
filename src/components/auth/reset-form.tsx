@@ -20,14 +20,11 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
 import { ResetSchema } from "../../schemas";
 import { useState, useTransition } from "react";
-import { FormSuccess } from "../form-success";
-import { FormError } from "../form-error";
 import { reset } from "@/actions/reset";
+import toast from "react-hot-toast";
 
 export const ResetForm = () => {
 
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof ResetSchema>>({
@@ -42,12 +39,12 @@ export const ResetForm = () => {
       reset(values)
         .then((data) => {
           if (data?.error) {
-            setError(data?.error)
+            toast.error(data?.error)
           }
 
           if (data.success) {
             form.reset()
-            setSuccess(data?.success)
+            toast.success(data?.success)
           }
         })
     })
@@ -77,8 +74,6 @@ export const ResetForm = () => {
                   />
                 </FormItem>
               )} />
-                {success && <FormError message={error} />}
-                {success && <FormSuccess  message={success} />}
               <Button type="submit" className="w-full h-10" variant="gooeyLeft" disabled={isPending}>
                 Send Reset Password Link
               </Button>

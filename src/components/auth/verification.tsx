@@ -3,7 +3,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { toast } from "sonner";
 import {
   Form,
   FormField,
@@ -12,14 +11,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { OtpStyledInput } from "@/components/extentions/otp-input"
 import { VerificationSchema } from "@/schemas";
 import { verify } from "@/actions/verify";
 import { useState, useTransition } from "react";
-import { FormError } from "../form-error";
-import { FormSuccess } from "../form-success";
 import { useRouter } from "next/navigation";
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "../ui/input-otp";
+import toast from "react-hot-toast";
 
 
 const VerifyForm = () => {
@@ -40,19 +37,16 @@ const VerifyForm = () => {
       verify(values)
         .then((data) => {
           if (data?.error) {
-            setError(data?.error);
+            toast.error(data?.error)
           }
           if (data?.success) {
             form.reset();
-            setSuccess(data?.success);
+            router.push("/auth/login")
+            toast.success(data?.success);
           }
         })
     })
   };
-
-  if (success) {
-    router.push("/auth/login")
-  }
 
   return (
     <div className="max-w-md h-full flex items-center justify-center outline outline-1 outline-muted p-6 bg-background">
@@ -95,8 +89,6 @@ const VerifyForm = () => {
                 </FormControl>
               )}
             />
-            <FormError message={error} />
-            <FormSuccess message={success} />
             <Button type="submit" variant={"gooeyLeft"} className="w-full" disabled={isPending}>Submit</Button>
           </form>
         </Form>
