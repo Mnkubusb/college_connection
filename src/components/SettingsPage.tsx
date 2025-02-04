@@ -456,9 +456,8 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                     )} />
                                                 </div>
                                                 <FormField control={form.control} name="wannabe" render={({ field }) => (
-                                                    <FormItem>
+                                                    <FormItem className="flex flex-col">
                                                         <FormLabel>Identify Yourself</FormLabel>
-                                                        <FormControl>
                                                             <Combobox
                                                                 disalbed={isPending}
                                                                 options={pronouns}
@@ -466,8 +465,8 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                                 selected={field.value}
                                                                 onChange={(option) => field.onChange(option.value)}
                                                                 onCreate={handleAppendGroup}
+                                                                className="w-1/2"
                                                             />
-                                                        </FormControl>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )} />

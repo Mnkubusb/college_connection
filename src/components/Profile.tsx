@@ -1,17 +1,40 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button';
 import { Trash } from 'lucide-react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const ProfileView = (
-  { profilePic, Name, Skills, Fallback, isAdmin }: {
+  { profilePic, Name, Skills, Fallback, isAdmin , email }: {
     profilePic: string,
+    email?: string,
     Name: string,
     Skills: string,
     Fallback: string
     isAdmin?: boolean
   }
 ) => {
+  
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const handleDelete = async () => {
+    try {
+      setIsLoading(true);
+      await axios.delete(`/api/delete/${email}`);
+      toast.success("User deleted successfully");
+      router.refresh();
+  } catch (error) {
+      console.log(error);
+      toast.error("Failed to delete notes");
+  }finally{
+      setIsLoading(false);
+  }
+  }
+
+
   return (
     <div className="w-[100%] h-[70px] flex items-center justify-between px-4">
       <div className='flex items-center'>
@@ -30,7 +53,9 @@ const ProfileView = (
       </div>
       <div>
         {isAdmin && (
-          <Button variant={"outline"} size={"icon"} className='rounded-lg'>
+          <Button disabled={isLoading} variant={"outline"} size={"icon"} className='rounded-lg'
+            onClick={handleDelete}
+          >
             <Trash size={15} />
           </Button>
         )}

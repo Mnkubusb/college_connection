@@ -19,6 +19,7 @@ export const FollowerPointerCard = ({
   const ref = React.useRef<HTMLDivElement>(null);
   const [rect, setRect] = useState<DOMRect | null>(null);
   const [isInside, setIsInside] = useState<boolean>(false); // Add this line
+  
 
   useEffect(() => {
     if (ref.current) {
