@@ -238,14 +238,14 @@ export const PDFViewer = ({ url, scale: initialScale = 0.6, onZoomIn, onZoomOut 
             <ZoomIn className="h-5 w-5" />
           </Button>
         </div>
-
+{/* 
         <Button
           variant="ghost"
           onClick={() => window.open(url, '_blank')}
           className="h-8 px-3 hover:bg-background/90"
         >
           <Download className="h-5 w-5" />
-        </Button>
+        </Button> */}
       </div>
 
       {/* PDF Document container */}

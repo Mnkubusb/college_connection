@@ -75,7 +75,7 @@ const ContactPage = () => {
                 <h2 className="text-center md:text-6xl text-5xl font-semibold font-josefin leading-5">
                     Frequently Asked <br /> Questions
                 </h2>
-                <div className="w-full flex flex-col items-center justify-center">
+                <div className="w-full flex flex-col items-center justify-center mx-auto">
                     <AnimatedQuestion question="What is College Connections?" answer="
                     College Connections is a student community platform that connects students with their college mates." />
                 </div>

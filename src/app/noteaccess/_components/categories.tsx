@@ -9,7 +9,7 @@ interface CategoriesProps{
 }
 export const Catergories = ( { items }:CategoriesProps  ) =>{
     return (
-        <div className="flex items-center gap-x-2 pb-2 sm:overflow-hidden overflow-x-auto scroll scroll-smooth">
+        <div className="flex items-center gap-x-2 pb-2 sm:overflow-hidden overflow-x-auto scroll scroll-smooth h-max w-full">
             {items.map((item , index)=>(
                 <CategoryItem 
                   key={item.id}

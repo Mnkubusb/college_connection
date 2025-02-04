@@ -1,8 +1,5 @@
 
 module.exports = {
-      experimental: {
-        esmExternals: "loose", // or true
-      },
     images: {
       domains: ["uploadthing.com", "utfs.io", "lh3.googleusercontent.com", "avatars.githubusercontent.com"],
       remotePatterns: [

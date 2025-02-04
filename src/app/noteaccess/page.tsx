@@ -6,33 +6,33 @@ import { SearchInput } from "@/components/search-input"
 import { getNotes } from "@/actions/get-notes"
 import { NotestoDisplay } from "@/components/notes-list"
 
-interface SearchPageProps{
-  searchParams:{
-    title:string,
-    categoryId:string;
+interface SearchPageProps {
+  searchParams: {
+    title: string,
+    categoryId: string;
   }
 }
 const NoteAccess = async ({
   searchParams
-}:SearchPageProps) => {
+}: SearchPageProps) => {
   const categories = await db.category.findMany({
     orderBy: {
       name: "asc"
     }
   })
 
-  const notes = await getNotes({...searchParams})
+  const notes = await getNotes({ ...searchParams })
 
   return (
-    <div className='h-dvh w-full scroll scroll-smooth'>
+    <div className='h-dvh w-full '>
       <Header Name="Notes"></Header>
-      <div className="w-full h-full">
-        <div className="flex sm:mx-3 px-3 sm:p-6 sm:border-x min-h-full flex-col">
-          <div className="py-3 md:hidden md:mb-0 block">
-            <SearchInput />
-          </div>
-          <Catergories items={categories} />
-          <NotestoDisplay items={notes} />  
+      <div className="flex scroll scroll-smooth sm:mx-3 px-3 sm:p-6 sm:border-x h-[calc(100dvh-8rem)] sm:h-full flex-col">
+        <div className="py-3 md:hidden block h-max">
+          <SearchInput />
+        </div>
+        <div className="relative h-full overflow-auto">
+        <Catergories items={categories} />
+        <NotestoDisplay items={notes} />
         </div>
       </div>
     </div>
