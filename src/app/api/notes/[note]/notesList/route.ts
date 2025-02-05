@@ -1,4 +1,4 @@
-import { currentUser } from "@/lib/auth";
+
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
@@ -8,16 +8,15 @@ export async function POST(
 ){
     try {
         
-        const user = await currentUser();
-        if (!user) {
-            return new NextResponse("Unauthorized", { status: 401 });
-        }
+        // const user = await currentUser();
+        // if (!user) {
+        //     return new NextResponse("Unauthorized", { status: 401 });
+        // }
         const { title } = await req.json(); 
         
         const noteOwner = await db.note.findUnique({
             where: {
                 id: params.note,
-                userId: user.id
             }
         })
 
@@ -39,7 +38,6 @@ export async function POST(
         const newNote = await db.notesList.create({
             data: {
                 title,
-                userId: user.id as string,
                 noteId: params.note,
                 position: newPosition
             }

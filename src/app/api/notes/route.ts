@@ -12,7 +12,6 @@ export async function POST(req: Request) {
 
         const note = await db.note.create({
             data: {
-                userId: user?.id as string,
                 title
             }
         })

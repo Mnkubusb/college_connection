@@ -1,16 +1,13 @@
-import { currentUser } from "@/lib/auth";
+
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 export async function PATCH( req: Request, { params }: { params: { note: string; noteListId: string } }) {
     try{
-        const user = await currentUser();
-        if(!user) return new NextResponse("Unauthorized",{status: 401});
 
         const ownNote = await db.note.findUnique({
             where: {
                 id: params.note,
-                userId: user.id
             }
         });
         if(!ownNote) return new NextResponse("Forbidden",{status: 403});

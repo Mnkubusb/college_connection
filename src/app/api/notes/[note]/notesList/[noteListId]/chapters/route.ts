@@ -18,7 +18,6 @@ export async function POST(
         const noteOwner = await db.note.findUnique({
             where: {
                 id: params.note,
-                userId: user.id
             }
         })
 

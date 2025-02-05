@@ -13,7 +13,6 @@ export async function DELETE(
         const note = await db.note.findUnique({
             where: {
                 id: params.note,
-                userId: user.id
             }
         });
 
@@ -42,12 +41,11 @@ export async function PATCH(
         const { note } = params;
         const values = await req.json();
 
-        if (!user) return new NextResponse("Unauthorized", { status: 401 });
+        // if (!user) return new NextResponse("Unauthorized", { status: 401 });
         
         const notes = await db.note.update({
             where: {
                 id: note,
-                userId: user.id
             },
             data: {
                 ...values

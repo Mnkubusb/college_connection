@@ -13,12 +13,10 @@
         }
     ){
         try {
-            const user = await currentUser();
-            if (!user) return new NextResponse("Unauthorized",{status: 401});
+            
             const ownNote = await db.note.findUnique({
                 where: {
                     id: params.note,
-                    userId: user.id,
                 }
             })
 

@@ -8,15 +8,12 @@ export async function POST(
     { params }:{ params :{ note :string } }
 ){
     try {
-        const user = await currentUser();
-        if(!user) return new NextResponse( "Unauthorized", { status: 401 })
         
         const { list } = await req.json()
 
         const NoteOwner = await db.note.findUnique({
             where:{
                 id:params.note,
-                userId: user.id
             }
         })
 

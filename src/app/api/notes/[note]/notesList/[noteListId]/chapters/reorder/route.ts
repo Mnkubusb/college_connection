@@ -8,8 +8,6 @@ export async function POST(
     { params }:{ params :{ note :string, noteListId :string } }
 ){
     try {
-        const user = await currentUser();
-        if(!user) return new NextResponse( "Unauthorized", { status: 401 })
         
         const { list } = await req.json()
 

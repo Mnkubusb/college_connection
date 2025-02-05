@@ -13,7 +13,6 @@ export async function PATCH(
         const note = await db.note.findUnique({
             where: {
                 id: params.note,
-                userId: user.id
             }
         })
 
@@ -22,7 +21,6 @@ export async function PATCH(
         const unpublishedNotes = await db.note.update({
             where: {
                 id: params.note,
-                userId: user.id
             },
             data: {
                 isPublished: false,

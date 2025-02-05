@@ -100,7 +100,6 @@ model Profile {
 
 model Note {
   id String @id @default(cuid())
-  userId String
   title String @db.Text
   imageUrl String?  @db.Text
   isPublished Boolean @default(false)
@@ -125,7 +124,6 @@ model Category{
 
 model NotesList{
   id String @id @default(cuid())
-  userId String
   title String @db.Text
   imageUrl String?  @db.Text
   position Int
