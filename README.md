@@ -4,7 +4,7 @@
 
 ## 🚀 Features  
 - 🏫 **Student Profiles**: Create your profile, add details, and showcase your skills.  
-- 👥 **Connect with Peers**: View and search for other students’ profiles.  
+- 👥 **Connect with Peers**: View other student's profiles.  
 - 🔗 **Social Media Links**: Easily connect via listed social accounts.  
 - 📚 **Notes Repository**: Access and share notes for all semesters.  
 - 🔍 **Search & Filter**: Find students and notes efficiently.  
