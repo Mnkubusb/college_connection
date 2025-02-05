@@ -7,7 +7,7 @@ import { useDebounce } from "@/hooks/use-debounce";
 import { useSearchParams , useRouter , usePathname } from "next/navigation";
 
 
-export const SearchInput = () => {
+export const SearchInput = ( { placeholder }: { placeholder?: string } ) => {
     
     const [ value, setValue ] = useState("");
     const debouncedValue = useDebounce(value);
@@ -37,7 +37,7 @@ export const SearchInput = () => {
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 className="w-full md:w-[500px] pl-9 h-10 bg-transparent rounded-full focus-visible:ring-slate-600 "
-                placeholder="Seach your Notes"
+                placeholder={ placeholder || "Search..."}
             />
         </div>
     )

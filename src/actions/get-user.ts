@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 
-type GetUsers = {
+interface GetUsers{
    name?:string | undefined;
 }
 
@@ -18,9 +18,9 @@ export const getUsers = async ({
                 createdAt:"desc"
             }
         })
-
-        return users;
         
+        return users;
+
     } catch (error) {
         console.log("[GET_USER]", error)
         return null;

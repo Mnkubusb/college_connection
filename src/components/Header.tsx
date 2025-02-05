@@ -12,6 +12,7 @@ const Header = ({ Name }: { Name: string }) => {
 
   const pathname = usePathname();
   const isNotesPage = pathname.includes("/noteaccess");
+
   return (
     <header className="sticky top-0 z-50 flex h-[60px] sm:h-[53px] items-center gap-1 border-b bg-background md:px-4 sm:ml-0">
       <div className="sm:w-[53px] sm:h-[53px] w-[60px] h-[60px] bg-background sm:border-b-0 border-b flex sm:hidden justify-center items-center">

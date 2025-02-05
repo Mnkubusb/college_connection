@@ -44,7 +44,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
 
     return (
         <MantineProvider>
-            <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 sm:mx-3 w-full h-full">
+            <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 border-r sm:mx-3 w-full h-full">
                 <div className="w-full h-full sm:h-[calc(100vh-60px)] border-x flex flex-col overflow-auto scroll scroll-smooth items-center py-2 gap-2 pb-16 sm:pb-0">
                     {userProfiles.map((profile, index) => (
                         <div
@@ -82,7 +82,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                             </div>
                         </div>
                         <div className="flex sm:flex-row flex-col sm:px-10 sm:pt-10 px-7 sm:bottom-[7rem] bottom-14 relative gap-6 w-full">
-                            <ProfilePic image={userProfiles[isActive].image as string} />
+                            <ProfilePic image={userProfiles[isActive].image as string || ""} />
                             <div className="flex flex-col sm:mt-4 gap-3 sm:w-3/4 w-full" >
                                 <div className="flex flex-col sm:justify-center sm:mb-4 sm:mt-28 gap-1 sm:gap-0">
                                     <div className="flex flex-col lg:flex-row justify-between">
