@@ -29,7 +29,7 @@ const AnimatedQuestion = ({ question, answer }: Question) => {
 }
 const ContactPage = () => {
     return (
-        <div className="w-full h-full dark:bg-background bg-white flex flex-col items-center overflow-y-auto scroll scroll-smooth overflow-hidden justify-center">
+        <div className="w-full h-full dark:bg-background bg-white flex flex-col items-center justify-center ">
             <div className="w-full min-h-64 flex flex-col items-center justify-center mb-10">
                 <h1 className="text-center md:text-6xl text-5xl font-semibold font-josefin">Contact Us</h1>
                 <p className="text-center md:text-large md:px-0 px-2 text-base font-geist text-muted-foreground" >
@@ -41,7 +41,7 @@ const ContactPage = () => {
                     </p>
                 </Badge>
             </div>
-            <div className="flex md:flex-row mx-40 flex-col w-full justify-center gap-10">
+            <div className="flex md:flex-row mx-40 flex-col w-full justify-center gap-20">
                 <div className="flex flex-col justify-start gap-4 px-4 md:px-0">
                     <h2 className="text-left md:text-4xl text-3xl font-semibold font-josefin">
                         Send Us a Message
@@ -66,7 +66,7 @@ const ContactPage = () => {
                         placeholder="Enter your message"
                         required
                     />
-                    <Button type="submit" variant={"outline"} className="bg-white text-black w-32 rounded-xl">
+                    <Button type="submit" variant={"outline"} className="bg-white text-black w-32 rounded-lg">
                         Send Message
                     </Button>
                 </div>
@@ -88,14 +88,7 @@ const ContactPage = () => {
                    You can find subject notes, previous year question papers (PYQs), and class test papers organized semester-wise." />
                 </div>
             </div>
-            <div className="w-full min-h-64 flex flex-col items-center justify-center mb-10">
-                <h1 className="text-center md:text-4xl text-3xl font-semibold font-josefin">Join Our Community</h1>
-                <p className="text-center md:text-large md:px-0 px-2 text-base font-geist text-muted-foreground" >
-                    Connect with like-minded peoples
-                </p>
-            </div>
-            <div className="w-full flex flex-col items-center justify-center">
-            </div>
+
             <Footer />
         </div>
     );

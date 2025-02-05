@@ -1,8 +1,13 @@
+import { FaGithub } from "react-icons/fa";
+
 const Footer = () => {
     return (
-        <footer className="footer footer-center p-4 bg-base-300 text-base-content">
+        <footer className="flex items-center justify-between p-4 w-full border-t bg-base-300 mt-10 text-base-content">
             <div>
-                <p>Copyright © 2023 - All right reserved by <a href="https://github.com/Mnkubusb">Manik Chand Sahu</a></p>
+                <p>Copyright © 2025 - All right reserved</p>
+            </div>
+            <div>
+                <a href="https://github.com/Mnkubusb/college_connection"><FaGithub size={20} /> </a>
             </div>
         </footer>
     );

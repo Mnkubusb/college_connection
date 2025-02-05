@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
         description: 'College Connections – Find. Connect. Thrive.',
         start_url: '/',
         display: 'standalone',
-        theme_color: '#ffffff',
-        background_color: '#ffffff',
+        theme_color: '#000000',
+        background_color: '#000000',
         icons: [
             {
                 src: '/logo_new.svg',

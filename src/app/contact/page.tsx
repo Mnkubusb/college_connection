@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <div className="w-full h-dvh overflow-auto">
       <Header Name="College Connections"></Header>
-      <main className="overflow-auto p-2 sm:mx-3 sm:border-x border-none mx-0">
+      <main className="overflow-auto overflow-x-hidden scroll-smooth scroll sm:mx-3 sm:border-x-1 ">
         <ContactPage  />
       </main>
     </div>
