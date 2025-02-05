@@ -2,10 +2,9 @@
 import OnboardForm from '@/components/auth/onboard-form'
 import Header from '@/components/Header'
 import { currentUser } from '@/lib/auth'
-import React from 'react'
 
 const Onboard = async () => {
-
+    
     const user = await currentUser();
 
     return (
