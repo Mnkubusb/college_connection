@@ -29,7 +29,7 @@ const AnimatedQuestion = ({ question, answer }: Question) => {
 }
 const ContactPage = () => {
     return (
-        <div className="w-full h-full dark:bg-background bg-white flex flex-col items-center justify-center ">
+        <div className="w-full h-full dark:bg-background bg-white flex flex-col items-center justify-center px-6">
             <div className="w-full min-h-64 flex flex-col items-center justify-center mb-10">
                 <h1 className="text-center md:text-6xl text-5xl font-semibold font-josefin">Contact Us</h1>
                 <p className="text-center md:text-large md:px-0 px-2 text-base font-geist text-muted-foreground" >
