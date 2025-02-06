@@ -20,6 +20,7 @@ import { Input } from "../ui/input";
 import { ExtendedUser } from "../../../next-auth";
 import toast, { Toaster } from "react-hot-toast";
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { revalidatePath } from "next/cache";
 
 const pronouns = [
   { label: "Still Figuring out", value: "Still Figuring out" },
@@ -229,10 +230,10 @@ export default function OnboardForm({ user }: UserProps) {
           }
           if (data?.success) {
             toast.success(data?.success as string);
-            setTimeout(() => {
-              router.refresh();
-            }, 2000);
+            router.refresh();
             router.push("/profile");
+            revalidatePath("/auth/onboarding")
+            revalidatePath("/profile")
           }
           if (data.error === "Profile already exists") {
             router.push("/profile")
