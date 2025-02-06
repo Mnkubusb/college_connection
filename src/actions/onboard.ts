@@ -5,7 +5,6 @@ import { db } from '@/lib/db';
 import { getUserByEmail } from '@/data/user';
 import { getProfile } from '@/lib/profile';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 
 
 export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
@@ -28,7 +27,7 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
         return { error: "User not found" }
     }
 
-    if (await getProfile(existingUser.id)) {
+    if ( await getProfile(existingUser.id)) {
         return { error: "Profile already exists" }
     }
 
@@ -66,10 +65,8 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
             data: { isFirstLogin: false }
         })
     ]);
-
     
+    revalidatePath("/auth/onboarding");
     revalidatePath("/profile");
-    redirect("/profile")
-    
     return { success: "Profile created" }
 }

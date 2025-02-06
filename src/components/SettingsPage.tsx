@@ -465,7 +465,7 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                                 selected={field.value}
                                                                 onChange={(option) => field.onChange(option.value)}
                                                                 onCreate={handleAppendGroup}
-                                                                className="w-1/2"
+                                                                className="min-w-56 w-full"
                                                             />
                                                         <FormMessage />
                                                     </FormItem>

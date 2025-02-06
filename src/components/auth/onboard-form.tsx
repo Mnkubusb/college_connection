@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import * as z from "zod"
 import { useForm } from "react-hook-form";
@@ -190,13 +190,14 @@ interface UserProps {
 export default function OnboardForm({ user }: UserProps) {
 
   const router = useRouter()
+  const [ dynamicPronouns , setDynamicPronouns ] = useState<ComboboxOptions[]>(pronouns)
 
   function handleAppendGroup(label: ComboboxOptions['label']) {
     const newPronouns = {
       value: label,
       label,
     };
-    pronouns.push(newPronouns);
+    setDynamicPronouns([...dynamicPronouns, newPronouns]);
   }
 
   const form = useForm<z.infer<typeof ProfileSchema>>({
@@ -227,9 +228,11 @@ export default function OnboardForm({ user }: UserProps) {
             toast.error(data?.error as string)
           }
           if (data?.success) {
-            toast.success(data?.success as string)
-            router.refresh();
-            router.push('/');
+            toast.success(data?.success as string);
+            setTimeout(() => {
+              router.refresh();
+            }, 2000);
+            router.push("/profile");
           }
           if (data.error === "Profile already exists") {
             router.push("/profile")
@@ -366,9 +369,9 @@ export default function OnboardForm({ user }: UserProps) {
                   <FormItem className="flex flex-col">
                     <FormLabel>How do you Identify Yourself / Your Pronouns(Or you can create one)</FormLabel>
                     <Combobox
-                      className="w-200px"
+                      className="min-w-200px w-full"
                       disalbed={isPending}
-                      options={pronouns}
+                      options={dynamicPronouns}
                       placeholder="Select your pronoun or create one"
                       selected={field.value}
                       onChange={(option) => field.onChange(option.value)}

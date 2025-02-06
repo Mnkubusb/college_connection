@@ -1,3 +1,4 @@
+"use server"
 import authConfig from "./auth.config"
 import NextAuth from "next-auth"
 
@@ -20,6 +21,7 @@ export default auth(async (req) => {
     const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
     const isAuthRoutes = authRoutes.includes(nextUrl.pathname);
     const isOnboardingRoute = nextUrl.pathname === Onboard;
+    const user = await currentUser();
 
     if (isApiAuthRoute) {
         return undefined;
@@ -32,7 +34,6 @@ export default auth(async (req) => {
     }
 
     if (isLoggedIn) {
-        const user = await currentUser();
         if (isOnboardingRoute && !user?.isFirstLogin) {
             return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
         } 

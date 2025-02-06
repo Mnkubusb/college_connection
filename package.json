@@ -73,7 +73,7 @@
     "nextjs": "^0.0.3",
     "openai": "^4.80.0",
     "pdfjs": "^2.5.3",
-    "pdfjs-dist": "^4.8.69",
+    "pdfjs-dist": "^4.10.38",
     "prisma-client": "^0.0.0",
     "query-string": "^9.1.1",
     "react": "^18",
