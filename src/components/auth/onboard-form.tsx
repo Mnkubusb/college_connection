@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { ProfileSchema } from "../../schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { onboard } from "@/actions/onboard";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
@@ -234,6 +234,9 @@ export default function OnboardForm({ user }: UserProps) {
             revalidatePath("/auth/onboarding")
             revalidatePath("/profile")
             router.push("/profile");
+            setTimeout(() => {
+              redirect("/profile")
+            }, 3000);
           }
           if (data.error === "Profile already exists") {
             router.push("/profile")
