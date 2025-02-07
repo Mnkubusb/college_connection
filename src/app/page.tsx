@@ -2,7 +2,6 @@
 import { getUsers } from '@/actions/get-user';
 import Dashboard from '@/components/dashboard';
 import Header from '@/components/Header';
-import { SearchInput } from '@/components/search-input';
 import { currentUser } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { revalidatePath } from 'next/cache';

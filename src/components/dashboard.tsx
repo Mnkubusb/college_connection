@@ -11,10 +11,10 @@ import { RiTwitterXFill } from "react-icons/ri";
 import ProfilePic from "./ui/profilePic";
 import AnimatedGridPattern from "./ui/animated-grid-pattern";
 import Link from "next/link";
-import { FollowerPointerCard } from "./ui/pointer";
 import Image from "next/image";
 import { ExtendedUser } from "../../next-auth";
-import { login } from "@/actions/login";
+import { getDailyCoins } from "@/actions/daily-coins";
+import toast from "react-hot-toast";
 
 
 interface UserProps {
@@ -36,6 +36,21 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
             setIsAdmin(true)
         }
     }, [loginedUser])
+
+    useEffect(() => {
+        getDailyCoins().then((data)=>{
+            if(data?.success){
+                toast(data?.success , {
+                    icon: <FaRegStar />,
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                    },
+                })
+            }
+        })
+    })
 
     const handleClick = (index: number) => {
         setisMobileView(true);

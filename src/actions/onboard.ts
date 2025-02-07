@@ -47,6 +47,10 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
 
 
     await db.$transaction([
+        db.user.update({
+            where: { id: existingUser.id },
+            data: { isFirstLogin: false }
+        }),
         db.profile.create({
             data: {
                 name: existingUser.name as string,
@@ -59,10 +63,6 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
                 bio: story,
                 ...normalizedUrls,
             }
-        }),
-        db.user.update({
-            where: { id: existingUser.id },
-            data: { isFirstLogin: false }
         })
     ]);
     
