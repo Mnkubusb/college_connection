@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui
 import { onboard } from "@/actions/onboard";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { cn } from "@/lib/utils";
-import { Check, ChevronDown } from "lucide-react";
+import { Check, ChevronDown, Loader2 } from "lucide-react";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command";
 import { Combobox, ComboboxOptions } from "../ui/Combobox";
 import { MultiSelect } from "../ui/multi-select";
@@ -445,7 +445,12 @@ export default function OnboardForm({ user }: UserProps) {
                 variant={"gooeyLeft"}
                 className="w-full"
               >
+                {isPending?(
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ):(<>
                 Next &rarr;
+                </>)
+                }
               </Button>
             </div>
           </form>

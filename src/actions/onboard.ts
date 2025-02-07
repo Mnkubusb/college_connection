@@ -2,9 +2,9 @@
 import { ProfileSchema } from '../schemas';
 import * as z from 'zod';
 import { db } from '@/lib/db';
-import { getUserByEmail } from '@/data/user';
 import { getProfile } from '@/lib/profile';
 import { revalidatePath } from 'next/cache';
+import { currentUser } from '@/lib/auth';
 
 
 export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
@@ -21,13 +21,13 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
         return { error: "Only 5 skills are allowed" }
     }
 
-    const existingUser = await getUserByEmail(email);
+    const existingUser = await currentUser();
 
     if (!existingUser) {
         return { error: "User not found" }
     }
 
-    if ( await getProfile(existingUser.id)) {
+    if ( await getProfile(existingUser?.id as string)) {
         return { error: "Profile already exists" }
     }
 
@@ -53,9 +53,9 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
         }),
         db.profile.create({
             data: {
-                name: existingUser.name as string,
-                userId: existingUser.id,
-                image: existingUser.image as string,
+                name: existingUser?.name as string,
+                userId: existingUser?.id as string,
+                image: existingUser?.image as string,
                 batch,
                 branch: department,
                 wannabe,
