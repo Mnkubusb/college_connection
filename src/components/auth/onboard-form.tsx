@@ -231,9 +231,9 @@ export default function OnboardForm({ user }: UserProps) {
           if (data?.success) {
             toast.success(data?.success as string);
             router.refresh();
-            router.push("/profile");
             revalidatePath("/auth/onboarding")
             revalidatePath("/profile")
+            router.push("/profile");
           }
           if (data.error === "Profile already exists") {
             router.push("/profile")

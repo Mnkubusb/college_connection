@@ -45,7 +45,7 @@ export const ImageForm = ({ initialData, noteId }: ImageFormProps) => {
             toggleEdit();
             router.refresh();
         } catch (error) {
-
+            console.log(error);
         }
     }
 
