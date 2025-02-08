@@ -10,6 +10,7 @@ import {
     Onboard
 } from "./routes";
 import { currentUser } from "./lib/auth";
+import { db } from "./lib/db";
 
 const { auth } = NextAuth(authConfig)
 
@@ -22,24 +23,21 @@ export default auth(async (req) => {
     const isAuthRoutes = authRoutes.includes(nextUrl.pathname);
     const isOnboardingRoute = nextUrl.pathname === Onboard;
     const user = await currentUser();
+    const CurrentUser = await db.user.findUnique({ where: { id: user?.id } });
 
     if (isApiAuthRoute) {
         return undefined;
     }
     if (isAuthRoutes) {
         if (isLoggedIn) {
-            return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+            if (isOnboardingRoute && !CurrentUser?.isFirstLogin) {
+                return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+            } 
+            if (!isOnboardingRoute && CurrentUser?.isFirstLogin) {
+                return Response.redirect(new URL("/auth/onboarding", nextUrl));
+            }
         }
         return undefined;
-    }
-
-    if (isLoggedIn) {
-        if (isOnboardingRoute && !user?.isFirstLogin) {
-            return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-        } 
-        if (!isOnboardingRoute && user?.isFirstLogin) {
-            return Response.redirect(new URL("/auth/onboarding", nextUrl));
-        }
     }
 
     if (!isLoggedIn && !isPublicRoute) {

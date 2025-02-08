@@ -13,7 +13,7 @@ const Home = async () => {
   const LoginedUser = await currentUser();
 
   const users = await getUsers({});
-  if(!users) return null
+  if (!users) return null
 
   const profiles = await db.profile.findMany({});
 

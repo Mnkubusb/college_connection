@@ -7,6 +7,8 @@ import { revalidatePath } from 'next/cache';
 import { currentUser } from '@/lib/auth';
 
 
+
+
 export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
 
     const validatedValues = await ProfileSchema.safeParseAsync(values);
@@ -15,7 +17,7 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
         return { error: "Invalid values" }
     }
 
-    const { batch, department, wannabe, skills, story, email, insta, linkedin, github, twitter } = validatedValues.data;
+    const { batch, department, wannabe, skills, story, insta, linkedin, github, twitter } = validatedValues.data;
 
     if (skills.length > 5) {
         return { error: "Only 5 skills are allowed" }
@@ -65,8 +67,10 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
             }
         })
     ]);
-    
+
+
+
     revalidatePath("/auth/onboarding");
     revalidatePath("/profile");
-    return { success: "Profile created" }
+    return { success: "Profile created", message:"You Will be redireted to your profile" }
 }

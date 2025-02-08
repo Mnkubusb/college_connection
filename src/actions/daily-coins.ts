@@ -20,7 +20,7 @@ export const getDailyCoins = async () => {
         const today = new Date()
         const lastLogin = user?.lastLogin;
         const shouldRecieveCoins = !lastLogin ||
-            lastLogin.toDateString() !== today.toDateString()
+            lastLogin.toDateString() !== today.toDateString() || user?.coins < 9000
 
         if (shouldRecieveCoins) {
             const updatedUser = await db.user.update({

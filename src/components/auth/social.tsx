@@ -12,6 +12,7 @@ interface showSocialProps {
 const ShowSocial = ({className}:showSocialProps) => {
       const seachParms  = useSearchParams();
       const callbackUrl = seachParms.get("callbackUrl");
+
     const onClick = (provider: "google" | "github") => {
         signIn(provider ,{
             callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,

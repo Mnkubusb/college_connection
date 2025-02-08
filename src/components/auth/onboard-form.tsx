@@ -190,8 +190,10 @@ interface UserProps {
 
 export default function OnboardForm({ user }: UserProps) {
 
+
+
   const router = useRouter()
-  const [ dynamicPronouns , setDynamicPronouns ] = useState<ComboboxOptions[]>(pronouns)
+  const [dynamicPronouns, setDynamicPronouns] = useState<ComboboxOptions[]>(pronouns)
 
   function handleAppendGroup(label: ComboboxOptions['label']) {
     const newPronouns = {
@@ -204,7 +206,6 @@ export default function OnboardForm({ user }: UserProps) {
   const form = useForm<z.infer<typeof ProfileSchema>>({
     resolver: zodResolver(ProfileSchema),
     defaultValues: {
-      email: user?.email ?? "",
       batch: "",
       department: "",
       wannabe: "",
@@ -234,9 +235,7 @@ export default function OnboardForm({ user }: UserProps) {
             revalidatePath("/auth/onboarding")
             revalidatePath("/profile")
             router.push("/profile");
-            setTimeout(() => {
-              redirect("/profile")
-            }, 3000);
+            setTimeout(() => { router.refresh() }, 3000)
           }
           if (data.error === "Profile already exists") {
             router.push("/profile")
@@ -417,17 +416,6 @@ export default function OnboardForm({ user }: UserProps) {
                   </FormItem>
                 )}
               />
-              <FormField
-                name="email"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input type="hidden" value={user?.email ?? ""} disabled={isPending} />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
               {socials.map((social) => (
                 <FormField
                   key={social.value}
@@ -448,10 +436,10 @@ export default function OnboardForm({ user }: UserProps) {
                 variant={"gooeyLeft"}
                 className="w-full"
               >
-                {isPending?(
+                {isPending ? (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                ):(<>
-                Next &rarr;
+                ) : (<>
+                  Next &rarr;
                 </>)
                 }
               </Button>
