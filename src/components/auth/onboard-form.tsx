@@ -21,6 +21,7 @@ import { ExtendedUser } from "../../../next-auth";
 import toast, { Toaster } from "react-hot-toast";
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { revalidatePath } from "next/cache";
+import { useSession } from "next-auth/react";
 
 const pronouns = [
   { label: "Still Figuring out", value: "Still Figuring out" },
@@ -190,8 +191,7 @@ interface UserProps {
 
 export default function OnboardForm({ user }: UserProps) {
 
-
-
+  const { data: session , update } = useSession()
   const router = useRouter()
   const [dynamicPronouns, setDynamicPronouns] = useState<ComboboxOptions[]>(pronouns)
 
@@ -225,11 +225,12 @@ export default function OnboardForm({ user }: UserProps) {
   const onSubmit = (values: z.infer<typeof ProfileSchema>) => {
     startTransition(() => {
       onboard(values)
-        .then((data) => {
+        .then( async (data) => {
           if (data?.error) {
             toast.error(data?.error as string)
           }
           if (data?.success) {
+            await update();
             toast.success(data?.success as string);
             router.refresh();
             revalidatePath("/auth/onboarding")
