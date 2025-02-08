@@ -224,17 +224,17 @@ export default function OnboardForm({ user }: UserProps) {
   const onSubmit = (values: z.infer<typeof ProfileSchema>) => {
     startTransition(() => {
       onboard(values)
-        .then((data) => {
+        .then( async (data) => {
           if (data?.error) {
             toast.error(data?.error as string)
           }
           if (data?.success) {
+            await update();
             toast.success(data?.success as string);
             router.refresh();
             revalidatePath("/auth/onboarding")
             revalidatePath("/profile")
             router.push("/profile");
-            setTimeout(() => { router.refresh() }, 3000)
           }
           if (data.error === "Profile already exists") {
             router.push("/profile")
