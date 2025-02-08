@@ -93,6 +93,7 @@ model Profile {
   branch        String?
   bio           String?
   skills        String[]
+  coins         Int?          @default(0)
   user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])

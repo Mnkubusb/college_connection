@@ -32,10 +32,18 @@ export const getDailyCoins = async () => {
                     coins: (user?.coins || 0) + 1
                 }
             });
+
+            await db.profile.update({
+                where: {
+                    userId: Currentuser.id
+                },
+                data: {
+                    coins: (user?.coins || 0) + 1
+                }
+            })
             return {
-                coins: updatedUser.coins,
-                lastLoginDate: updatedUser.lastLogin,
-                newCoin: true,
+                coins: updatedUser?.coins,
+                lastLoginDate: updatedUser?.lastLogin,
                 success: "You got 1 Aura point for Login"
             }
         }
