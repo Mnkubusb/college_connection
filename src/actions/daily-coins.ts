@@ -17,11 +17,13 @@ export const getDailyCoins = async () => {
             }
         });
 
+        const maxAura = 9000;
         const today = new Date()
         const lastLogin = user?.lastLogin;
         const shouldRecieveCoins = !lastLogin ||
             lastLogin.toDateString() !== today.toDateString()
 
+        if (user?.coins as number >= maxAura) return ({ error: "You have reached the maximum Aura points" })
         if (shouldRecieveCoins) {
             const updatedUser = await db.user.update({
                 where: {

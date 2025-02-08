@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { ProfileSchema } from "../../schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { onboard } from "@/actions/onboard";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
@@ -21,6 +21,7 @@ import { ExtendedUser } from "../../../next-auth";
 import toast, { Toaster } from "react-hot-toast";
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { revalidatePath } from "next/cache";
+import { useSession } from "next-auth/react";
 
 const pronouns = [
   { label: "Still Figuring out", value: "Still Figuring out" },
@@ -189,6 +190,7 @@ interface UserProps {
 }
 
 export default function OnboardForm({ user }: UserProps) {
+  const { data: session , update } = useSession();
   const router = useRouter()
   const [dynamicPronouns, setDynamicPronouns] = useState<ComboboxOptions[]>(pronouns)
 

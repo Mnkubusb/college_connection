@@ -67,9 +67,7 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
             }
         })
     ]);
-
-   
-
+    
     revalidatePath("/auth/onboarding");
     revalidatePath("/profile");
     return { success: "Profile created", message:"You Will be redireted to your profile" }
