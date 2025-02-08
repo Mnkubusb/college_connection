@@ -32,11 +32,11 @@ export const getDailyCoins = async () => {
                     coins: (user?.coins || 0) + 1
                 }
             });
-
             return {
                 coins: updatedUser.coins,
                 lastLoginDate: updatedUser.lastLogin,
-                newCoin: true
+                newCoin: true,
+                success: "You got 1 Aura point for Login"
             }
         }
 
@@ -44,7 +44,6 @@ export const getDailyCoins = async () => {
             coins: user?.coins,
             lastLoginDate: user?.lastLogin,
             newCoin: false,
-            success: "You got 1 Aura point for Login"
         }
     } catch (error) {
         console.log("[DAILY_COINS]", error)
