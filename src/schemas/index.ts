@@ -52,7 +52,6 @@ export const ResetSchema = z.object({
 })
 
 export const ProfileSchema = z.object({ 
-    email: z.string().email({message: "Invalid email Address"}),
     batch: z.string().min(1, { message: "Select your batch"}),
     department: z.string().min(1, { message: "Select your department"}),
     wannabe: z.string().min(1, { message: "Select your Desired Career"}),
