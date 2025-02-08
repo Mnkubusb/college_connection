@@ -126,11 +126,11 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                         </div>
                                         <div className="flex sm:gap-1 gap-3 sm:flex-row flex-col sm:mt-0 mt-3 ">
                                             <div className="flex gap-1 mr-1">
-                                                {users[isActive].coins > 1000 && <img src="/dokkan-battle-top.gif" alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
-                                                {users[isActive].coins > 100 && <img src="/vegeta-super.gif" alt="vegeta" className="w-8 h-8" />}
-                                                {users[isActive].coins > 0 && <img src="/dbz-gif.gif" alt="vegeta" className="w-8 h-8" />}
+                                                {userProfiles[isActive].coins as number > 1000 && <img src="/dokkan-battle-top.gif" alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
+                                                {userProfiles[isActive].coins as number > 100 && <img src="/vegeta-super.gif" alt="vegeta" className="w-8 h-8" />}
+                                                {userProfiles[isActive].coins as number > 0 && <img src="/dbz-gif.gif" alt="vegeta" className="w-8 h-8" />}
                                                 <div className="flex bg-[url('/pngwing.png')] rounded-full h-8 w-8 p-[6px] bg-cover bg-no-repeat bg-center items-center justify-center">
-                                                    {users[isActive].coins}
+                                                    {userProfiles[isActive].coins}
                                                 </div>
                                             </div>
                                             <div className="flex gap-1">
