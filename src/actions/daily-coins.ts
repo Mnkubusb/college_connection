@@ -1,11 +1,11 @@
+"use server"
 import { currentUser } from "@/lib/auth"
 import { db } from "@/lib/db";
 
 export const getDailyCoins = async () => {
+
     try {
-
         const Currentuser = await currentUser();
-
         if (!Currentuser) return ({ error: "Unauthorized" });
 
         const user = await db.user.findUnique({
@@ -49,5 +49,4 @@ export const getDailyCoins = async () => {
         console.log("[DAILY_COINS]", error)
         return ({ error: "Internal Server Error" })
     }
-
 }

@@ -20,9 +20,11 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     const { email, password } = validatedFields.data;
 
     const existingUser = await getUserByEmail(email);
+
     if (!existingUser || !existingUser.password) {
         return { error: "User not found or login method is different" }
     }
+
     if (!existingUser.email) {
         return {
             error: "Email Already Registered with different login method"
@@ -30,7 +32,6 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     }
 
     if(!existingUser?.emailVerified) {
-
         const verificationToken = await generateVerificationToken(existingUser.email);
         await sendVerificationEmail(verificationToken.email, verificationToken.token);
         return {

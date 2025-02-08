@@ -15,6 +15,7 @@ import Image from "next/image";
 import { ExtendedUser } from "../../next-auth";
 import { getDailyCoins } from "@/actions/daily-coins";
 import toast from "react-hot-toast";
+import { useConfettiStore } from "@/hooks/use-confetti-store";
 
 
 interface UserProps {
@@ -26,6 +27,8 @@ interface UserProps {
 
 
 const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
+
+    const confetti = useConfettiStore();
     const [isAdmin, setIsAdmin] = useState(false);
     const [isActive, setisActive] = useState(0);
     const [isMobileView, setisMobileView] = useState(false);
@@ -38,19 +41,24 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
     }, [loginedUser])
 
     useEffect(() => {
-        getDailyCoins().then((data)=>{
-            if(data?.success){
-                toast(data?.success , {
-                    icon: <FaRegStar />,
+        getDailyCoins().then((data) => {
+            if (data?.success) {
+                toast(data?.success, {
+                    icon: "🎉",
                     style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
+                        border: '1px solid #713200',
+                        padding: '16px',
+                        color: '#713200',
+                    },
+                    iconTheme: {
+                        primary: '#713200',
+                        secondary: '#FFFAEE',
                     },
                 })
+                confetti.onOpen();
             }
         })
-    })
+    }, [loginedUser , confetti]);
 
     const handleClick = (index: number) => {
         setisMobileView(true);
