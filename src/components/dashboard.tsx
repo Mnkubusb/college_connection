@@ -16,6 +16,8 @@ import { ExtendedUser } from "../../next-auth";
 import { getDailyCoins } from "@/actions/daily-coins";
 import toast from "react-hot-toast";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
+import { Star } from "lucide-react";
+import { user } from "@nextui-org/theme";
 
 
 interface UserProps {
@@ -58,7 +60,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                 confetti.onOpen();
             }
         })
-    }, [loginedUser , confetti]);
+    }, [loginedUser, confetti]);
 
     const handleClick = (index: number) => {
         setisMobileView(true);
@@ -122,7 +124,16 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                                 </h4>
                                             </div>
                                         </div>
-                                        <div className="flex gap-1 sm:mt-0 mt-3">
+                                        <div className="flex sm:gap-1 gap-3 sm:flex-row flex-col sm:mt-0 mt-3 ">
+                                            <div className="flex gap-1 mr-1">
+                                                {users[isActive].coins > 1000 && <img src="/dokkan-battle-top.gif" alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
+                                                {users[isActive].coins > 100 && <img src="/vegeta-super.gif" alt="vegeta" className="w-8 h-8" />}
+                                                {users[isActive].coins > 0 && <img src="/dbz-gif.gif" alt="vegeta" className="w-8 h-8" />}
+                                                <div className="flex bg-[url('/pngwing.png')] rounded-full h-8 w-8 p-[6px] bg-cover bg-no-repeat bg-center items-center justify-center">
+                                                    {users[isActive].coins}
+                                                </div>
+                                            </div>
+                                            <div className="flex gap-1">
                                             <Button variant={"outline"} className="cursor-none rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
                                                 <Link href={userProfiles[isActive].insta as string || "#"}>
                                                     <FaInstagram className="text-medium " />
@@ -143,6 +154,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                                     <RiTwitterXFill className="text-medium " />
                                                 </Link>
                                             </Button>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="flex gap-1 items-end justify-between sm:relative sm:-top-2 mt-2 sm:mt-0">

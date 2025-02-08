@@ -242,11 +242,11 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} ${JosefinSans.variable} ${OleoScript.variable} antialiased`}
         >
-          <ConfettiProvider />
           <Toaster />
           <NextSSRPlugin
             routerConfig={extractRouterConfig(ourFileRouter)}
           />
+          <ConfettiProvider />
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

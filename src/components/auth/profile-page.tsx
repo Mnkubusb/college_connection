@@ -56,27 +56,37 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                         </h4>
                                     </div>
                                 </div>
-                                <div className="flex gap-1 sm:mt-0 mt-3">
-                                    <Button variant={"outline"} className="rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
-                                        <Link href={userProfile?.insta as string || "#"}>
-                                            <FaInstagram className="text-medium " />
-                                        </Link>
-                                    </Button>
-                                    <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white  h-8 ">
-                                        <Link href={userProfile?.linkedin as string || "#"}>
-                                            <FaLinkedin className="text-medium " />
-                                        </Link>
-                                    </Button>
-                                    <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
-                                        <Link href={userProfile?.github as string || "#"}>
-                                            <FaGithub className="text-medium " />
-                                        </Link>
-                                    </Button>
-                                    <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
-                                        <Link href={userProfile?.twitter as string || "#"}>
-                                            <RiTwitterXFill className="text-medium " />
-                                        </Link>
-                                    </Button>
+                                <div className="flex sm:gap-1 gap-3 sm:flex-row flex-col sm:mt-0 mt-3 ">
+                                    <div className="flex gap-1 mr-1">
+                                        {user?.coins as number > 1000 && <img src="/dokkan-battle-top.gif" alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
+                                        {user?.coins as number > 100 && <img src="/vegeta-super.gif" alt="vegeta" className="w-8 h-8" />}
+                                        {user?.coins as number > 0 && <img src="/dbz-gif.gif" alt="vegeta" className="w-8 h-8" />}
+                                        <div className="flex bg-[url('/pngwing.png')] rounded-full h-8 w-8 p-[6px] bg-cover bg-no-repeat bg-center items-center justify-center">
+                                            {user?.coins}
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-1">
+                                        <Button variant={"outline"} className="cursor-none rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
+                                            <Link href={userProfile?.insta as string || "#"}>
+                                                <FaInstagram className="text-medium " />
+                                            </Link>
+                                        </Button>
+                                        <Button variant={"outline"} className=" cursor-none rounded-full dark:bg-black p-[6px] border-2 dark:border-white  h-8 ">
+                                            <Link href={userProfile?.linkedin as string || "#"}>
+                                                <FaLinkedin className="text-medium " />
+                                            </Link>
+                                        </Button>
+                                        <Button variant={"outline"} className="cursor-none rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
+                                            <Link href={userProfile?.github as string || "#"}>
+                                                <FaGithub className="text-medium " />
+                                            </Link>
+                                        </Button>
+                                        <Button variant={"outline"} className="cursor-none rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
+                                            <Link href={userProfile?.twitter as string || "#"}>
+                                                <RiTwitterXFill className="text-medium " />
+                                            </Link>
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex gap-1 items-end justify-between sm:relative sm:-top-2 mt-2 sm:mt-0">
