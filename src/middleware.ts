@@ -1,6 +1,7 @@
 "use server"
 import authConfig from "./auth.config"
 import NextAuth from "next-auth"
+
 import {
     DEFAULT_LOGIN_REDIRECT,
     authRoutes,
@@ -27,14 +28,18 @@ export default auth(async (req) => {
     }
     if (isAuthRoutes) {
         if (isLoggedIn) {
-            if (isOnboardingRoute && !user?.isFirstLogin) {
-                return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-            } 
-            if (!isOnboardingRoute && user?.isFirstLogin) {
-                return Response.redirect(new URL("/auth/onboarding", nextUrl));
-            }
+            return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
         }
         return undefined;
+    }
+
+    if (isLoggedIn) {
+        if (isOnboardingRoute && !user?.isFirstLogin) {
+            return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+        } 
+        if (!isOnboardingRoute && user?.isFirstLogin) {
+            return Response.redirect(new URL("/auth/onboarding", nextUrl));
+        }
     }
 
     if (!isLoggedIn && !isPublicRoute) {

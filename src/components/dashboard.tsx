@@ -59,9 +59,6 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                 })
                 confetti.onOpen();
             }
-            if(data?.error){
-                toast.error(data?.error)
-            }
         })
     }, [loginedUser, confetti]);
 
