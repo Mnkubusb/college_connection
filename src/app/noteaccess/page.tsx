@@ -38,9 +38,9 @@ const NoteAccess = async ({
         <NotestoDisplay items={notes} />
         </div>
         <ChatModal>
-          <Button className="absolute md:bottom-7 bottom-[70px] md:right-7 right-1 rounded-t-full rounded-l-full" variant="outline" >
+          <Button className="absolute md:bottom-7 bottom-[70px] md:right-7 right-1 rounded-t-full rounded-l-full" variant="default" >
             <ChatBubbleIcon className="md:mr-2" />
-            <span className="sm:block hidden">Have a question?</span>
+            <span>Have a question?</span>
           </Button>
         </ChatModal>
       </div>

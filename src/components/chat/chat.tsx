@@ -2,11 +2,12 @@
 import { useChat } from "ai/react"
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
-import { Loader2, Send } from "lucide-react";
+import { Loader2, Send, SendHorizonal, SendIcon } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
 import { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import reactGfm from "remark-gfm";
+import Markdown from "./Markdown";
 
 
 
@@ -25,26 +26,27 @@ const Chat = () => {
             <div className="flex flex-col gap-4 px-2 w-full">
                 <ScrollArea className="sm:h-[calc(100vh-200px)] h-[53dvh] ">
                     {messages.length === 0 &&
-                        <div className="flex justify-center items-center h-full">
-                            <p className="text-center text-muted-foreground">
-                                Ask me anything about your notes
-                            </p>
-                        </div>}
+                    <div className={`inline-block text-wrap w-max max-w-full`}>
+                        <div className="flex justify-end items-center text-sm text-muted-foreground">
+                            <ReactMarkdown remarkPlugins={[reactGfm]} className="p-2"  >
+                                Hello! I am a chatbot. How can I help you today?
+                            </ReactMarkdown>
+                        </div>
+                    </div>
+                    }
                     {messages.map((message, index) => (
                         <div key={index} className={`mb-4  ${message.role === "user" ? "text-right" : "text-left"}`}>
-                            <div className={`inline-block text-wrap w-full ${message.role === "user" ? "bg-primary-700/50 rounded-t-xl rounded-l-xl w-max max-w-full" : ""}`}>
+                            <div className={`inline-block text-wrap text-sm  w-full ${message.role === "user" ? "bg-primary-700 text-muted rounded-t-xl rounded-l-xl w-max max-w-full" : "text-gray-300"}`}>
                                 {message.role === "user" && (
                                     <div className="flex justify-end items-center">
-                                        <ReactMarkdown remarkPlugins={[reactGfm]} className="p-2">
+                                        <ReactMarkdown remarkPlugins={[reactGfm]} className="p-2"  >
                                             {message.content}
                                         </ReactMarkdown>
                                     </div>
                                 )}
                                 {message.role === "assistant" && (
                                     <div className="flex justify-start items-center flex-wrap">
-                                        <ReactMarkdown remarkPlugins={[reactGfm]} className="p-2">
-                                            {message.content}
-                                        </ReactMarkdown>
+                                        <Markdown content={message.content} />
                                     </div>
                                 )}
                             </div>
@@ -54,7 +56,7 @@ const Chat = () => {
                         <div className="flex justify-center items-center h-full">
                             <Loader2 className="animate-spin" />
                             <Button type="button" variant={"outline"} size={"sm"} className="absolute bottom-4 rounded-full right-6 flex gap-1" onClick={stop}>
-                                <span className="text-sm mt-1" >
+                                <span className="text-sm" >
                                     Stop
                                 </span>
                             </Button>
@@ -69,10 +71,10 @@ const Chat = () => {
                         <Textarea placeholder="What are Vibrational modes" className="border-none hover:border-none focus-visible:outline-none focus-visible:border-none focus-visible:ring-0"
                             value={input} onChange={handleInputChange}
                         />
-                        <Button type="submit" variant={"outline"} size={"sm"} className="absolute bottom-4 rounded-full right-2 flex gap-1 justify-center items-center"  disabled={isLoading}>
-                            <Send size={15} />
-                            <span className="text-sm sm:block hidden mt-1" >
-                                Send
+                        <Button type="submit" size={"sm"} className="absolute bottom-3 rounded-full right-2 flex gap-1 justify-center items-center mt-1" disabled={isLoading}>
+                            <SendHorizonal size={15} />
+                            <span className="text-sm" >
+                                Ask
                             </span>
                         </Button>
                     </div>
