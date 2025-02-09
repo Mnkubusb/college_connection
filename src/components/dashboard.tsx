@@ -134,22 +134,22 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                                 </div>
                                             </div>
                                             <div className="flex gap-1">
-                                            <Button variant={"outline"} className="cursor-none rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
+                                            <Button variant={"outline"} className=" rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
                                                 <Link href={userProfiles[isActive].insta as string || "#"}>
                                                     <FaInstagram className="text-medium " />
                                                 </Link>
                                             </Button>
-                                            <Button variant={"outline"} className=" cursor-none rounded-full dark:bg-black p-[6px] border-2 dark:border-white  h-8 ">
+                                            <Button variant={"outline"} className=" rounded-full dark:bg-black p-[6px] border-2 dark:border-white  h-8 ">
                                                 <Link href={userProfiles[isActive].linkedin as string || "#"}>
                                                     <FaLinkedin className="text-medium " />
                                                 </Link>
                                             </Button>
-                                            <Button variant={"outline"} className="cursor-none rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
+                                            <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
                                                 <Link href={userProfiles[isActive].github as string || "#"}>
                                                     <FaGithub className="text-medium " />
                                                 </Link>
                                             </Button>
-                                            <Button variant={"outline"} className="cursor-none rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
+                                            <Button variant={"outline"} className=" rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
                                                 <Link href={userProfiles[isActive].twitter as string || "#"}>
                                                     <RiTwitterXFill className="text-medium " />
                                                 </Link>
@@ -159,12 +159,12 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                     </div>
                                     <div className="flex gap-1 items-end justify-between sm:relative sm:-top-2 mt-2 sm:mt-0">
                                         <div className="flex gap-1 items-end">
-                                            <Button variant="outline" className=" cursor-none rounded-[10px] dark:bg-white border-2 text-black h-8 hover:text-black dark:hover:bg-transparent dark:border-white dark:hover:text-white">
+                                            <Button variant="outline" className="rounded-[10px] dark:bg-white border-2 text-black h-8 hover:text-black dark:hover:bg-transparent dark:border-white dark:hover:text-white">
                                                 <Link href={userProfiles[isActive].linkedin ? userProfiles[isActive].linkedin as string : userProfiles[isActive].insta as string || "#"}>
                                                     <span>Message</span>
                                                 </Link>
                                             </Button>
-                                            <Button variant="outline" className="cursor-none rounded-[10px] dark:bg-black border-2 dark:border-white h-8 bg-black text-white">
+                                            <Button variant="outline" className=" rounded-[10px] dark:bg-black border-2 dark:border-white h-8 bg-black text-white">
                                                 <span>Share</span>
                                             </Button>
                                         </div>

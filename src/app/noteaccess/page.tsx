@@ -5,6 +5,9 @@ import { Catergories } from "./_components/categories"
 import { SearchInput } from "@/components/search-input"
 import { getNotes } from "@/actions/get-notes"
 import { NotestoDisplay } from "@/components/notes-list"
+import ChatModal from "@/components/modals/chat-modal"
+import { Button } from "@/components/ui/button"
+import { ChatBubbleIcon } from "@radix-ui/react-icons"
 
 interface SearchPageProps {
   searchParams: {
@@ -34,6 +37,12 @@ const NoteAccess = async ({
         <Catergories items={categories} />
         <NotestoDisplay items={notes} />
         </div>
+        <ChatModal>
+          <Button className="absolute md:bottom-7 bottom-[70px] md:right-7 right-1 rounded-t-full rounded-l-full" variant="outline" >
+            <ChatBubbleIcon className="md:mr-2" />
+            <span className="sm:block hidden">Have a question?</span>
+          </Button>
+        </ChatModal>
       </div>
     </div>
   )

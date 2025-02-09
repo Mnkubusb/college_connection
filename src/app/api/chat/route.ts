@@ -1,18 +1,34 @@
-import { openai } from '@ai-sdk/openai';
-import { streamText } from 'ai';
+import { streamText, Message } from "ai";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { initialMessage } from "@/data/initialMessage";
 
-// Allow streaming responses up to 30 seconds
-export const maxDuration = 30;
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GEMINI_API_KEY
+})
+
+export const runtime = "edge";
+
+const generateId = () => Math.random().toString(36).slice(2, 15);
+const buildGoogleGenAIprompt = (messages: Message[]): Message[] => [
+  {
+    id: generateId(),
+    role: "user",
+    content: initialMessage.content,
+  },
+  ...messages.map((message) => ({
+    id: message.id || generateId(),
+    role: message.role,
+    content: message.content
+  }))
+];
 
 export async function POST(req: Request) {
- try {
-     const { messages } = await req.json();
-     const result = streamText({
-       model: openai('gpt-4o-mini'),
-       messages,
-     });
-     return result.toDataStreamResponse();
- } catch (error) {
-    console.log("[AI]",error);
- }
+  const { messages } = await req.json();
+  const steam = await streamText({
+    model: google("gemini-2.0-flash-001"),
+    messages: buildGoogleGenAIprompt(messages),
+    temperature: 0.7,
+  })
+
+  return steam?.toDataStreamResponse();
 }

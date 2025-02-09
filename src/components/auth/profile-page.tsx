@@ -28,7 +28,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                 <div className="div">
                     <Button onClick={() => {
                         router.push("/settings")
-                    }} variant={"outline"} className="absolute gap-1 top-5 right-3 z-40 cursor-pointer dark:bg-black rounded-full flex justify-center items-center" >
+                    }} variant={"outline"} className="absolute gap-1 top-5 right-6 z-40 cursor-pointer dark:bg-black rounded-full flex justify-center items-center" >
                         <Pencil size={14} />
                         Edit
                     </Button>
@@ -66,22 +66,22 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                         </div>
                                     </div>
                                     <div className="flex gap-1">
-                                        <Button variant={"outline"} className="cursor-none rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
+                                        <Button variant={"outline"} className="rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
                                             <Link href={userProfile?.insta as string || "#"}>
                                                 <FaInstagram className="text-medium " />
                                             </Link>
                                         </Button>
-                                        <Button variant={"outline"} className=" cursor-none rounded-full dark:bg-black p-[6px] border-2 dark:border-white  h-8 ">
+                                        <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white  h-8 ">
                                             <Link href={userProfile?.linkedin as string || "#"}>
                                                 <FaLinkedin className="text-medium " />
                                             </Link>
                                         </Button>
-                                        <Button variant={"outline"} className="cursor-none rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
+                                        <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
                                             <Link href={userProfile?.github as string || "#"}>
                                                 <FaGithub className="text-medium " />
                                             </Link>
                                         </Button>
-                                        <Button variant={"outline"} className="cursor-none rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
+                                        <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
                                             <Link href={userProfile?.twitter as string || "#"}>
                                                 <RiTwitterXFill className="text-medium " />
                                             </Link>
@@ -142,7 +142,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                     <div className="h-[1px] sm:w-[95%] w-full bg-slate-600"></div>
                     <div className=" sm:px-10 ">
                         <p className=" w-full sm:text-lg text-md font-josefin font-light relative pt-2 text-wrap flex justify-start items-start">
-                            {userProfile?.bio}
+                            {userProfile?.bio || "Nothing to Show" }
                         </p>
                     </div>
                 </div>
