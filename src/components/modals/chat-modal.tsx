@@ -15,7 +15,7 @@ const ChatModal = ({ children }: { children: React.ReactNode }) => {
             <SheetTrigger asChild>
                 {children}
             </SheetTrigger>
-            <SheetContent side={isMobileView ? "bottom" : "right"} className="p-0">
+            <SheetContent side={isMobileView ? "bottom" : "right"} className="p-0 max-w-[28rem]">
                 <SheetHeader className="p-2 sm:p-4">
                     <SheetTitle>College Connection AI</SheetTitle>
                     <SheetDescription>

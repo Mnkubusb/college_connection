@@ -11,7 +11,6 @@ const s3Client = new S3Client({
 });
 
 export async function UploadtoS3Bucket( file:Buffer , fileName: string) {
-
     console.log("Inside s3 Upload function")
     const fileBuffer = file;
 

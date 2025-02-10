@@ -10,8 +10,6 @@ import reactGfm from "remark-gfm";
 import Markdown from "./Markdown";
 
 
-
-
 const Chat = () => {
 
     const { messages, input, handleSubmit, handleInputChange, isLoading, stop, reload } = useChat();
@@ -22,8 +20,8 @@ const Chat = () => {
     }, [messages]);
 
     return (
-        <div className="mt-2 flex flex-col sm:h-[calc(100vh-110px)] h-full justify-between">
-            <div className="flex flex-col gap-4 px-2 w-full">
+        <div className="mt-2 flex flex-col sm:h-[calc(100vh-110px)] h-full justify-between w-full">
+            <div className="flex flex-col gap-4 px-4 w-full">
                 <ScrollArea className="sm:h-[calc(100vh-200px)] h-[53dvh] ">
                     {messages.length === 0 &&
                     <div className={`inline-block text-wrap w-max max-w-full`}>
@@ -36,16 +34,16 @@ const Chat = () => {
                     }
                     {messages.map((message, index) => (
                         <div key={index} className={`mb-4  ${message.role === "user" ? "text-right" : "text-left"}`}>
-                            <div className={`inline-block text-wrap text-sm  w-full ${message.role === "user" ? "bg-primary-700 text-muted rounded-t-xl rounded-l-xl w-max max-w-full" : "text-gray-300"}`}>
+                            <div className={`inline-block text-wrap text-sm ${message.role === "user" ? "bg-primary-700 text-muted rounded-t-xl rounded-l-xl w-max max-w-full" : "text-gray-300  w-max max-w-[350px]"}`}>
                                 {message.role === "user" && (
                                     <div className="flex justify-end items-center">
-                                        <ReactMarkdown remarkPlugins={[reactGfm]} className="p-2"  >
+                                        <ReactMarkdown className="p-2 text-wrap break-words whitespace-pre-wrap"  >
                                             {message.content}
                                         </ReactMarkdown>
                                     </div>
                                 )}
                                 {message.role === "assistant" && (
-                                    <div className="flex justify-start items-center flex-wrap">
+                                    <div className="flex justify-start items-center flex-wrap ">
                                         <Markdown content={message.content} />
                                     </div>
                                 )}
@@ -66,7 +64,7 @@ const Chat = () => {
                 </ScrollArea>
             </div>
             <div >
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} onKeyDown={(event) => event.key === "Enter" && handleSubmit(event)}>
                     <div className="border-y md:p-3 p-2 relative">
                         <Textarea placeholder="What are Vibrational modes" className="border-none hover:border-none focus-visible:outline-none focus-visible:border-none focus-visible:ring-0"
                             value={input} onChange={handleInputChange}
