@@ -23,7 +23,7 @@ const Chat = () => {
     return (
         <div className="mt-2 flex flex-col sm:h-[calc(100vh-110px)] h-full justify-between w-full">
             <div className="flex flex-col gap-4 px-4 w-full">
-                <ScrollArea className="sm:h-[calc(100vh-200px)] h-[53dvh] ">
+                <ScrollArea className="sm:h-[calc(100vh-200px)] h-[62dvh] ">
                     {messages.length === 0 &&
                     <div className={`inline-block text-wrap w-max max-w-full`}>
                         <div className="flex justify-end items-center text-sm text-muted-foreground">
@@ -35,7 +35,7 @@ const Chat = () => {
                     }
                     {messages.map((message, index) => (
                         <div key={index} className={`mb-4  ${message.role === "user" ? "text-right" : "text-left"}`}>
-                            <div className={`inline-block text-wrap text-sm ${message.role === "user" ? "bg-primary-700 text-muted rounded-t-xl rounded-l-xl w-max max-w-full" : "text-gray-300  w-max md:max-w-[350px] max-w-dvw"}`}>
+                            <div className={`inline-block text-wrap text-sm ${message.role === "user" ? "bg-primary-700 text-muted rounded-t-xl rounded-l-xl w-max max-w-full" : "text-gray-300  w-max md:max-w-[400px] max-w-dvw"}`}>
                                 {message.role === "user" && (
                                     <div className="flex justify-end items-center">
                                         <ReactMarkdown className="p-2 text-wrap break-words whitespace-pre-wrap"  >

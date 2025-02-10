@@ -7,7 +7,7 @@ import { getNotes } from "@/actions/get-notes"
 import { NotestoDisplay } from "@/components/notes-list"
 import ChatModal from "@/components/modals/chat-modal"
 import { Button } from "@/components/ui/button"
-import { Bot } from "lucide-react"
+import { BotIcon } from "lucide-react"
 
 interface SearchPageProps {
   searchParams: {
@@ -38,9 +38,9 @@ const NoteAccess = async ({
         <NotestoDisplay items={notes} />
         </div>
         <ChatModal>
-          <Button className="absolute md:bottom-7 bottom-[70px] md:right-7 right-1 rounded-t-full rounded-l-full" variant="default" >
-            <Bot className="mr-2" />
-            <span>Have a question?</span>
+          <Button className="absolute md:bottom-7 bottom-[75px] md:right-7 right-2 rounded-t-full rounded-l-full" variant="default" >
+            <BotIcon className="mr-2" />
+            <span>Have a Doubt?</span>
           </Button>
         </ChatModal>
       </div>
