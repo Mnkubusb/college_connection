@@ -35,7 +35,7 @@ const Chat = () => {
                     }
                     {messages.map((message, index) => (
                         <div key={index} className={`mb-4  ${message.role === "user" ? "text-right" : "text-left"}`}>
-                            <div className={`inline-block text-wrap text-sm ${message.role === "user" ? "bg-primary-700 text-muted rounded-t-xl rounded-l-xl w-max max-w-full" : "text-gray-300  w-max max-w-[350px]"}`}>
+                            <div className={`inline-block text-wrap text-sm ${message.role === "user" ? "bg-primary-700 text-muted rounded-t-xl rounded-l-xl w-max max-w-full" : "text-gray-300  w-max md:max-w-[350px] max-w-dvw"}`}>
                                 {message.role === "user" && (
                                     <div className="flex justify-end items-center">
                                         <ReactMarkdown className="p-2 text-wrap break-words whitespace-pre-wrap"  >
