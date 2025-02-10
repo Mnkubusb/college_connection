@@ -14,7 +14,8 @@ const Chat = () => {
 
     const { messages, input, handleSubmit, handleInputChange, isLoading, stop, reload } = useChat();
     const scrollRef = useRef<HTMLDivElement>(null);
-
+    console.log(messages);
+    
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);

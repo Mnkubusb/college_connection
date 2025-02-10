@@ -23,14 +23,12 @@ const Markdown = ({ content }: MarkdownProps) => {
         remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
         rehypePlugins={[rehypeRaw]}
         components={{
-          h1: ({ children }) => <h1 className="text-2xl font-bold mt-4 mb-2">{children}</h1>,
-          h2: ({ children }) => <h2 className="text-xl font-semibold mt-3 mb-2">{children}</h2>,
-          h3: ({ children }) => <h3 className="text-lg font-medium mt-3 mb-2">{children}</h3>,
+          strong: ({ children }) => <strong className="text-white font-semibold text-medium">{children}</strong>,
           code({ node, className, children, ...rest }) {
             const match = /language-(\w+)/.exec(className || "");
             return match ? (
-              <div className="my-4 bg-[#1E1E1E] rounded-md">
-                <div className="flex justify-between items-center bg-gray-800 p-2 rounded-t-md">
+              <div className="my-4 bg-[#1E1E1E] rounded-md scroll">
+                <div className="flex justify-between items-center bg-[#1E1E1E] p-2 rounded-t-md border-b-2">
                   <span className="text-white/60 text-sm">{match[1]}</span>
                   <button
                     className="text-sm text-white/60 hover:text-white flex justify-center items-center gap-1"
@@ -57,7 +55,7 @@ const Markdown = ({ content }: MarkdownProps) => {
                 </SyntaxHighlighter>
               </div>
             ) : (
-              <code className="bg-gray-700 px-1 py-0.5 rounded text-white text-xs break-words">
+              <code className=" bg-zinc-700 px-2 py-0.5 rounded text-white text-xs break-words">
                 {children}
               </code>
             );
