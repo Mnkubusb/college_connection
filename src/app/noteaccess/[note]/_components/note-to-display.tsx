@@ -9,8 +9,8 @@ interface NotesListProps{
 }
 export const NotesListDisplay = ( { items }:NotesListProps) =>{
     return(
-        <div className="my-4 h-full w-full">
-            <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
+        <div className="sm:my-0 my-5 h-full w-full">
+            <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4 pb-20">
             {items.map((item)=>(
                 <NoteListCard 
                    key={item.id}
