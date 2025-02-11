@@ -16,8 +16,6 @@ import { ExtendedUser } from "../../next-auth";
 import { getDailyCoins } from "@/actions/daily-coins";
 import toast from "react-hot-toast";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
-import { Star } from "lucide-react";
-import { user } from "@nextui-org/theme";
 
 
 interface UserProps {
@@ -69,7 +67,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
 
     return (
         <MantineProvider>
-            <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 border-r sm:mx-3 w-full h-full">
+            <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 border-r sm:mx-3 w-vw h-full">
                 <div className="w-full h-full sm:h-[calc(100vh-60px)] border-x flex flex-col overflow-auto scroll scroll-smooth items-center py-2 gap-2 pb-16 sm:pb-0">
                     {userProfiles.map((profile, index) => (
                         <div

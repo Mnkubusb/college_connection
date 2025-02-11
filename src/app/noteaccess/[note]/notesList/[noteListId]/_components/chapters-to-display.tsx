@@ -39,6 +39,11 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
                             </span>
                         </div>
                     ))}
+                    {chapters.length === 0 && (
+                        <div className="w-full h-full flex justify-center items-center">
+                            No chapters here
+                        </div>
+                    )}
                 </div>
             </div>
             <div className={cn("md:basis-[70%] md:mr-3 border-x block w-full lg:relative absolute h-full", isMobileView ? "block" : "hidden")}>
@@ -46,7 +51,7 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
                     <IoClose size={20} />
                 </Button>
                 <div className="w-full h-full overflow-hidden">
-                    <PDFViewer url={items.chapters[isActive].fileUrl as string} />
+                    <PDFViewer url={items.chapters[isActive].fileUrl as string || " "} />
                 </div>
                 {/* <object data={items.chapters[isActive].fileUrl as string} type="application/pdf" className="w-full h-full">
                     <iframe src={`https://docs.google.com/gview?url=${items.chapters[isActive].fileUrl}&embedded=true`} className="w-full h-full"></iframe>

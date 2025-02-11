@@ -36,7 +36,7 @@ const ContactPage = () => {
                     <p className="text-center md:text-large md:px-0 px-2 text-base font-geist text-muted-foreground" >
                         We&apos;re here to help you with any questions or concerns you may have.
                     </p>
-                    <Badge className="mt-4 !py-1 rounded-full" variant={"secondary"} >
+                    <Badge className="mt-4 !py-1 rounded-full" variant={"outline"} >
                         <p className="text-center uppercase">
                             Talk to US
                         </p>

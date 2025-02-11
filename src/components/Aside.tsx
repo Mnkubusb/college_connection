@@ -18,6 +18,7 @@ import { usePathname } from "next/navigation";
 import { useCurrentUser } from "@/hooks/get-current-user";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import Link from "next/link";
+import { Separator } from "./ui/separator";
 
 const NoteEditIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -96,7 +97,7 @@ const Aside = () => {
   const router = useRouter();
   return (
     <aside className="relative z-[999] lg:z-[100] flex sm:h-dvh h-[70px] flex-col sm:border-r w-full sm:w-max bg-background">
-      <div className="p-2 sm:w-[52px] sm:h-[52px] w-[60px] h-[60px] hidden bg-background sm:border-b-0 border-b sm:flex justify-center items-center">
+      <div className="sm:p-2 sm:w-[52px] sm:h-[52px] w-[60px] h-[60px] hidden bg-background sm:border-b-0 border-b sm:flex justify-center items-center">
         <Link href={"/"} className="flex items-center justify-center">
           <Button
             variant="ghost"
@@ -211,7 +212,7 @@ const Aside = () => {
             </TooltipContent>
           </Tooltip>
         </nav>
-        <nav className="sm:mt-auto grid sm:gap-1 sm:p-2">
+        <nav className="sm:mt-auto grid sm:gap-1 sm:p-2 sm:border-t-1">
           <Tooltip>
             <TooltipTrigger asChild>
               <Link href="/about">

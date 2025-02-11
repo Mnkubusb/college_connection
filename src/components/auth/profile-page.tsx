@@ -6,10 +6,10 @@ import { Button } from "../ui/button";
 import { FaGithub, FaInstagram, FaLinkedin, FaRegStar, FaTwitter } from "react-icons/fa";
 import { RiTwitterXFill } from "react-icons/ri";
 import { Profile } from "@prisma/client";
-import { Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import AnimatedGridPattern from "../ui/animated-grid-pattern";
 import Link from "next/link";
+import { InteractiveHoverButton } from "../magicui/interactive-hover-button";
 
 
 interface UserProps {
@@ -26,12 +26,12 @@ const ProfilePage = ({ user, profile }: UserProps) => {
         <div className="flex h-full sm:mx-3 sm:border-x flex-col w-full">
             <div className="w-full h-full relative">
                 <div className="div">
-                    <Button onClick={() => {
+                    <InteractiveHoverButton onClick={() => {
                         router.push("/settings")
-                    }} variant={"outline"} className="absolute gap-1 top-5 right-6 z-40 cursor-pointer dark:bg-black rounded-full flex justify-center items-center" >
-                        <Pencil size={14} />
+                    }} className="absolute top-5 right-6 z-40 cursor-pointer dark:bg-black rounded-full " >
+                        {/* <Pencil size={14} /> */}
                         Edit
-                    </Button>
+                    </InteractiveHoverButton>
                     <div className="flex justify-center items-center sm:h-[200px] h-[150px] sm:w-full relative">
                         <div className="dark:bg-gradient-to-r from-slate-900 to-slate-700 w-full h-full" >
                             <AnimatedGridPattern />
@@ -123,7 +123,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                 <div className="h-6 sm:text-md text-xs rounded-xl font-sans text-gray-400 font-medium w-max">
                                     Skills
                                 </div>
-                                <div className="text-xl flex flex-wrap gap-2 w-full">
+                                <div className="text-xl flex flex-wrap gap-2">
                                     {userProfile?.skills.map((skill, index) => (
                                         <Badge key={index} variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center " ><FaRegStar />{skill}</Badge>
                                     ))
