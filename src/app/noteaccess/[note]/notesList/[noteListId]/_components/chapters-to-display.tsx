@@ -31,7 +31,7 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
             <div className="md:basis-[30%] md:ml-3 border-x w-full">
                 <div className="flex flex-col gap-y-2 mt-4">
                     {chapters.map((chapter, index) => (
-                        <div key={chapter.id} className="flex gap-2 cursor-pointer justify-start w-full px-4 dark:hover:bg-gray-800 hover:bg-gray-400 shadow-large dark:shadow-slate-100 h-16 items-center "
+                        <div key={chapter.id} className="flex gap-2 cursor-pointer justify-start w-full px-4 dark:hover:bg-gray-800 hover:bg-gray-400 shadow-large dark:shadow-slate-100 h-16 items-center"
                             onClick={() => handleResize(index)}>
                             <File size={20} />
                             <span className="text-md mt-1">

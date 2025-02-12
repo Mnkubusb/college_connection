@@ -3,16 +3,16 @@ const database = new PrismaClient();
 
 async function seeding(){
 
-    const categoryName = "Sem 1";
+    const categoryName = "Sem 2";
     const notesData = [
         {
             note: "End Sem PyQs",
             notes: [
-                { title:"Chemistry PyQs" },
-                { title:"Maths(M1) PyQs" },
-                { title:"BCEM PyQs" },
-                { title:"English PyQs" },
-                { title:"PMPS PyQs" },
+                { title:"Physics PyQs" },
+                { title:"Maths(M2) PyQs" },
+                { title:"BEEE PyQs" },
+                { title:"ENGD PyQs" },
+                { title:"FMC PyQs" },
             ]
         }
     ];
