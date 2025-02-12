@@ -175,21 +175,21 @@ const Aside = () => {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link href="/contact">
+              <Link href="/about">
                 <Button
                   variant="ghost"
                   size="icon"
                   className={clsx("sm:rounded-lg rounded-full w-12 h-12 sm:w-9 sm:h-9 ", {
-                    "bg-accent": pathname === "/contact",
+                    "bg-accent": pathname === "/about",
                   })}
-                  aria-label="Contact us"
+                  aria-label="About us"
                 >
-                  <MdContactPage className="sm:size-4 size-7" />
+                  <InformationCircleIcon className="sm:size-4 size-7 fill-white" />
                 </Button>
               </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5} className="sm:flex hidden">
-              Contact us
+              About us
             </TooltipContent>
           </Tooltip>
           <Tooltip>
@@ -215,21 +215,21 @@ const Aside = () => {
         <nav className="sm:mt-auto grid sm:gap-1 sm:p-2 sm:border-t-1">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link href="/about">
+              <Link href="/contact">
                 <Button
                   variant="ghost"
                   size="icon"
                   className={clsx("mt-auto sm:rounded-lg rounded-full sm:flex hidden w-12 h-12 sm:w-9 sm:h-9", {
-                    "bg-accent": pathname === "/about",
+                    "bg-accent": pathname === "/contact",
                   })}
-                  aria-label="About"
-                  onClick={() => router.push("/about")} >
-                  <InformationCircleIcon className="size-5 fill-white" />
+                  aria-label="contact"
+                  onClick={() => router.push("/contact")} >
+                  <MdContactPage className="size-5" />
                 </Button>
               </Link>
             </TooltipTrigger>
             <TooltipContent side="right" sideOffset={5}>
-              About
+              Contact us
             </TooltipContent>
           </Tooltip>
           <Tooltip >
