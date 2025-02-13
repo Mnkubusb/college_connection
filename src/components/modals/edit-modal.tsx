@@ -2,12 +2,11 @@
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogDescription, DialogTitle } from "../ui/dialog";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { upload } from "@/actions/upload";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
 import { FileUpload } from "../ui/file-upload";
-import axios from "axios";
+import { getSignedURL, updateDb } from "@/actions/s3-upload";
 
 interface EditModalProps {
     children: React.ReactNode;
@@ -18,52 +17,61 @@ interface EditModalProps {
 export const EditModal = ({ children, noteListId , noteId }: EditModalProps & {}) => {
 
     const router = useRouter();
-    const [Files, setFiles] = useState<File[]>();
-    // const [isPending, startTransition] = useTransition();
-    const [ isLoading , setIsLoading ] = useState(false)
-
-
+    const [files, setFiles] = useState<File[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isOpen , setIsOpen ] = useState(true);
 
     const onUpload = async () => {
-        if (!Files || Files.length === 0) {
-            toast.error("Please select files to upload")
+        if (!files.length) {
+            toast.error("No files selected");
+            return;
         }
-        const formData = new FormData();
-        Files?.forEach((file) => formData.append("files", file));
+
+        setIsLoading(true);
 
         try {
-            setIsLoading(true)
-            const result = await axios.post(`/api/notes/${noteId}/notesList/${noteListId}/upload`, formData, { headers: { "Content-Type": "multipart/form-data" } });
-            if (result.status === 200) {
-                toast.success("Chapters uploaded successfully");
-                router.refresh();
-            }
-            if(result.status === 413){
-                toast.error("File size is too large")
-                router.refresh();
-            }
-            
-        } catch (error) {
-            console.log(error , "Something went wrong");
-            toast.error("Something went wrong");
-        }finally{
-            setIsLoading(false)
-        }
+            await Promise.all(files.map(async (file) => {
+                const computeSHA256 = async (file : File) => {
+                    const buffer = Buffer.from(await file.arrayBuffer());
+                    const hash = await crypto.subtle.digest("sha-256", buffer);
+                    return Array.from(new Uint8Array(hash)).map((byte) => byte.toString(16).padStart(2, "0")).join("");
+                }
 
-        // startTransition(() => {
-        //     upload(noteListId, formData).then((data) => {
-        //         if (data?.error) {
-        //             toast.error(data.error)
-        //         }
-        //         if (data?.success) {
-        //             toast.success(data.success)
-        //             router.refresh();
-        //         }
-        //     })
-        // })
-    }
+                const checksum = await computeSHA256(file);
+                const signedUrl = await getSignedURL(file.type, file.name , file.size, checksum);
+                if(signedUrl.error){
+                    toast.error(signedUrl.error);   
+                }
+                if(!signedUrl.success){return}
+                const url = signedUrl.success.url;
+                console.log(url);   
+                const response = await fetch( url, {
+                    method: "PUT",
+                    body: file,
+                    headers: {
+                        "Content-Type": file.type,
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to upload ${file.name}` , { cause: response });
+                }
+                await updateDb({ name: file.name, notesListId: noteListId, signedUrl: url });
+                
+            }));
+            toast.success("Files uploaded successfully");
+            setIsOpen(false);
+            router.refresh();
+        } catch (error) {
+            console.error("Error uploading files", error);
+            toast.error("Error uploading files");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
-        <Dialog >
+        <Dialog open={isOpen} onOpenChange={setIsOpen} >
             <DialogTrigger asChild>
                 {children}
             </DialogTrigger>

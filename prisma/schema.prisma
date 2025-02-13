@@ -144,6 +144,7 @@ model NotesList{
 
 model Chapters {
   id String @id @default(cuid())
+  userId  String?
   title String @db.Text
   fileUrl String?  @db.Text
   position Int
