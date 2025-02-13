@@ -7,17 +7,20 @@ import { useState, useTransition } from "react";
 import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
 import { FileUpload } from "../ui/file-upload";
+import axios from "axios";
 
 interface EditModalProps {
     children: React.ReactNode;
     noteListId: string;
+    noteId : string;
 }
 
-export const EditModal = ({ children, noteListId }: EditModalProps & {}) => {
+export const EditModal = ({ children, noteListId , noteId }: EditModalProps & {}) => {
 
     const router = useRouter();
     const [Files, setFiles] = useState<File[]>();
-    const [isPending, startTransition] = useTransition();
+    // const [isPending, startTransition] = useTransition();
+    const [ isLoading , setIsLoading ] = useState(false)
 
 
 
@@ -27,17 +30,33 @@ export const EditModal = ({ children, noteListId }: EditModalProps & {}) => {
         }
         const formData = new FormData();
         Files?.forEach((file) => formData.append("files", file));
-        startTransition(() => {
-            upload(noteListId, formData).then((data) => {
-                if (data?.error) {
-                    toast.error(data.error)
-                }
-                if (data?.success) {
-                    toast.success(data.success)
-                    router.refresh();
-                }
-            })
-        })
+
+        try {
+            setIsLoading(true)
+            const result = await axios.post(`/api/notes/${noteId}/notesList/${noteListId}/upload`, formData, { headers: { "Content-Type": "multipart/form-data" } });
+            if (result.status === 200) {
+                toast.success("Chapters uploaded successfully");
+                router.refresh();
+            }
+            
+        } catch (error) {
+            console.log(error , "Something went wrong");
+            toast.error("Something went wrong");
+        }finally{
+            setIsLoading(false)
+        }
+
+        // startTransition(() => {
+        //     upload(noteListId, formData).then((data) => {
+        //         if (data?.error) {
+        //             toast.error(data.error)
+        //         }
+        //         if (data?.success) {
+        //             toast.success(data.success)
+        //             router.refresh();
+        //         }
+        //     })
+        // })
     }
     return (
         <Dialog >
@@ -53,8 +72,8 @@ export const EditModal = ({ children, noteListId }: EditModalProps & {}) => {
                 </DialogHeader>
                     <FileUpload onChange={(files) => setFiles(files)} />
                 <DialogFooter>
-                    <Button disabled={isPending} onClick={onUpload} >
-                        {isPending && (
+                    <Button disabled={isLoading} onClick={onUpload} >
+                        {isLoading && (
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         )}
                         Save changes

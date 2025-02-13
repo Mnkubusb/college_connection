@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
     try {
+        
         console.log("Inside Notes Route");
         const user = await currentUser();
         const{ title }= await req.json();

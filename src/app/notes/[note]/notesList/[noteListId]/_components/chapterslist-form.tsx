@@ -74,7 +74,7 @@ export const ChaptersListForm = ({ initialData, noteId, noteListId }: ChaptersLi
             )}
             <div className="font-medium flex items-center justify-between">
                 Create a Unit
-                <EditModal noteListId={noteListId}>
+                <EditModal noteListId={noteListId} noteId={noteId} >
                     <Button variant={"ghost"} onClick={toggleEdit}>
                         <PlusCircle className="mr-2 h-4 w-4" />
                         Add a Chapter/Unit
