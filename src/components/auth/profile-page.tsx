@@ -40,7 +40,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                 </div>
                 <div className="flex sm:flex-row flex-col sm:px-10 sm:pt-10 px-7 sm:bottom-[7rem] bottom-14 relative gap-6">
                     <ProfilePic image={userProfile?.image as string} className="w-1/4" />
-                    <div className="flex flex-col sm:mt-4 gap-3 w-3/4">
+                    <div className="flex flex-col sm:mt-4 gap-3 sm:w-3/4 w-full">
                         <div className="flex flex-col sm:justify-center sm:mb-4 sm:mt-24 gap-1 sm:gap-0 w-full">
                             <div className="flex flex-col sm:flex-row justify-between w-full">
                                 <div className="flex flex-col gap-2">
@@ -123,7 +123,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                 <div className="h-6 sm:text-md text-xs rounded-xl font-sans text-gray-400 font-medium w-max">
                                     Skills
                                 </div>
-                                <div className="text-xl flex flex-wrap gap-2">
+                                <div className="text-xl flex flex-wrap gap-2 w-full">
                                     {userProfile?.skills.map((skill, index) => (
                                         <Badge key={index} variant={"outline"} className="mr-2 bg-zinc-600/20 rounded-full h-8 px-4 flex gap-1 justify-center items-center " ><FaRegStar />{skill}</Badge>
                                     ))

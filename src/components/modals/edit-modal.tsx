@@ -38,6 +38,10 @@ export const EditModal = ({ children, noteListId , noteId }: EditModalProps & {}
                 toast.success("Chapters uploaded successfully");
                 router.refresh();
             }
+            if(result.status === 413){
+                toast.error("File size is too large")
+                router.refresh();
+            }
             
         } catch (error) {
             console.log(error , "Something went wrong");

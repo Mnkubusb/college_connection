@@ -287,7 +287,7 @@ export default function OnboardForm({ user }: UserProps) {
                         </PopoverTrigger>
                         <PopoverContent className="w-200px p-0" >
                           <Command>
-                            <CommandInput placeholder="Select Your Branch" className="h-8" />
+                            {/* <CommandInput placeholder="Select Your Branch" className="h-8" /> */}
                             <CommandList>
                               <CommandEmpty>No Branch found.</CommandEmpty>
                               <CommandGroup>
@@ -338,7 +338,7 @@ export default function OnboardForm({ user }: UserProps) {
                         </PopoverTrigger>
                         <PopoverContent className="w-200px p-0 z-[100]" >
                           <Command>
-                            <CommandInput placeholder="Select Your Batch" className="h-8" />
+                            {/* <CommandInput placeholder="Select Your Batch" className="h-8" /> */}
                             <CommandList>
                               <CommandEmpty>No results</CommandEmpty>
                               <CommandGroup>
