@@ -19,7 +19,7 @@ export const EditModal = ({ children, noteListId , noteId }: EditModalProps & {}
     const router = useRouter();
     const [files, setFiles] = useState<File[]>([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [isOpen , setIsOpen ] = useState(true);
+    const [isOpen , setIsOpen ] = useState(false);
 
     const onUpload = async () => {
         if (!files.length) {
