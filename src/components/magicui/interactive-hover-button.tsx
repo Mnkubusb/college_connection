@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Pencil1Icon } from "@radix-ui/react-icons";
+import { PencilIcon } from "lucide-react";
 
 
 interface InteractiveHoverButtonProps
@@ -27,7 +28,7 @@ export const InteractiveHoverButton = React.forwardRef<
       </div>
       <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-primary-foreground opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100">
         <span>{children}</span>
-        <Pencil1Icon/>
+        <PencilIcon className="h-4 w-4"/>
       </div>
     </button>
   );

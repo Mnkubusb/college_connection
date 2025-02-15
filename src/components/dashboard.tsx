@@ -65,6 +65,8 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
         setisActive(index);
     };
 
+    const is100 = users[isActive]?.coins === 100;
+
     return (
         <MantineProvider>
             <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 border-r sm:mx-3 w-vw h-full">
@@ -83,6 +85,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                 Skills={profile.wannabe as string}
                                 isAdmin={isAdmin}
                                 email={users.find(user => user.id === profile.userId)?.email as string}
+                                Coins={users.find(user => user.id === profile.userId)?.coins as number}
                             />
                         </div>
                     ))}
@@ -124,12 +127,17 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                         </div>
                                         <div className="flex sm:gap-1 gap-3 sm:flex-row flex-col sm:mt-0 mt-3 ">
                                             <div className="flex gap-1 mr-1">
-                                                {userProfiles[isActive].coins as number > 1000 && <Image src="/dokkan-battle-top.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
-                                                {userProfiles[isActive].coins as number > 100 && <Image src="/vegeta-super.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
-                                                {userProfiles[isActive].coins as number > 0 && <Image src="/dbz-gif.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 " />}
-                                                <div className="flex bg-[url('/blank-tag-png-9238.png')] rounded-full h-10 w-10 p-[6px] mb-2 bg-cover bg-no-repeat bg-center items-center justify-center">
+                                                {userProfiles[isActive].coins as number === 9000 && <Image src="/crown.png" width={50} height={50} alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
+                                                {userProfiles[isActive].coins as number > 1000 && <Image src="/diamond.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
+                                                {userProfiles[isActive].coins as number > 100 && <Image src="/sparkle.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
+                                                {userProfiles[isActive].coins as number > 3 && <Image src="/fire.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 " />}
+                                                {is100? (
+                                                    <Image src="/100.gif" alt="100" width={50} height={50} className="w-8 h-8" />
+                                                ):(
+                                                <Badge variant={"outline"} className="flex rounded-full h-8 w-8 p-[6px] items-center justify-center">
                                                     {userProfiles[isActive].coins}
-                                                </div>
+                                                </Badge>
+                                                )}
                                             </div>
                                             <div className="flex gap-1">
                                             <Button variant={"outline"} className=" rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">

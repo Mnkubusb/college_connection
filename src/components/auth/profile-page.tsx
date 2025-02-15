@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import AnimatedGridPattern from "../ui/animated-grid-pattern";
 import Link from "next/link";
 import { InteractiveHoverButton } from "../magicui/interactive-hover-button";
+import Image from "next/image";
 
 
 interface UserProps {
@@ -21,6 +22,8 @@ const ProfilePage = ({ user, profile }: UserProps) => {
 
     const router = useRouter();
     const userProfile = profile?.find((profile) => profile.userId === user?.id);
+
+    const is100 = user?.coins === 100;
 
     return (
         <div className="flex h-full sm:mx-3 sm:border-x flex-col w-full">
@@ -58,12 +61,17 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                 </div>
                                 <div className="flex sm:gap-1 gap-3 sm:flex-row flex-col sm:mt-0 mt-3 ">
                                     <div className="flex gap-1 mr-1">
-                                        {user?.coins as number > 1000 && <img src="/dokkan-battle-top.gif" alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
-                                        {user?.coins as number > 100 && <img src="/vegeta-super.gif" alt="vegeta" className="w-8 h-8" />}
-                                        {user?.coins as number > 0 && <img src="/dbz-gif.gif" alt="vegeta" className="w-8 h-8" />}
-                                        <div className="flex bg-[url('/pngwing.png')] rounded-full h-8 w-8 p-[6px] bg-cover bg-no-repeat bg-center items-center justify-center">
-                                            {user?.coins}
-                                        </div>
+                                        {user?.coins as number === 9000 && <Image src="/crown.png" width={50} height={50} alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
+                                        {user?.coins as number > 1000 && <Image src="/diamond.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
+                                        {user?.coins as number > 100 && <Image src="/sparkle.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
+                                        {user?.coins as number > 3 && <Image src="/fire.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 " />}
+                                        {is100 ? (
+                                            <Image src="/100.gif" alt="100" width={50} height={50} className="w-8 h-8" />
+                                        ) : (
+                                            <Badge variant={"outline"} className="flex rounded-full h-8 w-8 p-[6px] items-center justify-center">
+                                                {user?.coins}
+                                            </Badge>
+                                        )}
                                     </div>
                                     <div className="flex gap-1">
                                         <Button variant={"outline"} className="rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
@@ -142,7 +150,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                     <div className="h-[1px] sm:w-[95%] w-full bg-slate-600"></div>
                     <div className=" sm:px-10 ">
                         <p className=" w-full sm:text-lg text-md font-josefin font-light relative pt-2 text-wrap flex justify-start items-start">
-                            {userProfile?.bio || "Nothing to Show" }
+                            {userProfile?.bio || "Nothing to Show"}
                         </p>
                     </div>
                 </div>
