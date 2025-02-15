@@ -54,22 +54,20 @@ const ProfileView = (
           <div className="flex gap-2">
             <div className="h-[18px] text-xs rounded-xl font-sans font-bold text-gray-400 pb-1 flex justify-center items-center gap-1">
               {Skills}
-              {Coins && (
-                <>
-                  <span className='flex justify-center items-center'>
-                    •
-                  </span>
-                  <span>
-                    {Coins}
-                  </span>
-                  <span className={cn(" justify-center items-center h-4 w-4", isCoin ? "flex" : "hidden")}>
-                    <Image src="/fire.gif" alt="fire" width={20} height={20} />
-                  </span>
-                  <span>
-                    <Image src="/crown.png" alt="fire" width={20} height={20} className={cn(" justify-center items-center h-4 w-4", isKing ? "flex" : "hidden")} />
-                  </span>
-                </>
-              )}
+              <div className={cn('flex gap-2', Coins >= 1 ? "flex" : "hidden")}>
+                <span className='flex justify-center items-center'>
+                  •
+                </span>
+                <span>
+                  {Coins}
+                </span>
+                <span className={cn(" justify-center items-center h-4 w-4", isCoin ? "flex" : "hidden")}>
+                  <Image src="/fire.gif" alt="fire" width={20} height={20} />
+                </span>
+                <span>
+                  <Image src="/crown.png" alt="fire" width={20} height={20} className={cn(" justify-center items-center h-4 w-4", isKing ? "flex" : "hidden")} />
+                </span>
+              </div>
             </div>
           </div>
         </div>
