@@ -102,11 +102,8 @@ const AboutPage = () => {
                 <div className="grid sm:grid-cols-3 grid-cols-2 grid-rows-3 mx-auto border border-t-0 relative">
                     <ProfileCard name="Samriddhi Chepe" designation="" imageUrl="/Sam.jpeg" className="col-span-1 row-span-1 border" />
                     <ProfileCard name="Shristi Mishra" designation="" imageUrl="/Shristi.jpeg" className="col-span-1 row-span-1 border" />
-                    <ProfileCard name="Rishabh Sinha" designation="" imageUrl="/rishu.jpg" className="col-span-1 row-span-1 border" />
                     <ProfileCard name="Deepika Gupta" designation="" imageUrl="/simple_futuristic_city_by_donotbeatme_din4ch2.jpg" className="col-span-1 row-span-1 border" />
                     <ProfileCard name="GunGun Galpat" designation="" imageUrl="/4veT.gif" className="col-span-1 row-span-1 border" />
-                    <ProfileCard name="Rastogi" designation="" imageUrl="/dbz-gif.gif" className="col-span-1 row-span-1 border" />
-                    <ProfileCard name="Rastogi" designation="" imageUrl="/dokkan-battle-top.gif" className="col-span-1 row-span-1 border" />
                 </div>
                 <div className="grid grid-cols-3 sm:grid-cols-2 grid-rows-1 mx-auto border border-t-0 relative">
                     <Plus size={32} strokeWidth={0.5} className="absolute -top-4 -right-4 z-20" />

@@ -2,10 +2,11 @@
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Chapters, NotesList } from "@prisma/client"
-import { File } from "lucide-react"
+import { File, PlusCircle } from "lucide-react"
 import { useState } from "react"
 import { IoClose } from "react-icons/io5";
 import { PDFViewer } from "@/components/PdfViewer"
+import { UserModal } from "@/components/modals/user-upload"
 
 
 type NotesWithProgressWithCategory = NotesList & {
@@ -26,33 +27,51 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
     }
     const chapters = items.chapters
 
+
+
     return (
         <div className="w-full h-full flex">
             <div className="md:basis-[30%] md:ml-3 border-x w-full">
-                <div className="flex flex-col gap-y-2 mt-4">
-                    {chapters.map((chapter, index) => (
-                        <div key={chapter.id} className="flex gap-2 cursor-pointer justify-start w-full px-4 dark:hover:bg-gray-800 hover:bg-gray-400 shadow-large dark:shadow-slate-100 h-16 items-center"
-                            onClick={() => handleResize(index)}>
-                            <File size={20} />
-                            <span className="text-md mt-1">
-                                {chapter.title}
+                <div className="flex flex-col justify-between sm:h-[calc(100%-5rem)] h-[calc(100vh-8rem)] mt-4">
+                    <div className="flex flex-col gap-y-2 ">
+                        {chapters.map((chapter, index) => (
+                            <div key={chapter.id} className="flex gap-2 cursor-pointer justify-start w-full px-4 dark:hover:bg-gray-800 hover:bg-gray-400 shadow-large dark:shadow-slate-100 h-16 items-center"
+                                onClick={() => handleResize(index)}>
+                                <File size={20} />
+                                <span className="text-md mt-1">
+                                    {chapter.title}
+                                </span>
+                            </div>
+                        ))}
+                        {chapters.length === 0 && (
+                            <div className="w-full h-full flex justify-center items-center">
+                                No chapters here
+                            </div>
+                        )}
+                    </div>
+                    <UserModal noteListId={items.id}>
+                        <div className="flex gap-2 mt-auto cursor-pointer w-full px-4 dark:hover:bg-gray-800    hover:bg-gray-400 shadow-large dark:shadow-slate-100 h-16 items-center">
+                            <PlusCircle size={20} />
+                            <span className="text-md mt-[2px]">
+                                Add your Own Notes
                             </span>
                         </div>
-                    ))}
-                    {chapters.length === 0 && (
-                        <div className="w-full h-full flex justify-center items-center">
-                            No chapters here
-                        </div>
-                    )}
+                    </UserModal>
                 </div>
             </div>
             <div className={cn("md:basis-[70%] md:mr-3 border-x block w-full lg:relative absolute h-full", isMobileView ? "block" : "hidden")}>
                 <Button onClick={() => setisMobileView(false)} className="absolute top-[10px] right-3 z-[100] rounded-full bg-black lg:hidden flex justify-center items-center" variant={"outline"} size={"icon"}>
                     <IoClose size={20} />
                 </Button>
-                <div className="w-full h-full overflow-hidden">
-                    <PDFViewer url={items.chapters[isActive].fileUrl as string || " "} />
-                </div>
+                {items.chapters[isActive]?.fileUrl ? (
+                    <div className="w-full h-full overflow-hidden">
+                        <PDFViewer url={items.chapters[isActive].fileUrl as string || " "} />
+                    </div>
+                ) : (
+                    <div className="w-full h-[60vh] flex justify-center items-center">
+                        No Notes here
+                    </div>
+                )}
                 {/* <object data={items.chapters[isActive].fileUrl as string} type="application/pdf" className="w-full h-full">
                     <iframe src={`https://docs.google.com/gview?url=${items.chapters[isActive].fileUrl}&embedded=true`} className="w-full h-full"></iframe>
                 </object> */}

@@ -124,10 +124,10 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                         </div>
                                         <div className="flex sm:gap-1 gap-3 sm:flex-row flex-col sm:mt-0 mt-3 ">
                                             <div className="flex gap-1 mr-1">
-                                                {userProfiles[isActive].coins as number > 1000 && <img src="/dokkan-battle-top.gif" alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
-                                                {userProfiles[isActive].coins as number > 100 && <img src="/vegeta-super.gif" alt="vegeta" className="w-8 h-8" />}
-                                                {userProfiles[isActive].coins as number > 0 && <img src="/dbz-gif.gif" alt="vegeta" className="w-8 h-8" />}
-                                                <div className="flex bg-[url('/pngwing.png')] rounded-full h-8 w-8 p-[6px] bg-cover bg-no-repeat bg-center items-center justify-center">
+                                                {userProfiles[isActive].coins as number > 1000 && <Image src="/dokkan-battle-top.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
+                                                {userProfiles[isActive].coins as number > 100 && <Image src="/vegeta-super.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
+                                                {userProfiles[isActive].coins as number > 0 && <Image src="/dbz-gif.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 " />}
+                                                <div className="flex bg-[url('/blank-tag-png-9238.png')] rounded-full h-10 w-10 p-[6px] mb-2 bg-cover bg-no-repeat bg-center items-center justify-center">
                                                     {userProfiles[isActive].coins}
                                                 </div>
                                             </div>

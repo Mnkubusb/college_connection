@@ -1,4 +1,5 @@
 "use server"
+import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { S3Client , PutObjectCommand ,  } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
@@ -42,6 +43,8 @@ export async function getSignedURL( type: string , name: string , size: number ,
 
 export async function updateDb( { name , notesListId , signedUrl } : { name: string , notesListId: string , signedUrl: string} ){
 
+    const user = await currentUser();
+
     const noteList = db.notesList.findUnique({
         where:{
             id: notesListId,
@@ -61,10 +64,33 @@ export async function updateDb( { name , notesListId , signedUrl } : { name: str
     
     await db.chapters.create({
         data: {
+            userId: user?.id,
             notesListId,
             title : name.split(".pdf")[0],
             position : position++,
             fileUrl: signedUrl.split("?")[0]
         }
     })
+
+    const UserUploading = await db.user.findUnique({
+        where: {
+            id: user?.id
+        }
+    })
+
+    if(!UserUploading) return{ error : "User not found"}
+
+    if(UserUploading.coins >= 9000) return{ error : "You have reached the maximum coins limit"}
+
+    await db.user.update({
+        where: {
+            id: user?.id
+        },
+        data: {
+            coins: UserUploading?.coins + 10
+        }
+    })
+
+    return { success : "You got 10 aura Points"}
+    
 }
