@@ -75,22 +75,22 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                     </div>
                                     <div className="flex gap-1">
                                         <Button variant={"outline"} className="rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
-                                            <Link href={userProfile?.insta as string || "#"}>
+                                            <Link href={userProfile?.insta as string || "#"} target="_blank">
                                                 <FaInstagram className="text-medium " />
                                             </Link>
                                         </Button>
                                         <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white  h-8 ">
-                                            <Link href={userProfile?.linkedin as string || "#"}>
+                                            <Link href={userProfile?.linkedin as string || "#"} target="_blank">
                                                 <FaLinkedin className="text-medium " />
                                             </Link>
                                         </Button>
                                         <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
-                                            <Link href={userProfile?.github as string || "#"}>
+                                            <Link href={userProfile?.github as string || "#"} target="_blank">
                                                 <FaGithub className="text-medium " />
                                             </Link>
                                         </Button>
                                         <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
-                                            <Link href={userProfile?.twitter as string || "#"}>
+                                            <Link href={userProfile?.twitter as string || "#"} target="_blank">
                                                 <RiTwitterXFill className="text-medium " />
                                             </Link>
                                         </Button>

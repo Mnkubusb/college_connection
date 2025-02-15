@@ -91,7 +91,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                     ))}
                 </div>
                 <div className={clsx(
-                    " lg:flex border-r flex-grow lg:overflow-y-hidden overflow-y-auto flex-col lg:col-span-2 bg-background absolute lg:relative w-full h-[calc(100vh-70px)] sm:h-full",
+                    " lg:flex border-r flex-grow lg:overflow-y-hidden overflow-y-auto flex-col lg:col-span-2 bg-background absolute lg:relative w-full h-full sm:h-full",
                     isMobileView ? " flex" : "hidden"
                 )}>
                     <div className="w-full overflow-auto lg:overflow-hidden scroll sm:max-h-[100vh] max-h-[80vh] scroll-smooth">
@@ -107,7 +107,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex sm:flex-row flex-col sm:px-10 sm:pt-10 px-7 sm:bottom-[7rem] bottom-14 relative gap-6 w-full">
+                        <div className="flex lg:flex-row flex-col sm:px-10 sm:pt-10 px-7 sm:bottom-[7rem] bottom-14 relative gap-6 w-full">
                             <ProfilePic image={userProfiles[isActive].image as string || ""} />
                             <div className="flex flex-col sm:mt-4 gap-3 sm:w-3/4 w-full" >
                                 <div className="flex flex-col sm:justify-center sm:mb-4 sm:mt-28 gap-1 sm:gap-0">
@@ -141,22 +141,22 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                             </div>
                                             <div className="flex gap-1">
                                             <Button variant={"outline"} className=" rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
-                                                <Link href={userProfiles[isActive].insta as string || "#"}>
+                                                <Link href={userProfiles[isActive].insta as string} target="_blank">
                                                     <FaInstagram className="text-medium " />
                                                 </Link>
                                             </Button>
                                             <Button variant={"outline"} className=" rounded-full dark:bg-black p-[6px] border-2 dark:border-white  h-8 ">
-                                                <Link href={userProfiles[isActive].linkedin as string || "#"}>
+                                                <Link href={userProfiles[isActive].linkedin as string} target="_blank">
                                                     <FaLinkedin className="text-medium " />
                                                 </Link>
                                             </Button>
                                             <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
-                                                <Link href={userProfiles[isActive].github as string || "#"}>
+                                                <Link href={userProfiles[isActive].github as string} target="_blank">
                                                     <FaGithub className="text-medium " />
                                                 </Link>
                                             </Button>
                                             <Button variant={"outline"} className=" rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
-                                                <Link href={userProfiles[isActive].twitter as string || "#"}>
+                                                <Link href={userProfiles[isActive].twitter as string } target="_blank">
                                                     <RiTwitterXFill className="text-medium " />
                                                 </Link>
                                             </Button>
@@ -166,7 +166,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                     <div className="flex gap-1 items-end justify-between sm:relative sm:-top-2 mt-2 sm:mt-0">
                                         <div className="flex gap-1 items-end">
                                             <Button variant="outline" className="rounded-[10px] dark:bg-white border-2 text-black h-8 hover:text-black dark:hover:bg-transparent dark:border-white dark:hover:text-white">
-                                                <Link href={userProfiles[isActive].linkedin ? userProfiles[isActive].linkedin as string : userProfiles[isActive].insta as string || "#"}>
+                                                <Link href={userProfiles[isActive].linkedin ? userProfiles[isActive].linkedin as string : userProfiles[isActive].insta as string || "#"} target="_blank">
                                                     <span>Message</span>
                                                 </Link>
                                             </Button>

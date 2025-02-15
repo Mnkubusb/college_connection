@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 const ProfileView = (
-  { profilePic, Name, Skills, Fallback, isAdmin , email , Coins }: {
+  { profilePic, Name, Skills, Fallback, isAdmin, email, Coins }: {
     profilePic: string,
     email?: string,
     Name: string,
@@ -21,10 +21,10 @@ const ProfileView = (
   }
 ) => {
 
-  if(Coins === undefined) Coins = 0
+  if (Coins === undefined) Coins = 0
   const isCoin = Coins >= 3 ? true : false
   const isKing = Coins >= 9000 ? true : false
-  
+
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const handleDelete = async () => {
@@ -33,12 +33,12 @@ const ProfileView = (
       await axios.delete(`/api/delete/${email}`);
       toast.success("User deleted successfully");
       router.refresh();
-  } catch (error) {
+    } catch (error) {
       console.log(error);
       toast.error("Failed to delete notes");
-  }finally{
+    } finally {
       setIsLoading(false);
-  }
+    }
   }
 
 
@@ -54,18 +54,22 @@ const ProfileView = (
           <div className="flex gap-2">
             <div className="h-[18px] text-xs rounded-xl font-sans font-bold text-gray-400 pb-1 flex justify-center items-center gap-1">
               {Skills}
-              <span className='flex justify-center items-center'>
-                •
-              </span> 
-              <span>
-               {Coins}
-              </span>
-              <span className={cn(" justify-center items-center h-4 w-4", isCoin? "flex":"hidden")}>
-                <Image src="/fire.gif" alt="fire" width={20} height={20} />
-              </span>
-              <span>
-                <Image src="/crown.png" alt="fire" width={20} height={20} className={cn(" justify-center items-center h-4 w-4", isKing? "flex":"hidden")} />
-              </span>
+              {Coins && (
+                <>
+                  <span className='flex justify-center items-center'>
+                    •
+                  </span>
+                  <span>
+                    {Coins}
+                  </span>
+                  <span className={cn(" justify-center items-center h-4 w-4", isCoin ? "flex" : "hidden")}>
+                    <Image src="/fire.gif" alt="fire" width={20} height={20} />
+                  </span>
+                  <span>
+                    <Image src="/crown.png" alt="fire" width={20} height={20} className={cn(" justify-center items-center h-4 w-4", isKing ? "flex" : "hidden")} />
+                  </span>
+                </>
+              )}
             </div>
           </div>
         </div>

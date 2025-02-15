@@ -49,7 +49,7 @@ const FeatureCard = ({ title, description, icon: Icon, className }: FeatureCardP
         <div className={"flex flex-col sm:px-10 px-5 sm:py-16 py-6 justify-center items-center sm:justify-start sm:items-start " + className}>
             <Icon className="size-10 my-5" />
             <div className="sm:text-2xl text-base font-semibold text-center sm:text-left text-neutral-500 font-geist">
-                <span className="text-white">{title}</span>
+                <span className="dark:text-white text-black">{title}</span>
                 {description}
             </div>
         </div>
@@ -66,8 +66,8 @@ const AboutPage = () => {
                         College Connections helps you connect with your college
                     </h1>
                     <p className="sm:text-xl text-base font-geist font-medium text-center mt-8 text-neutral-600">
-                        We&apos;re here to help you with any <span className="text-white">questions</span> or
-                        <span className="text-white ml-1">concerns</span> you may have.
+                        We&apos;re here to help you with any <span className="dark:text-white text-black">questions</span> or
+                        <span className="dark:text-white text-black ml-1">concerns</span> you may have.
                     </p>
                 </div>
                 <div className="grid sm:grid-cols-3 grid-cols-2 sm:grid-rows-1 grid-rows-3 mx-auto border border-t-0 relative">
@@ -99,11 +99,10 @@ const AboutPage = () => {
                         <p className="font-geist text-sm">Upload notes and stand a chance to list your name here</p>
                     </div>
                 </div>
-                <div className="grid sm:grid-cols-3 grid-cols-2 grid-rows-3 mx-auto border border-t-0 relative">
+                <div className="grid sm:grid-cols-3 grid-cols-2 mx-auto border border-t-0 relative">
                     <ProfileCard name="Samriddhi Chepe" designation="" imageUrl="/Sam.jpeg" className="col-span-1 row-span-1 border" />
                     <ProfileCard name="Shristi Mishra" designation="" imageUrl="/Shristi.jpeg" className="col-span-1 row-span-1 border" />
-                    <ProfileCard name="Deepika Gupta" designation="" imageUrl="/simple_futuristic_city_by_donotbeatme_din4ch2.jpg" className="col-span-1 row-span-1 border" />
-                    <ProfileCard name="GunGun Galpat" designation="" imageUrl="/4veT.gif" className="col-span-1 row-span-1 border" />
+                    <ProfileCard name="Deepika Gupta" designation="" imageUrl="/beach-view-with-silhouettes-coconut-trees-shades-blue_621174-1719.avif" className="col-span-1 row-span-1 border" />
                 </div>
                 <div className="grid grid-cols-3 sm:grid-cols-2 grid-rows-1 mx-auto border border-t-0 relative">
                     <Plus size={32} strokeWidth={0.5} className="absolute -top-4 -right-4 z-20" />

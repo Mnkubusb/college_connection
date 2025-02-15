@@ -26,7 +26,7 @@ const LinkPage = () => {
         },
         {
             name: "CSVTU ,Bhilai",
-            href: "https://csvtu.digivarsity.online/",
+            href: "https://csvtu.ac.in/",
             imageUrl: "t-logo.png"
         },
         {
@@ -34,7 +34,7 @@ const LinkPage = () => {
             href: "https://gecbsp.ac.in/?page_id=6278",
             imageUrl: "/gecbwobg.png"
         },
-       
+
     ]
 
 
@@ -45,7 +45,7 @@ const LinkPage = () => {
 
     return (
         <MantineProvider>
-            <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 border-r sm:mx-3 w-full h-full">
+            <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 z-50 sm:z-0 border-r w-full h-full">
                 <div className="w-full h-full sm:h-[calc(100vh-60px)] border-x flex flex-col overflow-auto scroll scroll-smooth items-center py-2 gap-2 pb-16 sm:pb-0">
                     {links.map((link, index) => (
                         <div
@@ -77,7 +77,7 @@ const LinkPage = () => {
                         </div>
                     </div>
                     <div className="size-full overflow-auto scroll scroll-smooth">
-                        <embed src={links[isActive].href} style={{ width: "100%", height: "100%" }} className="size-full scroll scroll-smooth"></embed>
+                        <iframe src={links[isActive].href} style={{ width: "100%", height: "100%" }} className="size-full scroll scroll-smooth"></iframe>
                     </div>
                 </div>
             </main>
