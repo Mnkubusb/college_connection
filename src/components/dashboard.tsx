@@ -66,6 +66,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
     };
 
     const is100 = users[isActive]?.coins === 100;
+    console.log(is100)
 
     return (
         <MantineProvider>
@@ -126,45 +127,42 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                             </div>
                                         </div>
                                         <div className="flex sm:gap-1 gap-3 sm:flex-row flex-col sm:mt-0 mt-3 ">
-                                            <div className="flex gap-1 mr-1">
-                                                {userProfiles[isActive].coins as number === 9000 && <Image src="/crown.png" width={50} height={50} alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
-                                                {userProfiles[isActive].coins as number > 1000 && <Image src="/diamond.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
-                                                {userProfiles[isActive].coins as number > 100 && <Image src="/sparkle.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
-                                                {userProfiles[isActive].coins as number > 3 && <Image src="/fire.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 " />}
-                                                {is100? (
+                                            {/* <div className="flex gap-1 mr-1">
+                                                {userProfiles[isActive].coins as number > 3 && <Image src="/sparkle.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
+                                                {is100 ? (
                                                     <Image src="/100.gif" alt="100" width={50} height={50} className="w-8 h-8" />
-                                                ):(
-                                                <Badge variant={"outline"} className="flex rounded-full h-8 w-8 p-[6px] items-center justify-center">
-                                                    {userProfiles[isActive].coins}
-                                                </Badge>
+                                                ) : (
+                                                    <div  className="flex rounded-full h-8 w-max p-[6px] items-center justify-center">
+                                                        Login Streak {userProfiles[isActive].coins}
+                                                    </div>
                                                 )}
-                                            </div>
+                                            </div> */}
                                             <div className="flex gap-1">
-                                            <Button variant={"outline"} className=" rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
-                                                <Link href={userProfiles[isActive].insta as string || "#"} target="_blank">
-                                                    <FaInstagram className="text-medium " />
-                                                </Link>
-                                            </Button>
-                                            <Button variant={"outline"} className=" rounded-full dark:bg-black p-[6px] border-2 dark:border-white  h-8 ">
-                                                <Link href={userProfiles[isActive].linkedin as string || "#"} target="_blank">
-                                                    <FaLinkedin className="text-medium " />
-                                                </Link>
-                                            </Button>
-                                            <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
-                                                <Link href={userProfiles[isActive].github as string || "#"} target="_blank">
-                                                    <FaGithub className="text-medium " />
-                                                </Link>
-                                            </Button>
-                                            <Button variant={"outline"} className=" rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
-                                                <Link href={userProfiles[isActive].twitter as string || "#" } target="_blank">
-                                                    <RiTwitterXFill className="text-medium " />
-                                                </Link>
-                                            </Button>
+                                                <Button variant={"outline"} className=" rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
+                                                    <Link href={userProfiles[isActive].insta as string || "#"} target="_blank">
+                                                        <FaInstagram className="text-medium " />
+                                                    </Link>
+                                                </Button>
+                                                <Button variant={"outline"} className=" rounded-full dark:bg-black p-[6px] border-2 dark:border-white  h-8 ">
+                                                    <Link href={userProfiles[isActive].linkedin as string || "#"} target="_blank">
+                                                        <FaLinkedin className="text-medium " />
+                                                    </Link>
+                                                </Button>
+                                                <Button variant={"outline"} className="rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
+                                                    <Link href={userProfiles[isActive].github as string || "#"} target="_blank">
+                                                        <FaGithub className="text-medium " />
+                                                    </Link>
+                                                </Button>
+                                                <Button variant={"outline"} className=" rounded-full dark:bg-black p-[6px] border-2 dark:border-white h-8 ">
+                                                    <Link href={userProfiles[isActive].twitter as string || "#"} target="_blank">
+                                                        <RiTwitterXFill className="text-medium " />
+                                                    </Link>
+                                                </Button>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="flex gap-1 items-end justify-between sm:relative sm:-top-2 mt-2 sm:mt-0">
-                                        <div className="flex gap-1 items-end">
+                                        <div className="flex gap-2 items-end justify-center">
                                             <Button variant="outline" className="rounded-[10px] dark:bg-white border-2 text-black h-8 hover:text-black dark:hover:bg-transparent dark:border-white dark:hover:text-white">
                                                 <Link href={userProfiles[isActive].linkedin ? userProfiles[isActive].linkedin as string : userProfiles[isActive].insta as string || "#"} target="_blank">
                                                     <span>Message</span>
@@ -173,6 +171,16 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                             <Button variant="outline" className=" rounded-[10px] dark:bg-black border-2 dark:border-white h-8 bg-black text-white">
                                                 <span>Share</span>
                                             </Button>
+                                            {userProfiles[isActive].coins ? (
+                                                <div className="flex gap-1 justify-center items-center font-geist font-semibold " >
+                                                    {userProfiles[isActive].coins as number > 3 &&
+                                                        <Image src="/fire.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
+                                                    {userProfiles[isActive].coins} AP
+                                                </div>
+                                            ) : (
+                                                <>
+                                                </>
+                                            )}
                                         </div>
                                         <div className="sm:flex gap-7 hidden ">
                                             <div className="flex-col flex" >

@@ -60,7 +60,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                     </div>
                                 </div>
                                 <div className="flex sm:gap-1 gap-3 sm:flex-row flex-col sm:mt-0 mt-3 ">
-                                    <div className="flex gap-1 mr-1">
+                                    {/* <div className="flex gap-1 mr-1">
                                         {user?.coins as number === 9000 && <Image src="/crown.png" width={50} height={50} alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
                                         {user?.coins as number > 1000 && <Image src="/diamond.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
                                         {user?.coins as number > 100 && <Image src="/sparkle.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
@@ -72,7 +72,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                                 {user?.coins}
                                             </Badge>
                                         )}
-                                    </div>
+                                    </div> */}
                                     <div className="flex gap-1">
                                         <Button variant={"outline"} className="rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
                                             <Link href={userProfile?.insta as string || "#"} target="_blank">
@@ -107,6 +107,16 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                     <Button variant="outline" className="rounded-[10px]  border-2 dark:border-white h-8">
                                         <span>Share</span>
                                     </Button>
+                                    {user?.coins ? (
+                                        <div className="flex gap-1 justify-center items-center font-geist font-semibold " >
+                                            {user?.coins as number > 3 &&
+                                                <Image src="/fire.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
+                                            {user?.coins} AP
+                                        </div>
+                                    ) : (
+                                        <>
+                                        </>
+                                    )}
                                 </div>
                                 <div className="sm:flex gap-7 hidden ">
                                     <div className="flex-col flex" >

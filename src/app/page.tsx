@@ -15,7 +15,11 @@ const Home = async () => {
   const users = await getUsers({});
   if (!users) return null
 
-  const profiles = await db.profile.findMany({});
+  const profiles = await db.profile.findMany({
+    orderBy: {
+      coins: 'desc'
+    }
+  });
 
   revalidatePath('/');
 

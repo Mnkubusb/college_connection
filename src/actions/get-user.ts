@@ -1,3 +1,4 @@
+import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
 
 interface GetUsers{
@@ -8,14 +9,19 @@ export const getUsers = async ({
     name
 }:GetUsers )=>{
     try {
+
+        const CurrentUser = await currentUser();
         const users = await db.user.findMany({
             where:{
                 name,
                 emailVerified :{
                     not: null
+                },
+                NOT:{
+                    id : CurrentUser?.id
                 }
             },orderBy:{
-                createdAt:"desc"
+                coins:"desc"
             }
         })
         
