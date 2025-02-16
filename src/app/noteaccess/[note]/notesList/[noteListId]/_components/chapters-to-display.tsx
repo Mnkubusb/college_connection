@@ -30,8 +30,8 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
 
 
     return (
-        <div className="w-full h-full flex">
-            <div className="md:basis-[30%] md:ml-3 border-x w-full">
+        <div className="w-full h-full flex ">
+            <div className="md:basis-[30%] md:ml-3 border-x w-full h-full">
                 <div className="flex flex-col justify-between sm:h-[calc(100%-5rem)] h-[calc(100vh-8rem)] mt-4">
                     <div className="flex flex-col gap-y-2 ">
                         {chapters.map((chapter, index) => (
@@ -59,7 +59,7 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
                     </UserModal>
                 </div>
             </div>
-            <div className={cn("md:basis-[70%] md:mr-3 border-x block w-full lg:relative absolute h-full", isMobileView ? "block" : "hidden")}>
+            <div className={cn("md:basis-[70%] md:mt-0 mt-4 md:mr-3 border-x block w-full lg:relative absolute h-full", isMobileView ? "block" : "hidden")}>
                 <Button onClick={() => setisMobileView(false)} className="absolute top-[10px] right-3 z-[100] rounded-full bg-black lg:hidden flex justify-center items-center" variant={"outline"} size={"icon"}>
                     <IoClose size={20} />
                 </Button>

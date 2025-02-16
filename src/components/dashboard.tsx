@@ -172,7 +172,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                                                 <span>Share</span>
                                             </Button>
                                             {userProfiles[isActive].coins ? (
-                                                <div className="flex gap-1 justify-center items-center font-geist font-semibold " >
+                                                <div className="flex gap-1 justify-center items-end font-geistMono font-semibold h-8" >
                                                     {userProfiles[isActive].coins as number > 3 &&
                                                         <Image src="/fire.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
                                                     {userProfiles[isActive].coins} AP

@@ -23,7 +23,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
     const router = useRouter();
     const userProfile = profile?.find((profile) => profile.userId === user?.id);
 
-    const is100 = user?.coins === 100;
+    const is100 = user?.dailyCoins === 100;
 
     return (
         <div className="flex h-full sm:mx-3 sm:border-x flex-col w-full">
@@ -47,9 +47,16 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                         <div className="flex flex-col sm:justify-center sm:mb-4 sm:mt-24 gap-1 sm:gap-0 w-full">
                             <div className="flex flex-col sm:flex-row justify-between w-full">
                                 <div className="flex flex-col gap-2">
-                                    <h3 className="text-3xl font-sans font-bold">
-                                        {userProfile?.name}
-                                    </h3>
+                                    <div className="flex gap-2 items-center">
+                                        <h3 className="text-3xl font-sans font-bold">
+                                            {userProfile?.name}
+                                        </h3>
+                                        {user?.dailyCoins && (
+                                            <Badge variant={"default"} className="flex font-geist justify-center items-center h-6 mt-2">
+                                                {user?.dailyCoins} Day Streak
+                                            </Badge>
+                                        )}
+                                    </div>
                                     <div className="div">
                                         <h4 className="sm:text-md texts-sm font-sans font-medium sm:flex text-wrap w-72 ">
                                             {userProfile?.branch}
@@ -60,19 +67,6 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                     </div>
                                 </div>
                                 <div className="flex sm:gap-1 gap-3 sm:flex-row flex-col sm:mt-0 mt-3 ">
-                                    {/* <div className="flex gap-1 mr-1">
-                                        {user?.coins as number === 9000 && <Image src="/crown.png" width={50} height={50} alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
-                                        {user?.coins as number > 1000 && <Image src="/diamond.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 bg-cover bg-no-repeat bg-top" />}
-                                        {user?.coins as number > 100 && <Image src="/sparkle.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
-                                        {user?.coins as number > 3 && <Image src="/fire.gif" width={50} height={50} alt="vegeta" className="w-8 h-8 " />}
-                                        {is100 ? (
-                                            <Image src="/100.gif" alt="100" width={50} height={50} className="w-8 h-8" />
-                                        ) : (
-                                            <Badge variant={"outline"} className="flex rounded-full h-8 w-8 p-[6px] items-center justify-center">
-                                                {user?.coins}
-                                            </Badge>
-                                        )}
-                                    </div> */}
                                     <div className="flex gap-1">
                                         <Button variant={"outline"} className="rounded-full p-[6px] border-2 dark:border-white h-8 items-center justify-center">
                                             <Link href={userProfile?.insta as string || "#"} target="_blank">
@@ -108,7 +102,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                         <span>Share</span>
                                     </Button>
                                     {user?.coins ? (
-                                        <div className="flex gap-1 justify-center items-center font-geist font-semibold " >
+                                        <div className="flex gap-1 justify-center items-end font-geist font-semibold " >
                                             {user?.coins as number > 3 &&
                                                 <Image src="/fire.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
                                             {user?.coins} AP

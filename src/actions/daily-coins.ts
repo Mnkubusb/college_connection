@@ -12,45 +12,53 @@ export const getDailyCoins = async () => {
             where: {
                 id: Currentuser.id
             }, select: {
-                coins: true,
+                dailyCoins: true,
                 lastLogin: true
             }
         });
 
-        const maxAura = 9000;
         const today = new Date()
         const lastLogin = user?.lastLogin;
         const shouldRecieveCoins = !lastLogin ||
             lastLogin.toDateString() !== today.toDateString()
 
-        if (user?.coins as number >= maxAura) return ({ error: "You have reached the maximum Aura points" })
-        if (shouldRecieveCoins) {
+        const isGreaterThanTommorrow = parseInt(lastLogin?.getDate()?.toString() as string) + 1 > parseInt(today.getDate().toString())
+
+        if (isGreaterThanTommorrow) {
             const updatedUser = await db.user.update({
                 where: {
                     id: Currentuser.id
                 },
                 data: {
                     lastLogin: today,
-                    coins: (user?.coins || 0) + 1
+                    dailyCoins: 1
                 }
             });
-            await db.profile.update({
-                where: {
-                    userId: Currentuser.id
-                },
-                data: {
-                    coins: (user?.coins || 0) + 1
-                }
-            })
             return {
                 coins: updatedUser?.coins,
                 lastLoginDate: updatedUser?.lastLogin,
-                success: "You got 1 Aura point for Login"
+            }
+        }
+
+        if (shouldRecieveCoins) {
+            const updatedUser = await db.user.update({
+                where: {
+                    id: Currentuser?.id
+                },
+                data: {
+                    lastLogin: today,
+                    dailyCoins: (user?.dailyCoins|| 0) + 1
+                }
+            });
+            return {
+                coins: updatedUser?.coins,
+                lastLoginDate: updatedUser?.lastLogin,
+                success: "1 coin added to your account as you logged in today"
             }
         }
 
         return {
-            coins: user?.coins,
+            coins: user?.dailyCoins,
             lastLoginDate: user?.lastLogin,
             newCoin: false,
         }

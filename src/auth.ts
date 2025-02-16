@@ -54,6 +54,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               session.user.isFirstLogin = token.isFirstLogin as boolean;
               session.user.image = token.image as string;
               session.user.coins = token.coins as number;
+              session.user.dailyCoins = token.dailyCoins as number;
             }
             return session;
           },
@@ -76,6 +77,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             token.isFirstLogin = existingUser.isFirstLogin;
             token.image = existingUser.image;
             token.coins = existingUser.coins;
+            token.dailyCoins = existingUser.dailyCoins;
              return token
         }
     },

@@ -54,7 +54,7 @@ const ProfileView = (
           <div className="flex gap-2">
             <div className="h-[18px] text-xs rounded-xl font-sans font-bold text-gray-400 pb-1 flex justify-center items-center gap-1">
               {Skills}
-              <div className={cn('flex gap-2', Coins >= 1 ? "flex" : "hidden")}>
+              <div className={cn('flex gap-1', Coins >= 1 ? "flex" : "hidden")}>
                 <span className='flex justify-center items-center'>
                   •
                 </span>

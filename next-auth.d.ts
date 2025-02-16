@@ -7,6 +7,7 @@ export type ExtendedUser = DefaultSession["user"] & {
     isOAuth : boolean;
     isFirstLogin: boolean;
     coins: number;
+    dailyCoins: number;
 };
 
 declare module "next-auth" {
