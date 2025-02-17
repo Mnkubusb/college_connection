@@ -52,7 +52,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                             {userProfile?.name}
                                         </h3>
                                         {user?.dailyCoins && (
-                                            <Badge variant={"default"} className="flex font-geist justify-center items-center h-6 mt-2">
+                                            <Badge variant={"default"} className="flex bg-gradient-to-l from-[#f59e0b] via-[#f97316] to-[#dc2626] border-none font-geist justify-center items-center h-6 mt-2 shadow-large">
                                                 {user?.dailyCoins} Day Streak
                                             </Badge>
                                         )}
@@ -102,7 +102,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                         <span>Share</span>
                                     </Button>
                                     {user?.coins ? (
-                                        <div className="flex gap-1 justify-center items-end font-geist font-semibold " >
+                                        <div className="flex gap-1 justify-center items-end font-geistMono font-semibold " >
                                             {user?.coins as number > 3 &&
                                                 <Image src="/fire.gif" width={50} height={50} alt="vegeta" className="w-8 h-8" />}
                                             {user?.coins} AP

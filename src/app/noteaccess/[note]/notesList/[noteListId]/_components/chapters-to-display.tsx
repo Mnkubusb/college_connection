@@ -27,8 +27,6 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
     }
     const chapters = items.chapters
 
-
-
     return (
         <div className="w-full h-full flex ">
             <div className="md:basis-[30%] md:ml-3 border-x w-full h-full">

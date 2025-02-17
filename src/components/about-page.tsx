@@ -8,9 +8,9 @@ interface ProfileCardProps {
     name: string;
     designation: string;
     imageUrl: string;
-    className?: string
-    href?: string
-    hrefName?: string
+    className?: string;
+    href?: string;
+    hrefName?: string;
 }
 
 const ProfileCard = ({ name, designation, imageUrl, className, href, hrefName }: ProfileCardProps) => {
@@ -25,7 +25,7 @@ const ProfileCard = ({ name, designation, imageUrl, className, href, hrefName }:
                 <h3 className="text-lg font-medium font-geist text-wrap px-3" >{name}</h3>
                 <div className="flex sm:gap-1 sm:flex-row flex-col justify-center items-center flex-wrap">
                     <p className="sm:text-sm text-xs text-muted-foreground font-geist text-wrap">{designation}</p>
-                    <a href={href} className=" font-geist sm:text-sm text-xs mt-[2px] hover:underline text-wrap">
+                    <a href={href} target="_blank" className=" font-geist sm:text-sm text-xs mt-[2px] hover:underline text-wrap">
                         {hrefName}
                     </a>
                 </div>

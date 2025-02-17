@@ -61,7 +61,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
                 confetti.onOpen();
             }
         })
-    }, [loginedUser, confetti]);
+    }, [loginedUser, confetti , update] ,);
 
     const handleClick = (index: number) => {
         setisMobileView(true);

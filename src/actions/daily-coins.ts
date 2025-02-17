@@ -22,7 +22,7 @@ export const getDailyCoins = async () => {
         const shouldRecieveCoins = !lastLogin ||
             lastLogin.toDateString() !== today.toDateString()
 
-        const isGreaterThanTommorrow = parseInt(lastLogin?.getDate()?.toString() as string) + 1 > parseInt(today.getDate().toString())
+        const isGreaterThanTommorrow = parseInt(lastLogin?.toDateString() as string) + 1 > parseInt(today.toDateString())
 
         if (isGreaterThanTommorrow) {
             const updatedUser = await db.user.update({
@@ -53,7 +53,7 @@ export const getDailyCoins = async () => {
             return {
                 coins: updatedUser?.coins,
                 lastLoginDate: updatedUser?.lastLogin,
-                success: "1 coin added to your account as you logged in today"
+                success: "1 coin added as you logged in today"
             }
         }
 
