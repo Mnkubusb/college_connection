@@ -16,6 +16,7 @@ import { ExtendedUser } from "../../next-auth";
 import { getDailyCoins } from "@/actions/daily-coins";
 import toast from "react-hot-toast";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
+import { useSession } from "next-auth/react";
 
 
 interface UserProps {
@@ -30,6 +31,7 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
 
     const confetti = useConfettiStore();
     const [isAdmin, setIsAdmin] = useState(false);
+    const { update } = useSession();
     const [isActive, setisActive] = useState(0);
     const [isMobileView, setisMobileView] = useState(false);
     const userProfiles = profiles?.filter(profile => users.some(user => user.id === profile.userId)) || []
@@ -41,8 +43,9 @@ const Dashboard = (({ users, profiles, loginedUser }: UserProps) => {
     }, [loginedUser])
 
     useEffect(() => {
-        getDailyCoins().then((data) => {
+        getDailyCoins().then( async (data) => {
             if (data?.success) {
+                await update();
                 toast(data?.success, {
                     icon: "🎉",
                     style: {
