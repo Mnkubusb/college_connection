@@ -30,7 +30,7 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
     return (
         <div className="w-full h-full flex ">
             <div className="md:basis-[30%] md:ml-3 border-x w-full h-full">
-                <div className="flex flex-col justify-between sm:h-[calc(100%-5rem)] h-[calc(100vh-8rem)] mt-4">
+                <div className="flex flex-col justify-between sm:h-[calc(100%-5rem)] h-[calc(100vh-8rem)]">
                     <div className="flex flex-col gap-y-2 ">
                         {chapters.map((chapter, index) => (
                             <div key={chapter.id} className="flex gap-2 cursor-pointer justify-start w-full px-4 dark:hover:bg-gray-800 hover:bg-gray-400 shadow-large dark:shadow-slate-100 h-16 items-center"
@@ -47,18 +47,20 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
                             </div>
                         )}
                     </div>
-                    <UserModal noteListId={items.id}>
-                        <div className="flex gap-2 mt-auto cursor-pointer w-full px-4 dark:hover:bg-gray-800    hover:bg-gray-400 shadow-large dark:shadow-slate-100 h-16 items-center">
-                            <PlusCircle size={20} />
-                            <span className="text-md mt-[2px]">
-                                Add your Own Notes
-                            </span>
-                        </div>
-                    </UserModal>
+                    <div className="w-full h-max mb-2">
+                        <UserModal noteListId={items.id}>
+                            <div className="flex gap-2 cursor-pointer w-full px-4 dark:hover:bg-gray-800    hover:bg-gray-400 shadow-large dark:shadow-slate-100 h-16 items-center">
+                                <PlusCircle size={20} />
+                                <span className="text-md mt-[2px]">
+                                    Add your Own Notes
+                                </span>
+                            </div>
+                        </UserModal>
+                    </div>
                 </div>
             </div>
-            <div className={cn("md:basis-[70%] md:mt-0 mt-4 md:mr-3 border-x block w-full lg:relative absolute h-full", isMobileView ? "block" : "hidden")}>
-                <Button onClick={() => setisMobileView(false)} className="absolute top-[10px] right-3 z-[100] rounded-full bg-black lg:hidden flex justify-center items-center" variant={"outline"} size={"icon"}>
+            <div className={cn("md:basis-[70%] md:mr-3 border-x block w-full lg:relative absolute h-full", isMobileView ? "block" : "hidden")}>
+                <Button onClick={() => setisMobileView(false)} className="absolute top-[10px] right-3 z-[100] rounded-full dark:bg-black lg:hidden flex justify-center items-center " variant={"outline"} size={"icon"} >
                     <IoClose size={20} />
                 </Button>
                 {items.chapters[isActive]?.fileUrl ? (

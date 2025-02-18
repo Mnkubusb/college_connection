@@ -14,7 +14,7 @@ export default function FileUpload( { className, onChange}: FileUploadProps) {
   return (
     <div className={cn("space-y-2 justify-center flex flex-col" , className)}>
       <Label htmlFor={id}>File input</Label>
-      <Input id={id} className="file:me-3 pt-1 file:border-0 file:border-e mt-4" type="file" onChange={onChange} />
+      <Input id={id} className="file:me-3 pt-2 !px-2 justify-center items-center file:border-0 file:border-e mt-4" type="file" onChange={onChange} />
     </div>
-  );
+  );  
 }

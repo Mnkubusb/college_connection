@@ -94,11 +94,11 @@ export const UserModal = ({ children, noteListId }: EditModalProps & {}) => {
             <DialogContent className="sm:w-[80vw]">
                 <DialogHeader>
                     <DialogTitle>Add your Own Notes</DialogTitle>
-                    <DialogDescription>
+                    <DialogDescription className="text-sm dark:text-gray-500 text-gray-700">
                         Add notes and get Aura points also stand a chance to be in our Hall of fame
                     </DialogDescription>
                 </DialogHeader>
-                <FileUpload onChange={(e) => setFile( e.target.files && e.target.files[0])} />
+                <FileUpload onChange={(e) => setFile( e.target.files && e.target.files[0])} className="mt-4" />
                 <DialogFooter>
                     <Button disabled={isLoading} onClick={onUpload} >
                         {isLoading && (
