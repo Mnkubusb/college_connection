@@ -22,6 +22,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { revalidatePath } from "next/cache";
 import { useSession } from "next-auth/react";
+import { useConfettiStore } from "@/hooks/use-confetti-store";
 
 const pronouns = [
   { label: "Still Figuring out", value: "Still Figuring out" },
@@ -81,6 +82,7 @@ const branches = [
   { label: "Mechanical Engineering", value: "Mechanical Engineering" },
   { label: "Civil Engineering", value: "Civil Engineering" },
   { label: "Mining Engineering", value: "Mining Engineering" },
+  { label: "Electronics and Telecommunications", value: "Electronics and Telecommunications" },
 ] as const
 
 const batches = [
@@ -132,7 +134,6 @@ const skills = [
   { value: "ANSYS", label: "ANSYS" },
   { value: "Revit", label: "Revit" },
   { value: "SketchUp", label: "SketchUp" },
-  { value: "MATLAB", label: "MATLAB" },
   { value: "ArchiCAD", label: "ArchiCAD" },
   { value: "Primavera", label: "Primavera" },
   { value: "Microsoft Project", label: "Microsoft Project" },
@@ -220,6 +221,7 @@ export default function OnboardForm({ user }: UserProps) {
   const [isPending, startTransition] = React.useTransition()
   const [open, setOpen] = React.useState(false)
   const [opened, setOpened] = React.useState(false)
+  const confetti = useConfettiStore();
 
   const onSubmit = (values: z.infer<typeof ProfileSchema>) => {
     startTransition(() => {
@@ -230,7 +232,19 @@ export default function OnboardForm({ user }: UserProps) {
           }
           if (data?.success) {
             await update();
-            toast.success(data?.success as string);
+            confetti.onOpen();
+            toast(data?.success, {
+              icon: "🎉",
+              style: {
+                  border: '1px solid #713200',
+                  padding: '16px',
+                  color: '#713200',
+              },
+              iconTheme: {
+                  primary: '#713200',
+                  secondary: '#FFFAEE',
+              },
+          })
             router.refresh();
             revalidatePath("/auth/onboarding")
             revalidatePath("/profile")
@@ -285,7 +299,7 @@ export default function OnboardForm({ user }: UserProps) {
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
-                        <PopoverContent className="w-200px p-0" >
+                        <PopoverContent className="w-200px p-0" align="end" >
                           <Command>
                             {/* <CommandInput placeholder="Select Your Branch" className="h-8" /> */}
                             <CommandList>

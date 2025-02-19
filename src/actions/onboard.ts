@@ -29,7 +29,7 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
         return { error: "User not found" }
     }
 
-    if ( await getProfile(existingUser?.id as string)) {
+    if (await getProfile(existingUser?.id as string)) {
         return { error: "Profile already exists" }
     }
 
@@ -47,11 +47,59 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
         twitter: normalizeUrl(twitter, "https://x.com/"),
     };
 
+    const auraPointsForBranchs = [
+        { label: "Information Technology", value: 80 },
+        { label: "Computer Science Engineering", value: 80 },
+        { label: "Electronics and Telecommunications", value: 70 },
+        { label: "Electrical Engineering", value: 60 },
+        { label: "Mechanical Engineering", value: 60 },
+        { label: "Civil Engineering", value: 60 },
+        { label: "Mining Engineering", value: 60 },
+    ]
+
+    const auraPointsForSkills = [
+        { label: "Python", value: 25 },
+        { label: "JavaScript", value: 25 },
+        { label: "TypeScript", value: 30 },
+        { label: "Java", value: 25 },
+        { label: "C++", value: 25 },
+        { label: "C#", value: 25 },
+        { label: "Kotlin", value: 25 },
+        { value: "Leadership", label: 20 },
+        { label: "UI/UX Design", value: 30 },
+        { label: "Game Development", value: 30 },
+        { value: "Communication Skills", label: 20 },
+        { value: "Team Collaboration", label: 20 },
+        { value: "CAD Design", label: 15 },
+        { value: "MATLAB", label: 15 },
+        { value: "AutoCAD", label: 15 },
+        { value: "Artificial Intelligence", label: 30 },
+        { value: "Machine Learning", label: 30 },
+        { value: "Internet Of Things", label: 30 },
+        { value: "Blockchain", label: 30 },
+        { value: "Augmented Reality", label: 30 },
+        { value: "Virtual Reality", label: 30 },
+        { value: "3D Printing", label: 30 },
+        { value: "Big Data", label: 30 },
+        { value: "Cloud Computing", label: 30 },
+        { value: "Cybersecurity", label: 30 },
+    ]
+
+
+    const branchAura = auraPointsForBranchs.find(branch => branch.label === department)?.value || 0;
+    const skillsAura = auraPointsForSkills
+        .filter(skill => skills.includes(skill.label as string))
+        .reduce((acc, curr) => acc + Number(curr.value), 0);
+
+    const totalAura = branchAura + skillsAura;
+
 
     await db.$transaction([
         db.user.update({
             where: { id: existingUser.id },
-            data: { isFirstLogin: false }
+            data: { isFirstLogin: false ,
+                coins: totalAura
+             }
         }),
         db.profile.create({
             data: {
@@ -59,6 +107,7 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
                 userId: existingUser?.id as string,
                 image: existingUser?.image as string,
                 batch,
+                coins: totalAura,
                 branch: department,
                 wannabe,
                 skills,
@@ -67,8 +116,8 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
             }
         })
     ]);
-    
+
     revalidatePath("/auth/onboarding");
     revalidatePath("/profile");
-    return { success: "Profile created", message:"You Will be redireted to your profile" }
+    return { success: "Congratulations You have a Aura of ", totalAura };
 }

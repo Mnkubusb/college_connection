@@ -52,7 +52,7 @@ const ProfilePage = ({ user, profile }: UserProps) => {
                                             {userProfile?.name}
                                         </h3>
                                         {user?.dailyCoins && (
-                                            <Badge variant={"default"} className="flex bg-gradient-to-l from-[#f59e0b] via-[#f97316] to-[#dc2626] border-none font-geist justify-center items-center h-6 mt-2 shadow-large">
+                                            <Badge variant={"default"} className="flex bg-gradient-to-l from-[#f59e0b] via-[#f97316] to-[#dc2626] border-none font-geist justify-center items-center h-6 sm:mt-2 shadow-large w-max text-nowrap">
                                                 {user?.dailyCoins} Day Streak
                                             </Badge>
                                         )}
