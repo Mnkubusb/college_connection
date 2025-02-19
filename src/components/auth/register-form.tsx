@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { register } from "../../actions/register";
 import { Button } from "@/components/ui/button";
 import ShowSocial from "./social";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { FaSpinner } from "react-icons/fa";
 import { ArrowRight } from "lucide-react";
@@ -28,6 +28,7 @@ export default function SignUpForm() {
     }
   })
 
+  const router = useRouter();
 
   const [isPending, startTransition] = React.useTransition()
 
@@ -41,7 +42,7 @@ export default function SignUpForm() {
           }
           if (data?.success) {
             toast.success(data.success)
-            redirect("/auth/verify")
+            router.push("/auth/verify")
           }
         })
     })

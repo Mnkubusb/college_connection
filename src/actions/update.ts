@@ -38,7 +38,7 @@ export const update = async (values: z.infer<typeof UpdateProfileSchema>) => {
 
     const normalizedUrls = {
         insta: normalizeUrl(insta, "https://instagram.com/"),
-        linkedin: normalizeUrl(linkedin, "https://linkedin.com/in/"),
+        linkedin: normalizeUrl(linkedin, "https://www.linkedin.com/in/"),
         github: normalizeUrl(github, "https://github.com/"),
         twitter: normalizeUrl(twitter, "https://x.com/"),
     };

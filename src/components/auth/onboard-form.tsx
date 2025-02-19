@@ -191,7 +191,7 @@ interface UserProps {
 }
 
 export default function OnboardForm({ user }: UserProps) {
-  const { data: session , update } = useSession();
+  const { data: session, update } = useSession();
   const router = useRouter()
   const [dynamicPronouns, setDynamicPronouns] = useState<ComboboxOptions[]>(pronouns)
 
@@ -226,7 +226,7 @@ export default function OnboardForm({ user }: UserProps) {
   const onSubmit = (values: z.infer<typeof ProfileSchema>) => {
     startTransition(() => {
       onboard(values)
-        .then( async (data) => {
+        .then(async (data) => {
           if (data?.error) {
             toast.error(data?.error as string)
           }
@@ -236,15 +236,15 @@ export default function OnboardForm({ user }: UserProps) {
             toast(data?.success, {
               icon: "🎉",
               style: {
-                  border: '1px solid #713200',
-                  padding: '16px',
-                  color: '#713200',
+                border: '1px solid #713200',
+                padding: '16px',
+                color: '#713200',
               },
               iconTheme: {
-                  primary: '#713200',
-                  secondary: '#FFFAEE',
+                primary: '#713200',
+                secondary: '#FFFAEE',
               },
-          })
+            })
             router.refresh();
             revalidatePath("/auth/onboarding")
             revalidatePath("/profile")
@@ -260,10 +260,10 @@ export default function OnboardForm({ user }: UserProps) {
 
 
   return (
-    <Card className="max-w-md rounded-none h-full flex flex-col py-2 sm:border-r-1" >
+    <Card className="w-full md:w-[50vw] rounded-none h-full flex flex-col py-2 md:border-x" >
       <Toaster />
       <CardHeader>
-        <CardTitle className="text-xl">
+        <CardTitle className="w-full text-xl">
           Welcome to College Connection
         </CardTitle>
         <CardDescription>
@@ -289,7 +289,7 @@ export default function OnboardForm({ user }: UserProps) {
                               variant={"outline"}
                               role="combobox"
                               className={cn(
-                                "w-full justify-between h-10",
+                                "w-full md:w-72 justify-between h-10",
                                 !field.value && "text-muted-foreground"
                               )}>
                               {field.value
@@ -299,7 +299,7 @@ export default function OnboardForm({ user }: UserProps) {
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
-                        <PopoverContent className="w-200px p-0" align="end" >
+                        <PopoverContent className="w-200px p-0">
                           <Command>
                             {/* <CommandInput placeholder="Select Your Branch" className="h-8" /> */}
                             <CommandList>
@@ -340,7 +340,7 @@ export default function OnboardForm({ user }: UserProps) {
                               variant={"outline"}
                               role="combobox"
                               className={cn(
-                                "w-200px justify-between h-10",
+                                "w-full md:w-72 justify-between h-10",
                                 !field.value && "text-muted-foreground"
                               )}>
                               {field.value
@@ -378,42 +378,44 @@ export default function OnboardForm({ user }: UserProps) {
                   )}
                 />
               </div>
-              <FormField
-                name="wannabe"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>How do you Identify Yourself / Your Pronouns(Or you can create one)</FormLabel>
-                    <Combobox
-                      className="min-w-200px w-full"
-                      disalbed={isPending}
-                      options={dynamicPronouns}
-                      placeholder="Select your pronoun or create one"
-                      selected={field.value}
-                      onChange={(option) => field.onChange(option.value)}
-                      onCreate={handleAppendGroup}
-                    />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="skills"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Skills</FormLabel>
-                    <MultiSelect
-                      disabled={isPending}
-                      placeholder="Select your skills(Max 5)"
-                      options={skills}
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      animation={2}
-                      maxCount={3}
-                    />
-                  </FormItem>
-                )}
-              />
+              <div className="flex flex-col gap-2 md:w-96 ">
+                <FormField
+                  name="wannabe"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>How do you Identify Yourself / Your Pronouns(Or you can create one)</FormLabel>
+                      <Combobox
+                        className="min-w-200px w-full"
+                        disalbed={isPending}
+                        options={dynamicPronouns}
+                        placeholder="Select your pronoun or create one"
+                        selected={field.value}
+                        onChange={(option) => field.onChange(option.value)}
+                        onCreate={handleAppendGroup}
+                      />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  name="skills"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Skills</FormLabel>
+                      <MultiSelect
+                        disabled={isPending}
+                        placeholder="Select your skills(Max 5)"
+                        options={skills}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        animation={2}
+                        maxCount={3}
+                      />
+                    </FormItem>
+                  )}
+                />
+              </div>
               <FormField
                 name="story"
                 control={form.control}
@@ -429,25 +431,27 @@ export default function OnboardForm({ user }: UserProps) {
                   </FormItem>
                 )}
               />
-              {socials.map((social) => (
-                <FormField
-                  key={social.value}
-                  name={social.value}
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input {...field} placeholder={"Enter your " + social.label + " handle"} disabled={isPending} />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-              ))}
+              <div className="grid md:grid-cols-2 gap-4 grid-cols-1">
+                {socials.map((social) => (
+                  <FormField
+                    key={social.value}
+                    name={social.value}
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input {...field} placeholder={"Enter your " + social.label + " handle"} disabled={isPending} />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                ))}
+              </div>
               <Button
                 type="submit"
                 disabled={isPending}
                 variant={"gooeyLeft"}
-                className="w-full"
+                className="md:w-44 w-full md:ml-auto"
               >
                 {isPending ? (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />

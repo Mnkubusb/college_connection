@@ -82,9 +82,9 @@ body {
     [&::-webkit-scrollbar]:w-1
     [&::-webkit-scrollbar]:h-1
     /* [&::-webkit-scrollbar-track]:rounded-full */
-    [&::-webkit-scrollbar-track]:bg-primary-200
+    [&::-webkit-scrollbar-track]:bg-background
     /* [&::-webkit-scrollbar-thumb]:rounded-full */
-    [&::-webkit-scrollbar-thumb]:bg-primary-300
+    [&::-webkit-scrollbar-thumb]:bg-primary-800
     dark:[&::-webkit-scrollbar-track]:bg-background
     dark:[&::-webkit-scrollbar-thumb]:bg-primary-500
   }

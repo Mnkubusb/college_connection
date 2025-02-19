@@ -40,6 +40,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return true
         },
         async session({ token, session })  {
+
             if(token.sub && session.user) {
               session.user.id = token.sub;
             }
@@ -78,7 +79,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             token.image = existingUser.image;
             token.coins = existingUser.coins;
             token.dailyCoins = existingUser.dailyCoins;
-             return token
+            return token
         }
     },
 

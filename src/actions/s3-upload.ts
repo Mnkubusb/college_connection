@@ -91,6 +91,15 @@ export async function updateDb( { name , notesListId , signedUrl } : { name: str
         }
     })
 
-    return { success : "You got 10 aura Points"}
+    await db.profile.update({
+        where: {
+            userId: user?.id
+        },
+        data: {
+            coins: UserUploading?.coins + 10
+        }
+    })
+
+    return { success : "You got 10 aura Points" }
     
 }

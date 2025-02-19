@@ -55,7 +55,7 @@ export function LoginForm() {
             router.push("/auth/onboarding")
           }
           if (data.error === "Email not verified Please verify your email") {
-            redirect("/auth/verify")
+            router.push("/auth/verify");
           }
         })
     })

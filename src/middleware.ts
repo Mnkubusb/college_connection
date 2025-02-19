@@ -1,7 +1,6 @@
 "use server"
 import authConfig from "./auth.config"
 import NextAuth from "next-auth"
-
 import {
     DEFAULT_LOGIN_REDIRECT,
     authRoutes,
@@ -14,7 +13,6 @@ import { currentUser } from "./lib/auth";
 const { auth } = NextAuth(authConfig)
 
 export default auth(async (req) => {
-
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);

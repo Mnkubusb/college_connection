@@ -132,7 +132,7 @@ export function Combobox({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-full min-w-[500px] p-0">
+      <PopoverContent className="w-full min-w-[200px] p-0 scroll scroll-smooth">
         <Command
           filter={(value, search) => {
             const v = toHiragana(value.toLocaleLowerCase());
@@ -140,6 +140,7 @@ export function Combobox({
             if (v.includes(s)) return 1;
             return 0;
           }}
+          className='scroll scroll-smooth'
         >
           <CommandInput
             placeholder="Search or create new"
@@ -158,7 +159,7 @@ export function Combobox({
           </CommandEmpty>
 
           <CommandList>
-            <CommandGroup className="overflow-y-auto">
+            <CommandGroup className="overflow-y-auto scroll scroll-smooth">
               {options.length === 0 && !query && (
                 <div className="py-1.5 pl-8 space-y-1 text-sm">
                   <p>No items</p>

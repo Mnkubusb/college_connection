@@ -13,7 +13,8 @@ export const getDailyCoins = async () => {
                 id: Currentuser.id
             }, select: {
                 dailyCoins: true,
-                lastLogin: true
+                lastLogin: true,
+                coins: true
             }
         });
 
@@ -21,7 +22,6 @@ export const getDailyCoins = async () => {
         const lastLogin = user?.lastLogin;
         const shouldRecieveCoins = !lastLogin ||
             lastLogin.toDateString() !== today.toDateString()
-
         const isGreaterThanTommorrow = parseInt(lastLogin?.toDateString() as string) + 1 > parseInt(today.toDateString())
 
         if (isGreaterThanTommorrow) {

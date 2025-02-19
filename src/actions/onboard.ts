@@ -42,7 +42,7 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
 
     const normalizedUrls = {
         insta: normalizeUrl(insta, "https://instagram.com/"),
-        linkedin: normalizeUrl(linkedin, "https://linkedin.com/in/"),
+        linkedin: normalizeUrl(linkedin, "https://www.linkedin.com/in/"),
         github: normalizeUrl(github, "https://github.com/"),
         twitter: normalizeUrl(twitter, "https://x.com/"),
     };
@@ -93,11 +93,11 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
 
     const totalAura = branchAura + skillsAura;
 
-
     await db.$transaction([
         db.user.update({
             where: { id: existingUser.id },
-            data: { isFirstLogin: false ,
+            data: { 
+                isFirstLogin: false ,
                 coins: totalAura
              }
         }),
@@ -119,5 +119,5 @@ export const onboard = async (values: z.infer<typeof ProfileSchema>) => {
 
     revalidatePath("/auth/onboarding");
     revalidatePath("/profile");
-    return { success: "Congratulations You have a Aura of ", totalAura };
+    return { success:`Congratulations You have a Aura of  ${totalAura}`};
 }

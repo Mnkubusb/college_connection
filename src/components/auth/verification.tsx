@@ -50,7 +50,7 @@ const VerifyForm = () => {
 
   return (
     <div className="max-w-md h-full flex items-center justify-center outline outline-1 outline-muted p-6 bg-background">
-      <div className="w-full flex flex-col gap-3">
+      <div className="w-full flex flex-col items-center gap-3">
         <div className="space-y-2">
           <h2 className="font-semibold text-xl">Verify Your Email</h2>
           <p className="text-xs text-muted-foreground">
