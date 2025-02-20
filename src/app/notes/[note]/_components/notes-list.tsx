@@ -65,7 +65,7 @@ export const NotesListPage = ({ items, onReorder, onEdit }: NotesListProps) => {
                         {notes.map((note, index) => (
                             <Draggable key={note.id} draggableId={note.id} index={index}>
                                 {(provided) => (
-                                    <div className={cn("flex items-center gap-x-2 bg-slate-950 border rounded-md mb-4 text-sm",
+                                    <div className={cn("flex items-center gap-x-2 dark:bg-slate-950 border rounded-md mb-4 text-sm",
                                         note.isPublished && " border-sky-300"
                                     )}
                                         ref={provided.innerRef}

@@ -62,7 +62,7 @@ export const ChapterListPage = ({ items, onReorder, onEdit }: ChapterListProps) 
                         {notes.map((note, index) => (
                             <Draggable key={note.id} draggableId={note.id} index={index}>
                                 {(provided) => (
-                                    <div className={cn("flex items-center gap-x-2 bg-slate-950 border rounded-md mb-4 text-sm",
+                                    <div className={cn("flex items-center gap-x-2 dark:bg-slate-950 border rounded-md mb-4 text-sm",
                                     )}
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}

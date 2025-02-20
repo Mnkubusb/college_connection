@@ -40,6 +40,16 @@ export const getDailyCoins = async () => {
                     dailyCoins: (user?.dailyCoins || 0) + 1
                 }
             });
+
+            await db.profile.update({
+                where: {
+                    userId: Currentuser.id as string
+                },
+                data:{
+                    coins: (user?.coins || 0) + 100
+                }
+            })
+            
             return {
                 coins: updatedUser?.coins,
                 lastLoginDate: updatedUser?.lastLogin,
