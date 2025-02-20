@@ -381,7 +381,7 @@ export default function OnboardForm({ user }: UserProps) {
                   control={form.control}
                   render={({ field }) => (
                     <FormItem className="flex flex-col">
-                      <FormLabel>How do you Identify Yourself / Your Pronouns(Or you can create one)</FormLabel>
+                      <FormLabel>What are you persued to be?(Not in list create one)</FormLabel>
                       <Combobox
                         className="min-w-200px w-full"
                         disalbed={isPending}
