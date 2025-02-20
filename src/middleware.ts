@@ -21,9 +21,18 @@ export default auth(async (req) => {
     const isAuthRoutes = authRoutes.includes(nextUrl.pathname);
     const isOnboardingRoute = nextUrl.pathname === Onboard;
     const user = await currentUser();
-    const UserDeleted = req.auth?.user?.image === null;
+    // const UserDeleted = req.auth?.user?.email === null;
+    // console.log(UserDeleted, req.auth)
 
     if (isApiAuthRoute) return undefined;
+
+    // if ( UserDeleted && !isLoggedIn) {
+    //     const user = await currentUser();
+    //     const existingUser = await getUserById(user?.id);
+    //     if (!existingUser) {
+    //         return Response.redirect(new URL("/api/auth/signout", nextUrl)); // Call logout API
+    //     }
+    // }
 
     if (isAuthRoutes) {
         if (isLoggedIn) {
