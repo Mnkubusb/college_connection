@@ -41,8 +41,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async session({ token, session }) {
 
-      if (!token.sub) {
-        return { expires: session.expires }; // Return session without user
+      if(!token.sub){
+        return { expires: session.expires };
       }
 
       if (token.sub && session.user) {
@@ -64,6 +64,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
     async jwt({ token }) {
+      
       if (!token.sub) {
         return token
       }
@@ -71,7 +72,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       const existingUser = await getUserById(token.sub);
 
       if (!existingUser) {
-        return {};
+        return token;
       }
 
       const existingAccount = getAccountByUserId(existingUser.id);

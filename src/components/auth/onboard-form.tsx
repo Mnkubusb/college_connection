@@ -20,7 +20,6 @@ import { Input } from "../ui/input";
 import { ExtendedUser } from "../../../next-auth";
 import toast, { Toaster } from "react-hot-toast";
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { revalidatePath } from "next/cache";
 import { useSession } from "next-auth/react";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
 
@@ -246,8 +245,6 @@ export default function OnboardForm({ user }: UserProps) {
               },
             })
             router.refresh();
-            revalidatePath("/auth/onboarding")
-            revalidatePath("/profile")
             router.push("/profile");
           }
           if (data.error === "Profile already exists") {

@@ -24,6 +24,29 @@ export const getDailyCoins = async () => {
             lastLogin.toDateString() !== today.toDateString()
         const isGreaterThanTommorrow = parseInt(lastLogin?.toDateString() as string) + 1 > parseInt(today.toDateString())
 
+        const isFirstLogin = !lastLogin
+        const tenDaysfromNow = new Date(today)
+        tenDaysfromNow.setDate(tenDaysfromNow.getDate() + 10)
+        const isTenDaysFromNow = parseInt(lastLogin?.toDateString() as string) + 10 > parseInt(tenDaysfromNow.toDateString())
+
+        if(!isTenDaysFromNow && isFirstLogin) {
+            const updatedUser = await db.user.update({
+                where: {
+                    id: Currentuser.id
+                },
+                data: {
+                    lastLogin: today,
+                    coins: (user?.coins || 0) + 100,
+                    dailyCoins: (user?.dailyCoins || 0) + 1
+                }
+            });
+            return {
+                coins: updatedUser?.coins,
+                lastLoginDate: updatedUser?.lastLogin,
+                success: "100 Aura Points as First Login Bonus"
+            }   
+        }
+
         if (isGreaterThanTommorrow) {
             const updatedUser = await db.user.update({
                 where: {
