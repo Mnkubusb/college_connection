@@ -9,6 +9,7 @@ import {
     Onboard
 } from "./routes";
 import { currentUser } from "./lib/auth";
+import { getUserById } from "./data/user";
 
 const { auth } = NextAuth(authConfig)
 
@@ -20,10 +21,19 @@ export default auth(async (req) => {
     const isAuthRoutes = authRoutes.includes(nextUrl.pathname);
     const isOnboardingRoute = nextUrl.pathname === Onboard;
     const user = await currentUser();
+    const UserDeleted = req.auth?.user?.image === null;
+    console.log(UserDeleted, req.auth)
 
-    if (isApiAuthRoute) {
-        return undefined;
+    if (isApiAuthRoute) return undefined;
+
+    if (UserDeleted) {
+        const user = await currentUser();
+        const existingUser = await getUserById(user?.id);
+        if (!existingUser) {
+            return Response.redirect(new URL("/api/auth/signout", nextUrl)); // Call logout API
+        }
     }
+
     if (isAuthRoutes) {
         if (isLoggedIn) {
             return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
@@ -34,7 +44,7 @@ export default auth(async (req) => {
     if (isLoggedIn) {
         if (isOnboardingRoute && !user?.isFirstLogin) {
             return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-        } 
+        }
         if (!isOnboardingRoute && user?.isFirstLogin) {
             return Response.redirect(new URL("/auth/onboarding", nextUrl));
         }

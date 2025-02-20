@@ -41,8 +41,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async session({ token, session }) {
 
-      if(!token.sub){
-        return { expires: session.expires };
+      if (token?.error) {
+        return { ...session, error: token.error , user: undefined };
       }
 
       if (token.sub && session.user) {
@@ -64,7 +64,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
     async jwt({ token }) {
-      
+
       if (!token.sub) {
         return token
       }
@@ -72,7 +72,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       const existingUser = await getUserById(token.sub);
 
       if (!existingUser) {
-        return token;
+        console.log("⚠️ User deleted, invalidating token");
+        return { 
+          error: "User not found" , 
+          user: undefined }; 
       }
 
       const existingAccount = getAccountByUserId(existingUser.id);
