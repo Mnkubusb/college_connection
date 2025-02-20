@@ -15,13 +15,13 @@ const s3 = new S3Client({
     },
 });
 
-const maxFileSize = 100 * 1024 * 1024;
+const maxFileSize = 50 * 1024 * 1024;
 
 export async function getSignedURL( type: string , name: string , size: number , checksum: string) {
 
     if (size > maxFileSize) {
         return {
-            error: "File size is too large. Max size is 100MB."
+            error: "File size is too large. Max size is 50MB."
         }
     }
 

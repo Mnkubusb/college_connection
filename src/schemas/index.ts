@@ -71,7 +71,7 @@ export const UpdateProfileSchema = z.object({
     branch: z.string().min(1, { message: "Select your Branch"}),
     wannabe: z.string().min(1, { message: "Select your Desired Career"}),   
     skills: z.string().array().min(1, { message: "Enter your skills"}).max(5, { message: "You can only add 5 skills"}),
-    story: z.string().min(10, { message: "Tell us your story in at least 10 words"}),
+    story: z.optional(z.string()),
     insta: z.optional(z.string()),
     linkedin: z.optional(z.string()),
     github: z.optional(z.string()),
