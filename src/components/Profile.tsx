@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { ConfirmModal } from './modals/confirm-modal';
 
 const ProfileView = (
   { profilePic, Name, Skills, Fallback, isAdmin, email, Coins }: {
@@ -74,11 +75,12 @@ const ProfileView = (
       </div>
       <div>
         {isAdmin && (
-          <Button disabled={isLoading} variant={"outline"} size={"icon"} className='rounded-lg'
-            onClick={handleDelete}
-          >
-            <Trash size={15} />
-          </Button>
+          <ConfirmModal onConfirm={handleDelete}>
+            <Button disabled={isLoading} variant={"outline"} size={"icon"} className='rounded-lg'
+            >
+              <Trash size={15} />
+            </Button>
+          </ConfirmModal>
         )}
       </div>
     </div>
