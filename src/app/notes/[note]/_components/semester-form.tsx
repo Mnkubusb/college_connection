@@ -60,7 +60,7 @@ export const SemesterForm = ({ initialData, noteId , options}: SemesterFormProps
     const selectedOption = options.find((option) => option.value === initialData.categoryId);
 
     return (
-        <div className="mt-6 border bg-slate-950 rounded-md p-4">
+        <div className="mt-6 border dark:bg-slate-950 rounded-md p-4">
             <div className="font-medium flex items-center justify-between">
                 Select Semester
                 <Button variant={"ghost"} onClick={toggleEdit}>

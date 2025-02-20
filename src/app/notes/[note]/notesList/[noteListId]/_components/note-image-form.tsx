@@ -51,7 +51,7 @@ export const NoteImageForm = ({ initialData, noteId , noteListId }: NoteImageFor
     }
 
     return (
-        <div className="mt-6 border bg-slate-950 rounded-md p-4">
+        <div className="mt-6 border dark:bg-slate-950 rounded-md p-4">
             <div className="font-medium flex items-center justify-between">
                 Note Image
                 <Button variant={"ghost"} onClick={toggleEdit}>
