@@ -1,9 +1,10 @@
 import { currentUser } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
 export async function DELETE(
-    req:Request, 
+    req: Request, 
     { params }:{ params:{ email:string } }
 ){
     try {
@@ -17,6 +18,7 @@ export async function DELETE(
                 email: params.email
             }
         });
+        
         return NextResponse.json(deletedUser);
     } catch (error) {
         console.log(error);

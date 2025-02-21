@@ -9,6 +9,7 @@ import {
     Onboard
 } from "./routes";
 import { currentUser } from "./lib/auth";
+import { getUserById } from "./data/user";
 
 const { auth } = NextAuth(authConfig)
 
@@ -31,9 +32,16 @@ export default auth(async (req) => {
         }
         return undefined;
     }
+    if(!isAuthRoutes){
+        console.log("user", user)
+        if(!user?.id ){
+            return Response.redirect(new URL("/auth/login", nextUrl));
+        }
+        return undefined;
+    }
+    
 
     if (isLoggedIn) {
-        console.log("User", user);
         if (isOnboardingRoute && !user?.isFirstLogin) {
             return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
         }
