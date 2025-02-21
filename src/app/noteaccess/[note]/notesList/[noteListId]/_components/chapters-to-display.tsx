@@ -30,7 +30,7 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
     return (
         <div className="w-full h-full flex ">
             <div className="md:basis-[30%] md:ml-3 border-x w-full h-full">
-                <div className="flex flex-col justify-between sm:h-[calc(100%-3rem)] h-[calc(100vh-8rem)] overflow-auto scroll scroll-smooth gap-2">
+                <div className="flex flex-col justify-between h-full overflow-auto scroll scroll-smooth gap-2">
                     <div className="flex flex-col gap-y-2 mt-2">
                         {chapters.map((chapter, index) => (
                             <div key={chapter.id} className="flex gap-2 cursor-pointer justify-start w-full px-4 dark:hover:bg-gray-800 hover:bg-gray-400 shadow-large dark:shadow-slate-100 h-16 items-center"

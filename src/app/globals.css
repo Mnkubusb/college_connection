@@ -8,25 +8,6 @@ body {
   overflow: hidden;
 }
 
-.pdf-page {
-  transform-origin: center;
-  min-width: min-content;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.pdf-container {
-  display: inline-block;
-  margin: 0 auto;
-}
-
-.pdf-page canvas {
-  max-width: none !important;
-  display: block;
-  margin: 0 auto;
-}
-
 
 @layer utilities {
   .text-balance {

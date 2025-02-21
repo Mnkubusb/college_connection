@@ -178,7 +178,7 @@ export const PDFViewer = ({ url, scale: initialScale = 0.5, onZoomIn, onZoomOut 
   };
 
   return (
-    <div className="flex flex-col items-center w-full h-[calc(100vh-6rem)] lg:h-[calc(100vh-3rem)] mb-4 md:mb-0 overflow-hidden bg-background">
+    <div className="flex flex-col items-center w-full h-[calc(100vh-8rem)] lg:h-[calc(100vh-3rem)] mb-4 md:mb-0 overflow-hidden bg-background">
       {/* Controls - moved outside scrollable container */}
       <div className="w-full flex flex-wrap gap-2 sm:gap-4 items-center justify-center p-2 sm:p-3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
         <div className="flex items-center gap-1 sm:gap-2">
