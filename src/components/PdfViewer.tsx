@@ -178,9 +178,9 @@ export const PDFViewer = ({ url, scale: initialScale = 0.5, onZoomIn, onZoomOut 
   };
 
   return (
-    <div className="flex flex-col items-center w-full h-[calc(100vh-8rem)] lg:h-[calc(100vh-3rem)] mb-4 md:mb-0 overflow-hidden bg-background">
+    <div className="flex flex-col items-center w-full h-[calc(100vh-8rem)] lg:h-[calc(100vh-3rem)] mb-4 md:mb-0 overflow-hidden bg-background mx-auto">
       {/* Controls - moved outside scrollable container */}
-      <div className="w-full flex flex-wrap gap-2 sm:gap-4 items-center justify-center p-2 sm:p-3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+      <div className="w-full flex flex-wrap gap-2 sm:gap-4 items-center justify-center p-2 sm:p-3 bg-white/80 dark:bg-background backdrop-blur-sm">
         <div className="flex items-center gap-1 sm:gap-2">
           <Button
             variant="ghost"
@@ -198,7 +198,7 @@ export const PDFViewer = ({ url, scale: initialScale = 0.5, onZoomIn, onZoomOut 
               max={numPages}
               value={pageNumber}
               onChange={handlePageChange}
-              className="w-12 sm:w-14 h-8 text-center bg-transparent border-0 focus-visible:ring-1 p-0 text-sm"
+              className="w-12 sm:w-14 h-8 text-center border-0 focus-visible:ring-1 p-0 text-sm"
             />
             <span className="text-xs sm:text-sm text-muted-foreground">
               / {numPages}

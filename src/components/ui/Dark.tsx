@@ -51,7 +51,7 @@ export default function ModeToggle() {
   }
 
   return (
-    <Button variant={"outline"} size={"icon"} className="p-1 absolute top-0 right-0 px-1 m-2 mr-4"
+    <Button variant={"outline"} size={"icon"} className="p-1 absolute top-2 right-0 px-1 m-2 mr-4"
       onClick={() => theme === "dark" ? setTheme("light") : setTheme("dark")}
     >
       <m.svg width="98" height="98" viewBox="0 0 98 98" fill="none" xmlns="http://www.w3.org/2000/svg" className="relative">
