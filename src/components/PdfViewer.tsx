@@ -16,7 +16,7 @@ interface PDFViewerProps {
   onZoomOut?: () => void;
 }
 
-export const PDFViewer = ({ url, scale: initialScale = 0.6, onZoomIn, onZoomOut }: PDFViewerProps) => {
+export const PDFViewer = ({ url, scale: initialScale = 0.5, onZoomIn, onZoomOut }: PDFViewerProps) => {
   const [numPages, setNumPages] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [visiblePages, setVisiblePages] = useState<number[]>([1]);
@@ -58,7 +58,7 @@ export const PDFViewer = ({ url, scale: initialScale = 0.6, onZoomIn, onZoomOut 
         const containerWidth = containerRef.current.clientWidth;
         const pageWidth = 595;
         const targetScale = (containerWidth - 48) / pageWidth;
-        setInternalScale(Math.min(Math.max(targetScale, 0.6), 2));
+        setInternalScale(Math.min(Math.max(targetScale, 0.5), 2));
       }
     };
 
