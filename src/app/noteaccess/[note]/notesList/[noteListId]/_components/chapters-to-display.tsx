@@ -28,7 +28,7 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
     const chapters = items.chapters
 
     return (
-        <div className="w-full h-full flex ">
+        <div className="w-full h-full flex">
             <div className="md:basis-[30%] md:ml-3 border-x w-full h-full">
                 <div className="flex flex-col justify-between h-full overflow-auto scroll scroll-smooth gap-2">
                     <div className="flex flex-col gap-y-2 mt-2">
@@ -59,7 +59,7 @@ export const ChapterListDisplay = ({ items }: NotesListProps) => {
                     </div>
                 </div>
             </div>
-            <div className={cn("md:basis-[70%] md:mr-3 border-x block w-full lg:relative absolute h-full", isMobileView ? "block" : "hidden")}>
+            <div className={cn("md:basis-[70%] md:mr-3 border-x block w-full lg:relative absolute  h-full", isMobileView ? "block" : "hidden")}>
                 <Button onClick={() => setisMobileView(false)} className="absolute top-[10px] right-3 z-[100] rounded-full dark:bg-black lg:hidden flex justify-center items-center " variant={"outline"} size={"icon"} >
                     <IoClose size={20} />
                 </Button>
