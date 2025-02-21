@@ -9,7 +9,6 @@ body {
 }
 
 .pdf-page {
-  touch-action: pinch-zoom !important;
   transform-origin: center;
   min-width: min-content;
   width: 100%;
