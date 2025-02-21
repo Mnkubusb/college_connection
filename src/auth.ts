@@ -42,7 +42,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async session({ token, session }) {
 
       if (token?.error) {
-        return { ...session, error: token.error , user: undefined };
+        console.log("⚠️ Error in token, invalidating session");
+        return { ...session, error: token.error , user: undefined , expires : "" };
       }
 
       if (token.sub && session.user) {
@@ -75,7 +76,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         console.log("⚠️ User deleted, invalidating token");
         return { 
           error: "User not found" , 
-          user: undefined }; 
+          user: undefined,
+        }; 
       }
 
       const existingAccount = getAccountByUserId(existingUser.id);
