@@ -178,7 +178,7 @@ export const PDFViewer = ({ url, scale: initialScale = 0.6, onZoomIn, onZoomOut 
   };
 
   return (
-    <div className="flex flex-col items-center w-full h-[calc(100vh-6rem)] lg:h-[calc(100vh-3rem)] mb-4 md:mb-0 overflow-hidden bg-background">
+    <div className="flex flex-col items-center w-full h-[calc(100vh-8rem)] lg:h-[calc(100vh-3rem)] mb-4 md:mb-0 overflow-hidden bg-background">
       {/* Controls - moved outside scrollable container */}
       <div className="w-full flex flex-wrap gap-2 sm:gap-4 items-center justify-center p-2 sm:p-3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
         <div className="flex items-center gap-1 sm:gap-2">
@@ -238,7 +238,7 @@ export const PDFViewer = ({ url, scale: initialScale = 0.6, onZoomIn, onZoomOut 
             <ZoomIn className="h-5 w-5" />
           </Button>
         </div>
-{/* 
+        {/* 
         <Button
           variant="ghost"
           onClick={() => window.open(url, '_blank')}
@@ -251,7 +251,7 @@ export const PDFViewer = ({ url, scale: initialScale = 0.6, onZoomIn, onZoomOut 
       {/* PDF Document container */}
       <div
         ref={containerRef}
-        className="relative w-full overflow-auto scroll scroll-smooth bg-transparent flex-1"
+        className="relative w-full !overflow-auto scroll scroll-smooth bg-transparent flex-1 pdf-viewer-container"
         onScroll={handleScroll}
       >
         <div className="flex flex-col items-center">
@@ -278,18 +278,20 @@ export const PDFViewer = ({ url, scale: initialScale = 0.6, onZoomIn, onZoomOut 
                 }}
                 className="pdf-page"
               >
-                <Page
-                  pageNumber={page}
-                  scale={internalScale}
-                  renderTextLayer={false}
-                  renderAnnotationLayer={false}
-                  className="shadow-lg mb-4"
-                  loading={
-                    <div className="flex items-center justify-center min-h-[792px]">
-                      <Loader2 className="h-6 w-6 animate-spin" />
-                    </div>
-                  }
-                />
+                <div className="pdf-container">
+                  <Page
+                    pageNumber={page}
+                    scale={internalScale}
+                    renderTextLayer={false}
+                    renderAnnotationLayer={false}
+                    className="shadow-lg mb-4"
+                    loading={
+                      <div className="flex items-center justify-center min-h-[792px]">
+                        <Loader2 className="h-6 w-6 animate-spin" />
+                      </div>
+                    }
+                  />
+                </div>
               </div>
             ))}
           </Document>
