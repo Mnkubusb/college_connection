@@ -33,7 +33,7 @@ const NoteAccess = async ({
         <div className="py-3 px-2 sm:px-0 md:hidden block h-max">
           <SearchInput />
         </div>
-        <div className="relative h-full overflow-auto scroll scroll-smooth sm:overflow-hidden px-2 sm:px-0">
+        <div className="relative h-full overflow-auto scroll scroll-smooth px-2 sm:px-0 mb-5">
         <Catergories items={categories} />
         <NotestoDisplay items={notes} />
         </div>
