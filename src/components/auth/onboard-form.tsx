@@ -422,7 +422,7 @@ export default function OnboardForm({ user }: UserProps) {
                     <Textarea
                       className="scroll"
                       disabled={isPending}
-                      placeholder="Tell us a bit about yourself"
+                      placeholder="Tell us a bit about yourself (Optional)"
                       {...field}
                     />
                   </FormItem>
@@ -437,7 +437,7 @@ export default function OnboardForm({ user }: UserProps) {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Input {...field} placeholder={"Enter your " + social.label + " handle"} disabled={isPending} />
+                          <Input {...field} placeholder={"Enter your " + social.label + " handle (Optional)"} disabled={isPending} />
                         </FormControl>
                       </FormItem>
                     )}

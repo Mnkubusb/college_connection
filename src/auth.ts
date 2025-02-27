@@ -66,8 +66,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
 
       const existingUser = await getUserById(token.sub);
-
+      
       if (!existingUser) {
+        console.log("User not found",token)
         return token
       }
 

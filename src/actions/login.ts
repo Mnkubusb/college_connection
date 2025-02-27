@@ -22,7 +22,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     const existingUser = await getUserByEmail(email);
 
     if (!existingUser || !existingUser.password) {
-        return { error: "User not found or login method is different" }
+        return { error: "User not found" }
     }
 
     if (!existingUser.email) {

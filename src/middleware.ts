@@ -33,7 +33,6 @@ export default auth(async (req) => {
     }
 
     if (isLoggedIn) {
-        console.log("User", user);
         if (isOnboardingRoute && !user?.isFirstLogin) {
             return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
         }
