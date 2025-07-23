@@ -24,7 +24,7 @@ import { useForm } from "react-hook-form";
 import { LoginSchema } from "../../schemas";
 import { useTransition } from "react";
 import { login } from "../../actions/login";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
 import { LogIn } from "lucide-react";
