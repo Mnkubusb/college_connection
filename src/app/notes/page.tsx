@@ -12,7 +12,7 @@ const Notes = async () => {
 
   const notes = await db.note.findMany({
     orderBy: {
-      createdAt: 'desc'
+      createdAt: 'asc'
     }
   });
 
