@@ -1,5 +1,5 @@
 "use client"
-import { Note } from "@prisma/client"
+import { Note, Category } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -8,7 +8,12 @@ import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
-export const columns: ColumnDef<Note>[] = [
+type NoteWithCategory = Note & {
+  category: Category | null;
+};
+
+
+export const columns: ColumnDef<NoteWithCategory>[] = [
   {
     accessorKey: "title",
     header: ({ column }) => {
@@ -22,6 +27,28 @@ export const columns: ColumnDef<Note>[] = [
         </Button>
       )
     },
+  },
+  {
+    accessorKey: "category",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Semester
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const category = row.original.category?.name || "Uncategorized";
+      return (
+        <Badge variant="secondary" className="rounded-full ml-4">
+          {category}
+        </Badge>
+      )
+    }
   },
   {
     accessorKey: "createdAt",

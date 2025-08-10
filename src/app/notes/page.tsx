@@ -13,6 +13,9 @@ const Notes = async () => {
   const notes = await db.note.findMany({
     orderBy: {
       createdAt: 'asc'
+    },
+    include:{
+      category: true
     }
   });
 
