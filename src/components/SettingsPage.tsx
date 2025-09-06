@@ -11,7 +11,7 @@ import { Button } from "./ui/button";
 import { Check, ChevronDown, Link, User } from "lucide-react";
 import { UpdateProfileSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z  from "zod";
+import * as z from "zod";
 import { useState, useTransition } from "react";
 import { update } from "@/actions/update";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
@@ -128,6 +128,10 @@ const batches = [
     { label: "2022", value: "2022" },
     { label: "2023", value: "2023" },
     { label: "2024", value: "2024" },
+    { label: "2025", value: "2025" },
+    { label: "2026", value: "2026" },
+    { label: "2027", value: "2027" },
+    { label: "2028", value: "2028" },
 ] as const
 
 const pronouns = [
@@ -458,15 +462,15 @@ const SettingsPage = ({ user, profile }: UserProps) => {
                                                 <FormField control={form.control} name="wannabe" render={({ field }) => (
                                                     <FormItem className="flex flex-col">
                                                         <FormLabel>Identify Yourself</FormLabel>
-                                                            <Combobox
-                                                                disalbed={isPending}
-                                                                options={pronouns}
-                                                                placeholder="Select your Pronoun"
-                                                                selected={field.value}
-                                                                onChange={(option) => field.onChange(option.value)}
-                                                                onCreate={handleAppendGroup}
-                                                                className="min-w-56 w-full"
-                                                            />
+                                                        <Combobox
+                                                            disalbed={isPending}
+                                                            options={pronouns}
+                                                            placeholder="Select your Pronoun"
+                                                            selected={field.value}
+                                                            onChange={(option) => field.onChange(option.value)}
+                                                            onCreate={handleAppendGroup}
+                                                            className="min-w-56 w-full"
+                                                        />
                                                         <FormMessage />
                                                     </FormItem>
                                                 )} />
